@@ -1,4 +1,4 @@
-SwipeGame	(Still need a solid name)
+SwipeGame (Still need a solid name)
 =========
 
 Ideas: 
