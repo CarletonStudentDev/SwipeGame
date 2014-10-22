@@ -11,6 +11,7 @@ public class StartNewGameActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(new GameView(this));
     }
 
