@@ -53,4 +53,19 @@ Objects Brainstorm:
 	-description
 	-price
 	
+
+Visual Assets:
+	-Full Heart 
+	-Empty Heart
+	
+	-Multiplier bar
+		->Full slot
+		->Empty slot
+		->Multipliers (x2, x4, x8) *Higher multiplier decreases time available *Reset score doesn't decrease lives
+		
+	-Card 
+	-Pile
+	-Score
+	-Timer 
+	
 	
