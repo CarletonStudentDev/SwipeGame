@@ -44,7 +44,8 @@ public class Game {
     // do the drawing here
     public void onDraw(Canvas c){
         update();
-        c.drawBitmap(bmp,x,y,null);
+        c.drawBitmap(bmp, x, y, null);
+
     }
 
     // called in the GameView onTouchListener to find where the touch was made

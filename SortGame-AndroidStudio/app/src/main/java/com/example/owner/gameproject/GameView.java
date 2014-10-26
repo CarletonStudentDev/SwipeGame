@@ -1,8 +1,6 @@
 package com.example.owner.gameproject;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -17,7 +15,6 @@ public class GameView extends SurfaceView {
 
     public GameView(Context context) {
         super(context);
-
 
         gameLoopThread = new GameLoopThread(this);
         holder = getHolder();
@@ -76,7 +73,7 @@ public class GameView extends SurfaceView {
                 break;
 
         }
-        return super.onTouchEvent(event);
+        return true;
     }
 
     @Override
