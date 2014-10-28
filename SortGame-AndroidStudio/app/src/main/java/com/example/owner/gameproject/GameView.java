@@ -8,13 +8,14 @@ import android.view.SurfaceView;
 
 
 public class GameView extends SurfaceView {
-    private SurfaceHolder holder;
+
     private GameLoopThread gameLoopThread;
 
     private Game game;
 
     public GameView(Context context) {
         super(context);
+        SurfaceHolder holder;
 
         gameLoopThread = new GameLoopThread(this);
         holder = getHolder();
@@ -50,29 +51,7 @@ public class GameView extends SurfaceView {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
-        int x = (int) event.getX();
-        int y = (int) event.getY();
-
-        int eventAction = event.getAction();
-
-        switch (eventAction) {
-
-            case MotionEvent.ACTION_DOWN:
-
-                game.setTouch(x,y);
-                game.setTouching(true);
-                break;
-
-            case MotionEvent.ACTION_MOVE:
-                game.setTouch(x,y);
-                game.setTouching(true);
-                break;
-
-            case MotionEvent.ACTION_UP:
-                game.setTouching(false);
-                break;
-
-        }
+        game.onTouchEvent(event);
         return true;
     }
 
