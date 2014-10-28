@@ -7,7 +7,6 @@ import android.view.SurfaceView;
 
 /**
  * Drawable card object with all the getters and setters
- * Should be initialized in the game class
  *
  * @author Robert
  *
@@ -33,7 +32,7 @@ public class Card {
 
     /**
      * Card class constructor
-     * initializes the position of the card
+     * initializes the position of the card and its image
      *
      * @param view -> used to find the screen size and get the resources
      * @param x -> x position of the card
@@ -64,11 +63,11 @@ public class Card {
      * onDraw is called in the gameLoop, and runs in "real time"
      * used to draw things to screen
      *
-     * @param c -> canvas object that we need to draw to
+     * @param canvas -> canvas object that we need to draw to
      */
-    public void onDraw(Canvas c){
+    public void onDraw(Canvas canvas){
         update();
-        c.drawBitmap(bmp,x,y,null);
+        canvas.drawBitmap(bmp, x, y, null);
     }
 
     /**

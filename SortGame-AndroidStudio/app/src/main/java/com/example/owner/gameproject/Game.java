@@ -60,11 +60,11 @@ public class Game {
      * onDraw is called in the gameLoop, and runs in "real time"
      * used to draw things to screen
      *
-     * @param c -> canvas object that we need to draw to
+     * @param canvas -> canvas object that we need to draw to
      */
-    public void onDraw(Canvas c){
+    public void onDraw(Canvas canvas){
         update();
-        card.onDraw(c);
+        card.onDraw(canvas);
     }
 
     /**
