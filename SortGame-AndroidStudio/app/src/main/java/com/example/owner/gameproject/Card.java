@@ -12,7 +12,6 @@ import android.view.SurfaceView;
  *
  * @version V.1
  * @since 2014-10-28
- * Created by Robert on 27/10/2014.
  */
 public class Card {
 
