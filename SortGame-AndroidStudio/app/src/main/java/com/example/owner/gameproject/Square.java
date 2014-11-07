@@ -20,20 +20,33 @@ public class Square {
 
     private FloatBuffer vertexData;
 
+    private float x = 0f;
+    private float y = 0f;
 
+    private float[] squareCoords;
 
-    public Square() {
+    public Square(float x, float y) {
+        this.x = x;
+        this.y = y;
 
-        float[] squareCoords = {
-                -0.5f,0.5f,
-                0.5f,0.5f,
-                -0.5f,-0.5f,
+    }
 
-                0.5f,0.5f,
-                0.5f,-0.5f,
-                -0.5f,-0.5f,
+    public void update(){
+        x += 0.01;
+    }
+
+    public void draw(){
+        update();
+
+        squareCoords = new float[]{
+                -0.5f + x, 0.5f + y,
+                0.5f + x, 0.5f + y,
+                -0.5f + x, -0.5f + y,
+
+                0.5f + x, 0.5f + y,
+                0.5f + x, -0.5f + y,
+                -0.5f + x, -0.5f + y,
         };
-
         vertexData = ByteBuffer
                 .allocateDirect(squareCoords.length * 4)
                 .order(ByteOrder.nativeOrder())
@@ -55,21 +68,18 @@ public class Square {
         int vertexShader = ShaderHelper.compileVertexShader(vertexShaderCode);
         int fragmentShader = ShaderHelper.compileFragmentShader(fragmentShaderCode);
 
-        program = ShaderHelper.linkProgram(vertexShader,fragmentShader);
+        program = ShaderHelper.linkProgram(vertexShader, fragmentShader);
         GLES20.glUseProgram(program);
 
-        uColorLocation = GLES20.glGetUniformLocation(program,"vColor");
-        aPositionLocation = GLES20.glGetAttribLocation(program,"vPosition");
+        uColorLocation = GLES20.glGetUniformLocation(program, "vColor");
+        aPositionLocation = GLES20.glGetAttribLocation(program, "vPosition");
 
         vertexData.position(0);
 
-        GLES20.glVertexAttribPointer(aPositionLocation,POSITION_COMPONENT_COUNT,GLES20.GL_FLOAT,false,0,vertexData);
+        GLES20.glVertexAttribPointer(aPositionLocation, POSITION_COMPONENT_COUNT, GLES20.GL_FLOAT, false, 0, vertexData);
         GLES20.glEnableVertexAttribArray(aPositionLocation);
-
-    }
-    public void draw(){
+        GLES20.glUniform4f(uColorLocation, 1.0f, 0f, 0f, 1f);
         GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, 6);
-        GLES20.glUniform4f(uColorLocation,0f,0.3f,0.3f,1f);
         GLES20.glDisableVertexAttribArray(aPositionLocation);
     }
 }

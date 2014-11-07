@@ -3,6 +3,10 @@ package com.example.owner.gameproject;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView.Renderer;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.FloatBuffer;
+
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
@@ -14,13 +18,12 @@ public class MyRenderer implements Renderer {
     private Square square;
 
     public MyRenderer(){
-
     }
 
     @Override
     public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
         GLES20.glClearColor(0.0f,0.3f,0.3f,1.0f);
-        square = new Square();
+        square = new Square(0.5f,0.5f);
     }
 
     @Override
@@ -32,6 +35,5 @@ public class MyRenderer implements Renderer {
     public void onDrawFrame(GL10 gl10) {
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
         square.draw();
-
     }
 }
