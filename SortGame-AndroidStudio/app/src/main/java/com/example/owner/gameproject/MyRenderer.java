@@ -4,6 +4,7 @@ import android.content.Context;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLSurfaceView.Renderer;
+import android.opengl.Matrix;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -19,6 +20,9 @@ public class MyRenderer implements Renderer {
 
     private Square square;
     private GLSurfaceView view;
+    private float[] mProjectionMatrix;
+    private float[] mViewMatrix;
+    private float[] mMVPMatrix;
 
     public MyRenderer(GLSurfaceView view){
         this.view = view;
@@ -26,8 +30,8 @@ public class MyRenderer implements Renderer {
 
     @Override
     public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
-        GLES20.glClearColor(0.0f,0.3f,0.3f,1.0f);
-        square = new Square(view,0.1f,0f,0f);
+        GLES20.glClearColor( 171f/255f, 34f/255f, 52f/255f, 1.0f );
+        square = new Square(view, 0.1f, 0f, 0f);
     }
 
     @Override

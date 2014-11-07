@@ -34,8 +34,9 @@ public class Square {
     private float[] squareCoords;
 
     private short[] drawOrder = { 0, 1, 2, 0, 2, 3 };
-
+    private float[] color = { 192f/255f, 39f/255f, 60/255f, 1.0f};
     private GLSurfaceView view;
+    private int mMVPMatrixHandle;
 
     public Square(GLSurfaceView view, float size, float x, float y) {
         this.x = x;
@@ -101,7 +102,7 @@ public class Square {
 
         GLES20.glVertexAttribPointer(aPositionLocation, POSITION_COMPONENT_COUNT, GLES20.GL_FLOAT, false, POSITION_COMPONENT_COUNT * 4, vertexData);
         GLES20.glEnableVertexAttribArray(aPositionLocation);
-        GLES20.glUniform4f(uColorLocation, 1.0f, 0f, 0f, 1f);
+        GLES20.glUniform4fv(uColorLocation, 1, color, 0);
         // GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, 4);
         GLES20.glDrawElements(GLES20.GL_TRIANGLES, drawOrder.length, GLES20.GL_UNSIGNED_SHORT, drawListBuffer);
         GLES20.glDisableVertexAttribArray(aPositionLocation);
