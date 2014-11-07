@@ -1,12 +1,15 @@
 package com.example.owner.gameproject;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
+import android.os.Build;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
+import java.nio.ShortBuffer;
 
 /**
  * Created by home on 06/11/2014.
@@ -21,6 +24,7 @@ public class Square {
     private int program;
 
     private FloatBuffer vertexData;
+    private ShortBuffer drawListBuffer;
 
     private float x = 0f;
     private float y = 0f;
@@ -28,6 +32,8 @@ public class Square {
     private float xSpeed = 0.01f;
 
     private float[] squareCoords;
+
+    private short[] drawOrder = { 0, 1, 2, 0, 2, 3 };
 
     private GLSurfaceView view;
 
@@ -47,23 +53,27 @@ public class Square {
         x += xSpeed;
     }
 
+    @TargetApi(Build.VERSION_CODES.FROYO)
     public void draw(){
         update();
-
-        squareCoords = new float[]{
-                -size + x, size + y,
-                size + x, size + y,
+        squareCoords = new float[] {
+                 size + x,  size + y,
+                 size + x, -size + y,
                 -size + x, -size + y,
-
-                size + x, size + y,
-                size + x, -size + y,
-                -size + x, -size + y,
+                -size + x,  size + y,
         };
+
         vertexData = ByteBuffer
                 .allocateDirect(squareCoords.length * 4)
                 .order(ByteOrder.nativeOrder())
                 .asFloatBuffer();
         vertexData.put(squareCoords);
+
+        drawListBuffer = ByteBuffer
+                .allocateDirect(drawOrder.length * 4)
+                .order(ByteOrder.nativeOrder())
+                .asShortBuffer();
+        drawListBuffer.put(drawOrder);
 
         String fragmentShaderCode =
                 "precision mediump float;" +
@@ -87,11 +97,13 @@ public class Square {
         aPositionLocation = GLES20.glGetAttribLocation(program, "vPosition");
 
         vertexData.position(0);
+        drawListBuffer.position(0);
 
-        GLES20.glVertexAttribPointer(aPositionLocation, POSITION_COMPONENT_COUNT, GLES20.GL_FLOAT, false, 0, vertexData);
+        GLES20.glVertexAttribPointer(aPositionLocation, POSITION_COMPONENT_COUNT, GLES20.GL_FLOAT, false, POSITION_COMPONENT_COUNT * 4, vertexData);
         GLES20.glEnableVertexAttribArray(aPositionLocation);
         GLES20.glUniform4f(uColorLocation, 1.0f, 0f, 0f, 1f);
-        GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, 6);
+        // GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, 4);
+        GLES20.glDrawElements(GLES20.GL_TRIANGLES, drawOrder.length, GLES20.GL_UNSIGNED_SHORT, drawListBuffer);
         GLES20.glDisableVertexAttribArray(aPositionLocation);
     }
 }
