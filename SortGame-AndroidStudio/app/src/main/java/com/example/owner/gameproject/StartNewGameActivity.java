@@ -1,5 +1,6 @@
 package com.example.owner.gameproject;
 
+import android.opengl.GLSurfaceView;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,11 +9,15 @@ import android.view.MenuItem;
 
 public class StartNewGameActivity extends ActionBarActivity {
 
+    private GLSurfaceView surfaceView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
-        setContentView(new GameView(this));
+
+        surfaceView = new MyGLSurfaceView(this);
+
+        setContentView(surfaceView);
     }
 
 
