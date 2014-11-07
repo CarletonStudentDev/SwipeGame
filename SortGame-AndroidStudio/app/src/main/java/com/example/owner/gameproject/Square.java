@@ -1,6 +1,8 @@
 package com.example.owner.gameproject;
 
+import android.content.Context;
 import android.opengl.GLES20;
+import android.opengl.GLSurfaceView;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -22,30 +24,40 @@ public class Square {
 
     private float x = 0f;
     private float y = 0f;
+    private float size = 1f;
+    private float xSpeed = 0.01f;
 
     private float[] squareCoords;
 
-    public Square(float x, float y) {
+    private GLSurfaceView view;
+
+    public Square(GLSurfaceView view, float size, float x, float y) {
         this.x = x;
         this.y = y;
-
+        this.size = size;
+        this.view = view;
     }
 
     public void update(){
-        x += 0.01;
+        if (x + size >= 1){
+            xSpeed = -xSpeed;
+        } else if (x - size <= -1){
+            xSpeed = -xSpeed;
+        }
+        x += xSpeed;
     }
 
     public void draw(){
         update();
 
         squareCoords = new float[]{
-                -0.5f + x, 0.5f + y,
-                0.5f + x, 0.5f + y,
-                -0.5f + x, -0.5f + y,
+                -size + x, size + y,
+                size + x, size + y,
+                -size + x, -size + y,
 
-                0.5f + x, 0.5f + y,
-                0.5f + x, -0.5f + y,
-                -0.5f + x, -0.5f + y,
+                size + x, size + y,
+                size + x, -size + y,
+                -size + x, -size + y,
         };
         vertexData = ByteBuffer
                 .allocateDirect(squareCoords.length * 4)

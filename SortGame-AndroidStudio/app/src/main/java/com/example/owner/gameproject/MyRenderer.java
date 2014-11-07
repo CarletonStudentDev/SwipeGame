@@ -1,6 +1,8 @@
 package com.example.owner.gameproject;
 
+import android.content.Context;
 import android.opengl.GLES20;
+import android.opengl.GLSurfaceView;
 import android.opengl.GLSurfaceView.Renderer;
 
 import java.nio.ByteBuffer;
@@ -16,14 +18,16 @@ import javax.microedition.khronos.opengles.GL10;
 public class MyRenderer implements Renderer {
 
     private Square square;
+    private GLSurfaceView view;
 
-    public MyRenderer(){
+    public MyRenderer(GLSurfaceView view){
+        this.view = view;
     }
 
     @Override
     public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
         GLES20.glClearColor(0.0f,0.3f,0.3f,1.0f);
-        square = new Square(0.5f,0.5f);
+        square = new Square(view,0.1f,0f,0f);
     }
 
     @Override
