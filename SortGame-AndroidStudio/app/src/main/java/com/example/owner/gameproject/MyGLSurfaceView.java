@@ -9,18 +9,16 @@ import android.view.MotionEvent;
  */
 public class MyGLSurfaceView extends GLSurfaceView {
 
-    private MyRenderer renderer = new MyRenderer(this);
-
     public MyGLSurfaceView(Context context) {
         super(context);
         setEGLContextClientVersion(2);
-        setRenderer(renderer);
+        setRenderer(new MyRenderer(context,this));
+        //setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
-        
         return true;
     }
 }
