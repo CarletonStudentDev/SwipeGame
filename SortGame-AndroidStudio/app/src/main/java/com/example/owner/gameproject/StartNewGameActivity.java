@@ -15,6 +15,7 @@ public class StartNewGameActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        getSupportActionBar().hide();
         surfaceView = new MyGLSurfaceView(this);
 
         setContentView(surfaceView);
