@@ -36,8 +36,8 @@ public class MyRenderer implements Renderer {
     @Override
     public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
         GLES20.glClearColor( 171f/255f, 34f/255f, 52f/255f, 1.0f );
-        square = new Square(context, view, 0.1f, 0f, 0f);
-        square2 = new Square(context, view, 0.2f, 0f, 0.3f);
+        square = new Square(context);
+        //square2 = new Square(context);
     }
 
     @Override
@@ -55,6 +55,6 @@ public class MyRenderer implements Renderer {
         Matrix.multiplyMM(mMVPMatrix, 0, mProjectionMatrix, 0, mViewMatrix, 0);
 
         square.draw(mMVPMatrix);
-        square2.draw(mMVPMatrix);
+        //square2.draw(mMVPMatrix);
     }
 }

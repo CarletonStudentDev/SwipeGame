@@ -11,25 +11,6 @@ import android.opengl.GLUtils;
  */
 public class ShaderHelper {
 
-    private static String fragmentShaderCode =
-            "precision mediump float;" +
-            "uniform sampler2D u_Texture;" +
-            "varying vec2 v_TexCoordinate;" +
-            "uniform vec4 vColor;" +
-            "void main() {" +
-            //"   gl_FragColor = vColor;" +
-            "   gl_FragColor = texture2D(u_Texture, v_TexCoordinate);" +
-            "}";
-    private static String vertexShaderCode =
-            "uniform mat4 uMVPMatrix;" +
-            "attribute vec4 vPosition;" +
-            "attribute vec2 a_TexCoordinate;" +
-            "varying vec2 v_TexCoordinate;" +
-            "void main() {" +
-            "   v_TexCoordinate = a_TexCoordinate;" +
-            "   gl_Position = uMVPMatrix * vPosition;" +
-            "}";
-
     public static int compileVertexShader(String shaderCode){
         return compileShader(GLES20.GL_VERTEX_SHADER,shaderCode);
     }
@@ -53,7 +34,8 @@ public class ShaderHelper {
 
         return program;
     }
-    public static int createProgram(){
+
+    public static int createProgram(String vertexShaderCode,String fragmentShaderCode){
         int vertexShader = compileVertexShader(vertexShaderCode);
         int fragmentShader = compileFragmentShader(fragmentShaderCode);
         return linkProgram(vertexShader, fragmentShader);
