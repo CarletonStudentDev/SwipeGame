@@ -20,7 +20,7 @@ import javax.microedition.khronos.opengles.GL10;
 public class MyRenderer implements Renderer {
 
     private Square square;
-    private Square square2;
+    private Sprite sprite;
     private GLSurfaceView view;
 
     private final float[] mMVPMatrix = new float[16];
@@ -37,7 +37,7 @@ public class MyRenderer implements Renderer {
     public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
         GLES20.glClearColor( 171f/255f, 34f/255f, 52f/255f, 1.0f );
         square = new Square(context);
-        //square2 = new Square(context);
+        sprite = new Sprite(context,R.drawable.ic_launcher);
     }
 
     @Override
@@ -55,6 +55,6 @@ public class MyRenderer implements Renderer {
         Matrix.multiplyMM(mMVPMatrix, 0, mProjectionMatrix, 0, mViewMatrix, 0);
 
         square.draw(mMVPMatrix);
-        //square2.draw(mMVPMatrix);
+        sprite.draw(mMVPMatrix);
     }
 }

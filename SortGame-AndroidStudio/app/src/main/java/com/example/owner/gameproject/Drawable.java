@@ -1,7 +1,10 @@
 package com.example.owner.gameproject;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.opengl.GLES20;
+import android.opengl.GLUtils;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -37,9 +40,17 @@ public class Drawable {
     private ShortBuffer drawListBuffer;
 
     private float[] coords;
-    private short[] drawOrder = { 0, 1, 2, 0, 2, 3 };
-    private float[] color = { 1f/255f, 39f/255f, 60/255f, 1.0f};
+    private short[] drawOrder;
+    private float[] color;
+    private float[] textureCoords = {
+            0f, 0f,
+            0f, 1f,
+            1f, 1f,
+            1f, 0f,
+    };
     private Context context;
+
+    private boolean useTexture = false;
 
     public Drawable(Context context, int coordsPerVertex) {
         this.coordsPerVertex = coordsPerVertex;
@@ -55,15 +66,16 @@ public class Drawable {
                 .put(coords)
                 .position(0);
 
-  /*
-        textureData = ByteBuffer
-                .allocateDirect(textureCoords.length * 4)
-                .order(ByteOrder.nativeOrder())
-                .asFloatBuffer();
-        textureData
-                .put(textureCoords)
-                .position(0);
-*/
+        if(useTexture) {
+            textureData = ByteBuffer
+                    .allocateDirect(textureCoords.length * 4)
+                    .order(ByteOrder.nativeOrder())
+                    .asFloatBuffer();
+            textureData
+                    .put(textureCoords)
+                    .position(0);
+        }
+
         drawListBuffer = ByteBuffer
                 .allocateDirect(drawOrder.length * 4)
                 .order(ByteOrder.nativeOrder())
@@ -82,28 +94,35 @@ public class Drawable {
 
         initializeBuffers();
         initializeShaderProgram();
+
         // pass Information pointers
         uColorLocation = GLES20.glGetUniformLocation(program, "vColor");
         aPositionLocation = GLES20.glGetAttribLocation(program, "vPosition");
-        //textureHandle = ShaderHelper.loadTexture(context, R.drawable.ic_launcher);
-        //texturePositionHandle = GLES20.glGetAttribLocation(program, "a_TexCoordinate");
-        //textureUniformHandle = GLES20.glGetUniformLocation(program, "u_Texture");
+
+        if(useTexture) {
+            texturePositionHandle = GLES20.glGetAttribLocation(program, "a_TexCoordinate");
+            textureUniformHandle = GLES20.glGetUniformLocation(program, "u_Texture");
+        }
 
         GLES20.glVertexAttribPointer(aPositionLocation, coordsPerVertex, GLES20.GL_FLOAT, false, coordsPerVertex * 4, vertexData);
         GLES20.glEnableVertexAttribArray(aPositionLocation);
-        //GLES20.glVertexAttribPointer(texturePositionHandle, coordsPerVertex, GLES20.GL_FLOAT, true, coordsPerVertex * 4, textureData);
-        //GLES20.glEnableVertexAttribArray(texturePositionHandle);
+
+        if(useTexture) {
+            GLES20.glVertexAttribPointer(texturePositionHandle, coordsPerVertex, GLES20.GL_FLOAT, true, coordsPerVertex * 4, textureData);
+            GLES20.glEnableVertexAttribArray(texturePositionHandle);
+        }
 
         GLES20.glUniform4fv(uColorLocation, 1, color, 0);
-/*
-        // this gets called with a texture type shader
-        GLES20.glEnable(GLES20.GL_BLEND);
-        GLES20.glBlendFunc(GLES20.GL_ONE, GLES20.GL_ONE_MINUS_SRC_ALPHA);
 
-        GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
-        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, textureHandle);
-        GLES20.glUniform1i(textureUniformHandle, 0);
-*/
+        if(useTexture) {
+            GLES20.glEnable(GLES20.GL_BLEND);
+            GLES20.glBlendFunc(GLES20.GL_ONE, GLES20.GL_ONE_MINUS_SRC_ALPHA);
+
+            GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
+            GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, textureHandle);
+            GLES20.glUniform1i(textureUniformHandle, 0);
+        }
+
         // projection for different sized screens
         mMVPMatrixHandle = GLES20.glGetUniformLocation(program, "uMVPMatrix");
         GLES20.glUniformMatrix4fv(mMVPMatrixHandle, 1, false, mvpMatrix, 0);
@@ -117,6 +136,11 @@ public class Drawable {
         this.fragmentShaderCode = fragmentShaderCode;
     }
 
+    public void setTexture(boolean useTexture, int resourceId){
+        this.useTexture = useTexture;
+        textureHandle = loadTexture(context, resourceId);
+    }
+
     public void setCoords(float[] coords) {
         this.coords = coords;
     }
@@ -127,5 +151,25 @@ public class Drawable {
 
     public void setColor(float[] color){
         this.color = color;
+    }
+    public static int loadTexture(final Context context, final int resourceId){
+        final int[] textureHandle = new int[1];
+        GLES20.glGenTextures(1, textureHandle, 0);
+        if(textureHandle[0] != 0){
+            final BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inScaled = false;
+            final Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), resourceId);
+            GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, textureHandle[0]);
+            GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_NEAREST);
+            GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_NEAREST);
+            GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_S, GLES20.GL_CLAMP_TO_EDGE);
+            GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_T, GLES20.GL_CLAMP_TO_EDGE);
+            GLUtils.texImage2D(GLES20.GL_TEXTURE_2D, 0, bitmap, 0);
+            bitmap.recycle();
+        }
+        if(textureHandle[0] == 0){
+            throw new RuntimeException("Error loading texture.");
+        }
+        return textureHandle[0];
     }
 }
