@@ -3,10 +3,9 @@ package com.example.owner.gameproject;
 import android.content.Context;
 
 /**
- * Created by home on 06/11/2014.
+ * Created by zack on 14/11/14.
  */
-public class Square extends Drawable{
-
+public class Line extends Drawable{
     private static String fragmentShaderCode =
             "precision mediump float;" +
                     "uniform sampler2D u_Texture;" +
@@ -31,16 +30,16 @@ public class Square extends Drawable{
     private short[] drawOrder = { 0, 1, 2, 0, 2, 3 };
     private float[] color = { 192f/255f, 39f/255f, 60/255f, 1.0f};
 
-    private float[] squareCoords = {
+    private float[] lineCoords = {
             0.5f,  0.5f,
             0.5f, -0.5f,
             -0.5f, -0.5f,
             -0.5f,  0.5f,
     };
 
-    public Square(Context context) {
+    public Line(Context context) {
         super(context, COORDINATES_PER_VERTEX);
-        setCoords(squareCoords);
+        setCoords(lineCoords);
         setDrawOrder(drawOrder);
         setColor(color);
         setShaderCode(vertexShaderCode,fragmentShaderCode);
