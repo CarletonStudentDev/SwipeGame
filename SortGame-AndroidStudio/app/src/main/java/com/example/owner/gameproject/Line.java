@@ -1,6 +1,7 @@
 package com.example.owner.gameproject;
 
 import android.content.Context;
+import android.opengl.GLES20;
 
 /**
  * Created by zack on 14/11/14.
@@ -27,8 +28,8 @@ public class Line extends Drawable{
 
 
     private static final int COORDINATES_PER_VERTEX = 2;
-    private short[] drawOrder = { 0, 1, 2, 0, 2, 3 };
-    private float[] color = { 192f/255f, 39f/255f, 60/255f, 1.0f};
+    private short[] drawOrder = { 0, 1, 1, 2 , 2, 3, 3, 0 };
+    private float[] color = { 1f/255f, 39f/255f, 60/255f, 1.0f};
 
     private float[] lineCoords = {
             0.5f,  0.5f,
@@ -38,21 +39,10 @@ public class Line extends Drawable{
     };
 
     public Line(Context context) {
-        super(context, COORDINATES_PER_VERTEX);
+        super(context, COORDINATES_PER_VERTEX, GLES20.GL_LINES);
         setCoords(lineCoords);
         setDrawOrder(drawOrder);
         setColor(color);
         setShaderCode(vertexShaderCode,fragmentShaderCode);
     }
-/*
-    public void draw(float[] mvpMatrix){
-        float[] textureCoords = {
-                0f, 0f,
-                0f, 1f,
-                1f, 1f,
-                1f, 0f,
-        };
-    }
-    */
-
 }

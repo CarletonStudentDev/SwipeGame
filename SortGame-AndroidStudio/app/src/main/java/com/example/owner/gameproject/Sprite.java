@@ -1,6 +1,7 @@
 package com.example.owner.gameproject;
 
 import android.content.Context;
+import android.opengl.GLES20;
 
 /**
  * Class description
@@ -44,7 +45,7 @@ public class Sprite extends Drawable {
     };
 
     public Sprite(Context context, int resourceId){
-        super(context, POSITION_COMPONENT_COUNT);
+        super(context, POSITION_COMPONENT_COUNT, GLES20.GL_TRIANGLES);
         setCoords(squareCoords);
         setDrawOrder(drawOrder);
         setColor(color);

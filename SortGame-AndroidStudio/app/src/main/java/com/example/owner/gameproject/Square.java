@@ -1,6 +1,7 @@
 package com.example.owner.gameproject;
 
 import android.content.Context;
+import android.opengl.GLES20;
 
 /**
  * Created by home on 06/11/2014.
@@ -39,7 +40,7 @@ public class Square extends Drawable{
     };
 
     public Square(Context context) {
-        super(context, COORDINATES_PER_VERTEX);
+        super(context, COORDINATES_PER_VERTEX, GLES20.GL_TRIANGLES);
         setCoords(squareCoords);
         setDrawOrder(drawOrder);
         setColor(color);

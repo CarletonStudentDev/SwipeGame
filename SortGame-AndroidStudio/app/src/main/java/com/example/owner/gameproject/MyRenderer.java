@@ -21,6 +21,7 @@ public class MyRenderer implements Renderer {
 
     private Square square;
     private Sprite sprite;
+    private Line line;
     private GLSurfaceView view;
 
     private final float[] mMVPMatrix = new float[16];
@@ -37,6 +38,7 @@ public class MyRenderer implements Renderer {
     public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
         GLES20.glClearColor( 171f/255f, 34f/255f, 52f/255f, 1.0f );
         square = new Square(context);
+        line = new Line(context);
         sprite = new Sprite(context,R.drawable.ic_launcher);
     }
 
@@ -56,5 +58,6 @@ public class MyRenderer implements Renderer {
 
         square.draw(mMVPMatrix);
         sprite.draw(mMVPMatrix);
+        line.draw(mMVPMatrix);
     }
 }

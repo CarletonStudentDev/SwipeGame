@@ -48,11 +48,15 @@ public class Drawable {
             1f, 1f,
             1f, 0f,
     };
+
+    private int drawType;
+
     private Context context;
 
     private boolean useTexture = false;
 
-    public Drawable(Context context, int coordsPerVertex) {
+    public Drawable(Context context, int coordsPerVertex, int drawType) {
+        this.drawType = drawType;
         this.coordsPerVertex = coordsPerVertex;
         this.context = context;
     }
@@ -127,7 +131,7 @@ public class Drawable {
         mMVPMatrixHandle = GLES20.glGetUniformLocation(program, "uMVPMatrix");
         GLES20.glUniformMatrix4fv(mMVPMatrixHandle, 1, false, mvpMatrix, 0);
 
-        GLES20.glDrawElements(GLES20.GL_TRIANGLES, drawOrder.length, GLES20.GL_UNSIGNED_SHORT, drawListBuffer);
+        GLES20.glDrawElements(drawType, drawOrder.length, GLES20.GL_UNSIGNED_SHORT, drawListBuffer);
         GLES20.glDisableVertexAttribArray(aPositionLocation);
     }
 
