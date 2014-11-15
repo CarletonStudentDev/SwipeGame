@@ -2,7 +2,7 @@ package com.example.owner.gameproject;
 import android.graphics.Canvas;
 
 public class GameLoopThread extends Thread {
-    private GameView view;
+    /*private GameView view;
     private boolean running = false;
 
     public GameLoopThread(GameView view) {
@@ -30,5 +30,5 @@ public class GameLoopThread extends Thread {
                 }
             }
         }
-    }
+    }*/
 }
