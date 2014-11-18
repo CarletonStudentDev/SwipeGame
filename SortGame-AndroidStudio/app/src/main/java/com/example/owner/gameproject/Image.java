@@ -3,15 +3,7 @@ package com.example.owner.gameproject;
 import android.content.Context;
 import android.opengl.GLES20;
 
-/**
- * Class description
- *
- * @author Robert
- * @version version_number
- * @since 2014-11-14
- * Created by Robert on 14/11/2014.
- */
-public class Sprite extends Drawable {
+public class Image extends Drawable {
 
     private static String fragmentShaderCode =
             "precision mediump float;" +
@@ -44,7 +36,7 @@ public class Sprite extends Drawable {
             -0.5f,  0.5f,
     };
 
-    public Sprite(Context context, int resourceId){
+    public Image(Context context, int resourceId){
         super(context, POSITION_COMPONENT_COUNT, GLES20.GL_TRIANGLES);
         setCoords(squareCoords);
         setDrawOrder(drawOrder);

@@ -1,45 +1,31 @@
 package com.example.owner.gameproject;
 
 import android.content.Context;
-import android.opengl.GLES20;
 
-/**
- * Created by OWNER on 2014-11-17.
- */
-public class Card extends Drawable{
-
-    private static final int COORDINATES_PER_VERTEX = 2;
+public class Card {
 
     private Square square;
-    private Sprite sprite;
+    private Image image;
     private Line line;
-    private Line line2;
-    private Line line3;
-    private Line line4;
     private float[] mMVPMatrix = new float[16];
-    private float[] lineCoords;
+    private float[] Coords;
+    private short[] drawOrder;
 
     public Card (Context context, float[] mvpMatrix) {
-        super(context, COORDINATES_PER_VERTEX, GLES20.GL_TRIANGLES);
         this.mMVPMatrix = mvpMatrix;
-        square = new Square(context);
-        lineCoords = new float[]{ 0.5f,  0.5f, 0.5f, -0.5f};
-        line = new Line(context,lineCoords);
-        lineCoords = new float[]{0.5f, -0.5f,  -0.5f, -0.5f};
-        line2 = new Line(context,lineCoords);
-        lineCoords = new float[]{ -0.5f, -0.5f, -0.5f, 0.5f};
-        line3 = new Line(context,lineCoords);
-        lineCoords = new float[]{-0.5f,  0.5f, 0.5f,  0.5f};
-        line4 = new Line(context,lineCoords);
-        sprite = new Sprite(context,R.drawable.red);
+        Coords = new float[]{ 0.5f,  0.5f,
+                            0.5f, -0.5f,
+                            -0.5f, -0.5f,
+                            -0.5f,  0.5f,};
+        square = new Square(context,Coords);
+        drawOrder = new short[]{0,1,1,2,2,3,3,0};
+        line = new Line(context,Coords,drawOrder);
+        image = new Image(context,R.drawable.red);
     }
 
-    public void draw(float[] mvpMatrix){
+    public void draw(){
         square.draw(mMVPMatrix);
-        sprite.draw(mMVPMatrix);
+        image.draw(mMVPMatrix);
         line.draw(mMVPMatrix);
-        line2.draw(mMVPMatrix);
-        line3.draw(mMVPMatrix);
-        line4.draw(mMVPMatrix);
     }
 }

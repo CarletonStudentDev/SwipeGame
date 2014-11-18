@@ -1,14 +1,7 @@
 package com.example.owner.gameproject;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.opengl.GLES20;
-import android.opengl.GLUtils;
 
-/**
- * Created by home on 06/11/2014.
- */
 public class ShaderHelper {
 
     public static int compileVertexShader(String shaderCode){

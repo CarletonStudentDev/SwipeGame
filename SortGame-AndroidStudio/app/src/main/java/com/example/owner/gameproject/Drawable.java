@@ -11,14 +11,6 @@ import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.nio.ShortBuffer;
 
-/**
- * Class description
- *
- * @author Robert
- * @version version_number
- * @since 2014-11-14
- * Created by Robert on 14/11/2014.
- */
 public class Drawable {
 
     private String vertexShaderCode;
@@ -59,6 +51,7 @@ public class Drawable {
         this.drawType = drawType;
         this.coordsPerVertex = coordsPerVertex;
         this.context = context;
+
     }
 
     public void initializeBuffers(){

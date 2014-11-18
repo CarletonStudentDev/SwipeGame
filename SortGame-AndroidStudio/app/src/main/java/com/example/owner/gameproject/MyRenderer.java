@@ -9,9 +9,6 @@ import android.opengl.Matrix;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
-/**
- * Created by home on 06/11/2014.
- */
 public class MyRenderer implements Renderer {
 
     private Card card;
@@ -48,7 +45,7 @@ public class MyRenderer implements Renderer {
         Matrix.setLookAtM(mViewMatrix, 0, 0, 0, -3, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
         Matrix.multiplyMM(mMVPMatrix, 0, mProjectionMatrix, 0, mViewMatrix, 0);
 
-        card.draw(mMVPMatrix);
+        card.draw();
 
     }
 }

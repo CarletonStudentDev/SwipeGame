@@ -3,9 +3,6 @@ package com.example.owner.gameproject;
 import android.content.Context;
 import android.opengl.GLES20;
 
-/**
- * Created by home on 06/11/2014.
- */
 public class Square extends Drawable{
 
     private static String fragmentShaderCode =
@@ -32,14 +29,8 @@ public class Square extends Drawable{
     private short[] drawOrder = { 0, 1, 2, 0, 2, 3 };
     private float[] color = { 192f/255f, 39f/255f, 60/255f, 1.0f};
 
-    private float[] squareCoords = {
-            0.5f,  0.5f,
-            0.5f, -0.5f,
-            -0.5f, -0.5f,
-            -0.5f,  0.5f,
-    };
 
-    public Square(Context context) {
+    public Square(Context context, float[] squareCoords) {
         super(context, COORDINATES_PER_VERTEX, GLES20.GL_TRIANGLES);
         setCoords(squareCoords);
         setDrawOrder(drawOrder);
