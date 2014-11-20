@@ -26,12 +26,18 @@ public class Square extends Drawable{
 
 
     private static final int COORDINATES_PER_VERTEX = 2;
+
     private short[] drawOrder = { 0, 1, 2, 0, 2, 3 };
     private float[] color = { 192f/255f, 39f/255f, 60/255f, 1.0f};
 
 
-    public Square(Context context, float[] squareCoords) {
+    public Square(Context context, float size, float x, float y) {
         super(context, COORDINATES_PER_VERTEX, GLES20.GL_TRIANGLES);
+        float[] squareCoords = new float[]{
+                size + x,  size + y,
+                size + x, -size + y,
+                -size + x, -size + y,
+                -size + x,  size + y,};
         setCoords(squareCoords);
         setDrawOrder(drawOrder);
         setColor(color);

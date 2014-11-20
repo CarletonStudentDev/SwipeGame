@@ -3,7 +3,7 @@ package com.example.owner.gameproject;
 import android.content.Context;
 import android.opengl.GLES20;
 
-public class Image extends Drawable {
+public class Image extends Square {
 
     private static String fragmentShaderCode =
             "precision mediump float;" +
@@ -29,18 +29,9 @@ public class Image extends Drawable {
     private short[] drawOrder = { 0, 1, 2, 0, 2, 3 };
     private float[] color = { 192f/255f, 39f/255f, 60/255f, 1.0f};
 
-    private float[] squareCoords = {
-            0.5f,  0.5f,
-            0.5f, -0.5f,
-            -0.5f, -0.5f,
-            -0.5f,  0.5f,
-    };
 
-    public Image(Context context, int resourceId){
-        super(context, POSITION_COMPONENT_COUNT, GLES20.GL_TRIANGLES);
-        setCoords(squareCoords);
-        setDrawOrder(drawOrder);
-        setColor(color);
+    public Image(Context context, int resourceId, float size, float x, float y){
+        super(context, size, x, y);
         setShaderCode(vertexShaderCode,fragmentShaderCode);
         setTexture(true, resourceId);
     }

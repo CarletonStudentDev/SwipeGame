@@ -27,8 +27,7 @@ public class MyRenderer implements Renderer {
     @Override
     public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
         GLES20.glClearColor( 171f/255f, 34f/255f, 52f/255f, 1.0f );
-
-        card = new Card(context, mMVPMatrix);
+        card = new Card(context, mMVPMatrix, R.drawable.red,0.5f, 0.1f, 0.3f);
     }
 
     @Override
@@ -46,6 +45,5 @@ public class MyRenderer implements Renderer {
         Matrix.multiplyMM(mMVPMatrix, 0, mProjectionMatrix, 0, mViewMatrix, 0);
 
         card.draw();
-
     }
 }

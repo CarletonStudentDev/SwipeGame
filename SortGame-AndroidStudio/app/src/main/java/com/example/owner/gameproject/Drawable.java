@@ -126,6 +126,12 @@ public class Drawable {
 
         GLES20.glDrawElements(drawType, drawOrder.length, GLES20.GL_UNSIGNED_SHORT, drawListBuffer);
         GLES20.glDisableVertexAttribArray(aPositionLocation);
+        GLES20.glDisableVertexAttribArray(uColorLocation);
+        GLES20.glDisableVertexAttribArray(mMVPMatrixHandle);
+
+        GLES20.glDisableVertexAttribArray(texturePositionHandle);
+        GLES20.glDisableVertexAttribArray(textureUniformHandle);
+        GLES20.glDisableVertexAttribArray(textureHandle);
     }
 
     public void setShaderCode(String vertexShaderCode, String fragmentShaderCode){
@@ -149,8 +155,10 @@ public class Drawable {
     public void setColor(float[] color){
         this.color = color;
     }
+
     public static int loadTexture(final Context context, final int resourceId){
         final int[] textureHandle = new int[1];
+        GLES20.glDeleteTextures(1,textureHandle,0);
         GLES20.glGenTextures(1, textureHandle, 0);
         if(textureHandle[0] != 0){
             final BitmapFactory.Options options = new BitmapFactory.Options();
