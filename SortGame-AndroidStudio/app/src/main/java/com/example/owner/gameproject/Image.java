@@ -25,13 +25,11 @@ public class Image extends Square {
                     "}";
 
 
-    private static final int POSITION_COMPONENT_COUNT = 2;
-    private short[] drawOrder = { 0, 1, 2, 0, 2, 3 };
     private float[] color = { 192f/255f, 39f/255f, 60/255f, 1.0f};
 
-
     public Image(Context context, int resourceId, float size, float x, float y){
-        super(context, size, x, y);
+        super(context, size, size, x, y, null);
+        setColor(color);
         setShaderCode(vertexShaderCode,fragmentShaderCode);
         setTexture(true, resourceId);
     }

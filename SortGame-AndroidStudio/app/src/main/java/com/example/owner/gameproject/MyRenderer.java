@@ -18,6 +18,8 @@ public class MyRenderer implements Renderer {
     private final float[] mProjectionMatrix = new float[16];
     private final float[] mViewMatrix = new float[16];
 
+
+
     private Context context;
     public MyRenderer(Context context, GLSurfaceView view){
         this.view = view;
@@ -27,7 +29,7 @@ public class MyRenderer implements Renderer {
     @Override
     public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
         GLES20.glClearColor( 171f/255f, 34f/255f, 52f/255f, 1.0f );
-        card = new Card(context, mMVPMatrix, R.drawable.red,0.5f, 0.1f, 0.3f);
+        card = new Card(context, mMVPMatrix, R.drawable.red, 0.1f, 0.3f);
     }
 
     @Override
