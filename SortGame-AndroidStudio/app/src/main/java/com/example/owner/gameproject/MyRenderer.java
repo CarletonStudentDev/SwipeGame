@@ -18,7 +18,10 @@ public class MyRenderer implements Renderer {
     private final float[] mProjectionMatrix = new float[16];
     private final float[] mViewMatrix = new float[16];
 
-
+    //Creating TRANSLATION MATRIX with onTOuch X and Y. (Z=0 since 2D)
+    private float X;
+    private float Y;
+    private final float[] mTranslationMatrix = new float[]{1,0,0,X,0,1,0,Y,0,0,1,0,0,0,0,1};
 
     private Context context;
     public MyRenderer(Context context, GLSurfaceView view){
