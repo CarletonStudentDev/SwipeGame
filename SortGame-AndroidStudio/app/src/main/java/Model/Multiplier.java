@@ -1,106 +1,169 @@
 package Model;
 
 /**
- * Model of the Multiplier Meter
+ * Multiplier class representing the score
+ * multiplier for the game. If the user gets
+ * a certain amount of correct match, it will
+ * increment the multiplier value. Otherwise
+ * reset it to zero.
  *
- * @author varunsriram
+ * This class implements Listener.
  *
- * @version 1.0
+ * @author Varun Sriram
+ * @version 1.1
  * @since 2014-11-27
+ *
  */
 
-public class Multiplier implements Listener {
+public class Multiplier implements Listener
+{
+
     /**
-     * MAXIMUM: no of correct matches needed to scale the multiplier
-     * MAX_MULTIPLIER: Maxmimum no of the multiplier
-     * MUTIPLIERSCALER: the amount the multiplier scale once the meter is at threshold.
-     * currentMultiplier: the current multiplier the meter will show.
-     * meterCount: the no of correct matches the player made.
+     * MAXIMUM: integer representing the number of correct matches
+     *          needed to scale the multiplier.
+     *
+     * MAX_MULTIPLIER: integer representing the maximum number
+     *                 of the multiplier
+     *
+     * MULTIPLIERSCALIER: integer representing the amount of the multiplier
+     *                    scale once the meter is at threshold.
+     *
      */
-    private static int MAXIMUM = 5;
-    private static int MAX_MULTIPLIER = 16;
-    private static int MULTIPLIER_SCALER = 2;
-    private int currentMultiplier;
-    private int meterCount ;
+
+    private static int MAXIMUM = 5,
+                       MAX_MULTIPLIER = 16,
+                       MULTIPLIER_SCALIER = 2;
+
+
+    /**
+     * currentMultiplier: integer representing the current
+     *                    multiplier the meter will show.
+     *
+     * meterCount: integer representing the number of correct
+     *             matches the player made.
+     *
+     */
+
+    private int currentMultiplier,
+                meterCount;
+
+
     /**
      * Constructor of the multiplier class.
+     *
      */
-    public Multiplier(){
+
+    public Multiplier()
+    {
         this.currentMultiplier = 1;
         this.meterCount = 0;
     }
+
+
     /**
-     * Getter method to get the current multiplier.
-     * @return the current score multiplier.
+     * Getter method for the current multiplier.
+     *
+     * @return integer representing the current score multiplier.
+     *
      */
-    public int getMultiplier(){
+
+    public int getMultiplier()
+    {
         return this.currentMultiplier;
     }
+
+
     /**
-     * Method to increment the multiplier meter appropriately.
+     * Increments the multiplier meter.
+     *
      */
-    public void increment(){
-//increment the metercount
+
+    public void increment()
+    {
+        // increment the meter count
         meterCount++;
-//check if it is at threshold
-        if(meterCount>= MAXIMUM){
-//if the multiplier is not at maximum
-            if(currentMultiplier < MAX_MULTIPLIER){
-//scale the score multiplier and reset the meter.
-                this.currentMultiplier *= MULTIPLIER_SCALER;
+
+        // check if it is at threshold
+        if(meterCount>= MAXIMUM)
+        {
+            //if the multiplier is not at maximum
+            if(currentMultiplier < MAX_MULTIPLIER)
+            {
+                //scale the score multiplier and reset the meter.
+                this.currentMultiplier *= MULTIPLIER_SCALIER;
                 this.meterCount = 0;
             }
         }
     }
+
+
     /**
-     * Method to clear the meter.
+     * Clears the meter
+     *
      */
-    public void clear(){
+
+    public void clear()
+    {
         this.currentMultiplier = 1;
         this.meterCount = 0;
     }
+
+
+    /**
+     * @see Model.Listener
+     *
+     */
+
     @Override
-/**
- * Method to tell the meter what to do if the Game triggers a correct match Event.
- * @param e GameEvent Object that is passed in by Game class.
- */
-    public void correctMatch(GameEvent e) {
-// TODO Auto-generated method stub
+    public void correctMatch(GameEvent ge)
+    {
         this.increment();
     }
+
+
+    /**
+     * @see Model.Listener
+     *
+     */
+
     @Override
-/**
- * Method to tell the meter what to do if the Game triggers a inccorrect match Event.
- * @param e GameEvent Object that is passed in by Game class.
- */
-    public void incorrectMatch(GameEvent e) {
-// TODO Auto-generated method stub
+    public void incorrectMatch(GameEvent ge)
+    {
         this.clear();
     }
+
+
+    /**
+     * @see Model.Listener
+     *
+     */
+
     @Override
-/**
- * Method to tell the meter what to do if the Game triggers a Timeout Event.
- * @param e GameEvent Object that is passed in by Game class.
- */
-    public void timeOut(GameEvent e) {
-// TODO Auto-generated method stub
+    public void timeOut(GameEvent ge)
+    {
         this.clear();
     }
+
+
+    /**
+     * @see Model.Listener
+     *
+     */
+
     @Override
-/**
- * Method to tell the meter what to do if the Game triggers a lives finished Event.
- * @param e GameEvent Object that is passed in by Game class.
- */
-    public void livesFinish(GameEvent e) {
-// TODO Auto-generated method stub
+    public void livesFinish(GameEvent ge)
+    {
         this.clear();
     }
+
+
+    /**
+     * @see Model.Listener
+     *
+     */
+
     @Override
-/**
- * Method to tell the meter what to do if the Game triggers a lives roundsOver Event.
- * @param e GameEvent Object that is passed in by Game class.
- */
-    public void roundsOver(GameEvent e) {
-// TODO Auto-generated method stub
-    }
+    public void roundsOver(GameEvent ge)
+    { }
+
 }

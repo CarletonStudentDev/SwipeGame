@@ -6,15 +6,15 @@ import org.junit.Test;
 
 
 /**
- * JUnit test for Timer class
+ * JUnit test for Game class
  *
  * @author Jeton Sinoimeri
  * @version 1.0
- * @since 2014-11-11
+ * @since 2014-11-28
  *
  */
 
-public class TimerTest
+public class GameTest
 {
 
     @Before
@@ -30,25 +30,13 @@ public class TimerTest
     }
 
     @Test
-    public void testOnFinish()
+    public void testGetMultiplierMeter()
     {
 
     }
 
     @Test
-    public void testOnTick()
-    {
-
-    }
-
-    @Test
-    public void testPause()
-    {
-
-    }
-
-    @Test
-    public void testResume()
+    public void testTimeOut()
     {
 
     }

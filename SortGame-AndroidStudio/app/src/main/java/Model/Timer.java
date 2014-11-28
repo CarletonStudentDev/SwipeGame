@@ -4,7 +4,7 @@ import android.os.CountDownTimer;
 
 /**
  * Timer counts down from an initial time
- * to 0 in intervals of milliseconds
+ * to zero in intervals of milliseconds
  *
  * @see android.os.CountDownTimer
  *
@@ -57,8 +57,8 @@ public class Timer extends CountDownTimer
     /**
      * Constructor for the Timer class
      *
-     * @param millisecondsInitTime -> Long representing the initial time in milliseconds
-     * @param game -> Game instance representing the game which is being played
+     * @param millisecondsInitTime: Long representing the initial time in milliseconds
+     * @param game: Game instance representing the game which is being played
      *
      */
 
@@ -80,12 +80,13 @@ public class Timer extends CountDownTimer
         this.game.timeOut();
     }
 
+
     /**
      * @see android.os.CountDownTimer
      *
-     * @param millisUntilFinished -> Long representing the amount of time
-     *                            left until the timer finishes in
-     *                            milliseconds.
+     * @param millisUntilFinished: Long representing the amount of time
+     *                             left until the timer finishes in
+     *                             milliseconds.
      *
      */
 

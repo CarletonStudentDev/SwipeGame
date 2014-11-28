@@ -1,10 +1,5 @@
 package Model;
 
-
-import com.example.owner.gameproject.R;
-
-import java.util.ArrayList;
-
 /**
  * Game contains all the rules and information
  * about playing the card game.
@@ -15,16 +10,25 @@ import java.util.ArrayList;
  *
  */
 
-
 public class Game
 {
 
+    /**
+     * deck: Listener reference representing the deck of cards
+     *       required to play the game.
+     *
+     * player: Listener reference representing the user required
+     *         to play the game.
+     *
+     * multiplier: Listener reference representing the score
+     *             multiplier the player reference requires
+     *             to update the score.
+     *
+     */
 
-    private Listener player;
-
-    private Listener multiplier;
-
-    private Listener deck;
+    private Listener deck,
+                     player,
+                     multiplier;
 
 
     /**
@@ -41,8 +45,10 @@ public class Game
 
 
     /**
+     * Getter for the Multiplier.
      *
-     * @return multiplier -> Listener reference representing the Multiplier
+     * @return multiplier: Listener reference representing the Multiplier
+     *
      */
 
     public Listener getMultiplierMeter()
@@ -53,7 +59,7 @@ public class Game
 
     /**
      * Notifies the Listeners when the Timer has reached
-     * 0.
+     * zero.
      *
      */
 
@@ -137,8 +143,9 @@ public class Game
      * Checks the pattern on the current selected card and the
      * pile it is currently over.
      *
-     * @return bool -> boolean representing if the pattern matches
-     *                 or not.
+     * @return bool: boolean representing if the pattern matches
+     *               or not.
+     *
      */
 
     private boolean checkMatch()
