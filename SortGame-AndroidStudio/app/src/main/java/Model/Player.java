@@ -9,7 +9,7 @@ package Model;
  *
  * @author Jeton Sinoimeri
  * @author Varun Sriram
- * @version 1.1
+ * @version 1.2
  * @since 2014-11-27
  *
  */
@@ -46,11 +46,15 @@ public class Player implements Listener
 
     /**
      * score: long representing the current score of
-     *        the player.
+     *        the Player.
+     *
+     * highScore: long representing the highest score
+     *            the Player has achieved in the game.
      *
      */
 
-    private long score;
+    private long score,
+                 highScore;
 
 
     /**
@@ -62,6 +66,7 @@ public class Player implements Listener
     {
         this.lives = DEFAULTLIVES;
         this.score = DEFAULTSCORE;
+        this.highScore = this.score;
     }
 
 
@@ -101,9 +106,24 @@ public class Player implements Listener
      *
      */
 
-    public long getScore()
+    public long getCurrentScore()
     {
         return this.score;
+    }
+
+
+    /**
+     * Getter for the high score of the Player.
+     *
+     * @return highScore: long representing the highest
+     *                    score the Player has achieved
+     *                    in the game.
+     *
+     */
+
+    public long getHighScore()
+    {
+        return this.highScore;
     }
 
 
@@ -168,7 +188,8 @@ public class Player implements Listener
     @Override
     public void livesFinish(GameEvent ge)
     {
-
+        if (this.score > this.highScore)
+            this.highScore = this.score;
     }
 
 
