@@ -156,14 +156,4 @@ public class Multiplier implements Listener
         this.clear();
     }
 
-
-    /**
-     * @see Model.Listener
-     *
-     */
-
-    @Override
-    public void roundsOver(GameEvent ge)
-    { }
-
 }

@@ -88,11 +88,13 @@ public class Deck implements Listener
 
 
     /**
-     * @see Model.Listener
+     * Game notifies the Deck when the round is over.
+     *
+     * @param ge: GameEvent object representing the event that
+     *            occurred.
      *
      */
 
-    @Override
     public void roundsOver(GameEvent ge)
     {
 

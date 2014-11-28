@@ -57,15 +57,4 @@ public interface Listener
 
     public void livesFinish(GameEvent ge);
 
-
-    /**
-     * Listeners are notified when the round is over.
-     *
-     * @param ge: GameEvent object representing the event that
-     *            occurred.
-     *
-     */
-
-    public void roundsOver(GameEvent ge);
-
 }

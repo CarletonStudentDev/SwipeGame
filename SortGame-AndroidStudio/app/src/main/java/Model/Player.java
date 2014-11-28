@@ -196,15 +196,4 @@ public class Player implements Listener
             this.highScore = this.score;
     }
 
-
-    /**
-     * @see Model.Listener
-     *
-     */
-
-    @Override
-    public void roundsOver(GameEvent ge)
-    {
-
-    }
 }
