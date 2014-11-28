@@ -136,7 +136,11 @@ public class Player implements Listener
 
     public void setScore(long score)
     {
-        this.score = score;
+        if (score > -1)
+            this.score = score;
+
+        else
+            this.score = DEFAULTSCORE;
     }
 
 
