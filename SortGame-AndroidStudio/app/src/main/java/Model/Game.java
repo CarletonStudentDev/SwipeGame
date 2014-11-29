@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.ArrayList;
 import java.util.Stack;
 
 /**
@@ -7,7 +8,7 @@ import java.util.Stack;
  * about playing the card game.
  *
  * @author Jeton Sinoimeri
- * @version 1.2
+ * @version 1.3
  * @since 2014-11-10
  *
  */
@@ -32,12 +33,38 @@ public class Game
                      player,
                      multiplier;
 
+
+    /**
+     * activeCard: Card instance representing the top
+     *             card of the deck.
+     *
+     */
+
     private Card activeCard;
+
+
+    /**
+     * pileArray: an instance of ArrayList of Pile objects
+     *            representing all the piles of the game.
+     *
+     */
+
+    private ArrayList<Pile> pileArray;
 
 
 
     /**
      * Constructor for the Game class
+     *
+     * @param player: Listener reference representing the user required
+     *                to play the game.
+     *
+     * @param multiplier: Listener reference representing the score
+     *                    multiplier the player reference requires
+     *                    to update the score.
+     *
+     * @param deck: Listener reference representing the deck of cards
+     *              required to play the game.
      *
      */
 
@@ -46,6 +73,7 @@ public class Game
         this.player = player;
         this.multiplier = multiplier;
         this.deck = deck;
+        this.pileArray = new ArrayList<Pile>();
     }
 
 
@@ -62,10 +90,34 @@ public class Game
     }
 
 
+    /**
+     * Getter for the active card.
+     *
+     * @return activeCard: Card instance representing the top
+     *                     card of the deck.
+     *
+     */
+
     public Card getActiveCard()
     {
         return activeCard;
     }
+
+
+    /**
+     * Adds a pile to the game.
+     *
+     * @param pile: Pile instance representing a pile that will
+     *              be used to check for correct matches
+     *
+     */
+
+    public void addPile(Pile pile)
+    {
+        this.pileArray.add(pile);
+
+    }
+
 
     /**
      * Notifies the Listeners when the Timer has reached
@@ -80,6 +132,17 @@ public class Game
         this.player.timeOut(ge);
     }
 
+
+    /**
+     * Asks the deck to draw a card.
+     *
+     */
+
+    public void drawCard()
+    {
+        Stack<Card> gameDeck = ((Deck) this.deck).getDeck();
+        this.activeCard = gameDeck.pop();
+    }
 
 
     /**
@@ -162,21 +225,20 @@ public class Game
 
     private boolean checkMatch()
     {
-        // check the pattern between deck.card and pile
+        for(int i = 0; i < this.pileArray.size(); i++)
+        {
+            if(this.pileArray.get(i).checkCard(this.activeCard))
+                return true;
+        }
 
         return false;
     }
 
 
-    public void drawCard()
-    {
-        Stack<Card> gameDeck = ((Deck) this.deck).getDeck();
-        this.activeCard = gameDeck.pop();
-    }
-
-
     /**
-     * Main game loop for the game.
+     * Main game loop of the game. Contains all the
+     * game logic and the rules of how the game
+     * be played.
      *
      */
 
@@ -205,8 +267,6 @@ public class Game
 
                          // else
                              // inCorrectMatch()
-
-
 
 
 

@@ -11,19 +11,22 @@ import java.util.Stack;
  *
  * @author Jeton Sinoimeri
  * @author Varun Sriram
- * @version 1.1
+ * @version 1.3
  * @since 2014-11-28
  *
  */
 
 public class Deck implements Listener
 {
+
     /**
-     *  DECKSIZE: the size of single deck kept constant temporarily
+     *  DECKSIZE: integer value representing the size of a
+     *            single deck kept constant temporarily
      *
      */
 
     private static int DECKSIZE = 15;
+
 
     /**
      * deck: an instance of Stack of Cards to represent
@@ -45,9 +48,18 @@ public class Deck implements Listener
         this.deck = new Stack<Card>();
     }
 
+
+    /**
+     * Creates a new Deck given a size.
+     *
+     * @param size: integer value representing the size that
+     *              the deck should be.
+     *
+     */
+
     public void makeDeck(int size)
     {
-        if(this.deck.size()==0)
+        if(this.deck.size()==0 && size > 0)
         {
             CardGenerator cardGen = new CardGenerator();
 
@@ -55,6 +67,21 @@ public class Deck implements Listener
                 this.deck.push(cardGen.generateCard());
         }
     }
+
+
+    /**
+     * Getter for the deck.
+     *
+     * @return deck: an instance of Stack of Cards to represent
+     *               the a deck of cards.
+     *
+     */
+
+    public Stack<Card> getDeck()
+    {
+        return deck;
+    }
+
 
     /**
      * @see Model.Listener
@@ -120,9 +147,4 @@ public class Deck implements Listener
         g.drawCard();
     }
 
-
-    public Stack<Card> getDeck()
-    {
-        return deck;
-    }
 }

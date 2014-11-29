@@ -134,7 +134,7 @@ public class Player implements Listener
      *               set the Player's score to.
      */
 
-    public void setScore(long score)
+    public void setCurrentScore(long score)
     {
         if (score > -1)
             this.score = score;
