@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.opengl.GLES20;
 import android.opengl.GLUtils;
+import android.opengl.Matrix;
+import android.util.Log;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -126,12 +128,6 @@ public class Drawable {
 
         GLES20.glDrawElements(drawType, drawOrder.length, GLES20.GL_UNSIGNED_SHORT, drawListBuffer);
         GLES20.glDisableVertexAttribArray(aPositionLocation);
-        GLES20.glDisableVertexAttribArray(uColorLocation);
-        GLES20.glDisableVertexAttribArray(mMVPMatrixHandle);
-
-        GLES20.glDisableVertexAttribArray(texturePositionHandle);
-        GLES20.glDisableVertexAttribArray(textureUniformHandle);
-        GLES20.glDisableVertexAttribArray(textureHandle);
     }
 
     public void setShaderCode(String vertexShaderCode, String fragmentShaderCode){

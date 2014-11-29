@@ -5,6 +5,8 @@ import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLSurfaceView.Renderer;
 import android.opengl.Matrix;
+import android.util.Log;
+import android.view.MotionEvent;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -29,10 +31,41 @@ public class MyRenderer implements Renderer {
         this.context = context;
     }
 
+    public boolean onTouchEvent(MotionEvent event){
+
+        float ratio = (float) view.getHeight()/view.getWidth();
+
+        float x = -event.getX()/view.getWidth() + 0.5f;
+        float y = -(event.getY()/view.getHeight())*ratio+1.0f;
+
+        Log.i("ViewWidth", Float.toString(view.getWidth()));
+        Log.i("ViewHeight", Float.toString(view.getHeight()));
+        Log.i("Ratio", Float.toString(ratio));
+        Log.i("MyRendererX", Float.toString(x));
+        Log.i("MyRendererY", Float.toString(y));
+
+
+        switch(event.getAction()){
+            case MotionEvent.ACTION_DOWN:
+                card.move(x,y);
+                break;
+            case MotionEvent.ACTION_MOVE:
+                card.move(x,y);
+                break;
+            case MotionEvent.ACTION_UP:
+                card.move(x,y);
+                break;
+            default:
+                break;
+        }
+
+        return true;
+    }
+
     @Override
     public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
         GLES20.glClearColor( 171f/255f, 34f/255f, 52f/255f, 1.0f );
-        card = new Card(context, mMVPMatrix, R.drawable.red, 0.1f, 0.3f);
+        card = new Card(context, mMVPMatrix, R.drawable.red, 0.0f, 0.0f);
     }
 
     @Override
@@ -43,8 +76,13 @@ public class MyRenderer implements Renderer {
         Matrix.frustumM(mProjectionMatrix, 0, -ratio, ratio, -1, 1, 3, 7);
     }
 
+    public void update(){
+
+    }
+
     @Override
     public void onDrawFrame(GL10 gl10) {
+        update();
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
         Matrix.setLookAtM(mViewMatrix, 0, 0, 0, -3, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
         Matrix.multiplyMM(mMVPMatrix, 0, mProjectionMatrix, 0, mViewMatrix, 0);

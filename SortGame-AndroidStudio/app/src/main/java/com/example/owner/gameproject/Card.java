@@ -11,13 +11,13 @@ public class Card {
     private float[] Coords;
     private float[] color;
     private short[] drawOrder;
-    private float width = 0.2f;
+    private float width = 0.5f;
     private float length = 0.5f;
 
     public Card (Context context, float[] mvpMatrix, int resourceId, float x, float y) {
         this.mMVPMatrix = mvpMatrix;
 
-        image = new Image(context,resourceId, width,  0.3f, 0.3f);
+        image = new Image(context,resourceId, width,  x, y);
 
         color = new float[] { 192f/255f, 39f/255f, 60/255f, 1.0f};
         square = new Square (context, width, length, x, y, color);
@@ -34,9 +34,21 @@ public class Card {
         line = new Line(context,Coords,drawOrder);
     }
 
+    public void move(float x, float y){
+        Coords = new float[]{
+                x + width,  y + length,
+                x + width,  y - length,
+                x - width,  y - length,
+                x - width,  y + length,};
+
+        square.setCoords(Coords);
+        line.setCoords(Coords);
+        image.setCoords(Coords);
+    }
+
     public void draw(){
         square.draw(mMVPMatrix);
         line.draw(mMVPMatrix);
-        image.draw(mMVPMatrix);
+        //image.draw(mMVPMatrix);
     }
 }
