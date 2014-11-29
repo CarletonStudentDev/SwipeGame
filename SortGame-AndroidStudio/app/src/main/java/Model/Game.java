@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.Stack;
+
 /**
  * Game contains all the rules and information
  * about playing the card game.
@@ -30,7 +32,7 @@ public class Game
                      player,
                      multiplier;
 
-
+    private Card activeCard;
     /**
      * Constructor for the Game class
      *
@@ -160,6 +162,10 @@ public class Game
      * Main game loop for the game.
      *
      */
+    public void drawCard(){
+    	Stack<Card> gameDeck = ((Deck) this.deck).getDeck();
+    	this.activeCard=gameDeck.pop();
+    }
 
     public void play()
     {
