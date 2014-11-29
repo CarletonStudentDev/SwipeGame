@@ -11,13 +11,19 @@ import java.util.Stack;
  *
  * @author Jeton Sinoimeri
  * @author Varun Sriram
- * @version 1.0
+ * @version 1.1
  * @since 2014-11-28
  *
  */
 
 public class Deck implements Listener
 {
+    /**
+     *  DECKSIZE: the size of single deck kept constant temporarily
+     *
+     */
+
+    private static int DECKSIZE = 15;
 
     /**
      * deck: an instance of Stack of Cards to represent
@@ -28,16 +34,27 @@ public class Deck implements Listener
     private Stack<Card> deck;
 
 
-   /**
-    * Constructor for the Deck class.
-    *
-    */
+
+    /**
+     * Constructor for the Deck class.
+     *
+     */
 
     public Deck()
     {
         this.deck = new Stack<Card>();
     }
 
+    public void makeDeck(int size)
+    {
+        if(this.deck.size()==0)
+        {
+            CardGenerator cardGen = new CardGenerator();
+
+            for(int i = 0; i<size;i++)
+                this.deck.push(cardGen.generateCard());
+        }
+    }
 
     /**
      * @see Model.Listener
@@ -71,7 +88,8 @@ public class Deck implements Listener
     @Override
     public void timeOut(GameEvent ge)
     {
-
+        Game g = (Game) ge.getSource();
+        g.drawCard();
     }
 
 
@@ -83,7 +101,8 @@ public class Deck implements Listener
     @Override
     public void livesFinish(GameEvent ge)
     {
-
+        this.deck.clear();
+        this.makeDeck(DECKSIZE);
     }
 
 
@@ -97,6 +116,13 @@ public class Deck implements Listener
 
     public void roundsOver(GameEvent ge)
     {
+        Game g = (Game) ge.getSource();
+        g.drawCard();
+    }
 
+
+    public Stack<Card> getDeck()
+    {
+        return deck;
     }
 }

@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.Stack;
+
 /**
  * Game contains all the rules and information
  * about playing the card game.
@@ -30,6 +32,9 @@ public class Game
                      player,
                      multiplier;
 
+    private Card activeCard;
+
+
 
     /**
      * Constructor for the Game class
@@ -56,6 +61,11 @@ public class Game
         return this.multiplier;
     }
 
+
+    public Card getActiveCard()
+    {
+        return activeCard;
+    }
 
     /**
      * Notifies the Listeners when the Timer has reached
@@ -158,6 +168,13 @@ public class Game
     }
 
 
+    public void drawCard()
+    {
+        Stack<Card> gameDeck = ((Deck) this.deck).getDeck();
+        this.activeCard = gameDeck.pop();
+    }
+
+
     /**
      * Main game loop for the game.
      *
@@ -165,6 +182,33 @@ public class Game
 
     public void play()
     {
+        // correctMatchFound;
+
+        // main loop check if number of lives != 0
+
+               // this.roundsOver();
+
+               // round loop check if number of cards in deck != 0
+
+                      // draw card
+
+                      // set Timer
+
+                      // correctMatchFound = false;
+
+
+                     // while timer != 0 && !correctMatchFound
+                         // if checkMatch()
+                             //  correctMatch()
+                             // set correctMatchfound to true
+
+
+                         // else
+                             // inCorrectMatch()
+
+
+
+
 
     }
 
