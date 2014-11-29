@@ -14,7 +14,7 @@ public class Card {
     private short[] drawOrder;
     private float width = 0.2f;
     private float length = 0.5f;
-    private float radius = 0.10f;
+    private float radius = 0.1f;
 
     public Card (Context context, float[] mvpMatrix, int resourceId, float x, float y) {
         this.mMVPMatrix = mvpMatrix;

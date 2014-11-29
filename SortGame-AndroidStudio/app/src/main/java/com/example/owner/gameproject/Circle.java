@@ -35,7 +35,7 @@ public class Circle extends Drawable{
 
     private short[] getDrawOrder(){
         List<Short> drawOrderList = new ArrayList<Short>();
-        for(int i = 1;i < 360;i ++){
+        for(int i = 1;i < 1440;i ++){
             drawOrderList.add((short)0);
             drawOrderList.add((short)i);
             drawOrderList.add((short)(i + 1));
@@ -54,9 +54,9 @@ public class Circle extends Drawable{
         List<Float> circleCoordsList = new ArrayList<Float>();
         circleCoordsList.add(x);
         circleCoordsList.add(y);
-        for(int i = 0;i < 360;i++){
-            circleCoordsList.add(y + radius * (float) (Math.sin(i)));
+        for(int i = 0;i < 1440;i++){
             circleCoordsList.add(x + radius * (float) (Math.cos(i)));
+            circleCoordsList.add(y + radius * (float) (Math.sin(i)));
         }
 
         float[] circleCoords = new float[circleCoordsList.size()];
