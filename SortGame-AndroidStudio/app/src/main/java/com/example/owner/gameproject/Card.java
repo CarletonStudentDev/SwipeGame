@@ -7,12 +7,14 @@ public class Card {
     private Image image;
     private Square square;
     private Line line;
+    private Circle circle;
     private float[] mMVPMatrix;
     private float[] Coords;
     private float[] color;
     private short[] drawOrder;
     private float width = 0.5f;
     private float length = 0.5f;
+    private float radius = 0.1f;
 
     public Card (Context context, float[] mvpMatrix, int resourceId, float x, float y) {
         this.mMVPMatrix = mvpMatrix;
@@ -32,6 +34,7 @@ public class Card {
 
         drawOrder = new short[]{0,1,1,2,2,3,3,0};
         line = new Line(context,Coords,drawOrder);
+        circle = new Circle(context,radius,0.0f,0.0f,color);
     }
 
     public void move(float x, float y){
@@ -50,5 +53,7 @@ public class Card {
         square.draw(mMVPMatrix);
         line.draw(mMVPMatrix);
         //image.draw(mMVPMatrix);
+        image.draw(mMVPMatrix);
+        circle.draw(mMVPMatrix);
     }
 }
