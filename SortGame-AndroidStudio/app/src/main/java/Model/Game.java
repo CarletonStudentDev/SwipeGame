@@ -128,14 +128,16 @@ public class Game
 
 
     /**
-     * Notifies the Listeners when the round is over.
+     * Notifies the Deck that when the round is over.
      *
      */
 
     private void roundsOver()
     {
         GameEvent ge = new GameEvent(this);
-        this.deck.roundsOver(ge);
+
+        Deck d = (Deck)this.deck;
+        d.roundsOver(ge);
     }
 
 

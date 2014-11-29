@@ -5,7 +5,7 @@ package Model;
  * can notify when an event has occurred.
  *
  * @author Jeton Sinoimeri
- * @version 1.2
+ * @version 1.3
  * @since 2014-11-10
  *
  */

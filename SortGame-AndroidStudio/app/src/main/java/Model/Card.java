@@ -19,11 +19,38 @@ public class Card
 {
 
     /**
-     * Constructor for the Card class.
+     * patternAttribute: integer instance representing the
+     *                   pattern for the Card.
+     *
      */
 
-    public Card()
-    {
+    private int patternAttribute;
 
+    /**
+     * Constructor for the Card class.
+     *
+     * @param patternAttribute: integer instance representing the
+     *                          pattern for the Card.
+     */
+
+    public Card(int patternAttribute)
+    {
+        this.patternAttribute = patternAttribute;
     }
+
+
+    /**
+     * Getter for the patternAttribute.
+     *
+     * @return patterAttribute: integer instance representing the
+     *                          pattern for the Card.
+     *
+     */
+
+    public int getPatternAttribute()
+    {
+        return this.patternAttribute;
+    }
+
+
 }
