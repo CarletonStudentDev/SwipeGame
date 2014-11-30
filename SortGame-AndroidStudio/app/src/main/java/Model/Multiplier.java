@@ -1,5 +1,7 @@
 package Model;
 
+import com.example.owner.gameproject.R;
+
 /**
  * Multiplier class representing the score
  * multiplier for the game. If the user gets
@@ -10,30 +12,13 @@ package Model;
  * This class implements Listener.
  *
  * @author Varun Sriram
- * @version 1.2
+ * @version 1.3
  * @since 2014-11-27
  *
  */
 
 public class Multiplier implements Listener
 {
-
-    /**
-     * MAXIMUM: integer representing the number of correct matches
-     *          needed to scale the multiplier.
-     *
-     * MAX_MULTIPLIER: integer representing the maximum number
-     *                 of the multiplier
-     *
-     * MULTIPLIERSCALIER: integer representing the amount of the multiplier
-     *                    scale once the meter is at threshold.
-     *
-     */
-
-    private static int MAXIMUM = 5,
-                       MAX_MULTIPLIER = 16,
-                       MULTIPLIER_SCALIER = 2;
-
 
     /**
      * currentMultiplier: integer representing the current
@@ -55,8 +40,8 @@ public class Multiplier implements Listener
 
     public Multiplier()
     {
-        this.currentMultiplier = 1;
-        this.meterCount = 0;
+        this.currentMultiplier = R.integer.DEFAULTMULTIPLIER;
+        this.meterCount = R.integer.DEFAULTMETERCOUNT;
     }
 
 
@@ -78,20 +63,20 @@ public class Multiplier implements Listener
      *
      */
 
-    public void increment()
+    private void increment()
     {
         // increment the meter count
         meterCount++;
 
         // check if it is at threshold
-        if(meterCount>= MAXIMUM)
+        if(meterCount >= R.integer.MAXIMUM)
         {
             //if the multiplier is not at maximum
-            if(currentMultiplier < MAX_MULTIPLIER)
+            if(currentMultiplier < R.integer.MAX_MULTIPLIER)
             {
                 //scale the score multiplier and reset the meter.
-                this.currentMultiplier *= MULTIPLIER_SCALIER;
-                this.meterCount = 0;
+                this.currentMultiplier *= R.integer.MULTIPLIER_SCALIER;
+                this.meterCount = R.integer.DEFAULTMETERCOUNT;
             }
         }
     }
@@ -102,10 +87,10 @@ public class Multiplier implements Listener
      *
      */
 
-    public void clear()
+    private void clear()
     {
-        this.currentMultiplier = 1;
-        this.meterCount = 0;
+        this.currentMultiplier = R.integer.DEFAULTMULTIPLIER;
+        this.meterCount = R.integer.DEFAULTMETERCOUNT;
     }
 
 
