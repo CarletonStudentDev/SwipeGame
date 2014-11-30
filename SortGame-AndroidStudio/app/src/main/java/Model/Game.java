@@ -1,5 +1,7 @@
 package Model;
 
+import com.example.owner.gameproject.R;
+
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -8,7 +10,7 @@ import java.util.Stack;
  * about playing the card game.
  *
  * @author Jeton Sinoimeri
- * @version 1.3
+ * @version 1.4
  * @since 2014-11-10
  *
  */
@@ -52,6 +54,16 @@ public class Game
     private ArrayList<Pile> pileArray;
 
 
+    /**
+     * timedOut: boolean value representing if the Timer
+     *           triggered an interrupt indicating that
+     *           the time ran out.
+     *
+     */
+
+    private boolean timedOut;
+
+
 
     /**
      * Constructor for the Game class
@@ -73,7 +85,9 @@ public class Game
         this.player = player;
         this.multiplier = multiplier;
         this.deck = deck;
+
         this.pileArray = new ArrayList<Pile>();
+        this.timedOut = false;
     }
 
 
@@ -105,6 +119,34 @@ public class Game
 
 
     /**
+     * Getter for the timed out variable.
+     *
+     * @return timedOut: boolean value representing if the Timer
+     *                   triggered an interrupt indicating that
+     *                   the time ran out.
+     *
+     */
+
+    public boolean getTimedOut()
+    {
+        return this.timedOut;
+    }
+
+
+    /**
+     * Mutator for the timed out variable.
+     *
+     * @param timedOut: boolean value representing if the Timer
+     *                  triggered an interrupt indicating that
+     *                  the time ran out.
+     */
+
+    public void setTimedOut(boolean timedOut)
+    {
+        this.timedOut = timedOut;
+    }
+
+    /**
      * Adds a pile to the game.
      *
      * @param pile: Pile instance representing a pile that will
@@ -128,6 +170,8 @@ public class Game
     public void timeOut()
     {
         GameEvent ge = new GameEvent(this);
+
+        this.setTimedOut(true);
 
         this.player.timeOut(ge);
     }
@@ -244,31 +288,55 @@ public class Game
 
     public void play()
     {
-        // correctMatchFound;
+        boolean correctMatchFound;
+        Timer timer;
+
+        Player p = (Player)this.player;
+        Deck d = (Deck)this.deck;
 
         // main loop check if number of lives != 0
+        while(p.getLives() != R.integer.ENDOFLIVES)
+        {
+            // create new deck
+            this.roundsOver();
 
-               // this.roundsOver();
+            // round loop check if number of cards in deck != 0
+            while(d.deckSize() != R.integer.ENDOFDECK)
+            {
+                // draw card
+                this.drawCard();
 
-               // round loop check if number of cards in deck != 0
+                // set boolean values to false
+                this.setTimedOut(false);
+                correctMatchFound = false;
 
-                      // draw card
+                // set Timer
+                timer = new Timer(R.integer.TIMEPERCARD, this);
+                timer.start();
 
-                      // set Timer
+                // drawn card loop to check if not time out and no correct match found
+                while (!this.getTimedOut() && !correctMatchFound)
+                {
+                    // check match
+                    if (this.checkMatch())
+                    {
+                        correctMatchFound = true;
+                        this.correctMatch();
+                    }
 
-                      // correctMatchFound = false;
+                    else
+                        this.incorrectMatch();
 
+                }
 
-                     // while timer != 0 && !correctMatchFound
-                         // if checkMatch()
-                             //  correctMatch()
-                             // set correctMatchfound to true
+                // cancel the time
+                timer.cancel();
+            }
 
+        }
 
-                         // else
-                             // inCorrectMatch()
-
-
+        // notify that the lives have finished
+        this.livesFinish();
 
     }
 
