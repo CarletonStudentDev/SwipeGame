@@ -1,5 +1,6 @@
 package Model;
 
+import com.example.owner.gameproject.R;
 import java.util.Random;
 
 
@@ -8,7 +9,7 @@ import java.util.Random;
  * pattern attribute chosen at random.
  *
  * @author Varun Sriram
- * @version 1.1
+ * @version 1.2
  * @since 2014-11-28
  *
  */
@@ -16,16 +17,6 @@ import java.util.Random;
 
 public class CardGenerator
 {
-
-    /**
-     * DEFAULTNUMPATTERNATTR: integer representing the default
-     *                        value for the number of pattern
-     *                        attributes.
-     *
-     */
-
-    private static final int DEFAULTNUMPATTERNATTR = 4;
-
 
     /**
      * random: Random instance to be used to generate random
@@ -52,7 +43,7 @@ public class CardGenerator
 
     public CardGenerator()
     {
-        this.numOfPatternAttr = DEFAULTNUMPATTERNATTR;
+        this.numOfPatternAttr = R.integer.DEFAULTNUMPATTERNATTR;
         random = new Random();
     }
 
@@ -67,8 +58,10 @@ public class CardGenerator
 
     public CardGenerator(int numOfPatterns)
     {
-        this.numOfPatternAttr = numOfPatterns;
-        random = new Random();
+        this();
+
+        if(numOfPatterns > R.integer.POSITIVEINTEGER)
+            this.numOfPatternAttr = numOfPatterns;
     }
 
 
@@ -82,7 +75,7 @@ public class CardGenerator
 
     public Card generateCard()
     {
-        Card card = new Card(this.getRandValue(1, this.numOfPatternAttr +1));
+        Card card = new Card(this.getRandValue(R.integer.randomLowNum, this.numOfPatternAttr + 1));
         return card;
     }
 
