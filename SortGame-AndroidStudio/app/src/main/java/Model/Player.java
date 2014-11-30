@@ -1,5 +1,7 @@
 package Model;
 
+import com.example.owner.gameproject.R;
+
 /**
  * Player class contains the users score
  * and lives for the current game being
@@ -9,31 +11,13 @@ package Model;
  *
  * @author Jeton Sinoimeri
  * @author Varun Sriram
- * @version 1.3
- * @since 2014-11-27git
+ * @version 1.4
+ * @since 2014-11-27
  *
  */
 
 public class Player implements Listener
 {
-
-    /**
-     * DEFAULTLIVES: integer representing the default lives
-     *               the player has at the start of the game.
-     *
-     */
-
-    private static final int DEFAULTLIVES = 3;
-
-
-    /**
-     * DEFAULTSCORE: long representing the default score the
-     *               player has at the start of the game.
-     *
-     */
-
-    private static final long DEFAULTSCORE = 0L;
-
 
     /**
      * lives: integer representing the current lives
@@ -64,9 +48,9 @@ public class Player implements Listener
 
     public Player()
     {
-        this.lives = DEFAULTLIVES;
-        this.score = DEFAULTSCORE;
-        this.highScore = this.score;
+        this.lives = R.integer.DEFAULTLIVES;
+        this.score = R.integer.DEFAULTSCORE;
+        this.highScore = R.integer.DEFAULTSCORE;
     }
 
 
@@ -88,13 +72,20 @@ public class Player implements Listener
      * Mutator for the lives of the Player.
      *
      * @param lives: integer representing the number to
-     *               be set the Player's lives to.
+     *               be set the Player's lives to. The
+     *               parameter must be greater than -1
+     *               otherwise the Player's lives are
+     *               set to DefaultLives.
      *
      */
 
     public void setLives(int lives)
     {
-        this.lives = lives;
+        if(lives > R.integer.MINUSONE)
+            this.lives = lives;
+
+        else
+            this.lives = R.integer.DEFAULTLIVES;
     }
 
 
@@ -131,16 +122,20 @@ public class Player implements Listener
      * Mutator for the score of the Player.
      *
      * @param score: long representing the number to
-     *               set the Player's score to.
+     *               set the Player's score to. The
+     *               parameter must be greater than
+     *               -1 otherwise the Player's score
+     *               is set to DefaultScore.
+     *
      */
 
     public void setCurrentScore(long score)
     {
-        if (score > -1)
+        if (score > R.integer.MINUSONE)
             this.score = score;
 
         else
-            this.score = DEFAULTSCORE;
+            this.score = R.integer.DEFAULTSCORE;
     }
 
 
@@ -156,7 +151,7 @@ public class Player implements Listener
 
         Multiplier m = (Multiplier) g.getMultiplierMeter();
 
-        this.score += 100 * m.getMultiplier();
+        this.score += R.integer.BASEPOINTS * m.getMultiplier();
     }
 
 
@@ -168,7 +163,8 @@ public class Player implements Listener
     @Override
     public void incorrectMatch(GameEvent ge)
     {
-        this.lives--;
+        if(this.lives - 1 > R.integer.MINUSONE)
+            this.lives--;
     }
 
 
@@ -180,7 +176,8 @@ public class Player implements Listener
     @Override
     public void timeOut(GameEvent ge)
     {
-        this.lives--;
+        if(this.lives - 1 > R.integer.MINUSONE)
+            this.lives--;
     }
 
 
