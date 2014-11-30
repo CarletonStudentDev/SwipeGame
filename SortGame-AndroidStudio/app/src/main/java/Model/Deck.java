@@ -1,5 +1,7 @@
 package Model;
 
+import com.example.owner.gameproject.R;
+
 import java.util.Stack;
 
 /**
@@ -11,22 +13,13 @@ import java.util.Stack;
  *
  * @author Jeton Sinoimeri
  * @author Varun Sriram
- * @version 1.3
+ * @version 1.4
  * @since 2014-11-28
  *
  */
 
 public class Deck implements Listener
 {
-
-    /**
-     *  DECKSIZE: integer value representing the size of a
-     *            single deck kept constant temporarily
-     *
-     */
-
-    private static int DECKSIZE = 15;
-
 
     /**
      * deck: an instance of Stack of Cards to represent
@@ -50,6 +43,20 @@ public class Deck implements Listener
 
 
     /**
+     * Getter for the size of the Deck.
+     *
+     * @return size: integer value representing the size
+     *               of the deck.
+     *
+     */
+
+    public int deckSize()
+    {
+        return this.deck.size();
+    }
+
+
+    /**
      * Creates a new Deck given a size.
      *
      * @param size: integer value representing the size that
@@ -57,13 +64,13 @@ public class Deck implements Listener
      *
      */
 
-    public void makeDeck(int size)
+    private void makeDeck(int size)
     {
-        if(this.deck.size()==0 && size > 0)
+        if(this.deck.isEmpty() && size > R.integer.POSITIVEINTEGER)
         {
             CardGenerator cardGen = new CardGenerator();
 
-            for(int i = 0; i<size;i++)
+            for(int i = 0; i < size; i++)
                 this.deck.push(cardGen.generateCard());
         }
     }
@@ -80,6 +87,21 @@ public class Deck implements Listener
     public Stack<Card> getDeck()
     {
         return deck;
+    }
+
+
+    /**
+     * Game notifies the Deck when the round is over.
+     *
+     * @param ge: GameEvent object representing the event that
+     *            occurred.
+     *
+     */
+
+    public void roundsOver(GameEvent ge)
+    {
+        Game g = (Game) ge.getSource();
+        g.drawCard();
     }
 
 
@@ -129,22 +151,7 @@ public class Deck implements Listener
     public void livesFinish(GameEvent ge)
     {
         this.deck.clear();
-        this.makeDeck(DECKSIZE);
-    }
-
-
-    /**
-     * Game notifies the Deck when the round is over.
-     *
-     * @param ge: GameEvent object representing the event that
-     *            occurred.
-     *
-     */
-
-    public void roundsOver(GameEvent ge)
-    {
-        Game g = (Game) ge.getSource();
-        g.drawCard();
+        this.makeDeck(R.integer.DECKSIZE);
     }
 
 }
