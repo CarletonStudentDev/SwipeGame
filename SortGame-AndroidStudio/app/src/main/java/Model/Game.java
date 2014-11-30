@@ -10,7 +10,7 @@ import java.util.Stack;
  * about playing the card game.
  *
  * @author Jeton Sinoimeri
- * @version 1.4
+ * @version 1.5
  * @since 2014-11-10
  *
  */
@@ -146,6 +146,7 @@ public class Game
         this.timedOut = timedOut;
     }
 
+
     /**
      * Adds a pile to the game.
      *
@@ -235,8 +236,10 @@ public class Game
 
     private void livesFinish()
     {
+        // create GameEvent
         GameEvent ge = new GameEvent(this);
 
+        // notify the listeners
         this.multiplier.livesFinish(ge);
         this.player.livesFinish(ge);
         this.deck.livesFinish(ge);
@@ -251,8 +254,10 @@ public class Game
 
     private void roundsOver()
     {
+        // create GameEvent
         GameEvent ge = new GameEvent(this);
 
+        // notify the deck listener
         Deck d = (Deck)this.deck;
         d.roundsOver(ge);
     }
@@ -288,7 +293,10 @@ public class Game
 
     public void play()
     {
+        // boolean value to indicate that a correct match has been found
         boolean correctMatchFound;
+
+        // Timer instance representing the countdown timer
         Timer timer;
 
         Player p = (Player)this.player;
@@ -317,13 +325,14 @@ public class Game
                 // drawn card loop to check if not time out and no correct match found
                 while (!this.getTimedOut() && !correctMatchFound)
                 {
-                    // check match
+                    // check match if correct notify listeners of correct match
                     if (this.checkMatch())
                     {
                         correctMatchFound = true;
                         this.correctMatch();
                     }
 
+                    // otherwise notify listeners of incorrect match
                     else
                         this.incorrectMatch();
 
@@ -335,7 +344,7 @@ public class Game
 
         }
 
-        // notify that the lives have finished
+        // notify the listeners that the Player's lives have finished
         this.livesFinish();
 
     }
