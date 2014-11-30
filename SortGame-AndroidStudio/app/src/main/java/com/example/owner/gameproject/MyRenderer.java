@@ -33,17 +33,11 @@ public class MyRenderer implements Renderer {
 
     public boolean onTouchEvent(MotionEvent event){
 
-        float ratio = (float) view.getHeight()/view.getWidth();
+        float ratio = (float) view.getHeight() / view.getWidth();
 
-        float x = -event.getX()/view.getWidth() + 0.5f;
-        float y = -(event.getY()/view.getHeight())*ratio+1.0f;
-
-        Log.i("ViewWidth", Float.toString(view.getWidth()));
-        Log.i("ViewHeight", Float.toString(view.getHeight()));
-        Log.i("Ratio", Float.toString(ratio));
-        Log.i("MyRendererX", Float.toString(x));
-        Log.i("MyRendererY", Float.toString(y));
-
+        // convert touch coordinates into OpenGL coordinates
+        float x = (-(event.getX() * 2) / view.getWidth() + 1f) / ratio;
+        float y = -(event.getY() * 2) / view.getHeight() + 1f;
 
         switch(event.getAction()){
             case MotionEvent.ACTION_DOWN:
