@@ -1,6 +1,7 @@
 package com.example.owner.gameproject;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLSurfaceView.Renderer;
@@ -16,14 +17,11 @@ public class MyRenderer implements Renderer {
     private Card card;
     private GLSurfaceView view;
 
+    private Circle circle;
+
     private final float[] mMVPMatrix = new float[16];
     private final float[] mProjectionMatrix = new float[16];
     private final float[] mViewMatrix = new float[16];
-
-    //Creating TRANSLATION MATRIX with onTOuch X and Y. (Z=0 since 2D)
-    private float X;
-    private float Y;
-    private final float[] mTranslationMatrix = new float[]{1,0,0,X,0,1,0,Y,0,0,1,0,0,0,0,1};
 
     private Context context;
     public MyRenderer(Context context, GLSurfaceView view){
@@ -59,7 +57,11 @@ public class MyRenderer implements Renderer {
     @Override
     public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
         GLES20.glClearColor( 171f/255f, 34f/255f, 52f/255f, 1.0f );
+
+        int color = context.getResources().getColor(R.color.lightRed);
+
         card = new Card(context, mMVPMatrix, R.drawable.red, 0.0f, 0.0f);
+        circle = new Circle(context, 0.1f, 0, 0, color);
     }
 
     @Override
@@ -82,5 +84,6 @@ public class MyRenderer implements Renderer {
         Matrix.multiplyMM(mMVPMatrix, 0, mProjectionMatrix, 0, mViewMatrix, 0);
 
         card.draw();
+        circle.draw(mMVPMatrix);
     }
 }

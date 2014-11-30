@@ -25,10 +25,8 @@ public class Line extends Drawable{
 
 
     private static final int COORDINATES_PER_VERTEX = 2;
-    private float[] color = { 0f/255f, 0f/255f, 0f/255f, 1.0f};
 
-
-    public Line(Context context, float[] lineCoords, short[] drawOrder) {
+    public Line(Context context, float[] lineCoords, short[] drawOrder, int color) {
         super(context, COORDINATES_PER_VERTEX, GLES20.GL_LINES);
         setCoords(lineCoords);
         setDrawOrder(drawOrder);

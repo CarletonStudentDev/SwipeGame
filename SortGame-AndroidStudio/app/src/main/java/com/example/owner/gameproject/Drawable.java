@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.opengl.GLES20;
 import android.opengl.GLUtils;
-import android.opengl.Matrix;
 import android.util.Log;
 
 import java.nio.ByteBuffer;
@@ -148,8 +147,12 @@ public class Drawable {
         this.drawOrder = drawOrder;
     }
 
-    public void setColor(float[] color){
-        this.color = color;
+    public void setColor(int color){
+        float red=   (color >> 16) & 0xFF;
+        float green= (color >> 8) & 0xFF;
+        float blue=  (color >> 0) & 0xFF;
+        float alpha= (color >> 24) & 0xFF;
+        this.color = new float[] {red / 255f, green / 255f, blue / 255f, alpha / 255f};
     }
 
     public static int loadTexture(final Context context, final int resourceId){

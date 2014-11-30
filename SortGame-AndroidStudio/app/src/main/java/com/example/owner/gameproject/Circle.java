@@ -48,7 +48,7 @@ public class Circle extends Drawable{
     }
 
 
-    public Circle(Context context, float radius, float x, float y, float[] color){
+    public Circle(Context context, float radius, float x, float y, int color){
         super(context, COORDINATES_PER_VERTEX, GLES20.GL_TRIANGLES);
         radius = radius / 2;
         List<Float> circleCoordsList = new ArrayList<Float>();

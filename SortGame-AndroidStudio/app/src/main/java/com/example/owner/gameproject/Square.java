@@ -33,15 +33,15 @@ public class Square extends Drawable{
 
     private short[] drawOrder = { 0, 1, 2, 0, 2, 3 };
 
-    public Square(Context context, float width, float length, float x, float y, float[] color) {
+    public Square(Context context, float width, float length, float x, float y, int colorId) {
         super(context, COORDINATES_PER_VERTEX, GLES20.GL_TRIANGLES);
         this.x = x;
         this.y = y;
         this.width = width;
         this.length = length;
 
-        width = width/2;
-        length = length/2;
+        width = width / 2;
+        length = length / 2;
 
         float[] squareCoords = new float[]{
                 x + width,  y + length,
@@ -51,7 +51,7 @@ public class Square extends Drawable{
 
         setCoords(squareCoords);
         setDrawOrder(drawOrder);
-        setColor(color);
+        setColor(colorId);
         setShaderCode(vertexShaderCode,fragmentShaderCode);
     }
 }

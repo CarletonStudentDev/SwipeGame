@@ -1,7 +1,7 @@
 package com.example.owner.gameproject;
 
 import android.content.Context;
-import android.opengl.GLES20;
+import android.graphics.Color;
 
 public class Image extends Square {
 
@@ -28,8 +28,7 @@ public class Image extends Square {
     private float[] color = { 192f/255f, 39f/255f, 60/255f, 1.0f};
 
     public Image(Context context, int resourceId, float size, float x, float y){
-        super(context, size, size, x, y, null);
-        setColor(color);
+        super(context, size, size, x, y, Color.BLACK);
         setShaderCode(vertexShaderCode,fragmentShaderCode);
         setTexture(true, resourceId);
     }
