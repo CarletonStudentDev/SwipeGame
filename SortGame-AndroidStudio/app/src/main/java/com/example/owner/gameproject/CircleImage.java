@@ -28,17 +28,12 @@ public class CircleImage extends Circle {
                     "void main() {" +
                     "   v_TexCoordinate = a_TexCoordinate;" +
                     "   gl_Position = uMVPMatrix * vPosition;" +
-                    "}";
-
-    private float x;
-    private float y;
+                    "}";;
     private float radius;
     int vertices = 360;
 
     public CircleImage(Context context, float radius, float x, float y, int resourceId){
         super(context, radius, x, y, Color.BLACK);
-        this.x = x;
-        this.y = y;
         this.radius = radius;
         setShaderCode(vertexShaderCode,fragmentShaderCode);
         setTexture(true, resourceId);
@@ -46,15 +41,15 @@ public class CircleImage extends Circle {
     }
     protected float[] getTextureCoords() {
         List<Float> circleCoordsList = new ArrayList<Float>();
-        circleCoordsList.add(x);
-        circleCoordsList.add(y);
+        circleCoordsList.add(radius);
+        circleCoordsList.add(radius);
 
         for (int i = 0; i < vertices; i++) {
             float percent = (i / (float) (vertices - 1));
             float rad = (float) (percent * 2 * Math.PI);
 
-            circleCoordsList.add(radius * (float) (Math.cos(rad)) + radius);
-            circleCoordsList.add(radius * (float) (Math.sin(rad)) + radius);
+            circleCoordsList.add( -(radius * (float) (Math.cos(rad)) - radius) );
+            circleCoordsList.add( -(radius * (float) (Math.sin(rad)) - radius) );
         }
 
         float[] circleCoords = new float[circleCoordsList.size()];

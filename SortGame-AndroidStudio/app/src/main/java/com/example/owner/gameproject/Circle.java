@@ -61,8 +61,8 @@ public class Circle extends Drawable{
             float percent = (i / (float) (vertices - 1));
             float rad = (float) (percent * 2 * Math.PI);
 
-            circleCoordsList.add(x + radius * (float) (Math.cos(rad)));
-            circleCoordsList.add(y + radius * (float) (Math.sin(rad)));
+            circleCoordsList.add( x + radius * (float) (Math.cos(rad)) );
+            circleCoordsList.add( y + radius * (float) (Math.sin(rad)) );
         }
 
         float[] circleCoords = new float[circleCoordsList.size()];

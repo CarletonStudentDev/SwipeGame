@@ -73,7 +73,7 @@ public class MyRenderer implements Renderer {
 
         card = new Card(context, mMVPMatrix, R.drawable.red, 0.0f, 0.0f);
         //circle = new Circle(context, 0.5f, 0, 0, color);
-        circleImage = new CircleImage(context, 0.5f, 0, 0, R.drawable.ic_launcher);
+        circleImage = new CircleImage(context, 0.5f, 0, 0, R.drawable.red);
     }
 
     @Override
