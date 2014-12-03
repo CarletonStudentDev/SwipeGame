@@ -24,12 +24,17 @@ public class Image extends Square {
                     "   gl_Position = uMVPMatrix * vPosition;" +
                     "}";
 
-
-    private float[] color = { 192f/255f, 39f/255f, 60/255f, 1.0f};
+    float[] textureCoords = {
+            0f, 0f,
+            0f, 1f,
+            1f, 1f,
+            1f, 0f,
+    };
 
     public Image(Context context, int resourceId, float size, float x, float y){
         super(context, size, size, x, y, Color.BLACK);
         setShaderCode(vertexShaderCode,fragmentShaderCode);
         setTexture(true, resourceId);
+        setTextureCoords(textureCoords);
     }
 }

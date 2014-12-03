@@ -17,11 +17,14 @@ public class MyRenderer implements Renderer {
     private Card card;
     private GLSurfaceView view;
 
-    private Circle circle;
+    private CircleImage circleImage;
 
     private final float[] mMVPMatrix = new float[16];
     private final float[] mProjectionMatrix = new float[16];
     private final float[] mViewMatrix = new float[16];
+
+    private float offsetX;
+    private float offsetY;
 
     private Context context;
     public MyRenderer(Context context, GLSurfaceView view){
@@ -37,15 +40,23 @@ public class MyRenderer implements Renderer {
         float x = (-(event.getX() * 2) / view.getWidth() + 1f) / ratio;
         float y = -(event.getY() * 2) / view.getHeight() + 1f;
 
-        switch(event.getAction()){
+        switch(event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                card.move(x,y);
+                if (card.inShape(x, y)) {
+                    offsetX = x - card.getX();
+                    offsetY = y - card.getY();
+                    card.move(x - offsetX, y - offsetY);
+                }
                 break;
             case MotionEvent.ACTION_MOVE:
-                card.move(x,y);
+                if (card.inShape(x, y)) {
+                    card.move(x - offsetX, y - offsetY);
+                }
                 break;
             case MotionEvent.ACTION_UP:
-                card.move(x,y);
+                if (card.inShape(x, y)) {
+                    card.move(x - offsetX, y - offsetY);
+                }
                 break;
             default:
                 break;
@@ -61,7 +72,8 @@ public class MyRenderer implements Renderer {
         int color = context.getResources().getColor(R.color.lightRed);
 
         card = new Card(context, mMVPMatrix, R.drawable.red, 0.0f, 0.0f);
-        circle = new Circle(context, 0.1f, 0, 0, color);
+        //circle = new Circle(context, 0.5f, 0, 0, color);
+        circleImage = new CircleImage(context, 0.5f, 0, 0, R.drawable.ic_launcher);
     }
 
     @Override
@@ -84,6 +96,6 @@ public class MyRenderer implements Renderer {
         Matrix.multiplyMM(mMVPMatrix, 0, mProjectionMatrix, 0, mViewMatrix, 0);
 
         card.draw();
-        circle.draw(mMVPMatrix);
+        circleImage.draw(mMVPMatrix);
     }
 }

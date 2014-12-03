@@ -35,12 +35,7 @@ public class Drawable {
     private float[] coords;
     private short[] drawOrder;
     private float[] color;
-    private float[] textureCoords = {
-            0f, 0f,
-            0f, 1f,
-            1f, 1f,
-            1f, 0f,
-    };
+    private float[] textureCoords;
 
     private int drawType;
 
@@ -141,6 +136,10 @@ public class Drawable {
 
     public void setCoords(float[] coords) {
         this.coords = coords;
+    }
+
+    public void setTextureCoords(float[] coords){
+        this.textureCoords = coords;
     }
 
     public void setDrawOrder(short[] drawOrder){

@@ -2,8 +2,9 @@ package com.example.owner.gameproject;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 
-public class Card implements DrawableObject{
+public class Card {
 
     private Image image;
     private Square square;
@@ -15,9 +16,13 @@ public class Card implements DrawableObject{
     private short[] drawOrder;
     private float width = 0.5f;
     private float length = 0.5f;
+    private float x;
+    private float y;
 
     public Card (Context context, float[] mvpMatrix, int resourceId, float x, float y) {
         this.mMVPMatrix = mvpMatrix;
+        this.x = x;
+        this.y = y;
 
         image = new Image(context,resourceId, width,  x, y);
 
@@ -37,12 +42,17 @@ public class Card implements DrawableObject{
         line = new Line(context, Coords, drawOrder, lineColor);
     }
 
-    public void move(float x, float y){
+    public void move(float x1, float y1){
+        setX(x1);
+        setY(y1);
+        //this.x = x1;
+        //this.y = y1;
+
         Coords = new float[]{
-                x + width,  y + length,
-                x + width,  y - length,
-                x - width,  y - length,
-                x - width,  y + length,};
+                x1 + width,  y1 + length,
+                x1 + width,  y1 - length,
+                x1 - width,  y1 - length,
+                x1 - width,  y1 + length,};
 
         square.setCoords(Coords);
         line.setCoords(Coords);
@@ -53,5 +63,24 @@ public class Card implements DrawableObject{
         square.draw(mMVPMatrix);
         line.draw(mMVPMatrix);
         image.draw(mMVPMatrix);
+    }
+
+    public boolean inShape(float x, float y){
+        return (x >= this.x - width) &&
+               (x <= this.x + width) &&
+               (y >= this.y - length) &&
+               (y <= this.y + length);
+    }
+    public float getX(){
+        return x;
+    }
+    public float getY(){
+        return y;
+    }
+    public void setX(float x){
+        this.x = x;
+    }
+    public void setY(float y){
+        this.y = y;
     }
 }
