@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
  * JUnit test for Player class
  *
  * @author Jeton Sinoimeri
- * @version 1.0
+ * @version 1.1
  * @since 2014-11-28
  *
  */
