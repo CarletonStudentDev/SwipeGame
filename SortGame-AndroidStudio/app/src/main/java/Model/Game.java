@@ -10,7 +10,7 @@ import java.util.Stack;
  * about playing the card game.
  *
  * @author Jeton Sinoimeri
- * @version 1.5
+ * @version 1.6
  * @since 2014-11-10
  *
  */
@@ -101,6 +101,32 @@ public class Game
     public Listener getMultiplierMeter()
     {
         return this.multiplier;
+    }
+
+
+    /**
+     * Getter for the Player.
+     *
+     * @return player: Listener reference representing the Player
+     *
+     */
+
+    public Listener getPlayer()
+    {
+        return this.player;
+    }
+
+
+    /**
+     * Getter for the Player.
+     *
+     * @return deck: Listener reference representing the Deck
+     *
+     */
+
+    public Listener getDeck()
+    {
+        return this.deck;
     }
 
 
