@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.opengl.GLES20;
 import android.opengl.GLUtils;
+import android.opengl.Matrix;
 import android.util.Log;
 
 import java.nio.ByteBuffer;
@@ -13,6 +14,8 @@ import java.nio.FloatBuffer;
 import java.nio.ShortBuffer;
 
 public class Drawable {
+
+    public float[] mModelMatrix = new float[16];
 
     private String vertexShaderCode;
     private String fragmentShaderCode;
@@ -47,7 +50,7 @@ public class Drawable {
         this.drawType = drawType;
         this.coordsPerVertex = coordsPerVertex;
         this.context = context;
-
+        Matrix.setIdentityM(mModelMatrix, 0);
     }
 
     public void initializeBuffers(){
@@ -85,7 +88,6 @@ public class Drawable {
 
     public void draw(float[] mvpMatrix){
 
-        initializeBuffers();
         initializeShaderProgram();
 
         // pass Information pointers

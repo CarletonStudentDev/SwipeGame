@@ -6,6 +6,7 @@ import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLSurfaceView.Renderer;
 import android.opengl.Matrix;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
 
@@ -14,53 +15,76 @@ import javax.microedition.khronos.opengles.GL10;
 
 public class MyRenderer implements Renderer {
 
-    private Card card;
+    //private Card card;
     private GLSurfaceView view;
 
-    private CircleImage circleImage;
+    //private CircleImage circleImage;
+
+    private Square square;
 
     private final float[] mMVPMatrix = new float[16];
     private final float[] mProjectionMatrix = new float[16];
     private final float[] mViewMatrix = new float[16];
-
-    private float offsetX;
-    private float offsetY;
+    private final float[] accumulatedTranslation = new float[16];
 
     private Context context;
+
+    public float mDeltaX;
+    public float mDeltaY;
+
     public MyRenderer(Context context, GLSurfaceView view){
         this.view = view;
         this.context = context;
+
+        Matrix.setIdentityM(accumulatedTranslation, 0);
     }
 
     public boolean onTouchEvent(MotionEvent event){
 
+        /*
         float ratio = (float) view.getHeight() / view.getWidth();
 
         // convert touch coordinates into OpenGL coordinates
         float x = (-(event.getX() * 2) / view.getWidth() + 1f) / ratio;
         float y = -(event.getY() * 2) / view.getHeight() + 1f;
 
+
         switch(event.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                Tempx = x;
+                Tempy = y;
+
                 if (card.inShape(x, y)) {
                     offsetX = x - card.getX();
                     offsetY = y - card.getY();
                     card.move(x - offsetX, y - offsetY);
                 }
+
+
                 break;
             case MotionEvent.ACTION_MOVE:
+                Tempx = x;
+                Tempy = y;
+
                 if (card.inShape(x, y)) {
                     card.move(x - offsetX, y - offsetY);
                 }
+
                 break;
             case MotionEvent.ACTION_UP:
+                Tempx = x;
+                Tempy = y;
+
                 if (card.inShape(x, y)) {
+
                     card.move(x - offsetX, y - offsetY);
                 }
+
                 break;
             default:
                 break;
         }
+        */
 
         return true;
     }
@@ -70,10 +94,11 @@ public class MyRenderer implements Renderer {
         GLES20.glClearColor( 171f/255f, 34f/255f, 52f/255f, 1.0f );
 
         int color = context.getResources().getColor(R.color.lightRed);
+        square = new Square(context, 0.5f, 0.5f, 0f, 0f, color);
 
-        card = new Card(context, mMVPMatrix, R.drawable.red, 0.0f, 0.0f);
+        //card = new Card(context, R.drawable.red, 0.0f, 0.0f);
         //circle = new Circle(context, 0.5f, 0, 0, color);
-        circleImage = new CircleImage(context, 0.5f, 0, 0, R.drawable.red);
+        //circleImage = new CircleImage(context, 0.5f, 0, 0, R.drawable.red);
     }
 
     @Override
@@ -95,7 +120,14 @@ public class MyRenderer implements Renderer {
         Matrix.setLookAtM(mViewMatrix, 0, 0, 0, -3, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
         Matrix.multiplyMM(mMVPMatrix, 0, mProjectionMatrix, 0, mViewMatrix, 0);
 
-        card.draw();
-        circleImage.draw(mMVPMatrix);
+        float[] scratch = new float[16];
+        Matrix.translateM(square.mModelMatrix, 0, -mDeltaX/100, -mDeltaY/100, 0);
+        Matrix.multiplyMM(scratch, 0, mMVPMatrix, 0, square.mModelMatrix, 0);
+        mDeltaX = 0f;
+        mDeltaY = 0f;
+
+        square.draw(scratch);
+        //card.draw(mMVPMatrix);
+        //circleImage.draw(mMVPMatrix);
     }
 }

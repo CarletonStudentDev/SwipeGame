@@ -32,6 +32,7 @@ public class Line extends Drawable{
         setDrawOrder(drawOrder);
         setColor(color);
         setShaderCode(vertexShaderCode,fragmentShaderCode);
+        initializeBuffers();
     }
 
 }

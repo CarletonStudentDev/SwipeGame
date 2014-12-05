@@ -9,7 +9,6 @@ public class Card {
     private Image image;
     private Square square;
     private Line line;
-    private float[] mMVPMatrix;
     private float[] Coords;
     private int squareColor;
     private int lineColor;
@@ -19,8 +18,7 @@ public class Card {
     private float x;
     private float y;
 
-    public Card (Context context, float[] mvpMatrix, int resourceId, float x, float y) {
-        this.mMVPMatrix = mvpMatrix;
+    public Card (Context context, int resourceId, float x, float y) {
         this.x = x;
         this.y = y;
 
@@ -59,7 +57,7 @@ public class Card {
         image.setCoords(Coords);
     }
 
-    public void draw(){
+    public void draw(float[] mMVPMatrix){
         square.draw(mMVPMatrix);
         line.draw(mMVPMatrix);
         image.draw(mMVPMatrix);

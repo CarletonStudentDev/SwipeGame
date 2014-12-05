@@ -8,9 +8,16 @@ public class MyGLSurfaceView extends GLSurfaceView {
 
     Context context;
     MyRenderer renderer;
-    public MyGLSurfaceView(Context context) {
+
+    private float mPreviousX;
+    private float mPreviousY;
+    private float mDensity;
+
+    public MyGLSurfaceView(Context context, float density) {
         super(context);
         this.context = context;
+        mDensity = density;
+
         renderer = new MyRenderer(context,this);
         setEGLContextClientVersion(2);
         setRenderer(renderer);
@@ -19,8 +26,31 @@ public class MyGLSurfaceView extends GLSurfaceView {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        renderer.onTouchEvent(event);
+        if (event != null)
+        {
+            float x = event.getX();
+            float y = event.getY();
 
-        return true;
+            if (event.getAction() == MotionEvent.ACTION_MOVE)
+            {
+                if (renderer != null)
+                {
+                    float deltaX = (x - mPreviousX) / mDensity / 2f;
+                    float deltaY = (y - mPreviousY) / mDensity / 2f;
+
+                    renderer.mDeltaX += deltaX;
+                    renderer.mDeltaY += deltaY;
+                }
+            }
+
+            mPreviousX = x;
+            mPreviousY = y;
+
+            return true;
+        }
+        else
+        {
+            return super.onTouchEvent(event);
+        }
     }
 }

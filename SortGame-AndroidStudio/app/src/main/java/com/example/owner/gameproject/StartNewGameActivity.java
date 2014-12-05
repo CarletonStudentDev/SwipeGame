@@ -3,6 +3,7 @@ package com.example.owner.gameproject;
 import android.opengl.GLSurfaceView;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -15,8 +16,11 @@ public class StartNewGameActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
 
         getSupportActionBar().hide();
-        surfaceView = new MyGLSurfaceView(getApplicationContext());
 
+        final DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+
+        surfaceView = new MyGLSurfaceView(getApplicationContext(), displayMetrics.density);
         setContentView(surfaceView);
     }
 
