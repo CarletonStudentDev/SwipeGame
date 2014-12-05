@@ -15,7 +15,7 @@ import javax.microedition.khronos.opengles.GL10;
 
 public class MyRenderer implements Renderer {
 
-    private Card card;
+    public Card card;
     private GLSurfaceView view;
 
     //private CircleImage circleImage;
@@ -62,65 +62,13 @@ public class MyRenderer implements Renderer {
             if(card.inShape(newX, newY)){
                 mDeltaX += deltaX;
                 mDeltaY += deltaY;
-                card.x = newX;
-                card.y = newY;
             }
 
         }
         mPreviousX = x;
         mPreviousY = y;
 
-        Log.i("asdf", Float.toString(card.x));
-        Log.i("asdf", Float.toString(card.square.mModelMatrix[12]));
-        Log.i("asdf", Float.toString(card.y));
-        Log.i("asdf", Float.toString(card.square.mModelMatrix[13]));
-
         return true;
-
-        /*
-        float ratio = (float) view.getHeight() / view.getWidth();
-
-        // convert touch coordinates into OpenGL coordinates
-        float x = (-(event.getX() * 2) / view.getWidth() + 1f) / ratio;
-        float y = -(event.getY() * 2) / view.getHeight() + 1f;
-
-
-        switch(event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                Tempx = x;
-                Tempy = y;
-
-                if (card.inShape(x, y)) {
-                    offsetX = x - card.getX();
-                    offsetY = y - card.getY();
-                    card.move(x - offsetX, y - offsetY);
-                }
-
-
-                break;
-            case MotionEvent.ACTION_MOVE:
-                Tempx = x;
-                Tempy = y;
-
-                if (card.inShape(x, y)) {
-                    card.move(x - offsetX, y - offsetY);
-                }
-
-                break;
-            case MotionEvent.ACTION_UP:
-                Tempx = x;
-                Tempy = y;
-
-                if (card.inShape(x, y)) {
-
-                    card.move(x - offsetX, y - offsetY);
-                }
-
-                break;
-            default:
-                break;
-        }
-        */
     }
 
     @Override
@@ -156,8 +104,8 @@ public class MyRenderer implements Renderer {
 
         float[] scratch = new float[16];
 
-        Matrix.translateM(square.mModelMatrix, 0, -mDeltaX * (ratio / 100f), -mDeltaY * (ratio / 100f), 0);
-        Matrix.multiplyMM(scratch, 0, mMVPMatrix, 0, square.mModelMatrix, 0);
+        Matrix.translateM(card.image.mModelMatrix, 0, -mDeltaX * (ratio / 100f), -mDeltaY * (ratio / 100f), 0);
+        Matrix.multiplyMM(scratch, 0, mMVPMatrix, 0, card.image.mModelMatrix, 0);
         mDeltaX = 0f;
         mDeltaY = 0f;
 

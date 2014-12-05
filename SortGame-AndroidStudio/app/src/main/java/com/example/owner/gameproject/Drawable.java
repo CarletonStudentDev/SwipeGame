@@ -90,7 +90,6 @@ public class Drawable {
     }
 
     public void draw(float[] mvpMatrix){
-
         initializeShaderProgram();
 
         x = mModelMatrix[12];

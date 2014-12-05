@@ -6,9 +6,9 @@ import android.util.Log;
 
 public class Card implements DrawableObject {
 
-    private Image image;
+    public Image image;
     public Square square;
-    private Line line;
+    public Line line;
     private float[] Coords;
     private int squareColor;
     private int lineColor;
@@ -56,9 +56,11 @@ public class Card implements DrawableObject {
 
     public void draw(float[] mMVPMatrix){
 
-        square.draw(mMVPMatrix);
-        //line.draw(mMVPMatrix);
-        //image.draw(mMVPMatrix);
+        //square.draw(mMVPMatrix);
+        image.draw(mMVPMatrix);
+        line.draw(mMVPMatrix);
+        x = image.x;
+        y = image.y;
     }
 
     public boolean inShape(float x, float y){
