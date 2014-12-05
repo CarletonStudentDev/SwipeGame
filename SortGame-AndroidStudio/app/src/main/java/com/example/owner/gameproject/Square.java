@@ -23,9 +23,6 @@ public class Square extends Drawable{
                     "   v_TexCoordinate = a_TexCoordinate;" +
                     "   gl_Position = uMVPMatrix * vPosition;" +
                     "}";
-
-    public float x;
-    public float y;
     public float width;
     public float length;
 
@@ -35,8 +32,6 @@ public class Square extends Drawable{
 
     public Square(Context context, float width, float length, float x, float y, int colorId) {
         super(context, COORDINATES_PER_VERTEX, GLES20.GL_TRIANGLES);
-        this.x = x;
-        this.y = y;
         this.width = width;
         this.length = length;
 

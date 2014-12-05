@@ -15,31 +15,67 @@ import javax.microedition.khronos.opengles.GL10;
 
 public class MyRenderer implements Renderer {
 
-    //private Card card;
+    private Card card;
     private GLSurfaceView view;
 
     //private CircleImage circleImage;
+
+    private float ratio;
 
     private Square square;
 
     private final float[] mMVPMatrix = new float[16];
     private final float[] mProjectionMatrix = new float[16];
     private final float[] mViewMatrix = new float[16];
-    private final float[] accumulatedTranslation = new float[16];
 
     private Context context;
 
     public float mDeltaX;
     public float mDeltaY;
 
+    private float mPreviousX;
+    private float mPreviousY;
+
     public MyRenderer(Context context, GLSurfaceView view){
         this.view = view;
         this.context = context;
-
-        Matrix.setIdentityM(accumulatedTranslation, 0);
     }
 
     public boolean onTouchEvent(MotionEvent event){
+
+        float r = (float)view.getHeight() / view.getWidth();
+
+        float x = event.getX();
+        float y = event.getY();
+
+        // convert touch coordinates into OpenGL coordinates
+        float newX = (-(event.getX() * 2) / view.getWidth() + 1f) / r;
+        float newY = -(event.getY() * 2) / view.getHeight() + 1f;
+
+        if (event.getAction() == MotionEvent.ACTION_MOVE)
+        {
+
+
+            float deltaX = (x - mPreviousX) / r / 2f;
+            float deltaY = (y - mPreviousY) / r / 2f;
+
+            if(card.inShape(newX, newY)){
+                mDeltaX += deltaX;
+                mDeltaY += deltaY;
+                card.x = newX;
+                card.y = newY;
+            }
+
+        }
+        mPreviousX = x;
+        mPreviousY = y;
+
+        Log.i("asdf", Float.toString(card.x));
+        Log.i("asdf", Float.toString(card.square.mModelMatrix[12]));
+        Log.i("asdf", Float.toString(card.y));
+        Log.i("asdf", Float.toString(card.square.mModelMatrix[13]));
+
+        return true;
 
         /*
         float ratio = (float) view.getHeight() / view.getWidth();
@@ -85,8 +121,6 @@ public class MyRenderer implements Renderer {
                 break;
         }
         */
-
-        return true;
     }
 
     @Override
@@ -96,7 +130,7 @@ public class MyRenderer implements Renderer {
         int color = context.getResources().getColor(R.color.lightRed);
         square = new Square(context, 0.5f, 0.5f, 0f, 0f, color);
 
-        //card = new Card(context, R.drawable.red, 0.0f, 0.0f);
+        card = new Card(context, R.drawable.red, 0.0f, 0.0f);
         //circle = new Circle(context, 0.5f, 0, 0, color);
         //circleImage = new CircleImage(context, 0.5f, 0, 0, R.drawable.red);
     }
@@ -104,7 +138,7 @@ public class MyRenderer implements Renderer {
     @Override
     public void onSurfaceChanged(GL10 gl10, int width, int height) {
         GLES20.glViewport(0, 0, width, height);
-        float ratio = (float) width / height;
+        ratio = (float) width / height;
 
         Matrix.frustumM(mProjectionMatrix, 0, -ratio, ratio, -1, 1, 3, 7);
     }
@@ -121,13 +155,14 @@ public class MyRenderer implements Renderer {
         Matrix.multiplyMM(mMVPMatrix, 0, mProjectionMatrix, 0, mViewMatrix, 0);
 
         float[] scratch = new float[16];
-        Matrix.translateM(square.mModelMatrix, 0, -mDeltaX/100, -mDeltaY/100, 0);
+
+        Matrix.translateM(square.mModelMatrix, 0, -mDeltaX * (ratio / 100f), -mDeltaY * (ratio / 100f), 0);
         Matrix.multiplyMM(scratch, 0, mMVPMatrix, 0, square.mModelMatrix, 0);
         mDeltaX = 0f;
         mDeltaY = 0f;
 
-        square.draw(scratch);
-        //card.draw(mMVPMatrix);
+        //square.draw(scratch);
+        card.draw(scratch);
         //circleImage.draw(mMVPMatrix);
     }
 }

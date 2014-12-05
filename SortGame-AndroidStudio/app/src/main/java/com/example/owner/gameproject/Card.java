@@ -4,10 +4,10 @@ import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
 
-public class Card {
+public class Card implements DrawableObject {
 
     private Image image;
-    private Square square;
+    public Square square;
     private Line line;
     private float[] Coords;
     private int squareColor;
@@ -15,18 +15,17 @@ public class Card {
     private short[] drawOrder;
     private float width = 0.5f;
     private float length = 0.5f;
-    private float x;
-    private float y;
+    public float x;
+    public float y;
 
     public Card (Context context, int resourceId, float x, float y) {
-        this.x = x;
-        this.y = y;
 
         image = new Image(context,resourceId, width,  x, y);
 
         squareColor = context.getResources().getColor(R.color.lightRed);
         lineColor = Color.BLACK;
         square = new Square (context, width, length, x, y, squareColor);
+
 
         width = width/2;
         length = length/2;
@@ -41,10 +40,8 @@ public class Card {
     }
 
     public void move(float x1, float y1){
-        setX(x1);
-        setY(y1);
-        //this.x = x1;
-        //this.y = y1;
+        this.x = x1;
+        this.y = y1;
 
         Coords = new float[]{
                 x1 + width,  y1 + length,
@@ -58,9 +55,10 @@ public class Card {
     }
 
     public void draw(float[] mMVPMatrix){
+
         square.draw(mMVPMatrix);
-        line.draw(mMVPMatrix);
-        image.draw(mMVPMatrix);
+        //line.draw(mMVPMatrix);
+        //image.draw(mMVPMatrix);
     }
 
     public boolean inShape(float x, float y){
@@ -68,17 +66,5 @@ public class Card {
                (x <= this.x + width) &&
                (y >= this.y - length) &&
                (y <= this.y + length);
-    }
-    public float getX(){
-        return x;
-    }
-    public float getY(){
-        return y;
-    }
-    public void setX(float x){
-        this.x = x;
-    }
-    public void setY(float y){
-        this.y = y;
     }
 }

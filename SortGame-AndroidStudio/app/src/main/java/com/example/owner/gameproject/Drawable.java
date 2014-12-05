@@ -46,6 +46,9 @@ public class Drawable {
 
     private boolean useTexture = false;
 
+    public float x;
+    public float y;
+
     public Drawable(Context context, int coordsPerVertex, int drawType) {
         this.drawType = drawType;
         this.coordsPerVertex = coordsPerVertex;
@@ -89,6 +92,9 @@ public class Drawable {
     public void draw(float[] mvpMatrix){
 
         initializeShaderProgram();
+
+        x = mModelMatrix[12];
+        y = mModelMatrix[13];
 
         // pass Information pointers
         uColorLocation = GLES20.glGetUniformLocation(program, "vColor");
