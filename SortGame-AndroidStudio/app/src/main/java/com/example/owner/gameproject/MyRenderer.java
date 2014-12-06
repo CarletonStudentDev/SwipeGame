@@ -18,11 +18,15 @@ public class MyRenderer implements Renderer {
     public Card card;
     private GLSurfaceView view;
 
-    //private CircleImage circleImage;
+    private CircleImage circleImage;
+    private CircleImage circleImage2;
+    private CircleImage circleImage3;
+    private CircleImage circleImage4;
 
     private float ratio;
 
     private Square square;
+    private Square square2;
 
     private final float[] mMVPMatrix = new float[16];
     private final float[] mProjectionMatrix = new float[16];
@@ -75,12 +79,19 @@ public class MyRenderer implements Renderer {
     public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
         GLES20.glClearColor( 171f/255f, 34f/255f, 52f/255f, 1.0f );
 
-        int color = context.getResources().getColor(R.color.lightRed);
-        square = new Square(context, 0.5f, 0.5f, 0f, 0f, color);
+        int color = context.getResources().getColor(R.color.darkRed);
+        square = new Square(context, 2f, 0.2f, 0f, 0.9f, color);
 
-        card = new Card(context, R.drawable.red, 0.0f, 0.0f);
+        int color2 = context.getResources().getColor(R.color.darkestRed);
+        square2 = new Square(context, 2f, 0.2f, 0f, 0.7f, color2);
+
+        card = new Card(context, R.drawable.red, 0.0f, -0.2f);
         //circle = new Circle(context, 0.5f, 0, 0, color);
-        //circleImage = new CircleImage(context, 0.5f, 0, 0, R.drawable.red);
+        circleImage = new CircleImage(context, 0.25f, 0.4f, 0.4f, R.drawable.red);
+        circleImage2 = new CircleImage(context, 0.25f, -0.4f, 0.4f, R.drawable.red);
+        circleImage3 = new CircleImage(context, 0.25f, -0.4f, -0.8f, R.drawable.red);
+        circleImage4 = new CircleImage(context, 0.25f, 0.4f, -0.8f, R.drawable.red);
+
     }
 
     @Override
@@ -111,6 +122,12 @@ public class MyRenderer implements Renderer {
 
         //square.draw(scratch);
         card.draw(scratch);
+        square.draw(scratch);
+        square2.draw(scratch);
+        circleImage.draw(scratch);
+        circleImage2.draw(scratch);
+        circleImage3.draw(scratch);
+        circleImage4.draw(scratch);
         //circleImage.draw(mMVPMatrix);
     }
 }
