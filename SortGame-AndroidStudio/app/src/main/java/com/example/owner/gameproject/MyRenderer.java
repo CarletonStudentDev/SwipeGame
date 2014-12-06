@@ -1,13 +1,10 @@
 package com.example.owner.gameproject;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLSurfaceView.Renderer;
 import android.opengl.Matrix;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.MotionEvent;
 
 import javax.microedition.khronos.egl.EGLConfig;
@@ -88,9 +85,9 @@ public class MyRenderer implements Renderer {
         card = new Card(context, R.drawable.red, 0.0f, -0.2f);
         //circle = new Circle(context, 0.5f, 0, 0, color);
         circleImage = new CircleImage(context, 0.25f, 0.4f, 0.4f, R.drawable.red);
-        circleImage2 = new CircleImage(context, 0.25f, -0.4f, 0.4f, R.drawable.red);
-        circleImage3 = new CircleImage(context, 0.25f, -0.4f, -0.8f, R.drawable.red);
-        circleImage4 = new CircleImage(context, 0.25f, 0.4f, -0.8f, R.drawable.red);
+        circleImage2 = new CircleImage(context, 0.25f, -0.4f, 0.4f, R.drawable.purple);
+        circleImage3 = new CircleImage(context, 0.25f, -0.4f, -0.8f, R.drawable.blue);
+        circleImage4 = new CircleImage(context, 0.25f, 0.4f, -0.8f, R.drawable.green);
 
     }
 
