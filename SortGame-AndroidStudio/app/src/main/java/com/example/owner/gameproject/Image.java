@@ -36,5 +36,6 @@ public class Image extends Square {
         setShaderCode(vertexShaderCode,fragmentShaderCode);
         setTexture(true, resourceId);
         setTextureCoords(textureCoords);
+        initializeBuffers();
     }
 }

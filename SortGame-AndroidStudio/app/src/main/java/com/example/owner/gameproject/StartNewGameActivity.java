@@ -15,8 +15,8 @@ public class StartNewGameActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
 
         getSupportActionBar().hide();
-        surfaceView = new MyGLSurfaceView(getApplicationContext());
 
+        surfaceView = new MyGLSurfaceView(getApplicationContext());
         setContentView(surfaceView);
     }
 

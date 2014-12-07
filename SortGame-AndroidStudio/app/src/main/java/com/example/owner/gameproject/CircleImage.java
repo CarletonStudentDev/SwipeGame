@@ -38,6 +38,7 @@ public class CircleImage extends Circle {
         setShaderCode(vertexShaderCode,fragmentShaderCode);
         setTexture(true, resourceId);
         setTextureCoords(getTextureCoords());
+        initializeBuffers();
     }
     protected float[] getTextureCoords() {
         List<Float> circleCoordsList = new ArrayList<Float>();

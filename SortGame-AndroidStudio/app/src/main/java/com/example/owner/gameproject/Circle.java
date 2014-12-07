@@ -84,5 +84,6 @@ public class Circle extends Drawable{
         setDrawOrder(getDrawOrder());
         setColor(color);
         setShaderCode(vertexShaderCode,fragmentShaderCode);
+        initializeBuffers();
     }
 }
