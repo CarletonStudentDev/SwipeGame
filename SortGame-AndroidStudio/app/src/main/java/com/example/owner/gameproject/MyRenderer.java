@@ -76,18 +76,18 @@ public class MyRenderer implements Renderer {
     public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
         GLES20.glClearColor( 171f/255f, 34f/255f, 52f/255f, 1.0f );
 
-        int color = context.getResources().getColor(R.color.darkRed);
-        square = new Square(context, 2f, 0.2f, 0f, 0.9f, color);
+        int color = context.getResources().getColor(R.color.darkestRed);
+        square = new Square(context, 1.4f, 0.2f, 0f, 0.9f, color);
 
-        int color2 = context.getResources().getColor(R.color.darkestRed);
-        square2 = new Square(context, 2f, 0.2f, 0f, 0.7f, color2);
+        int color2 = context.getResources().getColor(R.color.darkRed);
+        square2 = new Square(context, 1.1f, 0.2f, 0f, 0.7f, color2);
 
-        card = new Card(context, R.drawable.red, 0.0f, -0.2f);
+        card = new Card(context, R.drawable.caution, 0.0f, -0.2f);
         //circle = new Circle(context, 0.5f, 0, 0, color);
-        circleImage = new CircleImage(context, 0.25f, 0.4f, 0.4f, R.drawable.red);
-        circleImage2 = new CircleImage(context, 0.25f, -0.4f, 0.4f, R.drawable.purple);
-        circleImage3 = new CircleImage(context, 0.25f, -0.4f, -0.8f, R.drawable.blue);
-        circleImage4 = new CircleImage(context, 0.25f, 0.4f, -0.8f, R.drawable.green);
+        circleImage = new CircleImage(context, 0.35f, 0.4f, 0.35f, R.drawable.red);
+        circleImage2 = new CircleImage(context, 0.35f, -0.4f, 0.35f, R.drawable.purple);
+        circleImage3 = new CircleImage(context, 0.35f, -0.4f, -0.75f, R.drawable.blue);
+        circleImage4 = new CircleImage(context, 0.35f, 0.4f, -0.75f, R.drawable.green);
 
     }
 
