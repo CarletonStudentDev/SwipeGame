@@ -3,9 +3,9 @@ package com.example.owner.gameproject;
 /**
  * Created by home on 29/11/2014.
  */
-public interface DrawableObject {
+public abstract class DrawableObject {
 
-    void move(float x, float y);
+    public abstract void move(float x, float y);
 
-    void draw(float[] mMVPMatrix);
+    public abstract void draw(float[] mMVPMatrix);
 }

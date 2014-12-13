@@ -44,10 +44,10 @@ public class MyGLSurfaceView extends GLSurfaceView {
                 float deltaX = (x - mPreviousX) / r / 2f;
                 float deltaY = (y - mPreviousY) / r / 2f;
 
-                if(renderer.card.inShape(newX, newY)){
+                /*if(renderer.card.inShape(newX, newY)){*/
                     renderer.mDeltaX += deltaX;
                     renderer.mDeltaY += deltaY;
-                }
+                //}
 
             }
             mPreviousX = x;

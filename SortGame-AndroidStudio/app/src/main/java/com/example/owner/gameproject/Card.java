@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
 
-public class Card implements DrawableObject {
+public class Card extends DrawableObject {
 
     public Image image;
     public Square square;
