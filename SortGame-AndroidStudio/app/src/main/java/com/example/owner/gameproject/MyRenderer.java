@@ -15,6 +15,7 @@ public class MyRenderer implements Renderer {
     public Card card;
     private GLSurfaceView view;
     private MultiplierBar mBar;
+    private TopBar topBar;
 
     private Circle circle;
     private Circle circle2;
@@ -22,8 +23,6 @@ public class MyRenderer implements Renderer {
     private Circle circle4;
 
     private float ratio;
-
-    private Square square;
 
     private final float[] mMVPMatrix = new float[16];
     private final float[] mProjectionMatrix = new float[16];
@@ -49,17 +48,18 @@ public class MyRenderer implements Renderer {
 
         this.ratio = view.getWidth() / view.getHeight();
 
-
-        square = new Square(context, 0.65f * 2 , 0.2f, 0f, 0.9f, context.getResources().getColor(R.color.darkBlue));
-
         card = new Card(context, R.drawable.caution, 0.0f, -0.2f);
         //circle = new Circle(context, 0.5f, 0, 0, color);
         circle = new Circle(context, 0.35f, 0.4f, 0.35f, context.getResources().getColor(R.color.red));
         circle2 = new Circle(context, 0.35f, -0.4f, 0.35f, context.getResources().getColor(R.color.green));
         circle3 = new Circle(context, 0.35f, -0.4f, -0.75f, context.getResources().getColor(R.color.purple));
         circle4 = new Circle(context, 0.35f, 0.4f, -0.75f, context.getResources().getColor(R.color.blue));
-        mBar = new MultiplierBar(context, 0.0f, 0.7f);
 
+        //X-POS,Y-POS,NumFilledBlocks,MultiplierNum
+        mBar = new MultiplierBar(context, 0.0f, 0.7f,3,4);
+
+        //X-POS,Y-POS,NumFilledHearts
+        topBar = new TopBar(context,-0.3f,0.9f,2);
     }
 
     @Override
@@ -90,12 +90,12 @@ public class MyRenderer implements Renderer {
 
         //square.draw(scratch);
         card.draw(scratch);
-        square.draw(mMVPMatrix);
         circle.draw(mMVPMatrix);
         circle2.draw(mMVPMatrix);
         circle3.draw(mMVPMatrix);
         circle4.draw(mMVPMatrix);
         //circleImage.draw(mMVPMatrix);
         mBar.draw(mMVPMatrix);
+        topBar.draw(mMVPMatrix);
     }
 }
