@@ -1,12 +1,14 @@
 package com.example.owner.gameproject;
 
+import android.app.Activity;
 import android.opengl.GLSurfaceView;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
 
-public class StartNewGameActivity extends ActionBarActivity {
+public class StartNewGameActivity extends Activity {
 
     private GLSurfaceView surfaceView;
 
@@ -14,7 +16,9 @@ public class StartNewGameActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getSupportActionBar().hide();
+        //Update uses this to hide bar instead of Line below
+        //getSupportActionBar().hide();
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         surfaceView = new MyGLSurfaceView(getApplicationContext());
         setContentView(surfaceView);

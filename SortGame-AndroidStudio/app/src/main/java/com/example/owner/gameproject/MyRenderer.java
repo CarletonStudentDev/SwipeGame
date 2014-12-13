@@ -44,12 +44,13 @@ public class MyRenderer implements Renderer {
 
     @Override
     public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
+
         GLES20.glClearColor( 236f/255f, 240f/255f, 241f/255f, 1.0f );
+
         this.ratio = view.getWidth() / view.getHeight();
 
-        int color = context.getResources().getColor(R.color.darkBlue);
-        square = new Square(context, 0.65f * 2 , 0.2f, 0f, 0.9f, color);
 
+        square = new Square(context, 0.65f * 2 , 0.2f, 0f, 0.9f, context.getResources().getColor(R.color.darkBlue));
 
         card = new Card(context, R.drawable.caution, 0.0f, -0.2f);
         //circle = new Circle(context, 0.5f, 0, 0, color);

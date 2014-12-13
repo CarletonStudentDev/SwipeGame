@@ -1,16 +1,22 @@
 package com.example.owner.gameproject;
 
+import android.app.Activity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
 
-public class OpenSettingsActivity extends ActionBarActivity {
+public class OpenSettingsActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
+
+        //Update uses this to hide bar instead of Line below
+        //getSupportActionBar().hide();
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         setContentView(R.layout.activity_open_settings);
     }
 
