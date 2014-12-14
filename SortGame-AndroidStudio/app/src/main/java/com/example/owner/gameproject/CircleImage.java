@@ -40,6 +40,7 @@ public class CircleImage extends Circle {
         setTextureCoords(getTextureCoords());
         initializeBuffers();
     }
+
     protected float[] getTextureCoords() {
         List<Float> circleCoordsList = new ArrayList<Float>();
         circleCoordsList.add(radius);
