@@ -17,6 +17,10 @@ public class MyRenderer implements Renderer {
     public Card card;
     public GameBoard gameBoard;
 
+    private Square quad1;
+    private Square quad2;
+    private Square quad3;
+    private Square quad4;
 
     private float ratio;
 
@@ -31,6 +35,11 @@ public class MyRenderer implements Renderer {
 
     private float mPreviousX;
     private float mPreviousY;
+
+    public int blue = 0;
+    public int green = 0;
+    public int purple = 0;
+    public int red = 0;
 
     public MyRenderer(Context context, GLSurfaceView view){
         this.view = view;
@@ -49,6 +58,13 @@ public class MyRenderer implements Renderer {
         topBar = new TopBar(context,-0.3f,0.9f,2);
         //X-POS,Y-POS,NumFilledBlocks,MultiplierNum
         mBar = new MultiplierBar(context, 0.0f, 0.7f,2,2);
+
+        float[] invis = {0f,0f,0f,0f};
+
+        quad1 = new Square(context, 0.325f, 0.2f, 0.65f, 0.8f, GraphicsHelper.RGBArray(context, R.color.blue));
+        quad2 = new Square(context, -0.325f, 0.2f, 0.65f, 0.8f, GraphicsHelper.RGBArray(context, R.color.green));
+        quad3 = new Square(context, 0.325f, -0.6f, 0.65f, 0.8f, GraphicsHelper.RGBArray(context, R.color.purple));
+        quad4 = new Square(context, -0.325f, -0.6f, 0.65f, 0.8f, GraphicsHelper.RGBArray(context, R.color.red));
 
     }
 
@@ -82,6 +98,11 @@ public class MyRenderer implements Renderer {
         mBar.draw(mMVPMatrix);
         gameBoard.draw(mMVPMatrix);
         card.draw(scratch);
+
+        quad1.draw(mMVPMatrix);
+        quad2.draw(mMVPMatrix);
+        quad3.draw(mMVPMatrix);
+        quad4.draw(mMVPMatrix);
 
     }
 }

@@ -2,6 +2,7 @@ package com.example.owner.gameproject;
 
 import android.content.Context;
 import android.opengl.GLSurfaceView;
+import android.util.Log;
 import android.view.MotionEvent;
 
 
@@ -35,6 +36,23 @@ public class MyGLSurfaceView extends GLSurfaceView {
             // convert touch coordinates into OpenGL coordinates
             float newX = (-(event.getX() * 2) / getWidth() + 1f) / r;
             float newY = -(event.getY() * 2) / getHeight() + 1f;
+            Log.i("x", Float.toString(newX));
+            Log.i("y", Float.toString(newY));
+            if(event.getAction() == MotionEvent.ACTION_DOWN){
+                if(renderer.gameBoard.blueTouched(newX, newY)){
+                    renderer.blue++;
+                    Log.i("blue", Integer.toString(renderer.blue));
+                } else if (renderer.gameBoard.greenTouched(newX, newY)){
+                    renderer.green++;
+                    Log.i("green", Integer.toString(renderer.green));
+                } else if (renderer.gameBoard.purpleTouched(newX, newY)){
+                    renderer.purple++;
+                    Log.i("purple", Integer.toString(renderer.purple));
+                } else if (renderer.gameBoard.redTouched(newX, newY)){
+                    renderer.red++;
+                    Log.i("red", Integer.toString(renderer.red));
+                }
+            }
 
             if (event.getAction() == MotionEvent.ACTION_MOVE)
             {

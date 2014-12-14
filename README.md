@@ -68,4 +68,21 @@ Visual Assets:
 	-Score
 	-Timer 
 	
+Stuff to Do:
+	-Deck Making
+	- Click circles
+	- Display Numbers
+		- Score, timer?
+	- Game Basics (Swipe through) 
+		-OWL-CAROUSEL?
+	-Gameloop/ Memory allocation
+	-Free = with ads. 99c = ad-free
+	-Updater
+		-System time
+		-Request render?
+	
+	
+	Backend:
+	-Calculating score	
+		-multiplier parameter
 	
