@@ -10,11 +10,11 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
 public class MyRenderer implements Renderer {
-
-    public Card card;
     private GLSurfaceView view;
+
     private MultiplierBar mBar;
     private TopBar topBar;
+    public Card card;
 
     private Circle circle;
     private Circle circle2;
@@ -47,8 +47,8 @@ public class MyRenderer implements Renderer {
 
         this.ratio = view.getWidth() / view.getHeight();
 
-        card = new Card(context, 0.0f, -0.2f, R.drawable.caution);
-        //circle = new Circle(context, 0.5f, 0, 0, color);
+        card = new Card(context, 0.0f, -0.2f, R.color.blue);
+
         circle = new Circle(context, 0.4f, 0.35f, 0.35f, GraphicsHelper.RGBArray(context, R.color.red));
         circle2 = new Circle(context, -0.4f, 0.35f, 0.35f, GraphicsHelper.RGBArray(context, R.color.green));
         circle3 = new Circle(context, -0.4f, -0.75f, 0.35f, GraphicsHelper.RGBArray(context, R.color.purple));
@@ -83,19 +83,22 @@ public class MyRenderer implements Renderer {
 
         float[] scratch = new float[16];
 
-        Matrix.translateM(card.image.mModelMatrix, 0, -mDeltaX * (ratio / 100f), -mDeltaY * (ratio / 100f), 0);
-        Matrix.multiplyMM(scratch, 0, mMVPMatrix, 0, card.image.mModelMatrix, 0);
+        //TODO see if we can make it just use card.mModelMatrix
+        Matrix.translateM(card.square.mModelMatrix, 0, -mDeltaX * (ratio / 100f), -mDeltaY * (ratio / 100f), 0);
+        Matrix.multiplyMM(scratch, 0, mMVPMatrix, 0, card.square.mModelMatrix, 0);
         mDeltaX = 0f;
         mDeltaY = 0f;
 
-        //square.draw(scratch);
-        card.draw(scratch);
+        topBar.draw(mMVPMatrix);
+
+        mBar.draw(mMVPMatrix);
+
         circle.draw(mMVPMatrix);
         circle2.draw(mMVPMatrix);
         circle3.draw(mMVPMatrix);
         circle4.draw(mMVPMatrix);
-        //circleImage.draw(mMVPMatrix);
-        mBar.draw(mMVPMatrix);
-        topBar.draw(mMVPMatrix);
+
+        card.draw(scratch);
+
     }
 }

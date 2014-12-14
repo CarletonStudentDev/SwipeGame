@@ -33,7 +33,7 @@ public class CircleImage extends Circle {
     int vertices = 360;
 
     public CircleImage(Context context, float radius, float x, float y, int resourceId){
-        super(context, radius, x, y, Color.BLACK);
+        super(context, radius, x, y, GraphicsHelper.RGBArray(context,R.color.red));
         this.radius = radius;
         setShaderCode(vertexShaderCode,fragmentShaderCode);
         setTexture(true, resourceId);

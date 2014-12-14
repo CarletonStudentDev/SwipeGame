@@ -32,7 +32,7 @@ public class Image extends Square {
     };
 
     public Image(Context context, float x, float y, float size, int resourceId){
-        super(context, x, y, size, size, Color.BLACK);
+        super(context, x, y, size, size, GraphicsHelper.RGBArray(context, R.color.red));
         setShaderCode(vertexShaderCode,fragmentShaderCode);
         setTexture(true, resourceId);
         setTextureCoords(textureCoords);
