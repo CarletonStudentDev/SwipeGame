@@ -14,10 +14,10 @@ public class MultiplierBar extends DrawableObject {
     private Image multiplierNumber;
     public MultiplierBar(Context context, float x, float y, int numFull, int multiplier) {
         this.numFull = numFull;
-        backgroundSquare = new Square(context, x + 0.1f, y, 1.1f, 0.105f, context.getResources().getColor(R.color.lightGrey));
+        backgroundSquare = new Square(context, x + 0.1f, y, 1.1f, 0.105f, GraphicsHelper.RGBArray(context, R.color.lightGrey));
         float width = 1.1f / multiplierTimes;
         for(int i = 0;i < numFull;i++){
-            progressSquares[i] = new Square(context, x + 0.1f + (1.1f/2 + width / 2) - (i + 1) * width, y,width - 0.005f, 0.1f, context.getResources().getColor(R.color.blue));
+            progressSquares[i] = new Square(context, x + 0.1f + (1.1f/2 + width / 2) - (i + 1) * width, y,width - 0.005f, 0.1f, GraphicsHelper.RGBArray(context, R.color.blue));
         }
         if(multiplier==2){
             multiplierNumber = new Image(context, x + 0.1f - (1.1f/2 + width / 2), y, 0.18f, R.drawable.x2);

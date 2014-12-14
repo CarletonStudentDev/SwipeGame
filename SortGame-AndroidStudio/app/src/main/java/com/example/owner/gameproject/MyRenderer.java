@@ -50,10 +50,10 @@ public class MyRenderer implements Renderer {
 
         card = new Card(context, 0.0f, -0.2f, R.drawable.caution);
         //circle = new Circle(context, 0.5f, 0, 0, color);
-        circle = new Circle(context, 0.4f, 0.35f, 0.35f, context.getResources().getColor(R.color.red));
-        circle2 = new Circle(context, -0.4f, 0.35f, 0.35f, context.getResources().getColor(R.color.green));
-        circle3 = new Circle(context, -0.4f, -0.75f, 0.35f, context.getResources().getColor(R.color.purple));
-        circle4 = new Circle(context, 0.4f, -0.75f, 0.35f, context.getResources().getColor(R.color.blue));
+        circle = new Circle(context, 0.4f, 0.35f, 0.35f, GraphicsHelper.RGBArray(context, R.color.red));
+        circle2 = new Circle(context, -0.4f, 0.35f, 0.35f, GraphicsHelper.RGBArray(context, R.color.green));
+        circle3 = new Circle(context, -0.4f, -0.75f, 0.35f, GraphicsHelper.RGBArray(context, R.color.purple));
+        circle4 = new Circle(context, 0.4f, -0.75f, 0.35f, GraphicsHelper.RGBArray(context, R.color.blue));
 
         //X-POS,Y-POS,NumFilledHearts
         topBar = new TopBar(context,-0.3f,0.9f,2);

@@ -12,7 +12,7 @@ public class TopBar extends DrawableObject {
     private Square backgroundSquare;
 
     public TopBar(Context context, float x, float y, int fullHearts) {
-        backgroundSquare = new Square(context, 0f, 0.9f, 0.65f * 2 , 0.2f, context.getResources().getColor(R.color.darkBlue));
+        backgroundSquare = new Square(context, 0f, 0.9f, 0.65f * 2 , 0.2f, GraphicsHelper.RGBArray(context, R.color.darkBlue));
 
         for(int i = 0;i < numHearts;i++){
             if(i<fullHearts){
