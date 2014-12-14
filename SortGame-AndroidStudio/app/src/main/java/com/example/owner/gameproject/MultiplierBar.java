@@ -1,7 +1,6 @@
 package com.example.owner.gameproject;
 
 import android.content.Context;
-import android.graphics.Color;
 
 /**
  * Created by zack on 12/12/14.

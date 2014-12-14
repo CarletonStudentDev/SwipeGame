@@ -2,7 +2,6 @@ package com.example.owner.gameproject;
 
 import android.content.Context;
 import android.opengl.GLES20;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;

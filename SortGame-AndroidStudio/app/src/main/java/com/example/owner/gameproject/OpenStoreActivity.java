@@ -1,7 +1,6 @@
 package com.example.owner.gameproject;
 
 import android.app.Activity;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,8 +12,6 @@ public class OpenStoreActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //Update uses this to hide bar instead of Line below
-        //getSupportActionBar().hide();
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         setContentView(R.layout.activity_open_store);

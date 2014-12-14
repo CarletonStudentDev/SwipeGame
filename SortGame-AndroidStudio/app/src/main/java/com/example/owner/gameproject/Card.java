@@ -2,7 +2,6 @@ package com.example.owner.gameproject;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.util.Log;
 
 public class Card extends DrawableObject {
 
@@ -21,11 +20,9 @@ public class Card extends DrawableObject {
     public Card (Context context, float x, float y, int resourceId) {
 
         image = new Image(context, x, y, width, resourceId);
-
         squareColor = context.getResources().getColor(R.color.lightRed);
         lineColor = Color.BLACK;
         square = new Square (context, x, y, width, length, squareColor);
-
 
         width = width/2;
         length = length/2;
@@ -56,7 +53,6 @@ public class Card extends DrawableObject {
 
     public void draw(float[] mMVPMatrix){
 
-        //square.draw(mMVPMatrix);
         image.draw(mMVPMatrix);
         //line.draw(mMVPMatrix);
         x = image.x;

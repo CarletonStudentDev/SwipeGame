@@ -2,11 +2,8 @@ package com.example.owner.gameproject;
 
 import android.content.Context;
 import android.opengl.GLSurfaceView;
-import android.util.Log;
 import android.view.MotionEvent;
 
-import javax.microedition.khronos.egl.EGLConfig;
-import javax.microedition.khronos.egl.EGLContext;
 
 public class MyGLSurfaceView extends GLSurfaceView {
 
