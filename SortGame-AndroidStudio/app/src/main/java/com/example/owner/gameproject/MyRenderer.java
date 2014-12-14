@@ -15,11 +15,8 @@ public class MyRenderer implements Renderer {
     private MultiplierBar mBar;
     private TopBar topBar;
     public Card card;
+    public GameBoard gameBoard;
 
-    private Circle circle;
-    private Circle circle2;
-    private Circle circle3;
-    private Circle circle4;
 
     private float ratio;
 
@@ -42,21 +39,14 @@ public class MyRenderer implements Renderer {
 
     @Override
     public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
-
         GLES20.glClearColor( 236f/255f, 240f/255f, 241f/255f, 1.0f );
 
         this.ratio = view.getWidth() / view.getHeight();
 
         card = new Card(context, 0.0f, -0.2f, R.color.blue);
-
-        circle = new Circle(context, 0.4f, 0.35f, 0.35f, GraphicsHelper.RGBArray(context, R.color.red));
-        circle2 = new Circle(context, -0.4f, 0.35f, 0.35f, GraphicsHelper.RGBArray(context, R.color.green));
-        circle3 = new Circle(context, -0.4f, -0.75f, 0.35f, GraphicsHelper.RGBArray(context, R.color.purple));
-        circle4 = new Circle(context, 0.4f, -0.75f, 0.35f, GraphicsHelper.RGBArray(context, R.color.blue));
-
+        gameBoard = new GameBoard(context);
         //X-POS,Y-POS,NumFilledHearts
         topBar = new TopBar(context,-0.3f,0.9f,2);
-
         //X-POS,Y-POS,NumFilledBlocks,MultiplierNum
         mBar = new MultiplierBar(context, 0.0f, 0.7f,2,2);
 
@@ -71,7 +61,6 @@ public class MyRenderer implements Renderer {
     }
 
     public void update(){
-
     }
 
     @Override
@@ -90,14 +79,8 @@ public class MyRenderer implements Renderer {
         mDeltaY = 0f;
 
         topBar.draw(mMVPMatrix);
-
         mBar.draw(mMVPMatrix);
-
-        circle.draw(mMVPMatrix);
-        circle2.draw(mMVPMatrix);
-        circle3.draw(mMVPMatrix);
-        circle4.draw(mMVPMatrix);
-
+        gameBoard.draw(mMVPMatrix);
         card.draw(scratch);
 
     }
