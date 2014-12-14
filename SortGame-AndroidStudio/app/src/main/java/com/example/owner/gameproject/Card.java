@@ -18,13 +18,13 @@ public class Card extends DrawableObject {
     public float x;
     public float y;
 
-    public Card (Context context, int resourceId, float x, float y) {
+    public Card (Context context, float x, float y, int resourceId) {
 
-        image = new Image(context,resourceId, width,  x, y);
+        image = new Image(context, x, y, width, resourceId);
 
         squareColor = context.getResources().getColor(R.color.lightRed);
         lineColor = Color.BLACK;
-        square = new Square (context, width, length, x, y, squareColor);
+        square = new Square (context, x, y, width, length, squareColor);
 
 
         width = width/2;
@@ -58,7 +58,7 @@ public class Card extends DrawableObject {
 
         //square.draw(mMVPMatrix);
         image.draw(mMVPMatrix);
-        line.draw(mMVPMatrix);
+        //line.draw(mMVPMatrix);
         x = image.x;
         y = image.y;
     }

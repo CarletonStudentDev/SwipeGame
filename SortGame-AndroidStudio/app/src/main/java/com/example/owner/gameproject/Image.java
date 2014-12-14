@@ -31,8 +31,8 @@ public class Image extends Square {
             1f, 0f,
     };
 
-    public Image(Context context, int resourceId, float size, float x, float y){
-        super(context, size, size, x, y, Color.BLACK);
+    public Image(Context context, float x, float y, float size, int resourceId){
+        super(context, x, y, size, size, Color.BLACK);
         setShaderCode(vertexShaderCode,fragmentShaderCode);
         setTexture(true, resourceId);
         setTextureCoords(textureCoords);

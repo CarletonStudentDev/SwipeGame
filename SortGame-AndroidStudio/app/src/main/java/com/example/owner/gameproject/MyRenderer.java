@@ -48,18 +48,19 @@ public class MyRenderer implements Renderer {
 
         this.ratio = view.getWidth() / view.getHeight();
 
-        card = new Card(context, R.drawable.caution, 0.0f, -0.2f);
+        card = new Card(context, 0.0f, -0.2f, R.drawable.caution);
         //circle = new Circle(context, 0.5f, 0, 0, color);
-        circle = new Circle(context, 0.35f, 0.4f, 0.35f, context.getResources().getColor(R.color.red));
-        circle2 = new Circle(context, 0.35f, -0.4f, 0.35f, context.getResources().getColor(R.color.green));
-        circle3 = new Circle(context, 0.35f, -0.4f, -0.75f, context.getResources().getColor(R.color.purple));
-        circle4 = new Circle(context, 0.35f, 0.4f, -0.75f, context.getResources().getColor(R.color.blue));
-
-        //X-POS,Y-POS,NumFilledBlocks,MultiplierNum
-        mBar = new MultiplierBar(context, 0.0f, 0.7f,3,4);
+        circle = new Circle(context, 0.4f, 0.35f, 0.35f, context.getResources().getColor(R.color.red));
+        circle2 = new Circle(context, -0.4f, 0.35f, 0.35f, context.getResources().getColor(R.color.green));
+        circle3 = new Circle(context, -0.4f, -0.75f, 0.35f, context.getResources().getColor(R.color.purple));
+        circle4 = new Circle(context, 0.4f, -0.75f, 0.35f, context.getResources().getColor(R.color.blue));
 
         //X-POS,Y-POS,NumFilledHearts
         topBar = new TopBar(context,-0.3f,0.9f,2);
+
+        //X-POS,Y-POS,NumFilledBlocks,MultiplierNum
+        mBar = new MultiplierBar(context, 0.0f, 0.7f,2,2);
+
     }
 
     @Override

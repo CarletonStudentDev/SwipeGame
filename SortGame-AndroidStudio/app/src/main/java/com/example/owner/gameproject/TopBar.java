@@ -12,13 +12,13 @@ public class TopBar extends DrawableObject {
     private Square backgroundSquare;
 
     public TopBar(Context context, float x, float y, int fullHearts) {
-        backgroundSquare = new Square(context, 0.65f * 2 , 0.2f, 0f, 0.9f, context.getResources().getColor(R.color.darkBlue));
+        backgroundSquare = new Square(context, 0f, 0.9f, 0.65f * 2 , 0.2f, context.getResources().getColor(R.color.darkBlue));
 
         for(int i = 0;i < numHearts;i++){
             if(i<fullHearts){
-                hearts[i] = new Image(context, R.drawable.fullheart, 0.11f, x - i*0.13f, y);
+                hearts[i] = new Image(context, x - i*0.13f, y, 0.11f, R.drawable.fullheart);
             }else{
-                hearts[i] = new Image(context, R.drawable.blankheart, 0.11f, x - i*0.13f, y);
+                hearts[i] = new Image(context, x - i*0.13f, y, 0.11f, R.drawable.blankheart);
             }
         }
     }

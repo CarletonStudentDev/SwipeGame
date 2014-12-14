@@ -30,7 +30,7 @@ public class Square extends Drawable{
 
     private short[] drawOrder = { 0, 1, 2, 0, 2, 3 };
 
-    public Square(Context context, float width, float length, float x, float y, int colorId) {
+    public Square(Context context, float x, float y, float width, float length, int colorId) {
         super(context, COORDINATES_PER_VERTEX, GLES20.GL_TRIANGLES);
         this.width = width;
         this.length = length;

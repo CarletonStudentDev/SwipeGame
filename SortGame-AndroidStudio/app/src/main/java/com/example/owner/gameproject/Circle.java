@@ -38,6 +38,20 @@ public class Circle extends Drawable{
     private float x;
     private float y;
 
+    public Circle(Context context, float x, float y, float radius, int color){
+        super(context, COORDINATES_PER_VERTEX, GLES20.GL_TRIANGLE_FAN);
+        radius = radius / 2;
+        this.radius = radius;
+        this.x = x;
+        this.y = y;
+
+        setCoords(getCoords());
+        setDrawOrder(getDrawOrder());
+        setColor(color);
+        setShaderCode(vertexShaderCode,fragmentShaderCode);
+        initializeBuffers();
+    }
+
     private short[] getDrawOrder(){
         List<Short> drawOrderList = new ArrayList<Short>();
         for(int i = 1;i < vertices;i ++){
@@ -71,19 +85,5 @@ public class Circle extends Drawable{
         }
 
         return circleCoords;
-    }
-
-    public Circle(Context context, float radius, float x, float y, int color){
-        super(context, COORDINATES_PER_VERTEX, GLES20.GL_TRIANGLE_FAN);
-        radius = radius / 2;
-        this.radius = radius;
-        this.x = x;
-        this.y = y;
-
-        setCoords(getCoords());
-        setDrawOrder(getDrawOrder());
-        setColor(color);
-        setShaderCode(vertexShaderCode,fragmentShaderCode);
-        initializeBuffers();
     }
 }
