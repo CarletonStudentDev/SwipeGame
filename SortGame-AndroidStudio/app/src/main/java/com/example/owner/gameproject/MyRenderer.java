@@ -5,6 +5,7 @@ import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLSurfaceView.Renderer;
 import android.opengl.Matrix;
+import android.util.Log;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -44,7 +45,9 @@ public class MyRenderer implements Renderer {
     public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
         GLES20.glClearColor( 236f/255f, 240f/255f, 241f/255f, 1.0f );
 
-        this.ratio = view.getWidth() / view.getHeight();
+        ratio = (float) view.getWidth() / (float) view.getHeight();
+
+        Log.i("ratio", Float.toString(ratio));
 
         card = new Card(context, 0.0f, -0.2f, R.color.blue);
         gameBoard = new GameBoard(context);
