@@ -1,6 +1,7 @@
 package com.example.owner.gameproject;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLSurfaceView.Renderer;
@@ -25,7 +26,7 @@ public class MyRenderer implements Renderer {
     private final float[] mProjectionMatrix = new float[16];
     private final float[] mViewMatrix = new float[16];
 
-    private Context context;
+    private Resources resources;
 
     public float mDeltaX;
     public float mDeltaY;
@@ -36,9 +37,9 @@ public class MyRenderer implements Renderer {
     public int purple = 0;
     public int red = 0;
 
-    public MyRenderer(Context context, GLSurfaceView view){
+    public MyRenderer(Resources resources, GLSurfaceView view){
         this.view = view;
-        this.context = context;
+        this.resources = resources;
     }
 
     @Override
@@ -47,14 +48,12 @@ public class MyRenderer implements Renderer {
 
         ratio = (float) view.getWidth() / (float) view.getHeight();
 
-        Log.i("ratio", Float.toString(ratio));
+        card = new Card(resources, 0.0f, -0.2f, R.color.blue);
+        gameBoard = new GameBoard(resources);
 
-        card = new Card(context, 0.0f, -0.2f, R.color.blue);
-        gameBoard = new GameBoard(context);
+        topBar = new TopBar(resources,-0.3f,0.9f);
 
-        topBar = new TopBar(context,-0.3f,0.9f);
-
-        mBar = new MultiplierBar(context, 0.0f, 0.7f);
+        mBar = new MultiplierBar(resources, 0.0f, 0.7f);
 
     }
 

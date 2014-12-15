@@ -14,11 +14,13 @@ public class MyGLSurfaceView extends GLSurfaceView {
     private float mPreviousX;
     private float mPreviousY;
 
+    private int score;
+
     public MyGLSurfaceView(Context context) {
         super(context);
         this.context = context;
 
-        renderer = new MyRenderer(context,this);
+        renderer = new MyRenderer(context.getResources(),this);
         setEGLContextClientVersion(2);
         setRenderer(renderer);
         //setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
@@ -36,8 +38,8 @@ public class MyGLSurfaceView extends GLSurfaceView {
             // convert touch coordinates into OpenGL coordinates
             float newX = (-(event.getX() * 2) / getWidth() + 1f) / r;
             float newY = -(event.getY() * 2) / getHeight() + 1f;
-            Log.i("x", Float.toString(newX));
-            Log.i("y", Float.toString(newY));
+            //Log.i("x", Float.toString(newX));
+            //Log.i("y", Float.toString(newY));
             if(event.getAction() == MotionEvent.ACTION_DOWN){
                 if(renderer.gameBoard.blueTouched(newX, newY)){
                     //ASSUMING CORRECT

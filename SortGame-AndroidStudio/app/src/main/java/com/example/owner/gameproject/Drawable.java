@@ -1,25 +1,43 @@
 package com.example.owner.gameproject;
 
-import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.opengl.GLES20;
 import android.opengl.GLUtils;
 import android.opengl.Matrix;
-import android.util.Log;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.nio.ShortBuffer;
 
+/**
+ * Vector Image which gets drawn to the renderer
+ * holds the image to be rendered
+ *
+ * @author name (i.e. John Smith)
+ *
+ * @version version_number
+ * @since YYYY-MM-DD
+ *
+ */
+
 public class Drawable {
 
+
+    /*
+     * Matrix which represents the current shape's position
+     */
     public float[] mModelMatrix = new float[16];
 
+    /*
+     * shader codes
+     */
     private String vertexShaderCode;
     private String fragmentShaderCode;
 
+    /*
+     * memory locations for OpenGL
+     */
     private int uColorLocation;
     private int aPositionLocation;
     private int mMVPMatrixHandle;
@@ -27,32 +45,45 @@ public class Drawable {
     private int texturePositionHandle;
     private int textureHandle;
 
+    /*
+     * # of coords per vertex
+     */
     private int coordsPerVertex;
 
+    /*
+     * pointer to the shader program
+     */
     private int program;
 
+    /*
+     * Buffers
+     * (Theyre causing the memory leaks and will be fixed soon)
+     */
     private FloatBuffer vertexData;
     private FloatBuffer textureData;
     private ShortBuffer drawListBuffer;
 
+    /*
+     * vector image specific coords, draw order, color, and texture
+     */
     private float[] coords;
     private short[] drawOrder;
     private float[] color;
     private float[] textureCoords;
 
+    /*
+     * draw with lines, dots or triangles
+     */
     private int drawType;
-
-    private Context context;
 
     private boolean useTexture = false;
 
     public float x;
     public float y;
 
-    public Drawable(Context context, int coordsPerVertex, int drawType) {
+    public Drawable(int coordsPerVertex, int drawType) {
         this.drawType = drawType;
         this.coordsPerVertex = coordsPerVertex;
-        this.context = context;
         Matrix.setIdentityM(mModelMatrix, 0);
     }
 
@@ -136,9 +167,9 @@ public class Drawable {
         this.fragmentShaderCode = fragmentShaderCode;
     }
 
-    public void setTexture(boolean useTexture, int resourceId){
-        this.useTexture = useTexture;
-        textureHandle = loadTexture(context, resourceId);
+    public void setTexture(Bitmap bitmap){
+        useTexture = true;
+        textureHandle = loadTexture(bitmap);
     }
 
     public void setCoords(float[] coords) {
@@ -157,21 +188,17 @@ public class Drawable {
         this.color = color;
     }
 
-    public static int loadTexture(final Context context, final int resourceId){
+    public static int loadTexture(Bitmap bitmap){
         final int[] textureHandle = new int[1];
         GLES20.glDeleteTextures(1,textureHandle,0);
         GLES20.glGenTextures(1, textureHandle, 0);
         if(textureHandle[0] != 0){
-            final BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inScaled = false;
-            final Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), resourceId);
             GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, textureHandle[0]);
             GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_NEAREST);
             GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_NEAREST);
             GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_S, GLES20.GL_CLAMP_TO_EDGE);
             GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_T, GLES20.GL_CLAMP_TO_EDGE);
             GLUtils.texImage2D(GLES20.GL_TEXTURE_2D, 0, bitmap, 0);
-            bitmap.recycle();
         }
         if(textureHandle[0] == 0){
             throw new RuntimeException("Error loading texture.");

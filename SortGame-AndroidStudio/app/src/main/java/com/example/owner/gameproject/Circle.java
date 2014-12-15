@@ -37,8 +37,8 @@ public class Circle extends Drawable{
     private float x;
     private float y;
 
-    public Circle(Context context, float x, float y, float radius, float[] color){
-        super(context, COORDINATES_PER_VERTEX, GLES20.GL_TRIANGLE_FAN);
+    public Circle(float x, float y, float radius, float[] color){
+        super(COORDINATES_PER_VERTEX, GLES20.GL_TRIANGLE_FAN);
         radius = radius / 2;
         this.radius = radius;
         this.x = x;

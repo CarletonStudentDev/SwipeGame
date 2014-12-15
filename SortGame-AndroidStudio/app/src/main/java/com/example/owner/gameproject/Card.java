@@ -1,6 +1,7 @@
 package com.example.owner.gameproject;
 
 import android.content.Context;
+import android.content.res.Resources;
 
 public class Card extends DrawableObject {
 
@@ -11,9 +12,9 @@ public class Card extends DrawableObject {
     public float x;
     public float y;
 
-    public Card (Context context, float x, float y, int colorId) {
-        squareColor = GraphicsHelper.RGBArray(context, colorId);
-        square = new Square (context, x, y, width, length, squareColor);
+    public Card (Resources resources, float x, float y, int colorId) {
+        squareColor = GraphicsHelper.RGBArray(resources, colorId);
+        square = new Square (x, y, width, length, squareColor);
     }
 
     public void move(float x1, float y1){

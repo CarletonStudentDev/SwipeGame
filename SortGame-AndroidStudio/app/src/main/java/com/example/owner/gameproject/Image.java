@@ -1,6 +1,8 @@
 package com.example.owner.gameproject;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 
 public class Image extends Square {
@@ -31,10 +33,10 @@ public class Image extends Square {
             1f, 0f,
     };
 
-    public Image(Context context, float x, float y, float size, int resourceId){
-        super(context, x, y, size, size, GraphicsHelper.RGBArray(context, R.color.red));
+    public Image(Resources resources, float x, float y, float size, Bitmap bitmap){
+        super(x, y, size, size, GraphicsHelper.RGBArray(resources, R.color.red));
         setShaderCode(vertexShaderCode,fragmentShaderCode);
-        setTexture(true, resourceId);
+        setTexture(bitmap);
         setTextureCoords(textureCoords);
         initializeBuffers();
     }

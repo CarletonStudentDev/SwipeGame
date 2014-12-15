@@ -1,6 +1,7 @@
 package com.example.owner.gameproject;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.opengl.GLES20;
 
 public class GraphicsHelper {
@@ -35,8 +36,8 @@ public class GraphicsHelper {
         return linkProgram(vertexShader, fragmentShader);
     }
 
-    public static float[] RGBArray(Context context, int colorId){
-        int color = context.getResources().getColor(colorId);
+    public static float[] RGBArray(Resources resources, int colorId){
+        int color = resources.getColor(colorId);
 
         float red=   (color >> 16) & 0xFF;
         float green= (color >> 8) & 0xFF;
