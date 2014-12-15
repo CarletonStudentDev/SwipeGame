@@ -1,6 +1,5 @@
 package com.example.owner.gameproject;
 
-import android.content.Context;
 import android.opengl.GLES20;
 
 import java.util.ArrayList;

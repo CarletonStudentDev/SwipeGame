@@ -1,6 +1,5 @@
 package com.example.owner.gameproject;
 
-import android.content.Context;
 import android.opengl.GLES20;
 
 public class Line extends Drawable{
@@ -26,7 +25,7 @@ public class Line extends Drawable{
 
     private static final int COORDINATES_PER_VERTEX = 2;
 
-    public Line(Context context, float[] lineCoords, short[] drawOrder, float[] color) {
+    public Line(float[] lineCoords, short[] drawOrder, float[] color) {
         super(COORDINATES_PER_VERTEX, GLES20.GL_LINES);
         setCoords(lineCoords);
         setDrawOrder(drawOrder);
