@@ -44,7 +44,7 @@ public class MyGLSurfaceView extends GLSurfaceView {
                 if(renderer.gameBoard.blueTouched(newX, newY)){
                     //ASSUMING CORRECT
                     renderer.mBar.increaseNumFull();
-                    renderer.score.addToScore(10);
+                    renderer.score.addToScore(1);
 
                     renderer.blue++;
                     Log.i("blue", Integer.toString(renderer.blue));
