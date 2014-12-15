@@ -30,6 +30,22 @@ public class StartNewGameActivity extends Activity {
     }
 
     @Override
+    protected void onResume() {
+        // The activity must call the GL surface view's onResume() on activity
+        // onResume().
+        super.onResume();
+        surfaceView.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        // The activity must call the GL surface view's onPause() on activity
+        // onPause().
+        super.onPause();
+        surfaceView.onPause();
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
