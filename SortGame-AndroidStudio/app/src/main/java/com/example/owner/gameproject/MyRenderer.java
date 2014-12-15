@@ -17,10 +17,6 @@ public class MyRenderer implements Renderer {
     public Card card;
     public GameBoard gameBoard;
 
-    private Square quad1;
-    private Square quad2;
-    private Square quad3;
-    private Square quad4;
 
     private float ratio;
 
@@ -59,13 +55,6 @@ public class MyRenderer implements Renderer {
         //X-POS,Y-POS,NumFilledBlocks,MultiplierNum
         mBar = new MultiplierBar(context, 0.0f, 0.7f,2,2);
 
-        float[] invis = {0f,0f,0f,0f};
-
-        quad1 = new Square(context, 0.325f, 0.2f, 0.65f, 0.8f, invis);
-        quad2 = new Square(context, -0.325f, 0.2f, 0.65f, 0.8f, invis);
-        quad3 = new Square(context, 0.325f, -0.6f, 0.65f, 0.8f, invis);
-        quad4 = new Square(context, -0.325f, -0.6f, 0.65f, 0.8f, invis);
-
     }
 
     @Override
@@ -98,11 +87,6 @@ public class MyRenderer implements Renderer {
         mBar.draw(mMVPMatrix);
         gameBoard.draw(mMVPMatrix);
         card.draw(scratch);
-
-        quad1.draw(mMVPMatrix);
-        quad2.draw(mMVPMatrix);
-        quad3.draw(mMVPMatrix);
-        quad4.draw(mMVPMatrix);
 
     }
 }
