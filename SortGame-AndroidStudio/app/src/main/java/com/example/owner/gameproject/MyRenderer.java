@@ -13,8 +13,8 @@ public class MyRenderer implements Renderer {
     private GLSurfaceView view;
 
     //Game Objects
-    private MultiplierBar mBar;
-    private TopBar topBar;
+    public MultiplierBar mBar;
+    public TopBar topBar;
     public Card card;
     public GameBoard gameBoard;
 
@@ -48,10 +48,10 @@ public class MyRenderer implements Renderer {
 
         card = new Card(context, 0.0f, -0.2f, R.color.blue);
         gameBoard = new GameBoard(context);
-        //X-POS,Y-POS,NumFilledHearts
-        topBar = new TopBar(context,-0.3f,0.9f,2);
-        //X-POS,Y-POS,NumFilledBlocks,MultiplierNum
-        mBar = new MultiplierBar(context, 0.0f, 0.7f,2,2);
+
+        topBar = new TopBar(context,-0.3f,0.9f);
+
+        mBar = new MultiplierBar(context, 0.0f, 0.7f);
 
     }
 
