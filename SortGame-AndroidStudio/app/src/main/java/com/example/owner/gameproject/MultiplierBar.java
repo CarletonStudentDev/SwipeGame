@@ -53,9 +53,9 @@ public class MultiplierBar extends DrawableObject {
         if(numFull<5){
             numFull++;
         }else {
-            numFull = 0;
-            if(multiplier<2){
+            if(multiplier<3){
                 multiplier ++;
+                numFull = 0;
             }
         }
     }
