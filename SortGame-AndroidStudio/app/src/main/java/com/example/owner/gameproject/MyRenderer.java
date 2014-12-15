@@ -61,10 +61,10 @@ public class MyRenderer implements Renderer {
 
         float[] invis = {0f,0f,0f,0f};
 
-        quad1 = new Square(context, 0.325f, 0.2f, 0.65f, 0.8f, GraphicsHelper.RGBArray(context, R.color.blue));
-        quad2 = new Square(context, -0.325f, 0.2f, 0.65f, 0.8f, GraphicsHelper.RGBArray(context, R.color.green));
-        quad3 = new Square(context, 0.325f, -0.6f, 0.65f, 0.8f, GraphicsHelper.RGBArray(context, R.color.purple));
-        quad4 = new Square(context, -0.325f, -0.6f, 0.65f, 0.8f, GraphicsHelper.RGBArray(context, R.color.red));
+        quad1 = new Square(context, 0.325f, 0.2f, 0.65f, 0.8f, invis);
+        quad2 = new Square(context, -0.325f, 0.2f, 0.65f, 0.8f, invis);
+        quad3 = new Square(context, 0.325f, -0.6f, 0.65f, 0.8f, invis);
+        quad4 = new Square(context, -0.325f, -0.6f, 0.65f, 0.8f, invis);
 
     }
 

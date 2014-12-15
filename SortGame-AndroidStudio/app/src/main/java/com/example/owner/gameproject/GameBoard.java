@@ -20,32 +20,20 @@ public class GameBoard {
 
     }
 
-    public boolean blueTouched(float x, float y){
-        return (x >= 0.325f - 0.65f) &&
-                (x <= 0.325f + 0.65f) &&
-                (y >= 0.2f - 0.8f) &&
-                (y <= 0.2f + 0.8f);
+    public boolean redTouched(float x, float y){
+        return (x >= 0f) && (y >= -0.2f);
     }
 
     public boolean greenTouched(float x, float y){
-        return (x >= -0.325f - 0.65f) &&
-                (x <= -0.325f + 0.65f) &&
-                (y >= 0.2f - 0.8f) &&
-                (y <= 0.2f + 0.8f);
+        return (x <= 0f) && (y >= -0.2f);
+    }
+
+    public boolean blueTouched(float x, float y){
+        return (x >= 0f) && (y <= -0.2f);
     }
 
     public boolean purpleTouched(float x, float y){
-        return (x >= 0.325f - 0.65f) &&
-                (x <= 0.325f + 0.65f) &&
-                (y >= -0.2f - 0.8f) &&
-                (y <= -0.2f + 0.8f);
-    }
-
-    public boolean redTouched(float x, float y){
-        return (x >= -0.325f - 0.65f) &&
-                (x <= -0.325f + 0.65f) &&
-                (y >= -0.2f - 0.8f) &&
-                (y <= -0.2f + 0.8f);
+        return (x <= 0f) && (y <= -0.2f);
     }
 
     public void draw(float[] mMVPMatrix){
