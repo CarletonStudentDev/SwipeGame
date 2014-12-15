@@ -5,9 +5,7 @@ import android.opengl.GLSurfaceView;
 import android.util.Log;
 import android.view.MotionEvent;
 
-/*
- * SurfaceView class to be rendered to
- */
+
 public class MyGLSurfaceView extends GLSurfaceView {
 
     Context context;
