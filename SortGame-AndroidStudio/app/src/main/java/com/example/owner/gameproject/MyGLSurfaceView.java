@@ -29,6 +29,7 @@ public class MyGLSurfaceView extends GLSurfaceView {
     public boolean onTouchEvent(MotionEvent event) {
         if (event != null)
         {
+
             float r = (float)getHeight() / getWidth();
 
             float x = event.getX();
@@ -43,6 +44,7 @@ public class MyGLSurfaceView extends GLSurfaceView {
                 if(renderer.gameBoard.blueTouched(newX, newY)){
                     //ASSUMING CORRECT
                     renderer.mBar.increaseNumFull();
+                    renderer.score.addToScore(10);
 
                     renderer.blue++;
                     Log.i("blue", Integer.toString(renderer.blue));
@@ -67,20 +69,21 @@ public class MyGLSurfaceView extends GLSurfaceView {
 
                     renderer.red++;
                     Log.i("red", Integer.toString(renderer.red));
+
                 }
             }
 
-            if (event.getAction() == MotionEvent.ACTION_MOVE)
+            /*if (event.getAction() == MotionEvent.ACTION_MOVE)
             {
                 float deltaX = (x - mPreviousX) / r / 2f;
                 float deltaY = (y - mPreviousY) / r / 2f;
 
-                /*if(renderer.card.inShape(newX, newY)){*/
+                if(renderer.card.inShape(newX, newY)){
                     renderer.mDeltaX += deltaX;
                     renderer.mDeltaY += deltaY;
-                //}
+                }
 
-            }
+            }*/
             mPreviousX = x;
             mPreviousY = y;
 

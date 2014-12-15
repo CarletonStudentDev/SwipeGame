@@ -26,6 +26,7 @@ public class GameBoard {
         circle4 = new Circle(0.4f, -0.75f, 0.35f, blue);
     }
 
+    /*
     public boolean redTouched(float x, float y){
         return (x >= 0f) && (y >= -0.2f);
     }
@@ -41,6 +42,25 @@ public class GameBoard {
     public boolean purpleTouched(float x, float y){
         return (x <= 0f) && (y <= -0.2f);
     }
+    */
+
+    public boolean redTouched(float x, float y){
+        return (x >= 0.1f) && (y >= 0.05f);
+    }
+
+    public boolean greenTouched(float x, float y){
+        return (x <= -0.1f) && (y >= 0.05f);
+    }
+
+    public boolean blueTouched(float x, float y){
+        return (x >= 0.1f) && (y <= -0.45f);
+    }
+
+    public boolean purpleTouched(float x, float y){
+        return (x <= -0.1f) && (y <= -0.45f);
+    }
+
+
 
     public void draw(float[] mMVPMatrix){
         circle.draw(mMVPMatrix);
