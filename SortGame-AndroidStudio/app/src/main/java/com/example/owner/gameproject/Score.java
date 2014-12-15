@@ -39,7 +39,7 @@ public class Score extends DrawableObject {
         four = BitmapFactory.decodeResource(resources, R.drawable.four);
         five = BitmapFactory.decodeResource(resources, R.drawable.five);
 
-        oneImage = new Image(resources, x, y, 0.12f, one);
+        oneImage = new Image(resources, x+0.1f, y, 0.12f, one);
 
         numbers[0] = new Image(resources, x, y, 0.12f, zero);
 
@@ -72,7 +72,7 @@ public class Score extends DrawableObject {
         for(int i = 1;i <= digits;i++) {
             int num = (currentScore/(10*i))%1;
 
-            if(num == 0){
+            /*if(num == 0){
                 score[i] = new Image(resources, x+(i*0.1f), y, 0.12f, zero);
             }else if(num == 1){
                 score[i] = new Image(resources, x+(i*0.1f), y, 0.12f, one);
@@ -84,7 +84,7 @@ public class Score extends DrawableObject {
                 score[i] = new Image(resources, x+(i*0.1f), y, 0.12f, four);
             }else if(num == 5){
                 score[i] = new Image(resources, x+(i*0.1f), y, 0.12f, five);
-            }
+            }*/
 
             score[1] = oneImage;
         }
