@@ -73,8 +73,8 @@ public class Score extends DrawableObject {
         }
     }
 
-    public void addToScore( int addAmount){
-        currentScore = currentScore + addAmount;
+    public void addToScore(int addAmount, int multi){
+        currentScore = currentScore + addAmount * multi;
         Log.i("currentScore", Integer.toString(currentScore));
         int calcScore = currentScore;
 

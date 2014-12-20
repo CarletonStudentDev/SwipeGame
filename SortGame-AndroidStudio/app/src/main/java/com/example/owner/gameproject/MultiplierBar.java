@@ -78,4 +78,11 @@ public class MultiplierBar extends DrawableObject {
         numFull = 0;
         multiplier = 0;
     }
+
+    public int giveMulti(){
+        if(multiplier == 0) return 1;
+        else if(multiplier == 1) return 2;
+        else if(multiplier == 2) return 4;
+        else return 8;
+    }
 }
