@@ -10,13 +10,36 @@ package Model;
  * This class implements Listener.
  *
  * @author Varun Sriram
- * @version 1.3
+ * @version 1.4
  * @since 2014-11-27
  *
  */
 
 public class Multiplier implements Listener
 {
+
+    /**
+     * MAXIMUM: integer value representing the maximum correct matches
+     *          the Player has to get before the multiplier has been
+     *          incremented.
+     *
+     * MAX_MULTIPLIER: integer value representing the maximum value the
+     *                 multiplier will achieve
+     *
+     * MULTIPLIER_SCALIER: integer value representing the scalier of the
+     *                     multiplier
+     *
+     * DEFAULTMULTIPLIER: integer value representing the default multiplier
+     *                    value which the multiplier will be set to at
+     *                    beginning of game and each time there is a lose
+     *                    of life/incorrect match
+     *
+     * DEFAULTMETERCOUNT: integer value representing the default meter count
+     *                    of the multiplier which the meter will be set to
+     *                    at beginning of game and each time the multiplier is
+     *                    reset or multiplier is incremented
+     *
+     */
 
     private static final int MAXIMUM = 5,
                              MAX_MULTIPLIER = 16,
