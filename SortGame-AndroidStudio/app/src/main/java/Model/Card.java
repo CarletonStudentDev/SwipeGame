@@ -10,7 +10,7 @@ package Model;
  *
  * @author Jeton Sinoimeri
  * @author Varun Sriram
- * @version 1.0
+ * @version 1.1
  * @since 2014-11-28
  *
  */
@@ -26,11 +26,13 @@ public class Card
 
     private int patternAttribute;
 
+
     /**
      * Constructor for the Card class.
      *
      * @param patternAttribute: integer instance representing the
      *                          pattern for the Card.
+     *
      */
 
     public Card(int patternAttribute)
