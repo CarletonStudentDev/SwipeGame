@@ -9,13 +9,20 @@ import android.os.CountDownTimer;
  * @see android.os.CountDownTimer
  *
  * @author Jeton Sinoimeri
- * @version 1.2
+ * @version 1.3
  * @since 2014-11-10
  *
  */
 
 public class Timer extends CountDownTimer
 {
+
+    /**
+     * TIMEINTERVAL: long value representing the time interval in
+     *               milliseconds the CountDownTimer will use to
+     *               decrement the time
+     *
+     */
 
     private static final long TIMEINTERVAL = 1000L;
 
@@ -112,4 +119,17 @@ public class Timer extends CountDownTimer
         this.timer.start();
     }
 
+
+    /**
+     * Getter for the time left
+     *
+     * @return timeLeft: long representing the time left
+     *                   in the game
+     *
+     */
+
+    public long getTimeLeft()
+    {
+        return timeLeft;
+    }
 }
