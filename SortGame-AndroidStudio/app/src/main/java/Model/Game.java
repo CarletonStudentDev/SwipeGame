@@ -1,7 +1,5 @@
 package Model;
 
-import com.example.owner.gameproject.R;
-
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -188,6 +186,12 @@ public class Game
     }
 
 
+    public ArrayList<Pile> getPileArray()
+    {
+        return this.pileArray;
+    }
+
+
     /**
      * Notifies the Listeners when the Timer has reached
      * zero.
@@ -310,6 +314,7 @@ public class Game
     }
 
 
+
     /**
      * Main game loop of the game. Contains all the
      * game logic and the rules of how the game
@@ -317,6 +322,7 @@ public class Game
      *
      */
 
+    /*
     public void play()
     {
         // boolean value to indicate that a correct match has been found
@@ -326,16 +332,16 @@ public class Game
         Timer timer;
 
         Player p = (Player)this.player;
-        Deck d = (Deck)this.deck;
+        Deck d = (Deck)this.getDeck();
 
         // main loop check if number of lives != 0
-        while(p.getLives() != R.integer.ENDOFLIVES)
+        while(p.getLives() != 0)
         {
             // create new deck
             this.roundsOver();
 
             // round loop check if number of cards in deck != 0
-            while(d.deckSize() != R.integer.ENDOFDECK)
+            while(d.deckSize() != 0)
             {
                 // draw card
                 this.drawCard();
@@ -374,5 +380,6 @@ public class Game
         this.livesFinish();
 
     }
+    */
 
 }
