@@ -9,7 +9,7 @@ package Model;
  *
  * @author Jeton Sinoimeri
  * @author Varun Sriram
- * @version 1.5
+ * @version 1.6
  * @since 2014-11-27
  *
  */
@@ -17,8 +17,24 @@ package Model;
 public class Player implements Listener
 {
 
+    /**
+     * DEFAULTLIVES: integer representing the default lives of
+     *               the Player.
+     *
+     * BASEPOINTS: integer representing the base points for
+     *             the calculation of the Player's score.
+     *
+     */
+
     private static final int DEFAULTLIVES = 3,
                              BASEPOINTS = 100;
+
+
+    /**
+     * DEFAULTSCORE: long representing the default score of
+     *               the Player at the start of each game.
+     *
+     */
 
     private static final long DEFAULTSCORE = 0L;
 
