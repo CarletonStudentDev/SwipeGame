@@ -1,7 +1,5 @@
 package Model;
 
-import com.example.owner.gameproject.R;
-
 import java.util.Stack;
 
 /**
@@ -13,13 +11,22 @@ import java.util.Stack;
  *
  * @author Jeton Sinoimeri
  * @author Varun Sriram
- * @version 1.4
+ * @version 1.5
  * @since 2014-11-28
  *
  */
 
 public class Deck implements Listener
 {
+
+    /**
+     *
+     */
+
+    private static final int DECKSIZE = 15,
+                             POSITIVEINTEGER = 0;
+
+
 
     /**
      * deck: an instance of Stack of Cards to represent
@@ -66,7 +73,7 @@ public class Deck implements Listener
 
     private void makeDeck(int size)
     {
-        if(this.deck.isEmpty() && size > R.integer.POSITIVEINTEGER)
+        if(this.deck.isEmpty() && size > POSITIVEINTEGER)
         {
             CardGenerator cardGen = new CardGenerator();
 
@@ -151,7 +158,7 @@ public class Deck implements Listener
     public void livesFinish(GameEvent ge)
     {
         this.deck.clear();
-        this.makeDeck(R.integer.DECKSIZE);
+        this.makeDeck(DECKSIZE);
     }
 
 }
