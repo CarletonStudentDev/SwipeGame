@@ -6,8 +6,10 @@ import junit.framework.TestCase;
 /**
  * JUnit testing for Card class
  *
+ * @see junit.framework.TestCase
+ *
  * @author Jeton Sinoimeri
- * @version 1.0
+ * @version 1.1
  * @since 2014-12-25
  *
  */
