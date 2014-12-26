@@ -1,7 +1,6 @@
 package Model;
 
 import android.os.CountDownTimer;
-import com.example.owner.gameproject.R;
 
 /**
  * Timer counts down from an initial time
@@ -17,6 +16,9 @@ import com.example.owner.gameproject.R;
 
 public class Timer extends CountDownTimer
 {
+
+    private static final long TIMEINTERVAL = 1000L;
+
 
     /**
      * Long instance representing the amount of time
@@ -54,7 +56,7 @@ public class Timer extends CountDownTimer
 
     public Timer(long millisecondsInitTime, Game game)
     {
-        super(millisecondsInitTime, R.integer.INTERVAL);
+        super(millisecondsInitTime, TIMEINTERVAL);
         this.game = game;
     }
 

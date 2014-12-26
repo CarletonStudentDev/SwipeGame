@@ -1,7 +1,5 @@
 package Model;
 
-import com.example.owner.gameproject.R;
-
 /**
  * Player class contains the users score
  * and lives for the current game being
@@ -11,13 +9,20 @@ import com.example.owner.gameproject.R;
  *
  * @author Jeton Sinoimeri
  * @author Varun Sriram
- * @version 1.4
+ * @version 1.5
  * @since 2014-11-27
  *
  */
 
 public class Player implements Listener
 {
+
+    private static final int DEFAULTLIVES = 3,
+                             BASEPOINTS = 100;
+
+    private static final long DEFAULTSCORE = 0L;
+
+
 
     /**
      * lives: integer representing the current lives
@@ -48,9 +53,9 @@ public class Player implements Listener
 
     public Player()
     {
-        this.lives = R.integer.DEFAULTLIVES;
-        this.score = R.integer.DEFAULTSCORE;
-        this.highScore = R.integer.DEFAULTSCORE;
+        this.lives = DEFAULTLIVES;
+        this.score = DEFAULTSCORE;
+        this.highScore = DEFAULTSCORE;
     }
 
 
@@ -81,11 +86,11 @@ public class Player implements Listener
 
     public void setLives(int lives)
     {
-        if(lives > R.integer.MINUSONE)
+        if(lives > -1)
             this.lives = lives;
 
         else
-            this.lives = R.integer.DEFAULTLIVES;
+            this.lives = DEFAULTLIVES;
     }
 
 
@@ -131,11 +136,11 @@ public class Player implements Listener
 
     public void setCurrentScore(long score)
     {
-        if (score > R.integer.MINUSONE)
+        if (score > -1)
             this.score = score;
 
         else
-            this.score = R.integer.DEFAULTSCORE;
+            this.score = DEFAULTSCORE;
     }
 
 
@@ -151,7 +156,7 @@ public class Player implements Listener
 
         Multiplier m = (Multiplier) g.getMultiplierMeter();
 
-        this.score += R.integer.BASEPOINTS * m.getMultiplier();
+        this.score += BASEPOINTS * m.getMultiplier();
     }
 
 
@@ -163,7 +168,7 @@ public class Player implements Listener
     @Override
     public void incorrectMatch(GameEvent ge)
     {
-        if(this.lives - 1 > R.integer.MINUSONE)
+        if(this.lives - 1 > -1)
             this.lives--;
     }
 
@@ -176,7 +181,7 @@ public class Player implements Listener
     @Override
     public void timeOut(GameEvent ge)
     {
-        if(this.lives - 1 > R.integer.MINUSONE)
+        if(this.lives - 1 > -1)
             this.lives--;
     }
 
@@ -189,8 +194,9 @@ public class Player implements Listener
     @Override
     public void livesFinish(GameEvent ge)
     {
-        if (this.score > this.highScore)
+        if (this.score > this.highScore && this.lives > -1)
             this.highScore = this.score;
     }
+
 
 }

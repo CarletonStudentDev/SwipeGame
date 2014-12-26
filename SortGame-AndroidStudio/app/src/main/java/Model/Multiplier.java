@@ -1,7 +1,5 @@
 package Model;
 
-import com.example.owner.gameproject.R;
-
 /**
  * Multiplier class representing the score
  * multiplier for the game. If the user gets
@@ -19,6 +17,12 @@ import com.example.owner.gameproject.R;
 
 public class Multiplier implements Listener
 {
+
+    private static final int MAXIMUM = 5,
+                             MAX_MULTIPLIER = 16,
+                             MULTIPLIER_SCALIER = 2,
+                             DEFAULTMULTIPLIER = 1,
+                             DEFAULTMETERCOUNT = 0;
 
     /**
      * currentMultiplier: integer representing the current
@@ -40,8 +44,8 @@ public class Multiplier implements Listener
 
     public Multiplier()
     {
-        this.currentMultiplier = R.integer.DEFAULTMULTIPLIER;
-        this.meterCount = R.integer.DEFAULTMETERCOUNT;
+        this.currentMultiplier = DEFAULTMULTIPLIER;
+        this.meterCount = DEFAULTMETERCOUNT;
     }
 
 
@@ -69,14 +73,14 @@ public class Multiplier implements Listener
         meterCount++;
 
         // check if it is at threshold
-        if(meterCount >= R.integer.MAXIMUM)
+        if(meterCount >= MAXIMUM)
         {
             //if the multiplier is not at maximum
-            if(currentMultiplier < R.integer.MAX_MULTIPLIER)
+            if(currentMultiplier < MAX_MULTIPLIER)
             {
                 //scale the score multiplier and reset the meter.
-                this.currentMultiplier *= R.integer.MULTIPLIER_SCALIER;
-                this.meterCount = R.integer.DEFAULTMETERCOUNT;
+                this.currentMultiplier *= MULTIPLIER_SCALIER;
+                this.meterCount = DEFAULTMETERCOUNT;
             }
         }
     }
@@ -89,8 +93,8 @@ public class Multiplier implements Listener
 
     private void clear()
     {
-        this.currentMultiplier = R.integer.DEFAULTMULTIPLIER;
-        this.meterCount = R.integer.DEFAULTMETERCOUNT;
+        this.currentMultiplier = DEFAULTMULTIPLIER;
+        this.meterCount = DEFAULTMETERCOUNT;
     }
 
 
