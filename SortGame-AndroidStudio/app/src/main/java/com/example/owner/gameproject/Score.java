@@ -13,7 +13,7 @@ import android.util.Log;
 public class Score extends DrawableObject {
 
     private Image[] numbers = new Image[9];
-    private Image[] score = new Image[7];
+    private Image[] score = new Image[7];// is a 7 digit score going to be enough?
     private int digits = 1;
     private int currentScore = 0;
     private Image zeroImage;
@@ -21,11 +21,12 @@ public class Score extends DrawableObject {
     private Image twoImage;
     private Image threeImage;
     private Image fourImage;
-    private Image fiveImage;
+    private Image fiveImage;//you need to make a 6 7 8 and 9 image in this as well with the font you want because I don't have it on my laptop
 
     public float x;
     private float y;
     private Resources resources;
+
 
 
     public Score(Resources resources, float x, float y ) {
@@ -50,7 +51,10 @@ public class Score extends DrawableObject {
 
         numbers[0] = new Image(resources, x, y, 0.12f, zero);
 
-        score[0] = numbers[0];
+        //score[0] = numbers[0];
+        for(int i = 0;i < 7;i++){//I am assuming score is an array to hold the current score images so this will set it all to 0s
+            score[i] = numbers[0];
+        }
     }
     @Override
     public void move(float x, float y) {
@@ -60,15 +64,15 @@ public class Score extends DrawableObject {
     @Override
     public void draw(float[] mMVPMatrix) {
 
-        float digitShift = -0.2f;
+        float digitShift = 0.094f;
 
-        for(int i = 0;i < digits;i++) {
+        for(int i = 0;i < digits;i++) {//you can set digits to 7 to draw all the zeros at once or leave it at this to make the score grow
 
             float[] scratch = new float[16];
-            Matrix.translateM(score[i].mModelMatrix, 0, digitShift * i, 0f, 0f);
+            Matrix.setIdentityM(score[i].mModelMatrix, 0);
+            Matrix.translateM(score[i].mModelMatrix, 0, digitShift * ((float) i), 0f, 0f);
             Matrix.multiplyMM(scratch, 0, mMVPMatrix, 0, score[i].mModelMatrix, 0);
 
-            digitShift = 0f;
             score[i].draw(scratch);
         }
     }
