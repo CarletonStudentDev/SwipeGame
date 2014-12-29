@@ -9,7 +9,7 @@ import junit.framework.TestCase;
  * @see junit.framework.TestCase
  *
  * @author Jeton Sinoimeri
- * @version 1.0
+ * @version 1.1
  * @since 2014-12-25
  *
  */
@@ -86,7 +86,17 @@ public class MultiplierTest extends TestCase
 
     public void testGetMultiplier()
     {
-        assertEquals(1, this.multiplier.getMultiplier());
+
+        for (int i = 20; i > -20; i--)
+        {
+            this.multiplier = new Multiplier(i);
+            if (i > 1 && i < 16)
+                assertEquals(i, this.multiplier.getMultiplier());
+
+            else
+                assertEquals(1, this.multiplier.getMultiplier());
+
+        }
 
     }
 
