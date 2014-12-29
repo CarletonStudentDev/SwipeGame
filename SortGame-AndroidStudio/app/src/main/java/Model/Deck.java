@@ -11,7 +11,7 @@ import java.util.Stack;
  *
  * @author Jeton Sinoimeri
  * @author Varun Sriram
- * @version 1.5
+ * @version 1.6
  * @since 2014-11-28
  *
  */
@@ -20,12 +20,11 @@ public class Deck implements Listener
 {
 
     /**
+     * DECKSIZE: integer value representing the default size of the Deck.
      *
      */
 
-    private static final int DECKSIZE = 15,
-                             POSITIVEINTEGER = 0;
-
+    private static final int DECKSIZE = 15;
 
 
     /**
@@ -46,6 +45,21 @@ public class Deck implements Listener
     public Deck()
     {
         this.deck = new Stack<Card>();
+    }
+
+
+    /**
+     * Constructor for Deck class with size.
+     *
+     * @param size: integer value representing the size of the
+     *              Deck.
+     *
+     */
+
+    public Deck(int size)
+    {
+        this();
+        this.makeDeck(size);
     }
 
 
@@ -73,7 +87,7 @@ public class Deck implements Listener
 
     private void makeDeck(int size)
     {
-        if(this.deck.isEmpty() && size > POSITIVEINTEGER)
+        if(this.deck.isEmpty() && size > 0)
         {
             CardGenerator cardGen = new CardGenerator();
 
