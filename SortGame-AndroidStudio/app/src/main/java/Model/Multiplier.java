@@ -10,7 +10,7 @@ package Model;
  * This class implements Listener.
  *
  * @author Varun Sriram
- * @version 1.4
+ * @version 1.5
  * @since 2014-11-27
  *
  */
@@ -61,7 +61,7 @@ public class Multiplier implements Listener
 
 
     /**
-     * Constructor of the multiplier class.
+     * Constructor for the Multiplier class.
      *
      */
 
@@ -69,6 +69,27 @@ public class Multiplier implements Listener
     {
         this.currentMultiplier = DEFAULTMULTIPLIER;
         this.meterCount = DEFAULTMETERCOUNT;
+    }
+
+
+    /**
+     * Constructor for the Multiplier class with multiplier value.
+     *
+     * @param multiplierValue: integer representing the value of the
+     *                         multiplier meter. This value must be
+     *                         greater than the Default Multiplier
+     *                         Value and less than the Max Multiplier
+     *                         Value. Otherwise it is set to the
+     *                         default value.
+     *
+     */
+
+    public Multiplier(int multiplierValue)
+    {
+        this();
+
+        if (multiplierValue > DEFAULTMULTIPLIER && multiplierValue < MAX_MULTIPLIER)
+            this.currentMultiplier = multiplierValue;
     }
 
 
