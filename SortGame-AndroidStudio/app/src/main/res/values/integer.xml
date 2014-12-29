@@ -2,8 +2,7 @@
 <resources>
 
     <!-- Model.Player class constants -->
-    <string name="DEFAULTLIVES">3</string>
-    <integer name="DEFAULTLIVES">12</integer>
+    <integer name="DEFAULTLIVES">3</integer>
     <integer name="DEFAULTSCORE">0</integer>
     <integer name="MINUSONE">-1</integer>
     <integer name="BASEPOINTS">100</integer>
@@ -36,6 +35,13 @@
     <integer name="ENDOFDECK">0</integer>
     <integer name="TIMEPERCARD">15000</integer>
 
+    
+    
+    <!-- SaveReloadState.State class save and load values -->
+    <integer name="PlayerLives">0</integer>
+    <integer name="PlayerScore">0</integer>
+    <integer name="MultiplierMeter">0</integer>
+    <integer name="CurrentDeckSize">0</integer>
 
 
 </resources>
