@@ -10,7 +10,7 @@ import java.util.Stack;
  * @see junit.framework.TestCase
  *
  * @author Jeton Sinoimeri
- * @version 1.0
+ * @version 1.1
  * @since 2014-12-25
  *
  */
@@ -89,6 +89,15 @@ public class DeckTest extends TestCase
     public void testDeckSize()
     {
         assertEquals(0, this.deck.deckSize());
+
+        Deck deck1 = new Deck(12);
+        assertEquals(12, deck1.deckSize());
+
+        deck1 = new Deck(0);
+        assertEquals(0, deck1.deckSize());
+
+        deck1 = new Deck(-10);
+        assertEquals(0, deck1.deckSize());
 
     }
 
