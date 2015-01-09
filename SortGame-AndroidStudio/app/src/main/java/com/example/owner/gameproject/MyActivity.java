@@ -1,20 +1,21 @@
 package com.example.owner.gameproject;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 
-
-public class MyActivity extends ActionBarActivity {
+public class MyActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         setContentView(R.layout.activity_my);
     }
 
@@ -40,19 +41,19 @@ public class MyActivity extends ActionBarActivity {
 
     /** Called when the user clicks the New Game button */
     public void newGame(View view) {
-        Intent intent = new Intent(this, StartNewGameActivity.class);
+        Intent intent = new Intent(this, StartNormalActivity.class);
         startActivity(intent);
     }
 
     /** Called when the user clicks the Store button */
     public void openStore(View view) {
-        Intent intent = new Intent(this, OpenStoreActivity.class);
+        Intent intent = new Intent(this, StartMarathonActivity.class);
         startActivity(intent);
     }
 
     /** Called when the user clicks the Store button */
     public void openSettings(View view) {
-        Intent intent = new Intent(this, OpenSettingsActivity.class);
+        Intent intent = new Intent(this, StartEndlessActivity.class);
         startActivity(intent);
     }
 }

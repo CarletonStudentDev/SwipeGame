@@ -3,35 +3,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:background="@color/mediumRed"
+    android:background="@color/menuBackground"
     tools:context=".MyActivity">
 
     <Button
-        android:id="@+id/new_game_button"
+        android:id="@+id/normal_mode_button"
         android:layout_width="@dimen/button_size"
         android:layout_height="wrap_content"
-        android:text="@string/new_game"
-        android:background="@color/lightRed"
+        android:text="@string/normal_mode"
+        android:background="@color/menuButton"
         android:layout_marginBottom="5dp"
         android:onClick="newGame"  />
 
     <Button
-        android:id="@+id/store_button"
+        android:id="@+id/marathon_mode_button"
         android:layout_width="@dimen/button_size"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/new_game_button"
-        android:text="@string/store"
-        android:background="@color/lightRed"
+        android:layout_below="@+id/normal_mode_button"
+        android:text="@string/marathon_mode"
+        android:background="@color/menuButton"
         android:layout_marginBottom="5dp"
         android:onClick="openStore" />
 
     <Button
-        android:id="@+id/settings_button"
+        android:id="@+id/endless_mode_button"
         android:layout_width="@dimen/button_size"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/store_button"
-        android:text="@string/action_settings"
-        android:background="@color/lightRed"
+        android:layout_below="@+id/marathon_mode_button"
+        android:text="@string/endless_mode"
+        android:background="@color/menuButton"
         android:layout_marginBottom="5dp"
         android:onClick="openSettings"  />
 
