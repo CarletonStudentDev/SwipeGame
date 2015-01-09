@@ -41,9 +41,8 @@ public class MyGLSurfaceView extends GLSurfaceView {
                 if(renderer.gameBoard.blueTouched(newX, newY)){
                     //ASSUMING CORRECT
                     renderer.mBar.increaseNumFull();
-                    renderer.score.addToScore(100,renderer.mBar.giveMulti());
+                    renderer.score.addToScore(1,renderer.mBar.giveMulti());
 
-                    Log.i("score", Integer.toString(renderer.score.currentScore));
                 } else if (renderer.gameBoard.greenTouched(newX, newY)){
                     //ASSUMING MISTAKE
                     renderer.mBar.reset();

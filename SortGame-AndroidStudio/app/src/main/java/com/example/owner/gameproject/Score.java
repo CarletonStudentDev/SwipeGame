@@ -24,6 +24,7 @@ public class Score extends DrawableObject {
     private Bitmap nine;
     private int digits = 1;
     public int num;
+    public int thirdDigit;
     public int currentScore = 0;
     private Image zeroImage;
     private Image oneImage;
@@ -118,7 +119,8 @@ public class Score extends DrawableObject {
             }else{
                 num = (currentScore/ (int) Math.pow(10,(i-1)));
                 if(num>9){
-                    num = num - ((currentScore/(int) Math.pow(10,i))*(int) Math.pow(10,i-1));
+                    num = num - ((currentScore/(int) Math.pow(10,i))*(int) Math.pow(10,i-(i-1)));
+                    thirdDigit = num;
                 }
             }
 
