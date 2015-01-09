@@ -1,16 +1,20 @@
-package com.example.owner.gameproject;
+package OpenGL;
 
-import android.opengl.GLES20;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
 
-public class Line extends Drawable{
+import com.example.owner.gameproject.R;
+
+public class Image extends Square {
+
     private static String fragmentShaderCode =
             "precision mediump float;" +
                     "uniform sampler2D u_Texture;" +
                     "varying vec2 v_TexCoordinate;" +
                     "uniform vec4 vColor;" +
                     "void main() {" +
-                    "   gl_FragColor = vColor;" +
-                    //"   gl_FragColor = texture2D(u_Texture, v_TexCoordinate);" +
+                    //"   gl_FragColor = vColor;" +
+                    "   gl_FragColor = texture2D(u_Texture, v_TexCoordinate);" +
                     "}";
     private static String vertexShaderCode =
             "uniform mat4 uMVPMatrix;" +
@@ -22,16 +26,18 @@ public class Line extends Drawable{
                     "   gl_Position = uMVPMatrix * vPosition;" +
                     "}";
 
+    float[] textureCoords = {
+            0f, 0f,
+            0f, 1f,
+            1f, 1f,
+            1f, 0f,
+    };
 
-    private static final int COORDINATES_PER_VERTEX = 2;
-
-    public Line(float[] lineCoords, short[] drawOrder, float[] color) {
-        super(COORDINATES_PER_VERTEX, GLES20.GL_LINES);
-        setCoords(lineCoords);
-        setDrawOrder(drawOrder);
-        setColor(color);
+    public Image(Resources resources, float x, float y, float size, Bitmap bitmap){
+        super(x, y, size, size, GraphicsHelper.RGBArray(resources, R.color.red));
         setShaderCode(vertexShaderCode,fragmentShaderCode);
+        setTexture(bitmap);
+        setTextureCoords(textureCoords);
         initializeBuffers();
     }
-
 }

@@ -1,4 +1,4 @@
-package com.example.owner.gameproject;
+package OpenGL;
 
 /**
  * Created by home on 29/11/2014.

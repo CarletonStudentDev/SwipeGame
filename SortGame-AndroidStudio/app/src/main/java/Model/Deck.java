@@ -1,5 +1,7 @@
 package Model;
 
+import android.content.res.Resources;
+
 import java.util.Stack;
 
 /**
@@ -42,7 +44,7 @@ public class Deck implements Listener
      *
      */
 
-    public Deck()
+    public Deck(Resources resources)
     {
         this.deck = new Stack<Card>();
     }
@@ -56,9 +58,9 @@ public class Deck implements Listener
      *
      */
 
-    public Deck(int size)
+    public Deck(Resources resources, int size)
     {
-        this();
+        this(resources);
         this.makeDeck(size);
     }
 

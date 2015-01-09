@@ -1,15 +1,20 @@
-package com.example.owner.gameproject;
+package DrawableObjects;
 
-import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.opengl.Matrix;
 
+import com.example.owner.gameproject.R;
+
+import OpenGL.DrawableObject;
+import OpenGL.Image;
+
 /**
  * Created by ERIC on 2014-12-15.
  */
-public class Score extends DrawableObject {
+public class Score extends DrawableObject
+{
 
     private Image[] score = new Image[7];
     private Bitmap zero;

@@ -1,7 +1,9 @@
-package com.example.owner.gameproject;
+package OpenGL;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+
+import com.example.owner.gameproject.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +35,7 @@ public class CircleImage extends Circle {
     int vertices = 360;
 
     public CircleImage(Resources resources, float radius, float x, float y, Bitmap bitmap){
-        super(radius, x, y, GraphicsHelper.RGBArray(resources,R.color.red));
+        super(radius, x, y, GraphicsHelper.RGBArray(resources, R.color.red));
         this.radius = radius;
         setShaderCode(vertexShaderCode,fragmentShaderCode);
         setTexture(bitmap);

@@ -1,6 +1,5 @@
-package com.example.owner.gameproject;
+package OpenGL;
 
-import android.content.Context;
 import android.content.res.Resources;
 import android.opengl.GLES20;
 

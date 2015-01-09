@@ -1,14 +1,22 @@
-package com.example.owner.gameproject;
+package OpenGL;
 
 import android.content.res.Resources;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLSurfaceView.Renderer;
 import android.opengl.Matrix;
-import android.util.Log;
+
+import com.example.owner.gameproject.R;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
+
+import DrawableObjects.Card;
+import DrawableObjects.GameBoard;
+import DrawableObjects.MultiplierBar;
+import DrawableObjects.Score;
+import DrawableObjects.TopBar;
+import Model.Game;
 
 public class MyRenderer implements Renderer {
     private GLSurfaceView view;
@@ -19,6 +27,8 @@ public class MyRenderer implements Renderer {
     public Card card;
     public GameBoard gameBoard;
     public Score score;
+    public Game game;
+
 
     private float ratio;
 
@@ -60,7 +70,9 @@ public class MyRenderer implements Renderer {
         Matrix.frustumM(mProjectionMatrix, 0, -ratio, ratio, -1, 1, 3, 7);
     }
 
-    public void update(){
+    public void update()
+    {
+        // game logic
     }
 
     @Override

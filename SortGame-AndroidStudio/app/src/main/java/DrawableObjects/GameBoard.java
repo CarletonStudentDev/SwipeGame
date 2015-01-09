@@ -1,6 +1,11 @@
-package com.example.owner.gameproject;
+package DrawableObjects;
 
 import android.content.res.Resources;
+
+import com.example.owner.gameproject.R;
+
+import OpenGL.Circle;
+import OpenGL.GraphicsHelper;
 
 /**
  * Created by OWNER on 2014-12-14.

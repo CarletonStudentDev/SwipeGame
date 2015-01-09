@@ -322,7 +322,7 @@ public class Game
      *
      */
 
-    /*
+
     public void play()
     {
         // boolean value to indicate that a correct match has been found
@@ -351,7 +351,7 @@ public class Game
                 correctMatchFound = false;
 
                 // set Timer
-                timer = new Timer(R.integer.TIMEPERCARD, this);
+                timer = new Timer(30, this);
                 timer.start();
 
                 // drawn card loop to check if not time out and no correct match found
@@ -380,6 +380,6 @@ public class Game
         this.livesFinish();
 
     }
-    */
+
 
 }

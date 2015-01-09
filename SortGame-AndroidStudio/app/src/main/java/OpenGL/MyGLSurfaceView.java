@@ -1,4 +1,4 @@
-package com.example.owner.gameproject;
+package OpenGL;
 
 import android.content.Context;
 import android.opengl.GLSurfaceView;
@@ -41,14 +41,14 @@ public class MyGLSurfaceView extends GLSurfaceView {
                 if(renderer.gameBoard.blueTouched(newX, newY)){
                     //ASSUMING CORRECT
                     renderer.mBar.increaseNumFull();
-<<<<<<< HEAD
+
                     renderer.score.addToScore(100,renderer.mBar.giveMulti());
 
                     Log.i("score", Integer.toString(renderer.score.currentScore));
-=======
+
                     renderer.score.addToScore(1,renderer.mBar.giveMulti());
 
->>>>>>> 033e825ae4fd1035bb3eef1c406650b0e8a0191f
+
                 } else if (renderer.gameBoard.greenTouched(newX, newY)){
                     //ASSUMING MISTAKE
                     renderer.mBar.reset();

@@ -1,13 +1,21 @@
-package com.example.owner.gameproject;
+package DrawableObjects;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import com.example.owner.gameproject.R;
+
+import OpenGL.DrawableObject;
+import OpenGL.GraphicsHelper;
+import OpenGL.Image;
+import OpenGL.Square;
+
 /**
  * Created by zack on 12/12/14.
  */
-public class MultiplierBar extends DrawableObject {
+public class MultiplierBar extends DrawableObject
+{
     private Square backgroundSquare;
     private int multiplierTimes = 5;
     private int numFull = 0;

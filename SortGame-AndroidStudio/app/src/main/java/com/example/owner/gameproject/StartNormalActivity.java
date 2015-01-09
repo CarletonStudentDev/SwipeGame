@@ -7,6 +7,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 
+import OpenGL.MyGLSurfaceView;
+
 public class StartNormalActivity extends Activity {
 
     private GLSurfaceView surfaceView;

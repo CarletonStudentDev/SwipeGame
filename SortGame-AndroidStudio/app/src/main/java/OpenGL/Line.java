@@ -1,9 +1,8 @@
-package com.example.owner.gameproject;
+package OpenGL;
 
 import android.opengl.GLES20;
 
-public class Square extends Drawable{
-
+public class Line extends Drawable{
     private static String fragmentShaderCode =
             "precision mediump float;" +
                     "uniform sampler2D u_Texture;" +
@@ -22,31 +21,17 @@ public class Square extends Drawable{
                     "   v_TexCoordinate = a_TexCoordinate;" +
                     "   gl_Position = uMVPMatrix * vPosition;" +
                     "}";
-    public float width;
-    public float length;
+
 
     private static final int COORDINATES_PER_VERTEX = 2;
 
-    private short[] drawOrder = { 0, 1, 2, 0, 2, 3 };
-
-    public Square(float x, float y, float width, float length, float[] colorId) {
-        super(COORDINATES_PER_VERTEX, GLES20.GL_TRIANGLES);
-        this.width = width;
-        this.length = length;
-
-        width = width / 2;
-        length = length / 2;
-
-        float[] squareCoords = new float[]{
-                x + width,  y + length,
-                x + width,  y - length,
-                x - width,  y - length,
-                x - width,  y + length,};
-
-        setCoords(squareCoords);
+    public Line(float[] lineCoords, short[] drawOrder, float[] color) {
+        super(COORDINATES_PER_VERTEX, GLES20.GL_LINES);
+        setCoords(lineCoords);
         setDrawOrder(drawOrder);
-        setColor(colorId);
+        setColor(color);
         setShaderCode(vertexShaderCode,fragmentShaderCode);
         initializeBuffers();
     }
+
 }

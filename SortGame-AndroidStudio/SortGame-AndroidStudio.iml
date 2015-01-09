@@ -7,24 +7,9 @@
       </configuration>
     </facet>
   </component>
-<<<<<<< HEAD
   <component name="NewModuleRootManager" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/build/classes/main" />
     <output-test url="file://$MODULE_DIR$/build/classes/test" />
-=======
-<<<<<<< HEAD
-  <component name="NewModuleRootManager" inherit-compiler-output="true">
-<<<<<<< HEAD
-=======
-    <output url="file://$MODULE_DIR$/build/classes/main" />
-    <output-test url="file://$MODULE_DIR$/build/classes/test" />
->>>>>>> OpenGL
-=======
-  <component name="NewModuleRootManager" inherit-compiler-output="false">
-    <output url="file://$MODULE_DIR$/build/classes/main" />
-    <output-test url="file://$MODULE_DIR$/build/classes/test" />
->>>>>>> origin/Jeton
->>>>>>> 033e825ae4fd1035bb3eef1c406650b0e8a0191f
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/.gradle" />

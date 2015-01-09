@@ -1,4 +1,4 @@
-package com.example.owner.gameproject;
+package OpenGL;
 
 import android.opengl.GLES20;
 

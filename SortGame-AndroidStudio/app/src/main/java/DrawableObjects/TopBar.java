@@ -1,13 +1,21 @@
-package com.example.owner.gameproject;
+package DrawableObjects;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import com.example.owner.gameproject.R;
+
+import OpenGL.DrawableObject;
+import OpenGL.GraphicsHelper;
+import OpenGL.Image;
+import OpenGL.Square;
+
 /**
  * Created by ERIC on 2014-12-13.
  */
-public class TopBar extends DrawableObject {
+public class TopBar extends DrawableObject
+{
 
     private int numHearts = 3;
     private Image[] hearts = new Image[numHearts];
