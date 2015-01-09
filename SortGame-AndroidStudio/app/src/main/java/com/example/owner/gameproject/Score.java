@@ -118,13 +118,10 @@ public class Score extends DrawableObject {
                 }
             }else{
                 num = (currentScore/ (int) Math.pow(10,(i-1)));
-                if(num>9){
-<<<<<<< HEAD
+                if(num>9) {
+                    num = num - ((currentScore / (int) Math.pow(10, i)) * 10);
+                }else{
                     num = num - ((currentScore/(int) Math.pow(10,i))*10);
-=======
-                    num = num - ((currentScore/(int) Math.pow(10,i))*(int) Math.pow(10,i-(i-1)));
-                    thirdDigit = num;
->>>>>>> FETCH_HEAD
                 }
             }
 
