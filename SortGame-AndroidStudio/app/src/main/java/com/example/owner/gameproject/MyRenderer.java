@@ -1,6 +1,5 @@
 package com.example.owner.gameproject;
 
-import android.content.Context;
 import android.content.res.Resources;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
@@ -31,12 +30,6 @@ public class MyRenderer implements Renderer {
 
     public float mDeltaX;
     public float mDeltaY;
-
-    //DELETE AFTER log.i GETS DELETED
-    public int blue = 0;
-    public int green = 0;
-    public int purple = 0;
-    public int red = 0;
 
     public MyRenderer(Resources resources, GLSurfaceView view){
         this.view = view;

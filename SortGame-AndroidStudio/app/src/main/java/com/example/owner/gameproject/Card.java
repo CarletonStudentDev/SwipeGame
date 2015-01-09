@@ -1,6 +1,5 @@
 package com.example.owner.gameproject;
 
-import android.content.Context;
 import android.content.res.Resources;
 
 public class Card extends DrawableObject {

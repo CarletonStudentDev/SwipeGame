@@ -1,9 +1,7 @@
 package com.example.owner.gameproject;
 
-import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 
 public class Image extends Square {
 

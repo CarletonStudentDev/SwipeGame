@@ -6,7 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 
-public class OpenSettingsActivity extends Activity {
+public class StartEndlessActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,14 +16,14 @@ public class OpenSettingsActivity extends Activity {
         //getSupportActionBar().hide();
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        setContentView(R.layout.activity_open_settings);
+        setContentView(R.layout.activity_start_endless);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.open_settings, menu);
+        getMenuInflater().inflate(R.menu.start_endless, menu);
         return true;
     }
 

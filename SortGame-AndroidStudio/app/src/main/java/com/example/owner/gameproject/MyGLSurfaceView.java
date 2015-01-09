@@ -5,7 +5,6 @@ import android.opengl.GLSurfaceView;
 import android.util.Log;
 import android.view.MotionEvent;
 
-
 public class MyGLSurfaceView extends GLSurfaceView {
 
     Context context;
@@ -13,8 +12,6 @@ public class MyGLSurfaceView extends GLSurfaceView {
 
     private float mPreviousX;
     private float mPreviousY;
-
-    private int score;
 
     public MyGLSurfaceView(Context context) {
         super(context);
@@ -39,37 +36,28 @@ public class MyGLSurfaceView extends GLSurfaceView {
             // convert touch coordinates into OpenGL coordinates
             float newX = (-(event.getX() * 2) / getWidth() + 1f) / r;
             float newY = -(event.getY() * 2) / getHeight() + 1f;
-            //Log.i("x", Float.toString(newX));
-            //Log.i("y", Float.toString(newY));
+
             if(event.getAction() == MotionEvent.ACTION_DOWN){
                 if(renderer.gameBoard.blueTouched(newX, newY)){
                     //ASSUMING CORRECT
                     renderer.mBar.increaseNumFull();
-                    renderer.score.addToScore(1,renderer.mBar.giveMulti());
+                    renderer.score.addToScore(100,renderer.mBar.giveMulti());
 
-                    renderer.blue++;
-                    Log.i("blue", Integer.toString(renderer.blue));
+                    Log.i("score", Integer.toString(renderer.score.currentScore));
                 } else if (renderer.gameBoard.greenTouched(newX, newY)){
                     //ASSUMING MISTAKE
                     renderer.mBar.reset();
                     renderer.topBar.decreaseHearts();
 
-                    renderer.green++;
-                    Log.i("green", Integer.toString(renderer.green));
                 } else if (renderer.gameBoard.purpleTouched(newX, newY)){
                     //ASSUMING MISTAKE
                     renderer.mBar.reset();
                     renderer.topBar.decreaseHearts();
 
-                    renderer.purple++;
-                    Log.i("purple", Integer.toString(renderer.purple));
                 } else if (renderer.gameBoard.redTouched(newX, newY)){
                     //ASSUMING MISTAKE
                     renderer.mBar.reset();
                     renderer.topBar.decreaseHearts();
-
-                    renderer.red++;
-                    Log.i("red", Integer.toString(renderer.red));
 
                 }
             }

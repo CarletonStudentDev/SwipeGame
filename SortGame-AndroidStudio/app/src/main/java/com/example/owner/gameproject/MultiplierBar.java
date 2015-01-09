@@ -1,10 +1,8 @@
 package com.example.owner.gameproject;
 
-import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 
 /**
  * Created by zack on 12/12/14.

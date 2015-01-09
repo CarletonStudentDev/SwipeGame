@@ -18,7 +18,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".StartNewGameActivity"
+            android:name=".StartNormalActivity"
             android:label="@string/title_activity_start_new_game"
             android:screenOrientation="portrait"
             android:parentActivityName=".MyActivity" >
@@ -27,7 +27,7 @@
                 android:value="com.example.owner.gameproject.MyActivity" />
         </activity>
         <activity
-            android:name=".OpenStoreActivity"
+            android:name=".StartMarathonActivity"
             android:label="@string/title_activity_open_store"
             android:screenOrientation="portrait"
             android:parentActivityName=".MyActivity" >
@@ -36,7 +36,7 @@
                 android:value="com.example.owner.gameproject.MyActivity" />
         </activity>
         <activity
-            android:name=".OpenSettingsActivity"
+            android:name=".StartEndlessActivity"
             android:label="@string/title_activity_open_settings"
             android:screenOrientation="portrait"
             android:parentActivityName=".MyActivity" >

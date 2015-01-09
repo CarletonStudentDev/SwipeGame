@@ -1,15 +1,12 @@
 package com.example.owner.gameproject;
 
 import android.app.Activity;
-import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 
-public class StartNewGameActivity extends Activity {
-
-    private GLSurfaceView surfaceView;
+public class StartMarathonActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,15 +14,14 @@ public class StartNewGameActivity extends Activity {
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        surfaceView = new MyGLSurfaceView(getApplicationContext());
-        setContentView(surfaceView);
+        setContentView(R.layout.activity_start_marathon);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.start_new_game, menu);
+        getMenuInflater().inflate(R.menu.start_marathon, menu);
         return true;
     }
 
