@@ -33,10 +33,6 @@ public class MultiplierBar extends DrawableObject {
         float greenProgressColor[] = GraphicsHelper.RGBArray(resources, R.color.green);
         float purpleProgressColor[] = GraphicsHelper.RGBArray(resources, R.color.purple);
 
-        // images used
-        Bitmap x2 = BitmapFactory.decodeResource(resources, R.drawable.x2);
-        Bitmap x4 = BitmapFactory.decodeResource(resources, R.drawable.x4);
-        Bitmap x8 = BitmapFactory.decodeResource(resources, R.drawable.x8);
 
         // initialize shapes
         backgroundSquare = new Square(x + 0.1f, y, 1.1f, 0.105f, backgroundColor);
@@ -57,9 +53,9 @@ public class MultiplierBar extends DrawableObject {
         }
 
 
-        multiplierNumber2 = new Image(resources, x + 0.1f - (1.1f/2 + width / 2), y, 0.18f, x2);
-        multiplierNumber4 = new Image(resources, x + 0.1f - (1.1f/2 + width / 2), y, 0.18f, x4);
-        multiplierNumber8 = new Image(resources, x + 0.1f - (1.1f/2 + width / 2), y, 0.18f, x8);
+        multiplierNumber2 = new Image(resources, x + 0.1f - (1.1f/2 + width / 2), y, 0.18f, R.drawable.x2);
+        multiplierNumber4 = new Image(resources, x + 0.1f - (1.1f/2 + width / 2), y, 0.18f, R.drawable.x4);
+        multiplierNumber8 = new Image(resources, x + 0.1f - (1.1f/2 + width / 2), y, 0.18f, R.drawable.x8);
 
     }
 

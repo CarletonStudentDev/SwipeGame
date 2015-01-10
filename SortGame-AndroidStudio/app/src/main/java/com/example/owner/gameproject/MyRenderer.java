@@ -90,7 +90,7 @@ public class MyRenderer implements Renderer {
         score.draw(mMVPMatrix);
         timer.draw(mMVPMatrix);
 
-        //gameOverScreen.draw(mMVPMatrix);
+        gameOverScreen.draw(mMVPMatrix);
 
     }
 }

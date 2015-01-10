@@ -20,19 +20,16 @@ public class TopBar extends DrawableObject {
         // colors used
         float backgroundColor[] = GraphicsHelper.RGBArray(resources, R.color.darkBlue);
 
-        // images used
-        Bitmap blankHeart = BitmapFactory.decodeResource(resources, R.drawable.blankheart);
-        Bitmap fullHeart = BitmapFactory.decodeResource(resources, R.drawable.fullheart);
 
         // initialize shapes
         backgroundSquare = new Square(0f, 0.9f, 0.65f * 2 , 0.2f, backgroundColor);
 
         for(int i = 0;i < numHearts;i++){
-           hearts[i] = new Image(resources, x - i*0.13f, y, 0.11f, blankHeart);
+           hearts[i] = new Image(resources, x - i*0.13f, y, 0.11f,  R.drawable.blankheart);
         }
 
         for(int j = 0;j < numHearts;j++){
-            filledHearts[j] = new Image(resources, x - j*0.13f, y, 0.11f, fullHeart);
+            filledHearts[j] = new Image(resources, x - j*0.13f, y, 0.11f, R.drawable.fullheart);
         }
     }
     @Override

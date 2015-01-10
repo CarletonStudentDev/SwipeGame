@@ -61,16 +61,16 @@ public class Timer  extends DrawableObject {
         nine = BitmapFactory.decodeResource(resources, R.drawable.nineblack);
 
 
-        zeroImage = new Image(resources, x, y, 0.15f, zero);
-        oneImage = new Image(resources, x, y, 0.15f, one);
-        twoImage = new Image(resources, x, y, 0.15f, two);
-        threeImage = new Image(resources, x, y, 0.15f, three);
-        fourImage = new Image(resources, x, y, 0.15f, four);
-        fiveImage = new Image(resources, x, y, 0.15f, five);
-        sixImage = new Image(resources, x, y, 0.15f, six);
-        sevenImage = new Image(resources, x, y, 0.15f, seven);
-        eightImage = new Image(resources, x, y, 0.15f, eight);
-        nineImage = new Image(resources, x, y, 0.15f, nine);
+        zeroImage = new Image(resources, x, y, 0.15f, R.drawable.zeroblack);
+        oneImage = new Image(resources, x, y, 0.15f, R.drawable.oneblack);
+        twoImage = new Image(resources, x, y, 0.15f, R.drawable.twoblack);
+        threeImage = new Image(resources, x, y, 0.15f, R.drawable.threeblack);
+        fourImage = new Image(resources, x, y, 0.15f, R.drawable.fourblack);
+        fiveImage = new Image(resources, x, y, 0.15f, R.drawable.fiveblack);
+        sixImage = new Image(resources, x, y, 0.15f, R.drawable.sixblack);
+        sevenImage = new Image(resources, x, y, 0.15f, R.drawable.sevenblack);
+        eightImage = new Image(resources, x, y, 0.15f, R.drawable.eightblack);
+        nineImage = new Image(resources, x, y, 0.15f, R.drawable.nineblack);
 
         //THIS IS FOR NORMAL MODE ONLY
         score[0] = zeroImage;

@@ -31,10 +31,10 @@ public class Image extends Square {
             1f, 0f,
     };
 
-    public Image(Resources resources, float x, float y, float size, Bitmap bitmap){
+    public Image(Resources resources, float x, float y, float size, int bitmapId){
         super(x, y, size, size, GraphicsHelper.RGBArray(resources, R.color.red));
         setShaderCode(vertexShaderCode,fragmentShaderCode);
-        setTexture(bitmap);
+        setTexture(resources, bitmapId);
         setTextureCoords(textureCoords);
         initializeBuffers();
     }

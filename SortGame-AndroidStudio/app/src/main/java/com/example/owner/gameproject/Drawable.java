@@ -1,6 +1,8 @@
 package com.example.owner.gameproject;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.opengl.GLES20;
 import android.opengl.GLUtils;
 import android.opengl.Matrix;
@@ -167,9 +169,9 @@ public class Drawable {
         this.fragmentShaderCode = fragmentShaderCode;
     }
 
-    public void setTexture(Bitmap bitmap){
+    public void setTexture(Resources resources, int bitmapId){
         useTexture = true;
-        textureHandle = loadTexture(bitmap);
+        textureHandle = loadTexture(resources, bitmapId);
     }
 
     public void setCoords(float[] coords) {
@@ -188,7 +190,8 @@ public class Drawable {
         this.color = color;
     }
 
-    public static int loadTexture(Bitmap bitmap){
+    public static int loadTexture(Resources resources, int bitmapId){
+        Bitmap bitmap = BitmapFactory.decodeResource(resources,bitmapId);
         final int[] textureHandle = new int[1];
         GLES20.glDeleteTextures(1,textureHandle,0);
         GLES20.glGenTextures(1, textureHandle, 0);
@@ -199,6 +202,7 @@ public class Drawable {
             GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_S, GLES20.GL_CLAMP_TO_EDGE);
             GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_T, GLES20.GL_CLAMP_TO_EDGE);
             GLUtils.texImage2D(GLES20.GL_TEXTURE_2D, 0, bitmap, 0);
+            bitmap.recycle();
         }
         if(textureHandle[0] == 0){
             throw new RuntimeException("Error loading texture.");
