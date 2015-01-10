@@ -59,6 +59,40 @@ public class MyRenderer implements Renderer {
     }
 
 
+    @Override
+    public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
+        GLES20.glClearColor( 236f/255f, 240f/255f, 241f/255f, 1.0f );
+
+        this.player = new Player();
+        this.multiplier = new Multiplier();
+        this.game = new Game(this.player, this.multiplier);
+        this.timer = new Timer(30000);
+        this.cardGenerator = new CardGenerator();
+
+
+        ratio = (float) view.getWidth() / (float) view.getHeight();
+
+        card = new Card(resources, 0.0f, -0.2f, R.color.blue);
+        gameBoard = new GameBoard(resources);
+
+        topBar = new TopBar(resources,-0.3f,0.9f);
+        Log.i("integer.toString: ", ""+this.player.getLives());
+        topBar.setFullHearts(this.player.getLives());
+
+        mBar = new MultiplierBar(resources, 0.0f, 0.7f);
+
+        score = new Score(resources,0,0.9f);
+    }
+
+    @Override
+    public void onSurfaceChanged(GL10 gl10, int width, int height) {
+        GLES20.glViewport(0, 0, width, height);
+        ratio = (float) width / height;
+
+        Matrix.frustumM(mProjectionMatrix, 0, -ratio, ratio, -1, 1, 3, 7);
+    }
+
+
 
     public boolean onTouchEvent(MotionEvent event)
     {
@@ -109,6 +143,10 @@ public class MyRenderer implements Renderer {
         Log.i("score", Integer.toString(score.currentScore));
 
         score.addToScore(1,mBar.giveMulti());
+
+        // generate a card
+        card = cardGenerator.generateCard(this.resources);
+
     }
 
     private void incorrect()
@@ -116,58 +154,24 @@ public class MyRenderer implements Renderer {
         this.game.incorrectMatch();
         mBar.reset();
         topBar.decreaseHearts();
-    }
 
-
-    @Override
-    public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
-        GLES20.glClearColor( 236f/255f, 240f/255f, 241f/255f, 1.0f );
-
-        this.player = new Player();
-        this.multiplier = new Multiplier();
-        this.game = new Game(this.player, this.multiplier);
-        this.timer = new Timer(30, this.game);
-        this.timer.start();
-
-
-        ratio = (float) view.getWidth() / (float) view.getHeight();
-
-        card = new Card(resources, 0.0f, -0.2f, R.color.blue);
-        gameBoard = new GameBoard(resources);
-
-        topBar = new TopBar(resources,-0.3f,0.9f);
-        topBar.setFullHearts(this.player.getLives());
-
-        mBar = new MultiplierBar(resources, 0.0f, 0.7f);
-
-        score = new Score(resources,0,0.9f);
-    }
-
-    @Override
-    public void onSurfaceChanged(GL10 gl10, int width, int height) {
-        GLES20.glViewport(0, 0, width, height);
-        ratio = (float) width / height;
-
-        Matrix.frustumM(mProjectionMatrix, 0, -ratio, ratio, -1, 1, 3, 7);
+        // generate a card
+        card = cardGenerator.generateCard(this.resources);
     }
 
     private void update()
     {
-        // game logic
-
-        // main loop check if number of lives != 0
-        if (this.player.getLives() != 0)
+        if (this.timer.timeOut())
         {
-
-            // generate a card
-            card = cardGenerator.generateCard(this.resources);
-
-
-
+            this.game.timeOut();
+            mBar.reset();
+            topBar.decreaseHearts();
         }
 
+
+
         // notify the listeners that the Player's lives have finished
-        this.game.livesFinish();
+        //this.game.livesFinish();
 
 
 

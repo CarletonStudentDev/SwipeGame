@@ -120,7 +120,6 @@ public class CardGenerator
 
     private int getRandValue(int low, int high)
     {
-
         int R = random.nextInt(high-low) + low;
         return R;
     }
