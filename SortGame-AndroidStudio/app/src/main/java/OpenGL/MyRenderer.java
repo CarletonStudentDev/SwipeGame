@@ -16,7 +16,11 @@ import DrawableObjects.GameBoard;
 import DrawableObjects.MultiplierBar;
 import DrawableObjects.Score;
 import DrawableObjects.TopBar;
+import Model.CardGenerator;
 import Model.Game;
+import Model.Multiplier;
+import Model.Player;
+import Model.Timer;
 
 public class MyRenderer implements Renderer {
     private GLSurfaceView view;
@@ -27,7 +31,10 @@ public class MyRenderer implements Renderer {
     public Card card;
     public GameBoard gameBoard;
     public Score score;
-    public Game game;
+    private Game game;
+    private CardGenerator cardGenerator;
+    private Player player;
+    private Multiplier multiplier;
 
 
     private float ratio;
@@ -49,6 +56,12 @@ public class MyRenderer implements Renderer {
     @Override
     public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
         GLES20.glClearColor( 236f/255f, 240f/255f, 241f/255f, 1.0f );
+
+        this.player = new Player();
+        this.multiplier = new Multiplier();
+
+
+        this.game = new Game(this.player, this.multiplier);
 
         ratio = (float) view.getWidth() / (float) view.getHeight();
 
@@ -73,6 +86,62 @@ public class MyRenderer implements Renderer {
     public void update()
     {
         // game logic
+
+        // boolean value to indicate that a correct match has been found
+        boolean correctMatchFound;
+
+        // Timer instance representing the countdown timer
+        Timer timer;
+
+        Deck d = (Deck)this.getDeck();
+
+        // main loop check if number of lives != 0
+        if (this.player.getLives() != 0)
+        {
+            // create new deck
+            this.game.roundsOver();
+
+            // round loop check if number of cards in deck != 0
+            while(d.deckSize() != 0)
+            {
+                // draw card
+                this.drawCard();
+
+                // set boolean values to false
+                this.game.setTimedOut(false);
+                correctMatchFound = false;
+
+                // set Timer
+                timer = new Timer(30, this.game);
+                timer.start();
+
+                // drawn card loop to check if not time out and no correct match found
+                while (!this.game.getTimedOut() && !correctMatchFound)
+                {
+                    // check match if correct notify listeners of correct match
+                    if (this.game.checkMatch())
+                    {
+                        correctMatchFound = true;
+                        this.game.correctMatch();
+                    }
+
+                    // otherwise notify listeners of incorrect match
+                    else
+                        this.game.incorrectMatch();
+
+                }
+
+                // cancel the time
+                timer.cancel();
+            }
+
+        }
+
+        // notify the listeners that the Player's lives have finished
+        this.game.livesFinish();
+
+
+
     }
 
     @Override

@@ -1,6 +1,10 @@
 package Model;
 
+import android.content.res.Resources;
+
 import java.util.Random;
+
+import DrawableObjects.Card;
 
 
 /**
@@ -23,7 +27,9 @@ public class CardGenerator
      *
      */
 
-    private static final int DEFAULTNUMPATTERNATTR = 4;
+    private static final int DEFAULTNUMPATTERNATTR = 4,
+                             DEAFULTPOSX = 0,
+                             DEAFULTPOSY = 0;
 
 
     /**
@@ -42,6 +48,7 @@ public class CardGenerator
      */
 
     private int numOfPatternAttr;
+
 
 
     /**
@@ -81,9 +88,13 @@ public class CardGenerator
      *
      */
 
-    public Card generateCard()
+    public Card generateCard(Resources resources)
     {
-        Card card = new Card(this.getRandValue(1, this.numOfPatternAttr + 1));
+
+        Card card = new Card(resources, DEAFULTPOSX, DEAFULTPOSY,
+                             this.getRandValue(1, this.numOfPatternAttr + 1)
+                            );
+
         return card;
     }
 
@@ -111,6 +122,5 @@ public class CardGenerator
         int R = random.nextInt(high-low) + low;
         return R;
     }
-
 
 }

@@ -1,7 +1,6 @@
 package Model;
 
 import java.util.ArrayList;
-import java.util.Stack;
 
 /**
  * Game contains all the rules and information
@@ -29,8 +28,7 @@ public class Game
      *
      */
 
-    private Listener deck,
-                     player,
+    private Listener player,
                      multiplier;
 
 
@@ -73,16 +71,12 @@ public class Game
      *                    multiplier the player reference requires
      *                    to update the score.
      *
-     * @param deck: Listener reference representing the deck of cards
-     *              required to play the game.
-     *
      */
 
-    public Game(Listener player, Listener multiplier, Listener deck)
+    public Game(Listener player, Listener multiplier)
     {
         this.player = player;
         this.multiplier = multiplier;
-        this.deck = deck;
 
         this.pileArray = new ArrayList<Pile>();
         this.timedOut = false;
@@ -112,19 +106,6 @@ public class Game
     public Listener getPlayer()
     {
         return this.player;
-    }
-
-
-    /**
-     * Getter for the Player.
-     *
-     * @return deck: Listener reference representing the Deck
-     *
-     */
-
-    public Listener getDeck()
-    {
-        return this.deck;
     }
 
 
@@ -182,8 +163,15 @@ public class Game
     public void addPile(Pile pile)
     {
         this.pileArray.add(pile);
-
     }
+
+
+    /**
+     * Getter for array of Piles
+     *
+     * @return pileArray: ArrayList of Piles
+     *
+     */
 
 
     public ArrayList<Pile> getPileArray()
@@ -215,8 +203,8 @@ public class Game
 
     public void drawCard()
     {
-        Stack<Card> gameDeck = ((Deck) this.deck).getDeck();
-        this.activeCard = gameDeck.pop();
+        //Stack<Card> gameDeck = ((Deck) this.deck).getDeck();
+        //this.activeCard = gameDeck.pop();
     }
 
 
@@ -226,7 +214,7 @@ public class Game
      *
      */
 
-    private void correctMatch()
+    public void correctMatch()
     {
         // create GameEvent
         GameEvent ge = new GameEvent(this);
@@ -234,7 +222,6 @@ public class Game
         // notify the listeners
         this.multiplier.correctMatch(ge);
         this.player.correctMatch(ge);
-        this.deck.correctMatch(ge);
 
     }
 
@@ -245,7 +232,7 @@ public class Game
      *
      */
 
-    private void incorrectMatch()
+    public void incorrectMatch()
     {
         // create GameEvent
         GameEvent ge = new GameEvent(this);
@@ -253,7 +240,6 @@ public class Game
         // notify the listeners
         this.multiplier.incorrectMatch(ge);
         this.player.incorrectMatch(ge);
-        this.deck.incorrectMatch(ge);
 
     }
 
@@ -264,7 +250,7 @@ public class Game
      *
      */
 
-    private void livesFinish()
+    public void livesFinish()
     {
         // create GameEvent
         GameEvent ge = new GameEvent(this);
@@ -272,7 +258,6 @@ public class Game
         // notify the listeners
         this.multiplier.livesFinish(ge);
         this.player.livesFinish(ge);
-        this.deck.livesFinish(ge);
 
     }
 
@@ -288,8 +273,8 @@ public class Game
         GameEvent ge = new GameEvent(this);
 
         // notify the deck listener
-        Deck d = (Deck)this.deck;
-        d.roundsOver(ge);
+        //Deck d = (Deck)this.deck;
+        //d.roundsOver(ge);
     }
 
 
@@ -302,7 +287,7 @@ public class Game
      *
      */
 
-    private boolean checkMatch()
+    public boolean checkMatch()
     {
         for(int i = 0; i < this.pileArray.size(); i++)
         {
@@ -323,6 +308,7 @@ public class Game
      */
 
 
+    /*
     public void play()
     {
         // boolean value to indicate that a correct match has been found
@@ -380,6 +366,6 @@ public class Game
         this.livesFinish();
 
     }
-
+*/
 
 }
