@@ -51,4 +51,9 @@ public class TopBar extends DrawableObject {
         fullHearts--;
 
     }
+
+    public int getHearts(){
+        return fullHearts;
+
+    }
 }

@@ -33,6 +33,8 @@ public class MyRenderer implements Renderer {
     public float mDeltaX;
     public float mDeltaY;
 
+    public int gameover=0;
+
     public MyRenderer(Resources resources, GLSurfaceView view){
         this.view = view;
         this.resources = resources;
@@ -89,8 +91,9 @@ public class MyRenderer implements Renderer {
         card.draw(scratch);
         score.draw(mMVPMatrix);
         timer.draw(mMVPMatrix);
-
-        //gameOverScreen.draw(mMVPMatrix);
+        if(gameover==1){
+            gameOverScreen.draw(mMVPMatrix);
+        }
 
     }
 }

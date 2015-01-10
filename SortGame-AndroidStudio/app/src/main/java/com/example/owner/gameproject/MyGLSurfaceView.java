@@ -66,6 +66,9 @@ public class MyGLSurfaceView extends GLSurfaceView {
                     renderer.timer.decrease(1);
 
                 }
+               if(renderer.topBar.getHearts()==0 || renderer.timer.fullNumber==0){
+                   renderer.gameover=1;
+               }
             }
 
             /*if (event.getAction() == MotionEvent.ACTION_MOVE)
