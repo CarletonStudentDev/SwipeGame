@@ -47,16 +47,19 @@ public class MyGLSurfaceView extends GLSurfaceView {
                     //ASSUMING MISTAKE
                     renderer.mBar.reset();
                     renderer.topBar.decreaseHearts();
+                    renderer.timer.reduceTime(1);
 
                 } else if (renderer.gameBoard.purpleTouched(newX, newY)){
                     //ASSUMING MISTAKE
                     renderer.mBar.reset();
                     renderer.topBar.decreaseHearts();
+                    renderer.timer.reduceTime(1);
 
                 } else if (renderer.gameBoard.redTouched(newX, newY)){
                     //ASSUMING MISTAKE
                     renderer.mBar.reset();
                     renderer.topBar.decreaseHearts();
+                    renderer.timer.reduceTime(1);
 
                 }
             }

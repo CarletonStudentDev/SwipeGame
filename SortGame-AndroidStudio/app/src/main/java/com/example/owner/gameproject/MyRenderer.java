@@ -19,6 +19,7 @@ public class MyRenderer implements Renderer {
     public Card card;
     public GameBoard gameBoard;
     public Score score;
+    public Timer timer;
 
     private float ratio;
 
@@ -50,6 +51,8 @@ public class MyRenderer implements Renderer {
         mBar = new MultiplierBar(resources, 0.0f, 0.7f);
 
         score = new Score(resources,0,0.9f);
+
+        timer = new Timer(resources,-0.075f,0.45f);
     }
 
     @Override
@@ -83,6 +86,7 @@ public class MyRenderer implements Renderer {
         gameBoard.draw(mMVPMatrix);
         card.draw(scratch);
         score.draw(mMVPMatrix);
+        timer.draw(mMVPMatrix);
 
     }
 }
