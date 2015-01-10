@@ -19,11 +19,12 @@ public class Card extends DrawableObject
     private float length = 0.5f;
     public float x;
     public float y;
+    private int colorId;
 
     public Card (Resources resources, float x, float y, int colorId) {
 
-        colorId = this.getColor(colorId);
-        squareColor = GraphicsHelper.RGBArray(resources, colorId);
+        this.colorId = this.getColor(colorId);
+        squareColor = GraphicsHelper.RGBArray(resources, this.colorId);
         square = new Square (x, y, width, length, squareColor);
     }
 
@@ -61,5 +62,10 @@ public class Card extends DrawableObject
                (x <= this.x + width) &&
                (y >= this.y - length) &&
                (y <= this.y + length);
+    }
+
+    public int getColorId()
+    {
+        return this.colorId;
     }
 }

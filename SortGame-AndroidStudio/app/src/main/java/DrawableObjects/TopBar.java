@@ -59,7 +59,17 @@ public class TopBar extends DrawableObject
     }
 
     public void decreaseHearts(){
-        fullHearts--;
+        if (fullHearts -1 > -1)
+            fullHearts--;
 
+    }
+
+    public void setFullHearts(int fullHearts)
+    {
+        if (fullHearts > 0 && fullHearts > 3)
+            this.fullHearts = fullHearts;
+
+        else
+            this.fullHearts = 3;
     }
 }

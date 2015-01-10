@@ -65,6 +65,7 @@ public class Timer extends CountDownTimer
     {
         super(millisecondsInitTime, TIMEINTERVAL);
         this.game = game;
+        this.game.setTimedOut(false);
     }
 
 

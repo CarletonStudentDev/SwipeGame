@@ -49,19 +49,36 @@ public class GameBoard {
     }
     */
 
-    public boolean redTouched(float x, float y){
+    public int getQuadrant(float x, float y)
+    {
+        if (this.redTouched(x, y))
+            return R.color.red;
+
+        else if (this.blueTouched(x, y))
+            return R.color.blue;
+
+        else if (this.greenTouched(x, y))
+            return R.color.green;
+
+        else if (this.purpleTouched(x, y))
+            return R.color.purple;
+
+        return 0;
+    }
+
+    private boolean redTouched(float x, float y){
         return (x >= 0.1f) && (y >= 0.05f);
     }
 
-    public boolean greenTouched(float x, float y){
+    private boolean greenTouched(float x, float y){
         return (x <= -0.1f) && (y >= 0.05f);
     }
 
-    public boolean blueTouched(float x, float y){
+    private boolean blueTouched(float x, float y){
         return (x >= 0.1f) && (y <= -0.45f);
     }
 
-    public boolean purpleTouched(float x, float y){
+    private boolean purpleTouched(float x, float y){
         return (x <= -0.1f) && (y <= -0.45f);
     }
 

@@ -91,7 +91,9 @@ public class CardGenerator
     public Card generateCard(Resources resources)
     {
 
-        Card card = new Card(resources, DEAFULTPOSX, DEAFULTPOSY,
+        Card card = new Card(resources,
+                             DEAFULTPOSX,
+                             DEAFULTPOSY,
                              this.getRandValue(1, this.numOfPatternAttr + 1)
                             );
 

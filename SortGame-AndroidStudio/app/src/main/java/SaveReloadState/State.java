@@ -66,14 +66,12 @@ public class State
     public void saveState(Game game)
     {
         Player player = (Player) game.getPlayer();
-        Deck deck = (Deck) game.getDeck();
         Multiplier multiplier = (Multiplier) game.getMultiplierMeter();
 
         // write to the file
         this.editor.putInt(""+R.integer.PlayerLives, player.getLives());
         this.editor.putLong(""+R.integer.PlayerScore, player.getCurrentScore());
         this.editor.putInt(""+R.integer.MultiplierMeter, multiplier.getMultiplier());
-        this.editor.putInt(""+R.integer.CurrentDeckSize, deck.deckSize());
 
         // commit the changes
         this.editor.commit();
@@ -97,17 +95,13 @@ public class State
         player.setCurrentScore(this.sharedPreferences.getLong("", R.integer.PlayerScore));
 
 
-        // create a new deck with the value indicated in the saved data
-        Deck deck = new Deck(this.sharedPreferences.getInt("", R.integer.CurrentDeckSize));
-
-
         // create new multiplier with the value indicated in the saved data
         Multiplier multiplier =
                 new Multiplier(this.sharedPreferences.getInt("", R.integer.MultiplierMeter));
 
 
         // create new instance of Game
-        Game game = new Game(player, multiplier, deck);
+        Game game = new Game(player, multiplier);
 
 
         return game;

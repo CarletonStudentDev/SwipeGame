@@ -5,6 +5,8 @@ import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLSurfaceView.Renderer;
 import android.opengl.Matrix;
+import android.util.Log;
+import android.view.MotionEvent;
 
 import com.example.owner.gameproject.R;
 
@@ -35,6 +37,7 @@ public class MyRenderer implements Renderer {
     private CardGenerator cardGenerator;
     private Player player;
     private Multiplier multiplier;
+    private Timer timer;
 
 
     private float ratio;
@@ -48,10 +51,73 @@ public class MyRenderer implements Renderer {
     public float mDeltaX;
     public float mDeltaY;
 
+
+
     public MyRenderer(Resources resources, GLSurfaceView view){
         this.view = view;
         this.resources = resources;
     }
+
+
+
+    public boolean onTouchEvent(MotionEvent event)
+    {
+        if (event != null)
+        {
+            float r = (float)view.getHeight() / view.getWidth();
+
+            // convert touch coordinates into OpenGL coordinates
+            float newX = (-(event.getX() * 2) / view.getWidth() + 1f) / r;
+            float newY = -(event.getY() * 2) / view.getHeight() + 1f;
+
+            if(event.getAction() == MotionEvent.ACTION_DOWN){
+
+                if (gameBoard.getQuadrant(newX, newY) == card.getColorId())
+                    this.correct();
+
+                else
+                    this.incorrect();
+
+            }
+
+            /*if (event.getAction() == MotionEvent.ACTION_MOVE)
+            {
+                float deltaX = (x - mPreviousX) / r / 2f;
+                float deltaY = (y - mPreviousY) / r / 2f;
+
+                if(renderer.card.inShape(newX, newY)){
+                    renderer.mDeltaX += deltaX;
+                    renderer.mDeltaY += deltaY;
+                }
+
+            }*/
+            //mPreviousX = x;
+            //mPreviousY = y;
+
+            return true;
+        }
+        return true;
+    }
+
+    private void correct()
+    {
+        this.game.correctMatch();
+        this.mBar.increaseNumFull();
+
+        score.addToScore(100, mBar.giveMulti());
+
+        Log.i("score", Integer.toString(score.currentScore));
+
+        score.addToScore(1,mBar.giveMulti());
+    }
+
+    private void incorrect()
+    {
+        this.game.incorrectMatch();
+        mBar.reset();
+        topBar.decreaseHearts();
+    }
+
 
     @Override
     public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
@@ -59,9 +125,10 @@ public class MyRenderer implements Renderer {
 
         this.player = new Player();
         this.multiplier = new Multiplier();
-
-
         this.game = new Game(this.player, this.multiplier);
+        this.timer = new Timer(30, this.game);
+        this.timer.start();
+
 
         ratio = (float) view.getWidth() / (float) view.getHeight();
 
@@ -69,6 +136,7 @@ public class MyRenderer implements Renderer {
         gameBoard = new GameBoard(resources);
 
         topBar = new TopBar(resources,-0.3f,0.9f);
+        topBar.setFullHearts(this.player.getLives());
 
         mBar = new MultiplierBar(resources, 0.0f, 0.7f);
 
@@ -83,57 +151,18 @@ public class MyRenderer implements Renderer {
         Matrix.frustumM(mProjectionMatrix, 0, -ratio, ratio, -1, 1, 3, 7);
     }
 
-    public void update()
+    private void update()
     {
         // game logic
-
-        // boolean value to indicate that a correct match has been found
-        boolean correctMatchFound;
-
-        // Timer instance representing the countdown timer
-        Timer timer;
-
-        Deck d = (Deck)this.getDeck();
 
         // main loop check if number of lives != 0
         if (this.player.getLives() != 0)
         {
-            // create new deck
-            this.game.roundsOver();
 
-            // round loop check if number of cards in deck != 0
-            while(d.deckSize() != 0)
-            {
-                // draw card
-                this.drawCard();
+            // generate a card
+            card = cardGenerator.generateCard(this.resources);
 
-                // set boolean values to false
-                this.game.setTimedOut(false);
-                correctMatchFound = false;
 
-                // set Timer
-                timer = new Timer(30, this.game);
-                timer.start();
-
-                // drawn card loop to check if not time out and no correct match found
-                while (!this.game.getTimedOut() && !correctMatchFound)
-                {
-                    // check match if correct notify listeners of correct match
-                    if (this.game.checkMatch())
-                    {
-                        correctMatchFound = true;
-                        this.game.correctMatch();
-                    }
-
-                    // otherwise notify listeners of incorrect match
-                    else
-                        this.game.incorrectMatch();
-
-                }
-
-                // cancel the time
-                timer.cancel();
-            }
 
         }
 
