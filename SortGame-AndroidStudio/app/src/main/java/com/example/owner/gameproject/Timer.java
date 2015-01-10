@@ -1,17 +1,20 @@
 package com.example.owner.gameproject;
 
-import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.opengl.Matrix;
 
 /**
- * Created by ERIC on 2014-12-15.
+ * Created by OWNER on 2015-01-09.
  */
-public class Score extends DrawableObject {
+public class Timer  extends DrawableObject {
 
     private Image[] score = new Image[7];
+
+    private int digits = 2;
+    public int num;
+    public int currentTime = 10;
     private Bitmap zero;
     private Bitmap one;
     private Bitmap two;
@@ -22,9 +25,6 @@ public class Score extends DrawableObject {
     private Bitmap seven;
     private Bitmap eight;
     private Bitmap nine;
-    private int digits = 1;
-    public int num;
-    public int currentScore = 0;
     private Image zeroImage;
     private Image oneImage;
     private Image twoImage;
@@ -44,35 +44,37 @@ public class Score extends DrawableObject {
     float[] oldMatrix = new float[16];
 
 
-    public Score(Resources resources, float x, float y ) {
+    public Timer(Resources resources, float x, float y ) {
         this.x = x;
         this.y = y;
         this.resources = resources;
 
-        zero = BitmapFactory.decodeResource(resources, R.drawable.zero);
-        one = BitmapFactory.decodeResource(resources, R.drawable.one);
-        two = BitmapFactory.decodeResource(resources, R.drawable.two);
-        three = BitmapFactory.decodeResource(resources, R.drawable.three);
-        four = BitmapFactory.decodeResource(resources, R.drawable.four);
-        five = BitmapFactory.decodeResource(resources, R.drawable.five);
-        six = BitmapFactory.decodeResource(resources, R.drawable.six);
-        seven = BitmapFactory.decodeResource(resources, R.drawable.seven);
-        eight = BitmapFactory.decodeResource(resources, R.drawable.eight);
-        nine = BitmapFactory.decodeResource(resources, R.drawable.nine);
+        zero = BitmapFactory.decodeResource(resources, R.drawable.zeroblack);
+        one = BitmapFactory.decodeResource(resources, R.drawable.oneblack);
+        two = BitmapFactory.decodeResource(resources, R.drawable.twoblack);
+        three = BitmapFactory.decodeResource(resources, R.drawable.threeblack);
+        four = BitmapFactory.decodeResource(resources, R.drawable.fourblack);
+        five = BitmapFactory.decodeResource(resources, R.drawable.fiveblack);
+        six = BitmapFactory.decodeResource(resources, R.drawable.sixblack);
+        seven = BitmapFactory.decodeResource(resources, R.drawable.sevenblack);
+        eight = BitmapFactory.decodeResource(resources, R.drawable.eightblack);
+        nine = BitmapFactory.decodeResource(resources, R.drawable.nineblack);
 
 
-        zeroImage = new Image(resources, x, y, 0.12f, zero);
-        oneImage = new Image(resources, x, y, 0.12f, one);
-        twoImage = new Image(resources, x, y, 0.12f, two);
-        threeImage = new Image(resources, x, y, 0.12f, three);
-        fourImage = new Image(resources, x, y, 0.12f, four);
-        fiveImage = new Image(resources, x, y, 0.12f, five);
-        sixImage = new Image(resources, x, y, 0.12f, six);
-        sevenImage = new Image(resources, x, y, 0.12f, seven);
-        eightImage = new Image(resources, x, y, 0.12f, eight);
-        nineImage = new Image(resources, x, y, 0.12f, nine);
+        zeroImage = new Image(resources, x, y, 0.15f, zero);
+        oneImage = new Image(resources, x, y, 0.15f, one);
+        twoImage = new Image(resources, x, y, 0.15f, two);
+        threeImage = new Image(resources, x, y, 0.15f, three);
+        fourImage = new Image(resources, x, y, 0.15f, four);
+        fiveImage = new Image(resources, x, y, 0.15f, five);
+        sixImage = new Image(resources, x, y, 0.15f, six);
+        sevenImage = new Image(resources, x, y, 0.15f, seven);
+        eightImage = new Image(resources, x, y, 0.15f, eight);
+        nineImage = new Image(resources, x, y, 0.15f, nine);
 
+        //THIS IS FOR NORMAL MODE ONLY
         score[0] = zeroImage;
+        score[1] = oneImage;
     }
 
     @Override
@@ -85,7 +87,7 @@ public class Score extends DrawableObject {
         this.oldMatrix = mMVPMatrix;
         this.scratch = mMVPMatrix;
 
-        digitShift = 0.1f;
+        digitShift = 0.12f;
 
         for(int i = 0;i < digits;i++) {
 
@@ -98,32 +100,27 @@ public class Score extends DrawableObject {
         }
     }
 
-    public void addToScore(int addAmount, int multi){
-        currentScore += addAmount * multi;
+    public void reduceTime(int subAmount){
+        currentTime -= subAmount;
 
-        int calcScore = currentScore;
+        int calcScore = currentTime;
 
-        digits = 1;
-        while(calcScore>=10){
-            digits++;
-            calcScore = calcScore/10;
-        }
+
 
         for(int i = 1;i <= digits;i++) {
             if(i==1){
-                num = currentScore;
+                num = currentTime;
                 if(num>9){
-                    num = num - ((currentScore/10)*10);
+                    num = num - ((currentTime/10)*10);
                 }
             }else{
-                num = (currentScore/ (int) Math.pow(10,(i-1)));
+                num = (currentTime/ (int) Math.pow(10,(i-1)));
                 if(num>9) {
-                    num = num - ((currentScore / (int) Math.pow(10, i)) * 10);
+                    num = num - ((currentTime / (int) Math.pow(10, i)) * 10);
                 }else{
-                    num = num - ((currentScore/(int) Math.pow(10,i))*10);
+                    num = num - ((currentTime/(int) Math.pow(10,i))*10);
                 }
             }
-
             if(num == 0){
                 score[i-1] = zeroImage;
             }else if(num == 1){

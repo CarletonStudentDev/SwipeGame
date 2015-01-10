@@ -19,7 +19,11 @@ public class MyRenderer implements Renderer {
     public Card card;
     public GameBoard gameBoard;
     public Score score;
+<<<<<<< HEAD
     public GameOverScreen gameOverScreen;
+=======
+    public Timer timer;
+>>>>>>> FETCH_HEAD
 
     private float ratio;
 
@@ -52,7 +56,11 @@ public class MyRenderer implements Renderer {
 
         score = new Score(resources,0,0.9f);
 
+<<<<<<< HEAD
         gameOverScreen = new GameOverScreen(resources, 0, -0.05f);
+=======
+        timer = new Timer(resources,-0.075f,0.45f);
+>>>>>>> FETCH_HEAD
     }
 
     @Override
@@ -86,7 +94,11 @@ public class MyRenderer implements Renderer {
         gameBoard.draw(mMVPMatrix);
         card.draw(scratch);
         score.draw(mMVPMatrix);
+<<<<<<< HEAD
         gameOverScreen.draw(mMVPMatrix);
+=======
+        timer.draw(mMVPMatrix);
+>>>>>>> FETCH_HEAD
 
     }
 }
