@@ -92,6 +92,7 @@ public class MyRenderer implements Renderer {
         score.draw(mMVPMatrix);
         timer.draw(mMVPMatrix);
         if(gameover==1){
+            gameOverScreen.score.setFullNumber(score.getFullNumber());
             gameOverScreen.draw(mMVPMatrix);
         }
 

@@ -106,13 +106,21 @@ public class Numbers extends DrawableObject {
 
     public void decrease(int subAmount) {
         fullNumber -= subAmount;
-
         refreshNumbersArray();
     }
 
     public void increase(int incAmount) {
         fullNumber += incAmount;
+        refreshNumbersArray();
+    }
 
+    public int getFullNumber() {
+        return fullNumber;
+    }
+
+
+    public void setFullNumber(int number) {
+        fullNumber=number;
         refreshNumbersArray();
     }
 

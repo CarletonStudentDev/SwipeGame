@@ -37,36 +37,44 @@ public class MyGLSurfaceView extends GLSurfaceView {
             float newY = -(event.getY() * 2) / getHeight() + 1f;
 
             if(event.getAction() == MotionEvent.ACTION_DOWN){
-                if(renderer.gameBoard.blueTouched(newX, newY)){
-                    //ASSUMING CORRECT
-                    renderer.mBar.increaseNumFull();
-                    renderer.score.increase(1*renderer.mBar.giveMulti());
+                if(renderer.gameover!=1){
+                    if(renderer.gameBoard.blueTouched(newX, newY)){
+                        //ASSUMING CORRECT
+                        renderer.mBar.increaseNumFull();
+                        renderer.score.increase(1*renderer.mBar.giveMulti());
 
-                    renderer.timer.decrease(1);
+                        renderer.timer.decrease(1);
 
-                } else if (renderer.gameBoard.greenTouched(newX, newY)){
-                    //ASSUMING MISTAKE
-                    renderer.mBar.reset();
-                    renderer.topBar.decreaseHearts();
+                    } else if (renderer.gameBoard.greenTouched(newX, newY)){
+                        //ASSUMING MISTAKE
+                        renderer.mBar.reset();
+                        renderer.topBar.decreaseHearts();
 
-                    renderer.timer.decrease(1);
+                        renderer.timer.decrease(1);
 
-                } else if (renderer.gameBoard.purpleTouched(newX, newY)){
-                    //ASSUMING MISTAKE
-                    renderer.mBar.reset();
-                    renderer.topBar.decreaseHearts();
+                    } else if (renderer.gameBoard.purpleTouched(newX, newY)){
+                        //ASSUMING MISTAKE
+                        renderer.mBar.reset();
+                        renderer.topBar.decreaseHearts();
 
-                    renderer.timer.decrease(1);
+                        renderer.timer.decrease(1);
 
-                } else if (renderer.gameBoard.redTouched(newX, newY)){
-                    //ASSUMING MISTAKE
-                    renderer.mBar.reset();
-                    renderer.topBar.decreaseHearts();
+                    } else if (renderer.gameBoard.redTouched(newX, newY)){
+                        //ASSUMING MISTAKE
+                        renderer.mBar.reset();
+                        renderer.topBar.decreaseHearts();
 
-                    renderer.timer.decrease(1);
+                        renderer.timer.decrease(1);
 
+                    }
                 }
+
                if(renderer.topBar.getHearts()==0 || renderer.timer.fullNumber==0){
+                   //if(renderer.timer.fullNumber==0){
+                   //     renderer.gameOverScreen.
+                   //}else{
+                   //
+                  // }
                    renderer.gameover=1;
                }
             }

@@ -26,6 +26,9 @@ public class GameOverScreen extends DrawableObject{
     public Numbers cardspersecscore;
     private Image retry;
     private Image back;
+    private int scoreNum=0;
+    private int highNum=123456;
+    private int cardsPerSec=123;
 
     public GameOverScreen(Resources resources, float x, float y) {
         this.resources=resources;
@@ -39,13 +42,13 @@ public class GameOverScreen extends DrawableObject{
         outoftime = new Image(resources, x, y+0.5f, 1f, R.drawable.outoftime);
 
         scoretitle = new Image(resources, x, y+0.37f, 0.5f, R.drawable.score);
-        score = new Numbers(resources,-0.35f,y+0.25f,1234,8,0,0.12f,0.1f,2);
+        score = new Numbers(resources,-0.35f,y+0.25f,scoreNum,8,0,0.12f,0.1f,2);
 
         highscoretitle = new Image(resources, x, y+0.05f, 0.9f, R.drawable.highscore);
-        highscore = new Numbers(resources,-0.35f,y-0.1f,789012,8,0,0.12f,0.1f,2);
+        highscore = new Numbers(resources,-0.35f,y-0.1f,highNum,8,0,0.12f,0.1f,2);
 
         cardspersectitle = new Image(resources, 0.155f, y-0.3f, 0.8f, R.drawable.cardspersec);
-        cardspersecscore = new Numbers(resources,-0.45f,y-0.3f,156,3,3,0.12f,0.11f,2);
+        cardspersecscore = new Numbers(resources,-0.45f,y-0.3f,cardsPerSec,3,3,0.12f,0.11f,2);
         dot = new Image(resources, -0.285f, y-0.35f, 0.045f, R.drawable.dot);
 
 
@@ -64,8 +67,6 @@ public class GameOverScreen extends DrawableObject{
 
     @Override
     public void draw(float[] mMVPMatrix) {
-
-
         backgroundSquare.draw(mMVPMatrix);
         //outoflives.draw(mMVPMatrix);
         outoftime.draw(mMVPMatrix);
@@ -82,6 +83,8 @@ public class GameOverScreen extends DrawableObject{
         back.draw(mMVPMatrix);
     }
 
-
+    public void updateScore(int scoreNum){
+        this.scoreNum=scoreNum;
+    }
 
 }
