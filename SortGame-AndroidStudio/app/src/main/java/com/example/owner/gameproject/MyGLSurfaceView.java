@@ -25,8 +25,7 @@ public class MyGLSurfaceView extends GLSurfaceView {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (event != null)
-        {
+        if (event != null){
 
             float r = (float)getHeight() / getWidth();
 
@@ -41,25 +40,30 @@ public class MyGLSurfaceView extends GLSurfaceView {
                 if(renderer.gameBoard.blueTouched(newX, newY)){
                     //ASSUMING CORRECT
                     renderer.mBar.increaseNumFull();
-                    renderer.score.addToScore(1,renderer.mBar.giveMulti());
+                    renderer.score.increase(1*renderer.mBar.giveMulti());
+
+                    renderer.timer.decrease(1);
 
                 } else if (renderer.gameBoard.greenTouched(newX, newY)){
                     //ASSUMING MISTAKE
                     renderer.mBar.reset();
                     renderer.topBar.decreaseHearts();
-                    renderer.timer.reduceTime(1);
+
+                    renderer.timer.decrease(1);
 
                 } else if (renderer.gameBoard.purpleTouched(newX, newY)){
                     //ASSUMING MISTAKE
                     renderer.mBar.reset();
                     renderer.topBar.decreaseHearts();
-                    renderer.timer.reduceTime(1);
+
+                    renderer.timer.decrease(1);
 
                 } else if (renderer.gameBoard.redTouched(newX, newY)){
                     //ASSUMING MISTAKE
                     renderer.mBar.reset();
                     renderer.topBar.decreaseHearts();
-                    renderer.timer.reduceTime(1);
+
+                    renderer.timer.decrease(1);
 
                 }
             }

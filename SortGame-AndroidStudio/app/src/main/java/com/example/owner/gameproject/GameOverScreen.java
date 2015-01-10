@@ -20,9 +20,12 @@ public class GameOverScreen extends DrawableObject{
     private Image scoretitle;
     private Image cardspersectitle;
     private Image highscoretitle;
-    public Score score;
-    public Score cardspersecscore;
-    public Score highscore;
+    private Image dot;
+    public Numbers score;
+    public Numbers highscore;
+    public Numbers cardspersecscore;
+    private Image retry;
+    private Image back;
 
     public GameOverScreen(Resources resources, float x, float y) {
         this.resources=resources;
@@ -36,17 +39,22 @@ public class GameOverScreen extends DrawableObject{
         outoftime = new Image(resources, x, y+0.5f, 1f, R.drawable.outoftime);
 
         scoretitle = new Image(resources, x, y+0.37f, 0.5f, R.drawable.score);
-        score = new Score(resources,0,y+0.25f);
+        score = new Numbers(resources,-0.35f,y+0.25f,1234,8,0,0.12f,0.1f,2);
 
-        highscoretitle = new Image(resources, x, y+0.08f, 0.9f, R.drawable.highscore);
-        highscore = new Score(resources,0,y-0.07f);
+        highscoretitle = new Image(resources, x, y+0.05f, 0.9f, R.drawable.highscore);
+        highscore = new Numbers(resources,-0.35f,y-0.1f,789012,8,0,0.12f,0.1f,2);
 
-        cardspersectitle = new Image(resources, 0.15f, y-0.25f, 0.8f, R.drawable.cardspersec);
-        cardspersecscore = new Score(resources,-0.425f,y-0.25f);
+        cardspersectitle = new Image(resources, 0.155f, y-0.3f, 0.8f, R.drawable.cardspersec);
+        cardspersecscore = new Numbers(resources,-0.45f,y-0.3f,156,3,3,0.12f,0.11f,2);
+        dot = new Image(resources, -0.285f, y-0.35f, 0.045f, R.drawable.dot);
+
 
         float backgroundColor2[] = GraphicsHelper.RGBArray(resources, R.color.blue);
         retrySquare = new Square(x+0.25f, y-0.575f, 0.42f, 0.2f, backgroundColor2);
-        menuSquare = new Square(x-0.25f, y-0.575f, 0.42f, 0.2f, backgroundColor2);
+        menuSquare = new Square(x-0.225f, y-0.575f, 0.42f, 0.2f, backgroundColor2);
+        retry = new Image(resources, x+0.25f, y-0.575f, 0.2f, R.drawable.retry);
+        back = new Image(resources, x-0.225f, y-0.575f, 0.2f, R.drawable.back);
+
     }
 
     @Override
@@ -56,6 +64,8 @@ public class GameOverScreen extends DrawableObject{
 
     @Override
     public void draw(float[] mMVPMatrix) {
+
+
         backgroundSquare.draw(mMVPMatrix);
         //outoflives.draw(mMVPMatrix);
         outoftime.draw(mMVPMatrix);
@@ -65,8 +75,11 @@ public class GameOverScreen extends DrawableObject{
         highscore.draw(mMVPMatrix);
         cardspersectitle.draw(mMVPMatrix);
         cardspersecscore.draw(mMVPMatrix);
+        dot.draw(mMVPMatrix);
         retrySquare.draw(mMVPMatrix);
         menuSquare.draw(mMVPMatrix);
+        retry.draw(mMVPMatrix);
+        back.draw(mMVPMatrix);
     }
 
 
