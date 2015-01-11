@@ -165,6 +165,7 @@ public class MyRenderer implements Renderer {
         {
             this.game.timeOut();
             mBar.reset();
+            this.timer.resetTimer();
             topBar.decreaseHearts();
         }
 

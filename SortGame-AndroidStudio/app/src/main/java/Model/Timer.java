@@ -28,7 +28,7 @@ public class Timer
         return System.currentTimeMillis() - this.startTime > this.maxTime;
     }
 
-
+    public void resetTimer() {startTime = System.currentTimeMillis();}
 
 
 }

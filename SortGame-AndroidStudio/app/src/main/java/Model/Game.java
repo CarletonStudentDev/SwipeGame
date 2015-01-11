@@ -113,10 +113,7 @@ public class Game
      *                  the time ran out.
      */
 
-    public void setTimedOut(boolean timedOut)
-    {
-        this.timedOut = timedOut;
-    }
+    public void setTimedOut(boolean timedOut) { this.timedOut = timedOut; }
 
 
     /**
