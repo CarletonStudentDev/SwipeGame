@@ -12,7 +12,7 @@ import DrawableObjects.Card;
  * pattern attribute chosen at random.
  *
  * @author Varun Sriram
- * @version 1.4
+ * @version 1.5
  * @since 2014-11-28
  *
  */
@@ -27,9 +27,20 @@ public class CardGenerator
      *
      */
 
-    private static final int DEFAULTNUMPATTERNATTR = 4,
-                             DEAFULTPOSX = 0,
-                             DEAFULTPOSY = 0;
+    private static final int DEFAULTNUMPATTERNATTR = 4;
+
+
+    /**
+     * DEAFULTPOSX: float value representing the default x position
+     *              of the Card on the screen.
+     *
+     * DEAFULTPOSY: float value representing the default y position
+     *              of the Card on the screen.
+     *
+     */
+
+    private static final float DEAFULTPOSX = 0.0f,
+                               DEAFULTPOSY = -0.2f;
 
 
     /**
