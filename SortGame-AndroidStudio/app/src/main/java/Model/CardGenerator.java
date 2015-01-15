@@ -12,7 +12,7 @@ import DrawableObjects.Card;
  * pattern attribute chosen at random.
  *
  * @author Varun Sriram
- * @version 1.3
+ * @version 1.4
  * @since 2014-11-28
  *
  */

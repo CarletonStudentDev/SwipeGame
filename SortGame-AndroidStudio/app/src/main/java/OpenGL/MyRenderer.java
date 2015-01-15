@@ -188,8 +188,8 @@ public class MyRenderer implements Renderer {
         float[] scratch = new float[16];
 
         //TODO see if we can make it just use 'card.mModelMatrix'
-        Matrix.translateM(card.square.mModelMatrix, 0, -mDeltaX * (ratio / 100f), -mDeltaY * (ratio / 100f), 0);
-        Matrix.multiplyMM(scratch, 0, mMVPMatrix, 0, card.square.mModelMatrix, 0);
+        Matrix.translateM(card.getSquare().mModelMatrix, 0, -mDeltaX * (ratio / 100f), -mDeltaY * (ratio / 100f), 0);
+        Matrix.multiplyMM(scratch, 0, mMVPMatrix, 0, card.getSquare().mModelMatrix, 0);
         mDeltaX = 0f;
         mDeltaY = 0f;
 
