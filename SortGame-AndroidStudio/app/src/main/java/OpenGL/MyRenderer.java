@@ -31,8 +31,6 @@ public class MyRenderer implements Renderer {
     public float mDeltaX;
     public float mDeltaY;
 
-    private boolean aBoolean;
-
 
 
     public MyRenderer(Resources resources, GLSurfaceView view)
@@ -50,10 +48,7 @@ public class MyRenderer implements Renderer {
         this.gameSetup = new GameSetup(this.resources, 10000);
         this.gameTouchLogic = new GameTouchLogic(this.view, this.gameSetup);
 
-
         ratio = (float) view.getWidth() / (float) view.getHeight();
-
-
     }
 
     @Override
@@ -100,4 +95,7 @@ public class MyRenderer implements Renderer {
         DrawObjects.draw(this.gameTouchLogic, mMVPMatrix, scratch);
 
     }
+
+
+
 }
