@@ -19,7 +19,6 @@ public class MyRenderer implements Renderer {
 
     private GameSetup gameSetup;
     private GameTouchLogic gameTouchLogic;
-    private DrawObjects drawObjects;
 
     private float ratio;
 
@@ -32,6 +31,8 @@ public class MyRenderer implements Renderer {
     public float mDeltaX;
     public float mDeltaY;
 
+    private boolean aBoolean;
+
 
 
     public MyRenderer(Resources resources, GLSurfaceView view)
@@ -42,12 +43,12 @@ public class MyRenderer implements Renderer {
 
 
     @Override
-    public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
+    public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig)
+    {
         GLES20.glClearColor( 236f/255f, 240f/255f, 241f/255f, 1.0f );
 
-        this.gameSetup = new GameSetup(this.resources, 30000);
+        this.gameSetup = new GameSetup(this.resources, 10000);
         this.gameTouchLogic = new GameTouchLogic(this.view, this.gameSetup);
-        this.drawObjects = new DrawObjects(this.gameSetup);
 
 
         ratio = (float) view.getWidth() / (float) view.getHeight();
@@ -56,16 +57,13 @@ public class MyRenderer implements Renderer {
     }
 
     @Override
-    public void onSurfaceChanged(GL10 gl10, int width, int height) {
+    public void onSurfaceChanged(GL10 gl10, int width, int height)
+    {
         GLES20.glViewport(0, 0, width, height);
         this.ratio = (float) width / height;
 
         Matrix.frustumM(mProjectionMatrix, 0, -ratio, ratio, -1, 1, 3, 7);
     }
-
-
-
-
 
 
     public boolean onTouchEvent(MotionEvent event)
@@ -74,9 +72,19 @@ public class MyRenderer implements Renderer {
     }
 
 
+    private void checkTime()
+    {
+        if (this.gameTouchLogic.getTimer().timeOut())
+            this.gameTouchLogic.timeOut();
+    }
+
+
 
     @Override
-    public void onDrawFrame(GL10 gl10) {
+    public void onDrawFrame(GL10 gl10)
+    {
+        this.checkTime();
+
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
         Matrix.setLookAtM(mViewMatrix, 0, 0, 0, -3, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
         Matrix.multiplyMM(mMVPMatrix, 0, mProjectionMatrix, 0, mViewMatrix, 0);
@@ -89,7 +97,7 @@ public class MyRenderer implements Renderer {
         mDeltaX = 0f;
         mDeltaY = 0f;
 
-        this.drawObjects.draw(mMVPMatrix, scratch);
+        DrawObjects.draw(this.gameTouchLogic, mMVPMatrix, scratch);
 
     }
 }

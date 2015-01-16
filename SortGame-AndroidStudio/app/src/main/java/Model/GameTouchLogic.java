@@ -16,7 +16,7 @@ import DrawableObjects.TopBar;
  * the SwipeGame.
  *
  * @author Jeton Sinoimeri
- * @version 1.0
+ * @version 1.1
  * @since 2014-01-15
  *
  */
@@ -196,12 +196,6 @@ public class GameTouchLogic
         }
 
 
-        else if (this.timer.timeOut())
-        {
-            this.timeOut();
-            return true;
-        }
-
 
         return false;
     }
@@ -243,7 +237,7 @@ public class GameTouchLogic
      *
      */
 
-    private void timeOut()
+    public void timeOut()
     {
         this.game.timeOut();
         this.setLivesResetMBar();
@@ -260,6 +254,89 @@ public class GameTouchLogic
     {
         this.multiplierBar.reset();
         this.topBar.setFullHearts(this.player.getLives());
+    }
+
+
+    /**
+     * Getter for the multiplier bar.
+     *
+     * @return multiplierBar: MultiplierBar instance representing the
+     *                        DrawableObjects MultiplierBar class.
+     *
+     */
+
+    public MultiplierBar getMultiplierBar()
+    {
+        return this.multiplierBar;
+    }
+
+
+    /**
+     * Getter for the top bar.
+     *
+     * @return topBar: TopBar instance representing the DrawableObjects
+     *                 TopBar class.
+     *
+     */
+
+    public TopBar getTopBar()
+    {
+        return this.topBar;
+    }
+
+
+    /**
+     * Getter for the card.
+     *
+     * @return card: Card instance representing the DrawableObjects
+     *               Card class.
+     *
+     */
+
+    public Card getCard()
+    {
+        return this.card;
+    }
+
+
+    /**
+     * Getter for the game board.
+     *
+     * @return gameBoard: GameBoard instance representing the
+     *                    DrawableObjects GameBoard class.
+     *
+     */
+
+    public GameBoard getGameBoard()
+    {
+        return this.gameBoard;
+    }
+
+
+    /**
+     * Getter for the score.
+     *
+     * @return score: Score instance representing the DrawableObjects
+     *                Score class.
+     *
+     */
+
+    public Score getScore()
+    {
+        return this.score;
+    }
+
+
+    /**
+     * Getter for the timer.
+     *
+     * @return timer: Timer instance representing the Model Timer class.
+     *
+     */
+
+    public Timer getTimer()
+    {
+        return this.timer;
     }
 
 
