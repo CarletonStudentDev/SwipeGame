@@ -1,5 +1,4 @@
 package OpenGL;
-
 import android.content.Context;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
@@ -14,62 +13,56 @@ import DrawableObjects.DrawObjects;
 import Model.GameSetup;
 import Model.GameTouchLogic;
 
+
+
 public class MyRenderer implements Renderer {
     private GLSurfaceView view;
-
     private GameSetup gameSetup;
     private GameTouchLogic gameTouchLogic;
-
     private float ratio;
-
     private final float[] mMVPMatrix = new float[16];
     private final float[] mProjectionMatrix = new float[16];
     private final float[] mViewMatrix = new float[16];
-
     private Context context;
-
     public float mDeltaX;
     public float mDeltaY;
 
 
-
-
     public MyRenderer(Context context, GLSurfaceView view)
     {
-
         this.view = view;
         this.context = context;
     }
+
+
 
 
     @Override
     public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig)
     {
         GLES20.glClearColor( 236f/255f, 240f/255f, 241f/255f, 1.0f );
-
         this.gameSetup = new GameSetup(this.context, 10000);
         this.gameTouchLogic = new GameTouchLogic(this.view, this.gameSetup);
-
         ratio = (float) view.getWidth() / (float) view.getHeight();
-
-
     }
+
+
+
 
     @Override
     public void onSurfaceChanged(GL10 gl10, int width, int height)
     {
         GLES20.glViewport(0, 0, width, height);
         this.ratio = (float) width / height;
-
         Matrix.frustumM(mProjectionMatrix, 0, -ratio, ratio, -1, 1, 3, 7);
     }
+
 
 
     public boolean onTouchEvent(MotionEvent event)
     {
         return this.gameTouchLogic.onTouchEvent(event);
     }
-
 
 
 
@@ -80,16 +73,14 @@ public class MyRenderer implements Renderer {
     }
 
 
-
+    
     @Override
     public void onDrawFrame(GL10 gl10)
     {
         this.checkTime();
-
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
         Matrix.setLookAtM(mViewMatrix, 0, 0, 0, -3, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
         Matrix.multiplyMM(mMVPMatrix, 0, mProjectionMatrix, 0, mViewMatrix, 0);
-
         float[] scratch = new float[16];
 
         //TODO see if we can make it just use 'card.mModelMatrix'
@@ -97,13 +88,6 @@ public class MyRenderer implements Renderer {
         Matrix.multiplyMM(scratch, 0, mMVPMatrix, 0, this.gameSetup.getCard().getSquare().mModelMatrix, 0);
         mDeltaX = 0f;
         mDeltaY = 0f;
-
-
         DrawObjects.draw(this.gameTouchLogic, mMVPMatrix, scratch);
-
-
     }
-
-
-
 }
