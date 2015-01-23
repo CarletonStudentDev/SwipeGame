@@ -1,6 +1,6 @@
 package Model;
 
-import android.content.res.Resources;
+import android.content.Context;
 
 import DrawableObjects.Card;
 import DrawableObjects.GameBoard;
@@ -12,7 +12,7 @@ import DrawableObjects.TopBar;
  * GameSetup sets up the SwipeGame.
  *
  * @author Jeton Sinoimeri
- * @version 1.0
+ * @version 1.1
  * @since 2014-01-15
  *
  */
@@ -101,26 +101,26 @@ public class GameSetup
 
 
     /**
-     * resources: Resources instance representing the Resources of the app.
+     * context: Context instance representing the Context of the app.
      *
      */
 
-    private Resources resources;
+    private Context context;
 
 
 
     /**
      * Constructor for the GameSetup class.
      *
-     * @param resources: Resources instance representing the Resources of the app.
+     * @param context: Context instance representing the Context of the app.
      *
      * @param gameTime: long value representing the total game time.
      *
      */
 
-    public GameSetup(Resources resources, long gameTime)
+    public GameSetup(Context context, long gameTime)
     {
-        this.resources = resources;
+        this.context = context;
         this.timer = new Timer(gameTime);
 
         this.player = new Player();
@@ -129,14 +129,14 @@ public class GameSetup
         this.game = new Game(this.player, this.multiplier);
         this.cardGenerator = new CardGenerator();
 
-        this.card = this.cardGenerator.generateCard(this.resources);
-        this.gameBoard = new GameBoard(this.resources);
+        this.card = this.cardGenerator.generateCard(this.context);
+        this.gameBoard = new GameBoard(this.context);
 
-        this.topBar = new TopBar(resources,-0.3f,0.9f);
+        this.topBar = new TopBar(this.context,-0.3f,0.9f);
         this.topBar.setFullHearts(this.player.getLives());
 
-        this.multiplierBar = new MultiplierBar(this.resources, 0.0f, 0.7f);
-        this.score = new Score(this.resources,0,0.9f);
+        this.multiplierBar = new MultiplierBar(this.context, 0.0f, 0.7f);
+        this.score = new Score(this.context,0,0.9f);
 
     }
 
@@ -280,15 +280,15 @@ public class GameSetup
 
 
     /**
-     * Getter for the resources.
+     * Getter for the context.
      *
-     * @return resources: Resources instance representing the Resources
-     *                    of the app.
+     * @return context: Context instance representing the Context
+     *                  of the app.
      *
      */
 
-    public Resources getResources()
+    public Context getContext()
     {
-        return this.resources;
+        return this.context;
     }
 }

@@ -1,6 +1,6 @@
 package Model;
 
-import android.content.res.Resources;
+import android.content.Context;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -16,7 +16,7 @@ import DrawableObjects.TopBar;
  * the SwipeGame.
  *
  * @author Jeton Sinoimeri
- * @version 1.1
+ * @version 1.2
  * @since 2014-01-15
  *
  */
@@ -105,11 +105,11 @@ public class GameTouchLogic
 
 
     /**
-     * resources: Resources instance representing the Resources of the app.
+     * context: Context instance representing the Context of the app.
      *
      */
 
-    private Resources resources;
+    private Context context;
 
 
     /**
@@ -138,7 +138,7 @@ public class GameTouchLogic
         this.card = gameSetup.getCard();
 
         this.gameBoard = gameSetup.getGameBoard();
-        this.resources = gameSetup.getResources();
+        this.context = gameSetup.getContext();
 
     }
 
@@ -214,7 +214,7 @@ public class GameTouchLogic
         this.score.addToScore(100, this.multiplierBar.giveMulti());
 
 
-        this.card = this.cardGenerator.generateCard(this.resources);
+        this.card = this.cardGenerator.generateCard(this.context);
     }
 
 
@@ -228,7 +228,7 @@ public class GameTouchLogic
         this.game.incorrectMatch();
         this.setLivesResetMBar();
 
-        this.card = this.cardGenerator.generateCard(this.resources);
+        this.card = this.cardGenerator.generateCard(this.context);
     }
 
 

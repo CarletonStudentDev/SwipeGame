@@ -2,7 +2,6 @@ package DrawableObjects;
 
 
 import android.content.Context;
-import android.content.res.Resources;
 
 import com.example.owner.gameproject.R;
 
@@ -25,7 +24,7 @@ import OpenGL.Square;
  * @author Robert Fernandes
  * @author Jeton Sinoimeri
  * @author Varun Sriram
- * @version 1.6
+ * @version 1.7
  * @since 2015-01-04
  *
  */
@@ -89,8 +88,8 @@ public class Card extends DrawableObject
     /**
      * Constructor for the Card class.
      *
-     * @param resources: Resources instance representing the
-     *                   resources of the app.
+     * @param context: Context instance representing the
+     *                 Context of the app.
      * @param xCoordinate: float value representing the
      *                     x-coordinate of the Card.
      * @param yCoordinate: float value representing the
@@ -185,7 +184,6 @@ public class Card extends DrawableObject
 
         else if (colorId == 3)
             return R.color.red;
-
 
         return R.color.purple;
 

@@ -1,7 +1,6 @@
 package OpenGL;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLSurfaceView.Renderer;
@@ -32,14 +31,12 @@ public class MyRenderer implements Renderer {
     public float mDeltaX;
     public float mDeltaY;
 
-<<<<<<< HEAD
-    public MyRenderer(Context context, GLSurfaceView view){
-=======
 
 
-    public MyRenderer(Resources resources, GLSurfaceView view)
+
+    public MyRenderer(Context context, GLSurfaceView view)
     {
->>>>>>> Jeton2
+
         this.view = view;
         this.context = context;
     }
@@ -50,24 +47,12 @@ public class MyRenderer implements Renderer {
     {
         GLES20.glClearColor( 236f/255f, 240f/255f, 241f/255f, 1.0f );
 
-        this.gameSetup = new GameSetup(this.resources, 10000);
+        this.gameSetup = new GameSetup(this.context, 10000);
         this.gameTouchLogic = new GameTouchLogic(this.view, this.gameSetup);
 
         ratio = (float) view.getWidth() / (float) view.getHeight();
-<<<<<<< HEAD
 
-        card = new Card(context, 0.0f, -0.2f, R.color.blue);
-        gameBoard = new GameBoard(context);
 
-        topBar = new TopBar(context,-0.3f,0.9f);
-        Log.i("integer.toString: ", ""+this.player.getLives());
-        topBar.setFullHearts(this.player.getLives());
-
-        mBar = new MultiplierBar(context, 0.0f, 0.7f);
-
-        score = new Score(context,0,0.9f);
-=======
->>>>>>> Jeton2
     }
 
     @Override
@@ -85,36 +70,13 @@ public class MyRenderer implements Renderer {
         return this.gameTouchLogic.onTouchEvent(event);
     }
 
-<<<<<<< HEAD
-    private void correct()
-    {
-        this.game.correctMatch();
-        this.mBar.increaseNumFull();
 
-        score.addToScore(100, mBar.giveMulti());
 
-        Log.i("score", Integer.toString(score.currentScore));
-
-        score.addToScore(1,mBar.giveMulti());
-
-        // generate a card
-        card = cardGenerator.generateCard(this.context);
-=======
->>>>>>> Jeton2
 
     private void checkTime()
     {
-<<<<<<< HEAD
-        this.game.incorrectMatch();
-        mBar.reset();
-        topBar.decreaseHearts();
-
-        // generate a card
-        card = cardGenerator.generateCard(this.context);
-=======
         if (this.gameTouchLogic.getTimer().timeOut())
             this.gameTouchLogic.timeOut();
->>>>>>> Jeton2
     }
 
 
@@ -136,16 +98,10 @@ public class MyRenderer implements Renderer {
         mDeltaX = 0f;
         mDeltaY = 0f;
 
-<<<<<<< HEAD
-        topBar.draw(mMVPMatrix);
-        mBar.draw(mMVPMatrix);
-        gameBoard.draw(mMVPMatrix);
-        card.draw(scratch);
-        score.draw(mMVPMatrix);
-=======
+
         DrawObjects.draw(this.gameTouchLogic, mMVPMatrix, scratch);
 
->>>>>>> Jeton2
+
     }
 
 
