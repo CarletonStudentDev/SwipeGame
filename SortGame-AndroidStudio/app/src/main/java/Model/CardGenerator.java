@@ -1,5 +1,6 @@
 package Model;
 
+import android.content.Context;
 import android.content.res.Resources;
 
 import java.util.Random;
@@ -88,10 +89,10 @@ public class CardGenerator
      *
      */
 
-    public Card generateCard(Resources resources)
+    public Card generateCard(Context context)
     {
 
-        Card card = new Card(resources,
+        Card card = new Card(context,
                              DEAFULTPOSX,
                              DEAFULTPOSY,
                              this.getRandValue(1, this.numOfPatternAttr + 1)

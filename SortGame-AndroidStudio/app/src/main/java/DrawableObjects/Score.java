@@ -1,5 +1,6 @@
 package DrawableObjects;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,16 +18,6 @@ public class Score extends DrawableObject
 {
 
     private Image[] score = new Image[7];
-    private Bitmap zero;
-    private Bitmap one;
-    private Bitmap two;
-    private Bitmap three;
-    private Bitmap four;
-    private Bitmap five;
-    private Bitmap six;
-    private Bitmap seven;
-    private Bitmap eight;
-    private Bitmap nine;
     private int digits = 1;
     public int num;
 
@@ -46,39 +37,27 @@ public class Score extends DrawableObject
 
     public float x;
     private float y;
-    private Resources resources;
+    private Context context;
     private float digitShift;
     float[] scratch = new float[16];
     float[] oldMatrix = new float[16];
 
 
-    public Score(Resources resources, float x, float y ) {
+    public Score(Context context, float x, float y ) {
         this.x = x;
         this.y = y;
-        this.resources = resources;
+        this.context = context;
 
-        zero = BitmapFactory.decodeResource(resources, R.drawable.zero);
-        one = BitmapFactory.decodeResource(resources, R.drawable.one);
-        two = BitmapFactory.decodeResource(resources, R.drawable.two);
-        three = BitmapFactory.decodeResource(resources, R.drawable.three);
-        four = BitmapFactory.decodeResource(resources, R.drawable.four);
-        five = BitmapFactory.decodeResource(resources, R.drawable.five);
-        six = BitmapFactory.decodeResource(resources, R.drawable.six);
-        seven = BitmapFactory.decodeResource(resources, R.drawable.seven);
-        eight = BitmapFactory.decodeResource(resources, R.drawable.eight);
-        nine = BitmapFactory.decodeResource(resources, R.drawable.nine);
-
-
-        zeroImage = new Image(resources, x, y, 0.12f, zero);
-        oneImage = new Image(resources, x, y, 0.12f, one);
-        twoImage = new Image(resources, x, y, 0.12f, two);
-        threeImage = new Image(resources, x, y, 0.12f, three);
-        fourImage = new Image(resources, x, y, 0.12f, four);
-        fiveImage = new Image(resources, x, y, 0.12f, five);
-        sixImage = new Image(resources, x, y, 0.12f, six);
-        sevenImage = new Image(resources, x, y, 0.12f, seven);
-        eightImage = new Image(resources, x, y, 0.12f, eight);
-        nineImage = new Image(resources, x, y, 0.12f, nine);
+        zeroImage = new Image(context, x, y, 0.12f, R.drawable.zero);
+        oneImage = new Image(context, x, y, 0.12f, R.drawable.one);
+        twoImage = new Image(context, x, y, 0.12f, R.drawable.two);
+        threeImage = new Image(context, x, y, 0.12f, R.drawable.three);
+        fourImage = new Image(context, x, y, 0.12f, R.drawable.four);
+        fiveImage = new Image(context, x, y, 0.12f, R.drawable.five);
+        sixImage = new Image(context, x, y, 0.12f, R.drawable.six);
+        sevenImage = new Image(context, x, y, 0.12f, R.drawable.seven);
+        eightImage = new Image(context, x, y, 0.12f, R.drawable.eight);
+        nineImage = new Image(context, x, y, 0.12f, R.drawable.nine);
 
         score[0] = zeroImage;
     }

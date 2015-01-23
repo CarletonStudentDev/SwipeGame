@@ -1,5 +1,6 @@
 package OpenGL;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 
@@ -34,11 +35,11 @@ public class CircleImage extends Circle {
     private float radius;
     int vertices = 360;
 
-    public CircleImage(Resources resources, float radius, float x, float y, Bitmap bitmap){
-        super(radius, x, y, GraphicsHelper.RGBArray(resources, R.color.red));
+    public CircleImage(Context context, float radius, float x, float y, int bitmapId){
+        super(radius, x, y, GraphicsHelper.RGBArray(context, R.color.red));
         this.radius = radius;
         setShaderCode(vertexShaderCode,fragmentShaderCode);
-        setTexture(bitmap);
+        setTexture(context, bitmapId);
         setTextureCoords(getTextureCoords());
         initializeBuffers();
     }

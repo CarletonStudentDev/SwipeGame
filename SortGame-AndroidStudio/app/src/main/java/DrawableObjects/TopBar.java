@@ -1,5 +1,6 @@
 package DrawableObjects;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -23,24 +24,20 @@ public class TopBar extends DrawableObject
     private Square backgroundSquare;
     private int fullHearts = 3;
 
-    public TopBar(Resources resources, float x, float y ) {
+    public TopBar(Context context, float x, float y ) {
 
         // colors used
-        float backgroundColor[] = GraphicsHelper.RGBArray(resources, R.color.darkBlue);
-
-        // images used
-        Bitmap blankHeart = BitmapFactory.decodeResource(resources, R.drawable.blankheart);
-        Bitmap fullHeart = BitmapFactory.decodeResource(resources, R.drawable.fullheart);
+        float backgroundColor[] = GraphicsHelper.RGBArray(context, R.color.darkBlue);
 
         // initialize shapes
         backgroundSquare = new Square(0f, 0.9f, 0.65f * 2 , 0.2f, backgroundColor);
 
         for(int i = 0;i < numHearts;i++){
-           hearts[i] = new Image(resources, x - i*0.13f, y, 0.11f, blankHeart);
+           hearts[i] = new Image(context, x - i*0.13f, y, 0.11f, R.drawable.blankheart);
         }
 
         for(int j = 0;j < numHearts;j++){
-            filledHearts[j] = new Image(resources, x - j*0.13f, y, 0.11f, fullHeart);
+            filledHearts[j] = new Image(context, x - j*0.13f, y, 0.11f, R.drawable.fullheart);
         }
     }
     @Override

@@ -1,5 +1,6 @@
 package DrawableObjects;
 
+import android.content.Context;
 import android.content.res.Resources;
 
 import com.example.owner.gameproject.R;
@@ -16,13 +17,13 @@ public class GameBoard {
     private Circle circle3;
     private Circle circle4;
 
-    public GameBoard (Resources resources) {
+    public GameBoard (Context context) {
 
         // colors used
-        float red[] = GraphicsHelper.RGBArray(resources, R.color.red);
-        float green[] = GraphicsHelper.RGBArray(resources, R.color.green);
-        float purple[] = GraphicsHelper.RGBArray(resources, R.color.purple);
-        float blue[] = GraphicsHelper.RGBArray(resources, R.color.blue);
+        float red[] = GraphicsHelper.RGBArray(context, R.color.red);
+        float green[] = GraphicsHelper.RGBArray(context, R.color.green);
+        float purple[] = GraphicsHelper.RGBArray(context, R.color.purple);
+        float blue[] = GraphicsHelper.RGBArray(context, R.color.blue);
 
         // initialize shapes
         circle = new Circle(0.4f, 0.35f, 0.35f, red);

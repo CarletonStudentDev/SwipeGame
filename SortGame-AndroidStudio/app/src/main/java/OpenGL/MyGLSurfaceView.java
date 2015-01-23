@@ -16,7 +16,7 @@ public class MyGLSurfaceView extends GLSurfaceView {
         super(context);
         this.context = context;
 
-        renderer = new MyRenderer(context.getResources(),this);
+        renderer = new MyRenderer(context, this);
         setEGLContextClientVersion(2);
         setRenderer(renderer);
         //setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);

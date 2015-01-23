@@ -1,6 +1,7 @@
 package DrawableObjects;
 
 
+import android.content.Context;
 import android.content.res.Resources;
 
 import com.example.owner.gameproject.R;
@@ -97,10 +98,10 @@ public class Card extends DrawableObject
      *                 of the Card given by the CardGenerator.
      */
 
-    public Card (Resources resources, float xCoordinate, float yCoordinate, int colorId)
+    public Card (Context context, float xCoordinate, float yCoordinate, int colorId)
     {
         this.colorId = this.getColor(colorId);
-        this.squareColor = GraphicsHelper.RGBArray(resources, this.colorId);
+        this.squareColor = GraphicsHelper.RGBArray(context, this.colorId);
         this.square = new Square(xCoordinate, yCoordinate, WIDTH, LENGTH, this.squareColor);
     }
 

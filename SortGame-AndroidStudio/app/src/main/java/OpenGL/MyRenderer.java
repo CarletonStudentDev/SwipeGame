@@ -1,5 +1,6 @@
 package OpenGL;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
@@ -46,16 +47,14 @@ public class MyRenderer implements Renderer {
     private final float[] mProjectionMatrix = new float[16];
     private final float[] mViewMatrix = new float[16];
 
-    private Resources resources;
+    private Context context;
 
     public float mDeltaX;
     public float mDeltaY;
 
-
-
-    public MyRenderer(Resources resources, GLSurfaceView view){
+    public MyRenderer(Context context, GLSurfaceView view){
         this.view = view;
-        this.resources = resources;
+        this.context = context;
     }
 
 
@@ -72,16 +71,16 @@ public class MyRenderer implements Renderer {
 
         ratio = (float) view.getWidth() / (float) view.getHeight();
 
-        card = new Card(resources, 0.0f, -0.2f, R.color.blue);
-        gameBoard = new GameBoard(resources);
+        card = new Card(context, 0.0f, -0.2f, R.color.blue);
+        gameBoard = new GameBoard(context);
 
-        topBar = new TopBar(resources,-0.3f,0.9f);
+        topBar = new TopBar(context,-0.3f,0.9f);
         Log.i("integer.toString: ", ""+this.player.getLives());
         topBar.setFullHearts(this.player.getLives());
 
-        mBar = new MultiplierBar(resources, 0.0f, 0.7f);
+        mBar = new MultiplierBar(context, 0.0f, 0.7f);
 
-        score = new Score(resources,0,0.9f);
+        score = new Score(context,0,0.9f);
     }
 
     @Override
@@ -145,7 +144,7 @@ public class MyRenderer implements Renderer {
         score.addToScore(1,mBar.giveMulti());
 
         // generate a card
-        card = cardGenerator.generateCard(this.resources);
+        card = cardGenerator.generateCard(this.context);
 
     }
 
@@ -156,7 +155,7 @@ public class MyRenderer implements Renderer {
         topBar.decreaseHearts();
 
         // generate a card
-        card = cardGenerator.generateCard(this.resources);
+        card = cardGenerator.generateCard(this.context);
     }
 
     private void update()
@@ -198,6 +197,5 @@ public class MyRenderer implements Renderer {
         gameBoard.draw(mMVPMatrix);
         card.draw(scratch);
         score.draw(mMVPMatrix);
-
     }
 }
