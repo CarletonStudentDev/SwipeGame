@@ -15,26 +15,16 @@ public class Numbers extends DrawableObject {
     private int color;
     private int size;
     private Image[] numbers = new Image[8];
-    private Image blackZeroImage;
-    private Image blackOneImage;
-    private Image blackTwoImage;
-    private Image blackThreeImage;
-    private Image blackFourImage;
-    private Image blackFiveImage;
-    private Image blackSixImage;
-    private Image blackSevenImage;
-    private Image blackEightImage;
-    private Image blackNineImage;
-    private Image whiteZeroImage;
-    private Image whiteOneImage;
-    private Image whiteTwoImage;
-    private Image whiteThreeImage;
-    private Image whiteFourImage;
-    private Image whiteFiveImage;
-    private Image whiteSixImage;
-    private Image whiteSevenImage;
-    private Image whiteEightImage;
-    private Image whiteNineImage;
+    private Image zeroImage;
+    private Image oneImage;
+    private Image twoImage;
+    private Image threeImage;
+    private Image fourImage;
+    private Image fiveImage;
+    private Image sixImage;
+    private Image sevenImage;
+    private Image eightImage;
+    private Image nineImage;
 
     public int singleDigit;
     public int fullNumber;
@@ -54,28 +44,31 @@ public class Numbers extends DrawableObject {
         this.digitShift=digitShift;
         this.color=color;
 
-        blackZeroImage = new Image(resources, x, y, numSize, R.drawable.zeroblack);
-        blackOneImage = new Image(resources, x, y, numSize, R.drawable.oneblack);
-        blackTwoImage = new Image(resources, x, y, numSize, R.drawable.twoblack);
-        blackThreeImage = new Image(resources, x, y, numSize, R.drawable.threeblack);
-        blackFourImage = new Image(resources, x, y, numSize, R.drawable.fourblack);
-        blackFiveImage = new Image(resources, x, y, numSize, R.drawable.fiveblack);
-        blackSixImage = new Image(resources, x, y, numSize, R.drawable.sixblack);
-        blackSevenImage = new Image(resources, x, y, numSize, R.drawable.sevenblack);
-        blackEightImage = new Image(resources, x, y, numSize, R.drawable.eightblack);
-        blackNineImage = new Image(resources, x, y, numSize, R.drawable.nineblack);
-
-        whiteZeroImage = new Image(resources, x, y, 0.12f, R.drawable.zero);
-        whiteOneImage = new Image(resources, x, y, 0.12f, R.drawable.one);
-        whiteTwoImage = new Image(resources, x, y, 0.12f, R.drawable.two);
-        whiteThreeImage = new Image(resources, x, y, 0.12f, R.drawable.three);
-        whiteFourImage = new Image(resources, x, y, 0.12f, R.drawable.four);
-        whiteFiveImage = new Image(resources, x, y, 0.12f, R.drawable.five);
-        whiteSixImage = new Image(resources, x, y, 0.12f, R.drawable.six);
-        whiteSevenImage = new Image(resources, x, y, 0.12f, R.drawable.seven);
-        whiteEightImage = new Image(resources, x, y, 0.12f, R.drawable.eight);
-        whiteNineImage = new Image(resources, x, y, 0.12f, R.drawable.nine);
-
+        //COLOR=1 BLACK
+        //COLOR=2 WHITE
+        if(color==1){
+            zeroImage = new Image(resources, x, y, numSize, R.drawable.zeroblack);
+            oneImage = new Image(resources, x, y, numSize, R.drawable.oneblack);
+            twoImage = new Image(resources, x, y, numSize, R.drawable.twoblack);
+            threeImage = new Image(resources, x, y, numSize, R.drawable.threeblack);
+            fourImage = new Image(resources, x, y, numSize, R.drawable.fourblack);
+            fiveImage = new Image(resources, x, y, numSize, R.drawable.fiveblack);
+            sixImage = new Image(resources, x, y, numSize, R.drawable.sixblack);
+            sevenImage = new Image(resources, x, y, numSize, R.drawable.sevenblack);
+            eightImage = new Image(resources, x, y, numSize, R.drawable.eightblack);
+            nineImage = new Image(resources, x, y, numSize, R.drawable.nineblack);
+        }else if(color==2){
+            zeroImage = new Image(resources, x, y, numSize, R.drawable.zero);
+            oneImage = new Image(resources, x, y, numSize, R.drawable.one);
+            twoImage = new Image(resources, x, y, numSize, R.drawable.two);
+            threeImage = new Image(resources, x, y, numSize, R.drawable.three);
+            fourImage = new Image(resources, x, y, numSize, R.drawable.four);
+            fiveImage = new Image(resources, x, y, numSize, R.drawable.five);
+            sixImage = new Image(resources, x, y, numSize, R.drawable.six);
+            sevenImage = new Image(resources, x, y, numSize, R.drawable.seven);
+            eightImage = new Image(resources, x, y, numSize, R.drawable.eight);
+            nineImage = new Image(resources, x, y, numSize, R.drawable.nine);
+        }
 
         refreshNumbersArray();
     }
@@ -151,52 +144,26 @@ public class Numbers extends DrawableObject {
                 }
             }
 
-            //COLOR=1 BLACK
-            //COLOR=2 WHITE
-            if(color==1){
-                if(singleDigit == 0){
-                    numbers[i-1] = blackZeroImage;
-                }else if(singleDigit == 1){
-                    numbers[i-1] = blackOneImage;
-                }else if(singleDigit == 2){
-                    numbers[i-1] = blackTwoImage;
-                }else if(singleDigit == 3){
-                    numbers[i-1] = blackThreeImage;
-                }else if(singleDigit == 4){
-                    numbers[i-1] = blackFourImage;
-                }else if(singleDigit == 5){
-                    numbers[i-1] = blackFiveImage;
-                }else if(singleDigit == 6){
-                    numbers[i-1] = blackSixImage;
-                }else if(singleDigit == 7){
-                    numbers[i-1] = blackSevenImage;
-                }else if(singleDigit == 8){
-                    numbers[i-1] = blackEightImage;
-                }else if(singleDigit == 9){
-                    numbers[i-1] = blackNineImage;
-                }
-            }else if(color==2){
-                if(singleDigit == 0){
-                    numbers[i-1] = whiteZeroImage;
-                }else if(singleDigit == 1){
-                    numbers[i-1] = whiteOneImage;
-                }else if(singleDigit == 2){
-                    numbers[i-1] = whiteTwoImage;
-                }else if(singleDigit == 3){
-                    numbers[i-1] = whiteThreeImage;
-                }else if(singleDigit == 4){
-                    numbers[i-1] = whiteFourImage;
-                }else if(singleDigit == 5){
-                    numbers[i-1] = whiteFiveImage;
-                }else if(singleDigit == 6){
-                    numbers[i-1] = whiteSixImage;
-                }else if(singleDigit == 7){
-                    numbers[i-1] = whiteSevenImage;
-                }else if(singleDigit == 8){
-                    numbers[i-1] = whiteEightImage;
-                }else if(singleDigit == 9){
-                    numbers[i-1] = whiteNineImage;
-                }
+            if(singleDigit == 0){
+                numbers[i-1] = zeroImage;
+            }else if(singleDigit == 1){
+                numbers[i-1] = oneImage;
+            }else if(singleDigit == 2){
+                numbers[i-1] = twoImage;
+            }else if(singleDigit == 3){
+                numbers[i-1] = threeImage;
+            }else if(singleDigit == 4){
+                numbers[i-1] = fourImage;
+            }else if(singleDigit == 5){
+                numbers[i-1] = fiveImage;
+            }else if(singleDigit == 6){
+                numbers[i-1] = sixImage;
+            }else if(singleDigit == 7){
+                numbers[i-1] = sevenImage;
+            }else if(singleDigit == 8){
+                numbers[i-1] = eightImage;
+            }else if(singleDigit == 9){
+                numbers[i-1] = nineImage;
             }
 
         }
