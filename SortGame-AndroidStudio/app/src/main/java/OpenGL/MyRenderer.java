@@ -56,13 +56,19 @@ public class MyRenderer implements Renderer {
     public MyRenderer(Context context, GLSurfaceView view){
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
     public MyRenderer(Context context, GLSurfaceView view){
 =======
+=======
+>>>>>>> 25594c0a10fc0fb1a41cb825e6af987b42037f0d
 
 
     public MyRenderer(Resources resources, GLSurfaceView view)
     {
 >>>>>>> Jeton2
+<<<<<<< HEAD
+>>>>>>> 25594c0a10fc0fb1a41cb825e6af987b42037f0d
+=======
 >>>>>>> 25594c0a10fc0fb1a41cb825e6af987b42037f0d
         this.view = view;
         this.context = context;
@@ -82,8 +88,11 @@ public class MyRenderer implements Renderer {
 
         ratio = (float) view.getWidth() / (float) view.getHeight();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
+>>>>>>> 25594c0a10fc0fb1a41cb825e6af987b42037f0d
+=======
 >>>>>>> 25594c0a10fc0fb1a41cb825e6af987b42037f0d
 
         card = new Card(context, 0.0f, -0.2f, R.color.blue);
@@ -97,6 +106,11 @@ public class MyRenderer implements Renderer {
 
         score = new Score(context,0,0.9f);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> Jeton2
+>>>>>>> 25594c0a10fc0fb1a41cb825e6af987b42037f0d
 =======
 =======
 >>>>>>> Jeton2
@@ -153,8 +167,11 @@ public class MyRenderer implements Renderer {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
+>>>>>>> 25594c0a10fc0fb1a41cb825e6af987b42037f0d
+=======
 >>>>>>> 25594c0a10fc0fb1a41cb825e6af987b42037f0d
     private void correct()
     {
@@ -170,6 +187,11 @@ public class MyRenderer implements Renderer {
         // generate a card
         card = cardGenerator.generateCard(this.context);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> Jeton2
+>>>>>>> 25594c0a10fc0fb1a41cb825e6af987b42037f0d
 =======
 =======
 >>>>>>> Jeton2
@@ -180,8 +202,11 @@ public class MyRenderer implements Renderer {
     private void incorrect()
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
+>>>>>>> 25594c0a10fc0fb1a41cb825e6af987b42037f0d
+=======
 >>>>>>> 25594c0a10fc0fb1a41cb825e6af987b42037f0d
         this.game.incorrectMatch();
         mBar.reset();
@@ -190,11 +215,17 @@ public class MyRenderer implements Renderer {
         // generate a card
         card = cardGenerator.generateCard(this.context);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 25594c0a10fc0fb1a41cb825e6af987b42037f0d
 =======
         if (this.gameTouchLogic.getTimer().timeOut())
             this.gameTouchLogic.timeOut();
 >>>>>>> Jeton2
+<<<<<<< HEAD
+>>>>>>> 25594c0a10fc0fb1a41cb825e6af987b42037f0d
+=======
 >>>>>>> 25594c0a10fc0fb1a41cb825e6af987b42037f0d
     }
 
@@ -233,8 +264,11 @@ public class MyRenderer implements Renderer {
         mDeltaY = 0f;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
+>>>>>>> 25594c0a10fc0fb1a41cb825e6af987b42037f0d
+=======
 >>>>>>> 25594c0a10fc0fb1a41cb825e6af987b42037f0d
         topBar.draw(mMVPMatrix);
         mBar.draw(mMVPMatrix);
@@ -242,9 +276,19 @@ public class MyRenderer implements Renderer {
         card.draw(scratch);
         score.draw(mMVPMatrix);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
         DrawObjects.draw(this.gameTouchLogic, mMVPMatrix, scratch);
+=======
+=======
+        DrawObjects.draw(this.gameTouchLogic, mMVPMatrix, scratch);
+
+>>>>>>> Jeton2
+    }
+
+
+>>>>>>> 25594c0a10fc0fb1a41cb825e6af987b42037f0d
 
 >>>>>>> Jeton2
 >>>>>>> 25594c0a10fc0fb1a41cb825e6af987b42037f0d
