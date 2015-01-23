@@ -1,7 +1,6 @@
 package Model;
 
 import android.content.Context;
-import android.content.res.Resources;
 
 import java.util.Random;
 
@@ -13,7 +12,7 @@ import DrawableObjects.Card;
  * pattern attribute chosen at random.
  *
  * @author Varun Sriram
- * @version 1.4
+ * @version 1.5
  * @since 2014-11-28
  *
  */
@@ -24,13 +23,24 @@ public class CardGenerator
 
     /**
      * DEFAULTNUMPATTERNATTR: integer value representing the default number
-     *                        of pattern attributes for a Card
+     * of pattern attributes for a Card
      *
      */
 
-    private static final int DEFAULTNUMPATTERNATTR = 4,
-                             DEAFULTPOSX = 0,
-                             DEAFULTPOSY = 0;
+    private static final int DEFAULTNUMPATTERNATTR = 4;
+
+
+    /**
+     * DEFAULTPOSX: float value representing the default x position
+     * of the Card on the screen.
+     *
+     * DEAFULTPOSY: float value representing the default y position
+     * of the Card on the screen.
+     *
+     */
+
+    private static final float DEFAULTPOSX = 0.0f,
+                               DEFAULTPOSY = -0.2f;
 
 
     /**
@@ -93,8 +103,8 @@ public class CardGenerator
     {
 
         Card card = new Card(context,
-                             DEAFULTPOSX,
-                             DEAFULTPOSY,
+                             DEFAULTPOSX,
+                             DEFAULTPOSY,
                              this.getRandValue(1, this.numOfPatternAttr + 1)
                             );
 

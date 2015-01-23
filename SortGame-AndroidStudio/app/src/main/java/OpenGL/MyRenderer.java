@@ -1,4 +1,6 @@
 package OpenGL;
+
+
 import android.content.Context;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
@@ -73,7 +75,7 @@ public class MyRenderer implements Renderer {
     }
 
 
-    
+
     @Override
     public void onDrawFrame(GL10 gl10)
     {
