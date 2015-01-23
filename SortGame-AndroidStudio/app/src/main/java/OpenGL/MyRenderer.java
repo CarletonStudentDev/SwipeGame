@@ -52,7 +52,18 @@ public class MyRenderer implements Renderer {
     public float mDeltaX;
     public float mDeltaY;
 
+<<<<<<< HEAD
     public MyRenderer(Context context, GLSurfaceView view){
+=======
+<<<<<<< HEAD
+    public MyRenderer(Context context, GLSurfaceView view){
+=======
+
+
+    public MyRenderer(Resources resources, GLSurfaceView view)
+    {
+>>>>>>> Jeton2
+>>>>>>> 25594c0a10fc0fb1a41cb825e6af987b42037f0d
         this.view = view;
         this.context = context;
     }
@@ -70,6 +81,10 @@ public class MyRenderer implements Renderer {
 
 
         ratio = (float) view.getWidth() / (float) view.getHeight();
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 25594c0a10fc0fb1a41cb825e6af987b42037f0d
 
         card = new Card(context, 0.0f, -0.2f, R.color.blue);
         gameBoard = new GameBoard(context);
@@ -81,6 +96,11 @@ public class MyRenderer implements Renderer {
         mBar = new MultiplierBar(context, 0.0f, 0.7f);
 
         score = new Score(context,0,0.9f);
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> Jeton2
+>>>>>>> 25594c0a10fc0fb1a41cb825e6af987b42037f0d
     }
 
     @Override
@@ -132,6 +152,10 @@ public class MyRenderer implements Renderer {
         return true;
     }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 25594c0a10fc0fb1a41cb825e6af987b42037f0d
     private void correct()
     {
         this.game.correctMatch();
@@ -145,17 +169,33 @@ public class MyRenderer implements Renderer {
 
         // generate a card
         card = cardGenerator.generateCard(this.context);
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> Jeton2
+>>>>>>> 25594c0a10fc0fb1a41cb825e6af987b42037f0d
 
     }
 
     private void incorrect()
     {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 25594c0a10fc0fb1a41cb825e6af987b42037f0d
         this.game.incorrectMatch();
         mBar.reset();
         topBar.decreaseHearts();
 
         // generate a card
         card = cardGenerator.generateCard(this.context);
+<<<<<<< HEAD
+=======
+=======
+        if (this.gameTouchLogic.getTimer().timeOut())
+            this.gameTouchLogic.timeOut();
+>>>>>>> Jeton2
+>>>>>>> 25594c0a10fc0fb1a41cb825e6af987b42037f0d
     }
 
     private void update()
@@ -192,10 +232,21 @@ public class MyRenderer implements Renderer {
         mDeltaX = 0f;
         mDeltaY = 0f;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 25594c0a10fc0fb1a41cb825e6af987b42037f0d
         topBar.draw(mMVPMatrix);
         mBar.draw(mMVPMatrix);
         gameBoard.draw(mMVPMatrix);
         card.draw(scratch);
         score.draw(mMVPMatrix);
+<<<<<<< HEAD
+=======
+=======
+        DrawObjects.draw(this.gameTouchLogic, mMVPMatrix, scratch);
+
+>>>>>>> Jeton2
+>>>>>>> 25594c0a10fc0fb1a41cb825e6af987b42037f0d
     }
 }
