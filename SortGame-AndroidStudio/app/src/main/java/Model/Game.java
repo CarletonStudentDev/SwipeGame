@@ -5,7 +5,7 @@ package Model;
  * about playing the card game.
  *
  * @author Jeton Sinoimeri
- * @version 1.6
+ * @version 1.7
  * @since 2014-11-10
  *
  */
@@ -14,9 +14,6 @@ public class Game
 {
 
     /**
-     * deck: Listener reference representing the deck of cards
-     *       required to play the game.
-     *
      * player: Listener reference representing the user required
      *         to play the game.
      *

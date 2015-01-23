@@ -24,6 +24,7 @@ import OpenGL.Square;
  * @author Zack Munich
  * @author Robert Fernandes
  * @author Jeton Sinoimeri
+ * @author Varun Sriram
  * @version 1.6
  * @since 2015-01-04
  *
