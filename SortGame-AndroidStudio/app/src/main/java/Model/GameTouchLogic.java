@@ -175,7 +175,9 @@ public class GameTouchLogic
                     this.correct();
 
                 else
+                {
                     this.incorrect();
+                }
             }
 
             /*if (event.getAction() == MotionEvent.ACTION_MOVE)
@@ -253,7 +255,7 @@ public class GameTouchLogic
     private void setLivesResetMBar()
     {
         this.multiplierBar.reset();
-        this.topBar.setFullHearts(this.player.getLives());
+        this.topBar.decreaseHearts();
     }
 
 
