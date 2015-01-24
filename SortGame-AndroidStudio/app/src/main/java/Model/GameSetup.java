@@ -5,6 +5,7 @@ import android.content.Context;
 import DrawableObjects.Card;
 import DrawableObjects.GameBoard;
 import DrawableObjects.MultiplierBar;
+import DrawableObjects.Numbers;
 import DrawableObjects.Score;
 import DrawableObjects.TopBar;
 
@@ -19,6 +20,12 @@ import DrawableObjects.TopBar;
 
 public class GameSetup
 {
+    /**
+     * drawableTimer: Drawable instance representing the DrawableObjects drawableTimer class.
+     *
+     */
+
+    private Numbers drawableTimer;
 
     /**
      * multiplierBar: MultiplierBar instance representing the DrawableObjects MultiplierBar class.
@@ -57,7 +64,7 @@ public class GameSetup
      *
      */
 
-    private Score score;
+    private Numbers score;
 
 
     /**
@@ -136,8 +143,9 @@ public class GameSetup
         this.topBar.setFullHearts(this.player.getLives());
 
         this.multiplierBar = new MultiplierBar(this.context, 0.0f, 0.7f);
-        this.score = new Score(this.context,0,0.9f);
+        this.score = new Numbers(context,-0.15f,0.9f,0,8,0,0.12f,0.1f,2);
 
+        this.drawableTimer = new Numbers(context,-0.075f,0.45f,10,2,2,0.175f,0.13f,1);
     }
 
 
@@ -205,7 +213,7 @@ public class GameSetup
      *
      */
 
-    public Score getScore()
+    public Numbers getScore()
     {
         return this.score;
     }
@@ -286,6 +294,11 @@ public class GameSetup
      *                  of the app.
      *
      */
+
+    public Numbers getDrawableTimer()
+    {
+        return this.drawableTimer;
+    }
 
     public Context getContext()
     {

@@ -7,6 +7,7 @@ import android.view.View;
 import DrawableObjects.Card;
 import DrawableObjects.GameBoard;
 import DrawableObjects.MultiplierBar;
+import DrawableObjects.Numbers;
 import DrawableObjects.Score;
 import DrawableObjects.TopBar;
 
@@ -61,6 +62,8 @@ public class GameTouchLogic
      *
      */
 
+    private Numbers drawableTimer;
+
     private Timer timer;
 
 
@@ -77,7 +80,7 @@ public class GameTouchLogic
      *
      */
 
-    private Score score;
+    private Numbers score;
 
 
     /**
@@ -139,6 +142,8 @@ public class GameTouchLogic
 
         this.gameBoard = gameSetup.getGameBoard();
         this.context = gameSetup.getContext();
+
+        this.drawableTimer = gameSetup.getDrawableTimer();
 
     }
 
@@ -213,7 +218,8 @@ public class GameTouchLogic
         this.game.correctMatch();
         this.multiplierBar.increaseNumFull();
 
-        this.score.addToScore(100, this.multiplierBar.giveMulti());
+        // need to multiply 100 by the multiplier score
+        this.score.increase(100);
 
 
         this.card = this.cardGenerator.generateCard(this.context);
@@ -244,6 +250,7 @@ public class GameTouchLogic
         this.game.timeOut();
         this.setLivesResetMBar();
         this.timer.resetTimer();
+        this.drawableTimer.setFullNumber(0);
     }
 
 
@@ -323,7 +330,7 @@ public class GameTouchLogic
      *
      */
 
-    public Score getScore()
+    public Numbers getScore()
     {
         return this.score;
     }
@@ -341,5 +348,9 @@ public class GameTouchLogic
         return this.timer;
     }
 
+    public Numbers getDrawableTimer()
+    {
+        return this.drawableTimer;
+    }
 
 }

@@ -74,8 +74,6 @@ public class MyRenderer implements Renderer {
             this.gameTouchLogic.timeOut();
     }
 
-
-
     @Override
     public void onDrawFrame(GL10 gl10)
     {

@@ -14,12 +14,14 @@ public class Timer
 {
 
     private long startTime,
-                 maxTime;
+                 maxTime,
+                 currentTime;
 
     public Timer(long maxTime)
     {
         this.startTime = System.currentTimeMillis();
         this.maxTime = maxTime;
+        this.currentTime = startTime;
     }
 
 
@@ -30,5 +32,8 @@ public class Timer
 
     public void resetTimer() {startTime = System.currentTimeMillis();}
 
-
+    public long getTime()
+    {
+        return System.currentTimeMillis() - startTime;
+    }
 }

@@ -12,7 +12,6 @@ public class Numbers extends DrawableObject {
 
     public float x;
     private float y;
-    private Resources resources;
     private float digitShift;
     private float dynamicShift=0;
     private int digits;
@@ -51,27 +50,27 @@ public class Numbers extends DrawableObject {
         //COLOR=1 BLACK
         //COLOR=2 WHITE
         if(color==1){
-            zeroImage = new Image(context, x, y, numSize, R.drawable.gameuispritesheet);
-            oneImage = new Image(context, x, y, numSize, R.drawable.gameuispritesheet);
-            twoImage = new Image(context, x, y, numSize, R.drawable.gameuispritesheet);
-            threeImage = new Image(context, x, y, numSize, R.drawable.gameuispritesheet);
-            fourImage = new Image(context, x, y, numSize, R.drawable.gameuispritesheet);
-            fiveImage = new Image(context, x, y, numSize, R.drawable.gameuispritesheet);
-            sixImage = new Image(context, x, y, numSize, R.drawable.gameuispritesheet);
-            sevenImage = new Image(context, x, y, numSize, R.drawable.gameuispritesheet);
-            eightImage = new Image(context, x, y, numSize, R.drawable.gameuispritesheet);
-            nineImage = new Image(context, x, y, numSize, R.drawable.gameuispritesheet);
+            zeroImage = new Image(context, x, y, numSize, R.drawable.zero);
+            oneImage = new Image(context, x, y, numSize, R.drawable.one);
+            twoImage = new Image(context, x, y, numSize, R.drawable.two);
+            threeImage = new Image(context, x, y, numSize, R.drawable.three);
+            fourImage = new Image(context, x, y, numSize, R.drawable.four);
+            fiveImage = new Image(context, x, y, numSize, R.drawable.five);
+            sixImage = new Image(context, x, y, numSize, R.drawable.six);
+            sevenImage = new Image(context, x, y, numSize, R.drawable.seven);
+            eightImage = new Image(context, x, y, numSize, R.drawable.eight);
+            nineImage = new Image(context, x, y, numSize, R.drawable.nine);
         }else if(color==2){
-            zeroImage = new Image(context, x, y, numSize, R.drawable.gameuispritesheet);
-            oneImage = new Image(context, x, y, numSize, R.drawable.gameuispritesheet);
-            twoImage = new Image(context, x, y, numSize, R.drawable.gameuispritesheet);
-            threeImage = new Image(context, x, y, numSize, R.drawable.gameuispritesheet);
-            fourImage = new Image(context, x, y, numSize, R.drawable.gameuispritesheet);
-            fiveImage = new Image(context, x, y, numSize, R.drawable.gameuispritesheet);
-            sixImage = new Image(context, x, y, numSize, R.drawable.gameuispritesheet);
-            sevenImage = new Image(context, x, y, numSize, R.drawable.gameuispritesheet);
-            eightImage = new Image(context, x, y, numSize, R.drawable.gameuispritesheet);
-            nineImage = new Image(context, x, y, numSize, R.drawable.gameuispritesheet);
+            zeroImage = new Image(context, x, y, numSize, R.drawable.zero);
+            oneImage = new Image(context, x, y, numSize, R.drawable.one);
+            twoImage = new Image(context, x, y, numSize, R.drawable.two);
+            threeImage = new Image(context, x, y, numSize, R.drawable.three);
+            fourImage = new Image(context, x, y, numSize, R.drawable.four);
+            fiveImage = new Image(context, x, y, numSize, R.drawable.five);
+            sixImage = new Image(context, x, y, numSize, R.drawable.six);
+            sevenImage = new Image(context, x, y, numSize, R.drawable.seven);
+            eightImage = new Image(context, x, y, numSize, R.drawable.eight);
+            nineImage = new Image(context, x, y, numSize, R.drawable.nine);
         }
 
         refreshNumbersArray();
