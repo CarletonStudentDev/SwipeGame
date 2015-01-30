@@ -15,7 +15,7 @@ import OpenGL.Square;
 /**
  * Created by zack on 12/12/14.
  */
-public class MultiplierBar extends DrawableObject
+public class MultiplierBar implements DrawableObject
 {
 
     private Square backgroundSquare;
@@ -111,6 +111,10 @@ public class MultiplierBar extends DrawableObject
             multiplierNumber8.draw(mMVPMatrix);
         }
 
+    }
+    @Override
+    public boolean isTouched(float x, float y) {
+        return false;
     }
 
     public void increaseNumFull () {

@@ -14,7 +14,7 @@ import OpenGL.Image;
 /**
  * Created by ERIC on 2014-12-15.
  */
-public class Score extends DrawableObject
+public class Score implements DrawableObject
 {
 
     private Image[] score = new Image[7];
@@ -83,6 +83,11 @@ public class Score extends DrawableObject
 
             score[i].draw(scratch);
         }
+    }
+
+    @Override
+    public boolean isTouched(float x, float y) {
+        return false;
     }
 
     public void addToScore(int addAmount, int multi){

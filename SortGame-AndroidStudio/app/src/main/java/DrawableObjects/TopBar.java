@@ -15,7 +15,7 @@ import OpenGL.Square;
 /**
  * Created by ERIC on 2014-12-13.
  */
-public class TopBar extends DrawableObject
+public class TopBar implements DrawableObject
 {
 
     private int numHearts = 3;
@@ -53,6 +53,10 @@ public class TopBar extends DrawableObject
         for(int j = 0;j < fullHearts;j++) {
             filledHearts[j].draw(mMVPMatrix);
         }
+    }
+    @Override
+    public boolean isTouched(float x, float y) {
+        return false;
     }
 
     public void decreaseHearts(){

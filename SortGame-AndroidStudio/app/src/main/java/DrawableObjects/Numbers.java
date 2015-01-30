@@ -8,7 +8,7 @@ import com.example.owner.gameproject.R;
 
 import OpenGL.*;
 
-public class Numbers extends DrawableObject {
+public class Numbers implements DrawableObject {
 
     public float x;
     private float y;
@@ -75,11 +75,11 @@ public class Numbers extends DrawableObject {
 
         refreshNumbersArray();
     }
-
+    @Override
     public void move(float x, float y) {
 
     }
-
+    @Override
     public void draw(float[] mMVPMatrix) {
         this.oldMatrix = mMVPMatrix;
         this.scratch = mMVPMatrix;
@@ -96,6 +96,10 @@ public class Numbers extends DrawableObject {
 
             numbers[i].draw(scratch);
         }
+    }
+    @Override
+    public boolean isTouched(float x, float y) {
+        return false;
     }
 
     public void decrease(int subAmount) {

@@ -31,7 +31,7 @@ import OpenGL.Square;
  */
 
 
-public class Card extends DrawableObject
+public class Card implements DrawableObject
 {
 
     /**
@@ -203,7 +203,7 @@ public class Card extends DrawableObject
      *                        y-coordinate of the Card.
      *
      */
-
+    @Override
     public void move(float newXCoordinate, float newYCoordinate)
     {
         this.xCoordinate = newXCoordinate;
@@ -220,14 +220,17 @@ public class Card extends DrawableObject
      * @param mMVPMatrix: float [] representing the matrix.
      *
      */
-
+    @Override
     public void draw(float[] mMVPMatrix)
     {
         this.square.draw(mMVPMatrix);
         this.xCoordinate = square.x;
         this.yCoordinate = square.y;
     }
-
+    @Override
+    public boolean isTouched(float x, float y) {
+        return false;
+    }
 
     /**
      * Checks if the drawn object is within the bounds
@@ -243,14 +246,6 @@ public class Card extends DrawableObject
      *               bounds.
      *
      */
-
-    public boolean inShape(float x, float y)
-    {
-        return (x >= this.xCoordinate - WIDTH) &&
-               (x <= this.xCoordinate + WIDTH) &&
-               (y >= this.yCoordinate - LENGTH) &&
-               (y <= this.yCoordinate + LENGTH);
-    }
 
 
     /**
