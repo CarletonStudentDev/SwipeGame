@@ -8,7 +8,6 @@ import DrawableObjects.Card;
 import DrawableObjects.GameBoard;
 import DrawableObjects.MultiplierBar;
 import DrawableObjects.Numbers;
-import DrawableObjects.Score;
 import DrawableObjects.TopBar;
 
 
@@ -17,7 +16,7 @@ import DrawableObjects.TopBar;
  * the SwipeGame.
  *
  * @author Jeton Sinoimeri
- * @version 1.2
+ * @version 1.4
  * @since 2014-01-15
  *
  */
@@ -62,9 +61,16 @@ public class GameTouchLogic
      *
      */
 
-    private Numbers drawableTimer;
-
     private Timer timer;
+
+
+    /**
+     * drawableTimer: Numbers instance representing the Drawable
+     *                Timer.
+     *
+     */
+
+    private Numbers drawableTimer;
 
 
     /**
@@ -116,6 +122,15 @@ public class GameTouchLogic
 
 
     /**
+     * vibrate: Vibrate instance representing the Android Vibrator feature.
+     *
+     */
+
+    private Vibrate vibrate;
+
+
+
+    /**
      * Constructor for the GameTouchLogic class.
      *
      * @param view: View instance representing the android.view.View class.
@@ -144,6 +159,7 @@ public class GameTouchLogic
         this.context = gameSetup.getContext();
 
         this.drawableTimer = gameSetup.getDrawableTimer();
+        this.vibrate = gameSetup.getVibrate();
 
     }
 
@@ -219,7 +235,7 @@ public class GameTouchLogic
         this.multiplierBar.increaseNumFull();
 
         // need to multiply 100 by the multiplier score
-        this.score.increase(100);
+        this.score.increase(100*this.multiplierBar.giveMulti());
 
 
         this.card = this.cardGenerator.generateCard(this.context);
@@ -237,6 +253,7 @@ public class GameTouchLogic
         this.setLivesResetMBar();
 
         this.card = this.cardGenerator.generateCard(this.context);
+        this.vibrate.vibrate();
     }
 
 
@@ -347,6 +364,15 @@ public class GameTouchLogic
     {
         return this.timer;
     }
+
+
+    /**
+     * Getter for the drawable timer.
+     *
+     * @return drawableTimer: Numbers instance representing the Drawable
+     *                        Timer.
+     *
+     */
 
     public Numbers getDrawableTimer()
     {

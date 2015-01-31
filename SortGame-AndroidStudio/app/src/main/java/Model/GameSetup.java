@@ -6,14 +6,13 @@ import DrawableObjects.Card;
 import DrawableObjects.GameBoard;
 import DrawableObjects.MultiplierBar;
 import DrawableObjects.Numbers;
-import DrawableObjects.Score;
 import DrawableObjects.TopBar;
 
 /**
  * GameSetup sets up the SwipeGame.
  *
  * @author Jeton Sinoimeri
- * @version 1.1
+ * @version 1.3
  * @since 2014-01-15
  *
  */
@@ -115,6 +114,14 @@ public class GameSetup
     private Context context;
 
 
+    /**
+     * vibrate: Vibrate instance representing the Android Vibrator feature.
+     *
+     */
+
+    private Vibrate vibrate;
+
+
 
     /**
      * Constructor for the GameSetup class.
@@ -146,6 +153,7 @@ public class GameSetup
         this.score = new Numbers(context,-0.15f,0.9f,0,8,0,0.12f,0.1f,2);
 
         this.drawableTimer = new Numbers(context,-0.075f,0.45f,10,2,2,0.175f,0.13f,1);
+        this.vibrate = new Vibrate(this.context);
     }
 
 
@@ -295,13 +303,35 @@ public class GameSetup
      *
      */
 
+    public Context getContext()
+    {
+        return this.context;
+    }
+
+
+    /**
+     * Getter for the Drawable timer.
+     *
+     * @return drawableTimer: Numbers instance representing the Drawable
+     *                        Timer.
+     *
+     */
+
     public Numbers getDrawableTimer()
     {
         return this.drawableTimer;
     }
 
-    public Context getContext()
+
+    /**
+     * Getter for the vibrate.
+     *
+     * @return vibrate: Vibrate instance representing the Android Vibrator feature.
+     *
+     */
+
+    public Vibrate getVibrate ()
     {
-        return this.context;
+        return this.vibrate;
     }
 }
