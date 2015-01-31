@@ -39,7 +39,7 @@ public class Game
      */
 
     private boolean timedOut;
-
+    private boolean gameOver;
 
 
     /**
@@ -59,6 +59,7 @@ public class Game
         this.player = player;
         this.multiplier = multiplier;
         this.timedOut = false;
+        this.gameOver = false;
     }
 
 
@@ -149,6 +150,18 @@ public class Game
 
     }
 
+    /**
+     * Getter for the game over variable.
+     *
+     * @return gameOver: boolean value representing if the Player
+     *                   triggered the game over.
+     *
+     */
+
+    public boolean getGameOver()
+    {
+        return this.gameOver;
+    }
 
     /**
      * Notifies the Listeners when there is an
@@ -164,6 +177,11 @@ public class Game
         // notify the listeners
         this.multiplier.incorrectMatch(ge);
         this.player.incorrectMatch(ge);
+        Player p = (Player) this.getPlayer();
+        if(p.getLives()==0 || this.timedOut){
+            //Set GameOver
+            this.gameOver = true;
+        }
 
     }
 

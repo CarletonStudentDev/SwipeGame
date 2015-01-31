@@ -190,14 +190,18 @@ public class GameTouchLogic
             float newX = (-(event.getX() * 2) / this.view.getWidth() + 1f) / r;
             float newY = -(event.getY() * 2) / this.view.getHeight() + 1f;
 
-            if(event.getAction() == MotionEvent.ACTION_DOWN)
-            {
-                if (this.gameBoard.getQuadrant(newX, newY) == this.card.getColorId())
-                    this.correct();
+            if(event.getAction() == MotionEvent.ACTION_DOWN) {
+                if (this.game.getGameOver()){
+                    //Display GameOverScreen
+                    this.timer.stopTimer();
+                    
+                }else{
+                    if (this.gameBoard.getQuadrant(newX, newY) == this.card.getColorId())
+                        this.correct();
 
-                else
-                {
-                    this.incorrect();
+                    else {
+                        this.incorrect();
+                    }
                 }
             }
 

@@ -21,6 +21,9 @@ public class StartNormalActivity extends Activity {
 
         surfaceView = new MyGLSurfaceView(getApplicationContext());
         setContentView(surfaceView);
+
+        //GooglePlay LoginHere
+
     }
 
 
