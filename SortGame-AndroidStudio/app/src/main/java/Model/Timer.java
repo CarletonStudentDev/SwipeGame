@@ -16,12 +16,14 @@ public class Timer
     private long startTime,
                  maxTime,
                  currentTime;
+    private boolean stopTimer;
 
     public Timer(long maxTime)
     {
         this.startTime = System.currentTimeMillis();
         this.maxTime = maxTime;
         this.currentTime = startTime;
+        this.stopTimer = false;
     }
 
 
@@ -34,6 +36,19 @@ public class Timer
 
     public long getTime()
     {
-        return System.currentTimeMillis() - startTime;
+        if(stopTimer == false){
+            return System.currentTimeMillis() - startTime;
+        }else{
+            return maxTime;
+        }
     }
+
+    public void stopTimer(){
+        this.stopTimer = true;
+    }
+
+    public long getMaxTime(){
+        return maxTime;
+    }
+
 }

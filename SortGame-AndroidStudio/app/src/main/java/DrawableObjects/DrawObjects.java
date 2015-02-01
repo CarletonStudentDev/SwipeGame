@@ -42,11 +42,15 @@ public class DrawObjects
 
         long difference = endTime - beginTime;
 
-        if(gameTouchLogic.getTimer().getTime() >= 1000)
-        {
+        if(gameTouchLogic.getTimer().getTime() >= gameTouchLogic.getTimer().getMaxTime()) {
+            gameTouchLogic.getDrawableTimer().setFullNumber(0);
+        }else if(gameTouchLogic.getTimer().getTime() >= 1000){
+
             gameTouchLogic.getDrawableTimer().decrease(1);
             gameTouchLogic.getTimer().resetTimer();
+
         }
+
         gameTouchLogic.getDrawableTimer().draw(mMVPMatrix);
     }
 
