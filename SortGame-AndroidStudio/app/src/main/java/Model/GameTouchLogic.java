@@ -223,7 +223,6 @@ public class GameTouchLogic
                 }else{
                     if (this.gameBoard.getQuadrant(newX, newY) == this.card.getColorId())
                         this.correct();
-
                     else {
                         this.incorrect();
                     }
@@ -266,6 +265,7 @@ public class GameTouchLogic
         // need to multiply 100 by the multiplier score
         this.score.increase(100*this.multiplierBar.giveMulti());
 
+        this.drawableTimer.increase(1);
 
         this.card = this.cardGenerator.generateCard(this.context);
 
@@ -298,9 +298,6 @@ public class GameTouchLogic
     public void timeOut()
     {
         this.game.timeOut();
-        this.setLivesResetMBar();
-        this.timer.resetTimer();
-        this.drawableTimer.setFullNumber(0);
     }
 
 

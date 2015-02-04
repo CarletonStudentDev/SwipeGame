@@ -57,7 +57,7 @@ public class Numbers implements DrawableObject {
         //COLOR=1 BLACK
         //COLOR=2 WHITE
         if(color==1){
-            zeroImage = new Image(context, x, y, numSize, R.drawable.gameuispritesheet);
+            zeroImage = new Image(context, x, y, numSize, R.drawable.zero);
             zeroImage.setTextureCoords(textureCoords);
             oneImage = new Image(context, x, y, numSize, R.drawable.one);
             twoImage = new Image(context, x, y, numSize, R.drawable.two);

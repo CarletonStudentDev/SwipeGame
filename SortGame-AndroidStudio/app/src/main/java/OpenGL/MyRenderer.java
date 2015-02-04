@@ -77,7 +77,6 @@ public class MyRenderer implements Renderer {
     @Override
     public void onDrawFrame(GL10 gl10)
     {
-        this.checkTime();
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
         Matrix.setLookAtM(mViewMatrix, 0, 0, 0, -3, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
         Matrix.multiplyMM(mMVPMatrix, 0, mProjectionMatrix, 0, mViewMatrix, 0);

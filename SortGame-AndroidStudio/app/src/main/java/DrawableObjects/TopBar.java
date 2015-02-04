@@ -73,4 +73,9 @@ public class TopBar implements DrawableObject
         else
             this.fullHearts = 3;
     }
+
+    public int getFullHearts(){
+        return fullHearts;
+    }
+
 }

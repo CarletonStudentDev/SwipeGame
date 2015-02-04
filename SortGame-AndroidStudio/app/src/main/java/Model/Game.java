@@ -127,7 +127,8 @@ public class Game
     {
         GameEvent ge = new GameEvent(this);
 
-        this.setTimedOut(true);
+        //this.setTimedOut(true);
+        gameOver = true;
 
         this.player.timeOut(ge);
     }
@@ -147,8 +148,7 @@ public class Game
         // notify the listeners
         this.multiplier.correctMatch(ge);
         this.player.correctMatch(ge);
-
-    }
+     }
 
     /**
      * Getter for the game over variable.
@@ -178,7 +178,7 @@ public class Game
         this.multiplier.incorrectMatch(ge);
         this.player.incorrectMatch(ge);
         Player p = (Player) this.getPlayer();
-        if(p.getLives()==0 || this.timedOut){
+        if(p.getLives()==0){
             //Set GameOver
             this.gameOver = true;
         }
