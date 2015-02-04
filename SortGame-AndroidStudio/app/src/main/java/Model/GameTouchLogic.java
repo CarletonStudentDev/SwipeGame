@@ -268,7 +268,7 @@ public class GameTouchLogic
 
 
         this.card = this.cardGenerator.generateCard(this.context);
-
+        this.drawableTimer.increase(1);
         sounds.play(correctSound,1f, 1f, 0, 0, 2f);
     }
 
@@ -341,6 +341,11 @@ public class GameTouchLogic
     public TopBar getTopBar()
     {
         return this.topBar;
+    }
+
+    public Game getGame()
+    {
+        return this.game;
     }
 
 

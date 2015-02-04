@@ -163,6 +163,7 @@ public class Game
         return this.gameOver;
     }
 
+    public void setGameOver(){this.gameOver = true;}
     /**
      * Notifies the Listeners when there is an
      * incorrect match.
@@ -178,7 +179,7 @@ public class Game
         this.multiplier.incorrectMatch(ge);
         this.player.incorrectMatch(ge);
         Player p = (Player) this.getPlayer();
-        if(p.getLives()==0 || this.timedOut){
+        if(p.getLives()==0){
             //Set GameOver
             this.gameOver = true;
         }

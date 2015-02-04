@@ -44,6 +44,7 @@ public class DrawObjects
 
         if(gameTouchLogic.getTimer().getTime() >= gameTouchLogic.getTimer().getMaxTime()) {
             gameTouchLogic.getDrawableTimer().setFullNumber(0);
+            gameTouchLogic.getGame().setGameOver();
         }else if(gameTouchLogic.getTimer().getTime() >= 1000){
 
             gameTouchLogic.getDrawableTimer().decrease(1);

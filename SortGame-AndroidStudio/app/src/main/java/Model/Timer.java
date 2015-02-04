@@ -51,4 +51,8 @@ public class Timer
         return maxTime;
     }
 
+    public void increment(int amount){
+        this.startTime+=amount;
+    }
+
 }
