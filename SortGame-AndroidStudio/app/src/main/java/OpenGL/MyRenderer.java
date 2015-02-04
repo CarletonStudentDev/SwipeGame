@@ -70,8 +70,7 @@ public class MyRenderer implements Renderer {
 
     private void checkTime()
     {
-        if (this.gameTouchLogic.getTimer().timeOut())
-            this.gameTouchLogic.timeOut();
+
     }
 
     @Override
