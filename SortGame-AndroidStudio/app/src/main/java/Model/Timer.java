@@ -29,16 +29,12 @@ public class Timer
 
     public boolean timeOut()
     {
-        if(timePassed() >= this.maxTime){
-            return true;
-        }else{
-            return false;
-        }
+        return System.currentTimeMillis() - this.startTime > this.maxTime;
     }
 
     public void resetTimer() {startTime = System.currentTimeMillis();}
 
-    public long timePassed()
+    public long getTime()
     {
         if(stopTimer == false){
             return System.currentTimeMillis() - startTime;

@@ -298,6 +298,9 @@ public class GameTouchLogic
     public void timeOut()
     {
         this.game.timeOut();
+        this.setLivesResetMBar();
+        this.timer.resetTimer();
+        this.drawableTimer.setFullNumber(0);
     }
 
 

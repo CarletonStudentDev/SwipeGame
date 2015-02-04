@@ -178,7 +178,7 @@ public class Game
         this.multiplier.incorrectMatch(ge);
         this.player.incorrectMatch(ge);
         Player p = (Player) this.getPlayer();
-        if(p.getLives()==0){
+        if(p.getLives()==0 || this.timedOut){
             //Set GameOver
             this.gameOver = true;
         }

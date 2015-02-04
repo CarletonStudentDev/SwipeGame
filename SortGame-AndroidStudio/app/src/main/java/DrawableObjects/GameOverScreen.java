@@ -34,6 +34,7 @@ public class GameOverScreen implements DrawableObject {
     private int cardsPerSec=123;
 
     public GameOverScreen(Context context, float x, float y) {
+        this.resources=resources;
         this.x=x;
         this.y=y;
 
