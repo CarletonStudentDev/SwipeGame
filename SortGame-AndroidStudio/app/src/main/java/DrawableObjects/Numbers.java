@@ -10,7 +10,7 @@ import OpenGL.*;
 
 public class Numbers implements DrawableObject {
 
-    public float x;
+    private float x;
     private float y;
     private float digitShift;
     private float dynamicShift=0;
@@ -36,6 +36,7 @@ public class Numbers implements DrawableObject {
     float[] scratch = new float[16];
     float[] oldMatrix = new float[16];
 
+    private double frame = 0;
 
     public Numbers(Context context, float x, float y, int number, int digits, int forcedDigits, float numSize, float digitShift, int color) {
         this.x = x;
@@ -47,10 +48,17 @@ public class Numbers implements DrawableObject {
         this.digitShift=digitShift;
         this.color=color;
 
+        float[] textureCoords = {
+                0f, 0f,
+                0f, 1f,
+                0.1f, 1f,
+                0.1f, 0f};
+
         //COLOR=1 BLACK
         //COLOR=2 WHITE
         if(color==1){
-            zeroImage = new Image(context, x, y, numSize, R.drawable.zero);
+            zeroImage = new Image(context, x, y, numSize, R.drawable.gameuispritesheet);
+            zeroImage.setTextureCoords(textureCoords);
             oneImage = new Image(context, x, y, numSize, R.drawable.one);
             twoImage = new Image(context, x, y, numSize, R.drawable.two);
             threeImage = new Image(context, x, y, numSize, R.drawable.three);
