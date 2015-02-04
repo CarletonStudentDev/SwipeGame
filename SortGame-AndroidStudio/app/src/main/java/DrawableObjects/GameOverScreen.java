@@ -10,7 +10,7 @@ import OpenGL.GraphicsHelper;
 import OpenGL.Image;
 import OpenGL.Square;
 
-public class GameOverScreen extends DrawableObject {
+public class GameOverScreen implements DrawableObject {
 
     private Square backgroundSquare;
     private Square retrySquare;
@@ -88,6 +88,10 @@ public class GameOverScreen extends DrawableObject {
 
     public void updateScore(int scoreNum){
         this.scoreNum=scoreNum;
+    }
+
+    public boolean isTouched(float x, float y){
+        return false; //For now
     }
 
 }

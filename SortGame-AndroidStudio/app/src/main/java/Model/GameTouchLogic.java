@@ -9,6 +9,10 @@ import DrawableObjects.GameBoard;
 import DrawableObjects.MultiplierBar;
 import DrawableObjects.Numbers;
 import DrawableObjects.TopBar;
+import android.media.AudioManager;
+import android.media.SoundPool;
+
+import com.example.owner.gameproject.R;
 
 
 /**
@@ -128,6 +132,12 @@ public class GameTouchLogic
 
     private Vibrate vibrate;
 
+    private SoundPool sounds;
+
+    private int correctSound;
+
+    private int wrongSound;
+
 
 
     /**
@@ -160,6 +170,21 @@ public class GameTouchLogic
 
         this.drawableTimer = gameSetup.getDrawableTimer();
         this.vibrate = gameSetup.getVibrate();
+
+        if((android.os.Build.VERSION.SDK_INT) == 21){
+            SoundPool.Builder builder =  new SoundPool.Builder();
+            builder.setMaxStreams(10); //Assuming only 10 sounds will play simultaneously
+            sounds = builder.build(); // Builder.build returns a new instance of SoundPool.
+        }
+        else{
+            sounds = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
+        }
+
+
+
+        correctSound = sounds.load(context, R.raw.correct,1);
+        wrongSound = sounds.load(context, R.raw.wrong,1);
+
 
     }
 
@@ -243,6 +268,8 @@ public class GameTouchLogic
 
 
         this.card = this.cardGenerator.generateCard(this.context);
+
+        sounds.play(correctSound,1f, 1f, 0, 0, 2f);
     }
 
 
@@ -258,6 +285,8 @@ public class GameTouchLogic
 
         this.card = this.cardGenerator.generateCard(this.context);
         this.vibrate.vibrate();
+
+        sounds.play(wrongSound,1f, 1f, 0, 0, 2f);
     }
 
 
