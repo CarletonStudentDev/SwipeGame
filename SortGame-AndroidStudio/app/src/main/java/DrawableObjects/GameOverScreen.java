@@ -30,8 +30,8 @@ public class GameOverScreen implements DrawableObject {
     private Image retry;
     private Image back;
     private int scoreNum=0;
-    private int highNum=123456;
-    private int cardsPerSec=123;
+    private int highNum=9999999;
+    private int cardsPerSec=0;
 
     public GameOverScreen(Context context) {
         this.resources=resources;
