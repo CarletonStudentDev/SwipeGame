@@ -33,10 +33,10 @@ public class GameOverScreen implements DrawableObject {
     private int highNum=123456;
     private int cardsPerSec=123;
 
-    public GameOverScreen(Context context, float x, float y) {
+    public GameOverScreen(Context context) {
         this.resources=resources;
-        this.x=x;
-        this.y=y;
+        this.x=0;
+        this.y=0;
 
         float backgroundColor[] = GraphicsHelper.RGBArray(context, R.color.darkBlue);
         backgroundSquare = new Square(x, y, 1.1f, 1.5f, backgroundColor);
@@ -87,7 +87,7 @@ public class GameOverScreen implements DrawableObject {
     }
 
     public void updateScore(int scoreNum){
-        this.scoreNum=scoreNum;
+        this.score.setFullNumber(scoreNum);
     }
 
     public boolean isTouched(float x, float y){

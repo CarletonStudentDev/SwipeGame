@@ -51,6 +51,11 @@ public class DrawObjects
         }
 
         gameTouchLogic.getDrawableTimer().draw(mMVPMatrix);
+
+        if(gameTouchLogic.getGame().getGameOver()){
+            gameTouchLogic.getGameOverScreen().updateScore(gameTouchLogic.getScore().getFullNumber());
+            gameTouchLogic.getGameOverScreen().draw(mMVPMatrix);
+        }
     }
 
 

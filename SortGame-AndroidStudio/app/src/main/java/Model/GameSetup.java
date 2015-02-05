@@ -4,6 +4,7 @@ import android.content.Context;
 
 import DrawableObjects.Card;
 import DrawableObjects.GameBoard;
+import DrawableObjects.GameOverScreen;
 import DrawableObjects.MultiplierBar;
 import DrawableObjects.Numbers;
 import DrawableObjects.TopBar;
@@ -121,7 +122,12 @@ public class GameSetup
 
     private Vibrate vibrate;
 
+    /**
+     * gameOverScreen: variable representing the gameOverScreen object.
+     *
+     */
 
+    private GameOverScreen gameOverScreen;
 
     /**
      * Constructor for the GameSetup class.
@@ -154,6 +160,8 @@ public class GameSetup
 
         this.drawableTimer = new Numbers(context,-0.075f,0.45f,10,2,2,0.175f,0.13f,1);
         this.vibrate = new Vibrate(this.context);
+
+        this.gameOverScreen = new GameOverScreen(this.context);
     }
 
 
@@ -333,5 +341,15 @@ public class GameSetup
     public Vibrate getVibrate ()
     {
         return this.vibrate;
+    }
+
+    /**
+     * Getter for the gameOverScreen
+     *
+     */
+
+    public GameOverScreen getGameOverScreen ()
+    {
+        return this.gameOverScreen;
     }
 }

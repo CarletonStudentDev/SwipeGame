@@ -6,6 +6,7 @@ import android.view.View;
 
 import DrawableObjects.Card;
 import DrawableObjects.GameBoard;
+import DrawableObjects.GameOverScreen;
 import DrawableObjects.MultiplierBar;
 import DrawableObjects.Numbers;
 import DrawableObjects.TopBar;
@@ -28,6 +29,7 @@ import com.example.owner.gameproject.R;
 public class GameTouchLogic
 {
 
+    private GameOverScreen gameOverScreen;
     /**
      * view: View instance representing the android.view.View class.
      *
@@ -170,6 +172,8 @@ public class GameTouchLogic
 
         this.drawableTimer = gameSetup.getDrawableTimer();
         this.vibrate = gameSetup.getVibrate();
+
+        this.gameOverScreen = gameSetup.getGameOverScreen();
 
         if((android.os.Build.VERSION.SDK_INT) == 21){
             SoundPool.Builder builder =  new SoundPool.Builder();
@@ -409,4 +413,23 @@ public class GameTouchLogic
         return this.drawableTimer;
     }
 
+    /**
+     * Getter for the gameOverScreen
+     *
+     */
+
+    public GameOverScreen getGameOverScreen ()
+    {
+        return this.gameOverScreen;
+    }
+
+    /**
+     * Getter for the game
+     *
+     */
+
+    public Game getGame()
+    {
+        return this.game;
+    }
 }
