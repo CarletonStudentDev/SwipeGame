@@ -161,7 +161,7 @@ public class GameSetup
         this.drawableTimer = new Numbers(context,-0.075f,0.45f,10,2,2,0.175f,0.13f,1);
         this.vibrate = new Vibrate(this.context);
 
-        //this.gameOverScreen = new GameOverScreen(this.context);
+        this.gameOverScreen = new GameOverScreen(this.context);
     }
 
 
