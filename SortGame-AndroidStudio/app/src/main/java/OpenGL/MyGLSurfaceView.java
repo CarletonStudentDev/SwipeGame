@@ -12,11 +12,11 @@ public class MyGLSurfaceView extends GLSurfaceView {
     private float mPreviousX;
     private float mPreviousY;
 
-    public MyGLSurfaceView(Context context) {
+    public MyGLSurfaceView(Context context, long gameLength) {
         super(context);
         this.context = context;
 
-        renderer = new MyRenderer(context, this);
+        renderer = new MyRenderer(context, this, (gameLength*1000));
         setEGLContextClientVersion(2);
         setRenderer(renderer);
         //setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);

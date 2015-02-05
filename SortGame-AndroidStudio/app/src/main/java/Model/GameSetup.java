@@ -134,14 +134,14 @@ public class GameSetup
      *
      * @param context: Context instance representing the Context of the app.
      *
-     * @param gameTime: long value representing the total game time.
+     * @param gameLength: long value representing the total game time.
      *
      */
 
-    public GameSetup(Context context, long gameTime)
+    public GameSetup(Context context, long gameLength)
     {
         this.context = context;
-        this.clock = new Clock(gameTime);
+        this.clock = new Clock(gameLength);
 
         this.player = new Player();
         this.multiplier = new Multiplier();
@@ -158,7 +158,7 @@ public class GameSetup
         this.multiplierBar = new MultiplierBar(this.context, 0.0f, 0.7f);
         this.score = new Numbers(context,-0.15f,0.9f,0,8,0,0.12f,0.1f,2);
 
-        this.drawableTimer = new Numbers(context,-0.075f,0.45f,10,2,2,0.175f,0.13f,1);
+        this.drawableTimer = new Numbers(context,-0.075f,0.45f,(int)(gameLength/1000),2,2,0.175f,0.13f,1);
         this.vibrate = new Vibrate(this.context);
 
         this.gameOverScreen = new GameOverScreen(this.context);

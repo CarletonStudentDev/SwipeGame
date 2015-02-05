@@ -19,7 +19,7 @@ public class StartNormalActivity extends Activity {
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        surfaceView = new MyGLSurfaceView(getApplicationContext());
+        surfaceView = new MyGLSurfaceView(getApplicationContext(),10);
         setContentView(surfaceView);
 
         //GooglePlay LoginHere

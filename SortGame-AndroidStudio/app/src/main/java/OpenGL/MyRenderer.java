@@ -28,12 +28,14 @@ public class MyRenderer implements Renderer {
     private Context context;
     public float mDeltaX;
     public float mDeltaY;
+    private long gameLength;
 
 
-    public MyRenderer(Context context, GLSurfaceView view)
+    public MyRenderer(Context context, GLSurfaceView view, long gameLength)
     {
         this.view = view;
         this.context = context;
+        this.gameLength=gameLength;
     }
 
 
@@ -43,7 +45,7 @@ public class MyRenderer implements Renderer {
     public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig)
     {
         GLES20.glClearColor( 236f/255f, 240f/255f, 241f/255f, 1.0f );
-        this.gameSetup = new GameSetup(this.context, 10000);
+        this.gameSetup = new GameSetup(this.context, gameLength);
         this.gameTouchLogic = new GameTouchLogic(this.view, this.gameSetup);
         ratio = (float) view.getWidth() / (float) view.getHeight();
     }

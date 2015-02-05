@@ -1,12 +1,17 @@
 package com.example.owner.gameproject;
 
 import android.app.Activity;
+import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 
+import OpenGL.MyGLSurfaceView;
+
 public class StartMarathonActivity extends Activity {
+
+    private GLSurfaceView surfaceView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,7 +19,10 @@ public class StartMarathonActivity extends Activity {
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        setContentView(R.layout.activity_start_marathon);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        surfaceView = new MyGLSurfaceView(getApplicationContext(),30);
+        setContentView(surfaceView);
     }
 
 
