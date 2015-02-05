@@ -32,7 +32,7 @@ public class Game
 
 
     /**
-     * timedOut: boolean value representing if the Timer
+     * timedOut: boolean value representing if the Clock
      *           triggered an interrupt indicating that
      *           the time ran out.
      *
@@ -94,7 +94,7 @@ public class Game
     /**
      * Getter for the timed out variable.
      *
-     * @return timedOut: boolean value representing if the Timer
+     * @return timedOut: boolean value representing if the Clock
      *                   triggered an interrupt indicating that
      *                   the time ran out.
      *
@@ -109,7 +109,7 @@ public class Game
     /**
      * Mutator for the timed out variable.
      *
-     * @param timedOut: boolean value representing if the Timer
+     * @param timedOut: boolean value representing if the Clock
      *                  triggered an interrupt indicating that
      *                  the time ran out.
      */
@@ -118,7 +118,7 @@ public class Game
 
 
     /**
-     * Notifies the Listeners when the Timer has reached
+     * Notifies the Listeners when the Clock has reached
      * zero.
      *
      */

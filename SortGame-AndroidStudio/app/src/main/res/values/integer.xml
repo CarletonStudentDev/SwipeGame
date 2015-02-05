@@ -26,7 +26,7 @@
     <integer name="randomLowNum">1</integer>
 
 
-    <!-- Model.Timer class constant -->
+    <!-- Model.Clock class constant -->
     <integer name="INTERVAL">1000</integer>
 
 

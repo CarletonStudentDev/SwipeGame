@@ -99,11 +99,11 @@ public class GameSetup
 
 
     /**
-     * timer: Timer instance representing the Model Timer class.
+     * clock: Clock instance representing the Model Clock class.
      *
      */
 
-    private Timer timer;
+    private Clock clock;
 
 
     /**
@@ -135,7 +135,7 @@ public class GameSetup
     public GameSetup(Context context, long gameTime)
     {
         this.context = context;
-        this.timer = new Timer(gameTime);
+        this.clock = new Clock(gameTime);
 
         this.player = new Player();
         this.multiplier = new Multiplier();
@@ -283,15 +283,15 @@ public class GameSetup
 
 
     /**
-     * Getter for the timer.
+     * Getter for the clock.
      *
-     * @return timer: Timer instance representing the Model Timer class.
+     * @return clock: Clock instance representing the Model Clock class.
      *
      */
 
-    public Timer getTimer()
+    public Clock getClock()
     {
-        return this.timer;
+        return this.clock;
     }
 
 
@@ -310,10 +310,10 @@ public class GameSetup
 
 
     /**
-     * Getter for the Drawable timer.
+     * Getter for the Drawable clock.
      *
      * @return drawableTimer: Numbers instance representing the Drawable
-     *                        Timer.
+     *                        Clock.
      *
      */
 

@@ -61,16 +61,16 @@ public class GameTouchLogic
 
 
     /**
-     * timer: Timer instance representing the Model Timer class.
+     * clock: Clock instance representing the Model Clock class.
      *
      */
 
-    private Timer timer;
+    private Clock clock;
 
 
     /**
      * drawableTimer: Numbers instance representing the Drawable
-     *                Timer.
+     *                Clock.
      *
      */
 
@@ -157,7 +157,7 @@ public class GameTouchLogic
         this.game = gameSetup.getGame();
 
         this.cardGenerator = gameSetup.getCardGenerator();
-        this.timer = gameSetup.getTimer();
+        this.clock = gameSetup.getClock();
 
         this.multiplierBar = gameSetup.getMultiplierBar();
         this.score = gameSetup.getScore();
@@ -218,7 +218,7 @@ public class GameTouchLogic
             if(event.getAction() == MotionEvent.ACTION_DOWN) {
                 if (this.game.getGameOver()){
                     //Display GameOverScreen
-                    this.timer.stopTimer();
+                    this.clock.stopClock();
                     
                 }else{
                     if (this.gameBoard.getQuadrant(newX, newY) == this.card.getColorId())
@@ -286,7 +286,7 @@ public class GameTouchLogic
         this.card = this.cardGenerator.generateCard(this.context);
         this.vibrate.vibrate();
 
-        sounds.play(wrongSound,1f, 1f, 0, 0, 2f);
+        sounds.play(wrongSound, 1f, 1f, 0, 0, 2f);
     }
 
 
@@ -384,23 +384,23 @@ public class GameTouchLogic
 
 
     /**
-     * Getter for the timer.
+     * Getter for the clock.
      *
-     * @return timer: Timer instance representing the Model Timer class.
+     * @return clock: Clock instance representing the Model Clock class.
      *
      */
 
-    public Timer getTimer()
+    public Clock getClock()
     {
-        return this.timer;
+        return this.clock;
     }
 
 
     /**
-     * Getter for the drawable timer.
+     * Getter for the drawable clock.
      *
      * @return drawableTimer: Numbers instance representing the Drawable
-     *                        Timer.
+     *                        Clock.
      *
      */
 

@@ -43,10 +43,10 @@ public class DrawObjects
         if(gameTouchLogic.getDrawableTimer().getFullNumber() == 0) {
             gameTouchLogic.getDrawableTimer().setFullNumber(0);
             gameTouchLogic.timeOut();
-        }else if(gameTouchLogic.getTimer().timePassed() >= 1000){
+        }else if(gameTouchLogic.getClock().timePassed() >= 1000){
 
             gameTouchLogic.getDrawableTimer().decrease(1);
-            gameTouchLogic.getTimer().resetTimer();
+            gameTouchLogic.getClock().resetTimer();
 
         }
 
