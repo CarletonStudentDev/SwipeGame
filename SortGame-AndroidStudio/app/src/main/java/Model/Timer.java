@@ -36,11 +36,8 @@ public class Timer
 
     public long timePassed()
     {
-        if(stopTimer == false){
-            return System.currentTimeMillis() - startTime;
-        }else{
-            return maxTime;
-        }
+        if (stopTimer) return maxTime;
+        else return System.currentTimeMillis() - startTime;
     }
 
     public void stopTimer(){
