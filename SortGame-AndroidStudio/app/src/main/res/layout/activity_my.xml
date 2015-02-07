@@ -51,7 +51,7 @@
         android:background="@color/menuButton"
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="100dp"
-        android:onClick="openSettings"  />
+        android:onClick="openEndless"  />
 
     <ToggleButton
         android:layout_width="wrap_content"
@@ -65,6 +65,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:checked="false" />
+        android:onClick="onToggleClicked"  />
 
 </RelativeLayout>
 

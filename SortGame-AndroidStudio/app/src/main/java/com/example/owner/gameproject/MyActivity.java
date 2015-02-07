@@ -7,8 +7,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.ToggleButton;
+
+import Model.GameTouchLogic;
 
 public class MyActivity extends Activity {
+
+    GameTouchLogic gameTouchLogic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +22,8 @@ public class MyActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         setContentView(R.layout.activity_my);
+
+        gameTouchLogic = new GameTouchLogic()
     }
 
 
@@ -55,6 +62,20 @@ public class MyActivity extends Activity {
     public void openEndless(View view) {
         Intent intent = new Intent(this, StartEndlessActivity.class);
         startActivity(intent);
+    }
+
+
+    public void onToggleClicked(View view) {
+        // Is the toggle on?
+        boolean on = ((ToggleButton) view).isChecked();
+
+        if (on){
+            // Enable vibrate
+        }else {
+            // Disable vibrate
+        }
+
+
     }
 
 
