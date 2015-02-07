@@ -235,6 +235,9 @@ public class GameTouchLogic
                 }else{
                     if (this.gameBoard.getQuadrant(newX, newY) == this.card.getColorId())
                         this.correct();
+                    else if (this.gameBoard.getQuadrant(newX, newY) == 0)
+                        //Do nothing
+                        ;
                     else {
                         this.incorrect();
                     }
