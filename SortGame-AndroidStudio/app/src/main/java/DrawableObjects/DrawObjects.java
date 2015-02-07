@@ -43,7 +43,13 @@ public class DrawObjects
         if(gameTouchLogic.getDrawableTimer().getFullNumber() == 0) {
             gameTouchLogic.getDrawableTimer().setFullNumber(0);
             gameTouchLogic.timeOut();
-        }else if(gameTouchLogic.getClock().timePassed() >= 1000){
+        }else if(gameTouchLogic.getClock().timePassed() >= 1000) {
+
+            if(gameTouchLogic.getDrawableTimer().getFullNumber() <= 4 && gameTouchLogic.getDrawableTimer().getFullNumber() != 1){
+
+                gameTouchLogic.playSound(gameTouchLogic.beepSound, 1f);
+
+            }
 
             gameTouchLogic.getDrawableTimer().decrease(1);
             gameTouchLogic.getClock().resetTimer();
@@ -56,6 +62,7 @@ public class DrawObjects
             gameTouchLogic.getGameOverScreen().updateScore(gameTouchLogic.getScore().getFullNumber());
             gameTouchLogic.getGameOverScreen().draw(mMVPMatrix);
         }
+
     }
 
 

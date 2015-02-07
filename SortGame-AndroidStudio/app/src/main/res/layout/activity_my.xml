@@ -39,8 +39,12 @@
         android:text="@string/marathon_mode"
         android:background="@color/menuButton"
         android:layout_marginBottom="5dp"
+<<<<<<< Updated upstream
         android:layout_marginLeft="100dp"
         android:onClick="openStore" />
+=======
+        android:onClick="openMarathon" />
+>>>>>>> Stashed changes
 
     <Button
         android:id="@+id/endless_mode_button"
@@ -50,8 +54,15 @@
         android:text="@string/endless_mode"
         android:background="@color/menuButton"
         android:layout_marginBottom="5dp"
+<<<<<<< Updated upstream
         android:layout_marginLeft="100dp"
         android:onClick="openSettings"  />
+=======
+        android:onClick="openEndless"  />
+
+
+
+>>>>>>> Stashed changes
 
 </RelativeLayout>
 

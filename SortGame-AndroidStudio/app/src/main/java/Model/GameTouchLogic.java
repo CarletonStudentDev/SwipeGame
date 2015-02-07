@@ -136,9 +136,11 @@ public class GameTouchLogic
 
     private SoundPool sounds;
 
-    private int correctSound;
+    public int correctSound;
 
-    private int wrongSound;
+    public int wrongSound;
+
+    public int beepSound;
 
 
 
@@ -188,6 +190,7 @@ public class GameTouchLogic
 
         correctSound = sounds.load(context, R.raw.correct,1);
         wrongSound = sounds.load(context, R.raw.wrong,1);
+        beepSound = sounds.load(context, R.raw.beep, 1);
 
 
     }
@@ -211,6 +214,8 @@ public class GameTouchLogic
 
     public boolean onTouchEvent(MotionEvent event)
     {
+        //playTimeOutSound();
+
         if (event != null)
         {
             float r = (float)this.view.getHeight() / this.view.getWidth();
@@ -276,7 +281,9 @@ public class GameTouchLogic
 
         this.card = this.cardGenerator.generateCard(this.context);
 
-        sounds.play(correctSound,1f, 1f, 0, 0, 2f);
+        //Play correct match sound
+        playSound(correctSound, 2f);
+
     }
 
 
@@ -293,7 +300,9 @@ public class GameTouchLogic
         this.card = this.cardGenerator.generateCard(this.context);
         this.vibrate.vibrate();
 
-        sounds.play(wrongSound, 1f, 1f, 0, 0, 2f);
+        //Play wrong match sound
+        playSound(wrongSound, 2f);
+
     }
 
 
@@ -435,4 +444,12 @@ public class GameTouchLogic
     {
         return this.game;
     }
+
+    public void playSound (int soundId, float speed){
+
+        sounds.play(soundId,1f, 1f, 0, 0, speed);
+
+    }
+
+
 }
