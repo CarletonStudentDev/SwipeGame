@@ -9,11 +9,8 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ToggleButton;
 
-import Model.GameTouchLogic;
 
 public class MyActivity extends Activity {
-
-    GameTouchLogic gameTouchLogic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +20,7 @@ public class MyActivity extends Activity {
 
         setContentView(R.layout.activity_my);
 
-        gameTouchLogic = new GameTouchLogic()
+
     }
 
 
