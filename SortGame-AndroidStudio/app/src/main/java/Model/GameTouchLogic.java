@@ -142,6 +142,8 @@ public class GameTouchLogic
 
     public int beepSound;
 
+    private AdManager adManager;
+
 
 
     /**
@@ -176,6 +178,8 @@ public class GameTouchLogic
         this.vibrate = gameSetup.getVibrate();
 
         this.gameOverScreen = gameSetup.getGameOverScreen();
+
+        this.adManager = gameSetup.getAdManager();
 
         if((android.os.Build.VERSION.SDK_INT) == 21){
             SoundPool.Builder builder =  new SoundPool.Builder();
@@ -230,7 +234,6 @@ public class GameTouchLogic
                     this.clock.stopClock();
                     AdManager adManager = new AdManager(context);
                     adManager.displayAds();
-
 
                 }else{
                     if (this.gameBoard.getQuadrant(newX, newY) == this.card.getColorId())
@@ -454,5 +457,9 @@ public class GameTouchLogic
 
     }
 
+    public AdManager getAdManager ()
+    {
+        return this.adManager;
+    }
 
 }
