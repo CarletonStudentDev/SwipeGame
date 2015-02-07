@@ -46,14 +46,16 @@ public class MyActivity extends Activity {
     }
 
     /** Called when the user clicks the Store button */
-    public void openStore(View view) {
+    public void openMarathon(View view) {
         Intent intent = new Intent(this, StartMarathonActivity.class);
         startActivity(intent);
     }
 
     /** Called when the user clicks the Store button */
-    public void openSettings(View view) {
+    public void openEndless(View view) {
         Intent intent = new Intent(this, StartEndlessActivity.class);
         startActivity(intent);
     }
+
+
 }

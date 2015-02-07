@@ -22,7 +22,7 @@ public class Vibrate
      *
      */
 
-    private static final long VIBRATETIME = 25;
+    private static final long VIBRATETIME = 250;
 
 
     /**

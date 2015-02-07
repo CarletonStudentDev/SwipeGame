@@ -34,7 +34,7 @@
         </activity>
         <activity
             android:name=".StartMarathonActivity"
-            android:label="@string/title_activity_open_store"
+            android:label="@string/title_activity_open_marathon"
             android:screenOrientation="portrait"
             android:parentActivityName=".MyActivity" >
             <meta-data
@@ -43,7 +43,7 @@
         </activity>
         <activity
             android:name=".StartEndlessActivity"
-            android:label="@string/title_activity_open_settings"
+            android:label="@string/title_activity_open_endless"
             android:screenOrientation="portrait"
             android:parentActivityName=".MyActivity" >
             <meta-data
