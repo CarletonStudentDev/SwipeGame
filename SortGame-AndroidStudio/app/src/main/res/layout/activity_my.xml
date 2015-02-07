@@ -40,7 +40,13 @@
         android:background="@color/menuButton"
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="100dp"
+<<<<<<< Updated upstream
         android:onClick="openMarathon" />
+=======
+
+        android:onClick="openMarathon" />
+
+>>>>>>> Stashed changes
 
     <Button
         android:id="@+id/endless_mode_button"
@@ -51,7 +57,23 @@
         android:background="@color/menuButton"
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="100dp"
+<<<<<<< Updated upstream
         android:onClick="openSettings"  />
+=======
+        android:onClick="openEndless"  />
+
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New ToggleButton"
+        android:id="@+id/toggleButton"
+        android:background="@color/menuButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:checked="false" />
+
+>>>>>>> Stashed changes
 
 </RelativeLayout>
 
