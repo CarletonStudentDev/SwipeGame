@@ -4,7 +4,7 @@ Stuff to Do:
 	- Get Sprite sheet working
 	- Card action? 
 	- +1sec causes timer 'beep' override for 1sec
-	- GameOverScreen (buttons, highscore from Gplay, animation)
+	- GameOverScreen (buttons, highscore from Gplay, lossreason,  animation)
 	- +1sec animation
 	- Multiplier change animation
 	- GooglePlay
