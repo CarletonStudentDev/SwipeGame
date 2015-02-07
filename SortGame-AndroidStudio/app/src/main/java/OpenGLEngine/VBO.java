@@ -21,6 +21,7 @@ public class VBO {
 
     int mIndexBufferId;
     int mVertexBufferId;
+    int mTextureBufferId;
     boolean mUseNormals;
     boolean mUseTexCoords;
 
