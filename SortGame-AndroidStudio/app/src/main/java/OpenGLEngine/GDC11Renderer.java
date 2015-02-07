@@ -1,7 +1,11 @@
 package OpenGLEngine;
 
+import android.content.Context;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
+import android.util.Log;
+
+import com.example.owner.gameproject.R;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -22,10 +26,16 @@ public class GDC11Renderer implements GLSurfaceView.Renderer {
     private Shader mShader;
     private Camera mCamera;
 
+    private Context context;
+
     VBO mVBO1, mVBO2, mVBO3;
 
     private float[] mLightVector = { 2/3.f, 1/3.f, 2/3.f };  // Needs to be normalized
     private float[] mTransformedLightVector = new float[3];
+
+    public GDC11Renderer(Context context){
+        this.context = context;
+    }
 
     private void updateLightVector() {
 
@@ -64,9 +74,11 @@ public class GDC11Renderer implements GLSurfaceView.Renderer {
         mShader.setColor(red);
         mVBO1.draw();
 
-        mShader.setColor(gold);
+        //mShader.setColor(gold);
+        mShader.setTexture(context, R.drawable.zero);
         mVBO2.draw();
 
+        mShader.enableTexture(false);
         mShader.enableLight(false);
         mShader.setColor(brown);
         mVBO3.draw();
@@ -92,8 +104,8 @@ public class GDC11Renderer implements GLSurfaceView.Renderer {
         GeoData data = GeoData.halfpipe();
         mVBO1 = new VBO(data.mVertices, data.mIndices, GLES20.GL_TRIANGLE_STRIP, true, false, -1);
 
-        data = GeoData.circle();
-        mVBO2 = new VBO(data.mVertices, data.mIndices, GLES20.GL_TRIANGLE_FAN, true, false, -1);
+        data = GeoData.image(0, 0, 0.5f, 0.5f);
+        mVBO2 = new VBO(data.mVertices, data.mIndices, GLES20.GL_TRIANGLE_FAN, true, true, -1);
 
         data = GeoData.grid();
         mVBO3 = new VBO(data.mVertices, data.mIndices, GLES20.GL_LINES, false, false, -1);

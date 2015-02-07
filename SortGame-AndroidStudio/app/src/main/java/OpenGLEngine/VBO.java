@@ -28,15 +28,16 @@ public class VBO {
     int mNumComponents;
     int mStride;
 
-    VBO(float[] vertices,               // array of vertex data
-        short[] indices,            // indices
-        int type,                   // GL_POINTS, GL_LINE_STRIP, GL_LINE_LOOP, GL_LINES,
-        // GL_TRIANGLE_STRIP, GL_TRIANGLE_FAN, and GL_TRIANGLES
-        boolean vertexNormals,      // normals used ?
-        boolean vertexTexCoords,    // texCoords used ?
-        int stride) {               // struct size in bytes; if stride <= 0 -> stride will be calculated
-
-
+    /**
+     *
+     * @param vertices: array of vertex data
+     * @param indices: indices
+     * @param type: GL_POINTS, GL_LINE_STRIP, GL_LINE_LOOP, GL_LINES, GL_TRIANGLE_STRIP, GL_TRIANGLE_FAN, and GL_TRIANGLES
+     * @param vertexNormals: normals used ?
+     * @param vertexTexCoords: texCoords used ?
+     * @param stride: struct size in bytes; if stride <= 0 -> stride will be calculated
+     */
+    VBO(float[] vertices, short[] indices, int type, boolean vertexNormals, boolean vertexTexCoords, int stride) {
         mType = type;
         mUseNormals = vertexNormals;
         mUseTexCoords = vertexTexCoords;
@@ -55,14 +56,23 @@ public class VBO {
             mStride = stride;
         }
 
-        int[] buffers = {0,0};
-        GLES20.glGenBuffers(2, buffers, 0);
+        int[] buffers = {0,0,0};
+        GLES20.glGenBuffers(3, buffers, 0);
 
         mVertexBufferId = buffers[0];
         mIndexBufferId = buffers[1];
+        mTextureBufferId = buffers[2];
+
+        float[] texture = {
+                0.0f, 1.0f,
+                1.0f, 1.0f,
+                0.0f, 0.0f,
+                1.0f, 0.0f,
+        };
 
         createVertexBuffer(GLES20.GL_ARRAY_BUFFER, vertices, mVertexBufferId);
         createIndexBuffer(GLES20.GL_ELEMENT_ARRAY_BUFFER, indices, mIndexBufferId);
+        createVertexBuffer(GLES20.GL_ELEMENT_ARRAY_BUFFER, texture, mTextureBufferId);
         mNumIndices = indices.length;
     }
 

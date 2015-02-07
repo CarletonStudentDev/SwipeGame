@@ -1,6 +1,10 @@
 package OpenGLEngine;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.opengl.GLES20;
+import android.opengl.GLUtils;
 import android.util.Log;
 
 /**
@@ -16,19 +20,21 @@ public class Shader {
     // THESE ARE ARBITRARY VALUES, the only constraints are
     // - must be different
     // - must be less than a maximum value
-    static final int VERTEX_POS = 3;
-    static final int NORMAL_POS = 4;
-    static final int TEX_POS = 5;
+    static final int VERTEX_POS = 0;
+    static final int NORMAL_POS = 3;
+    static final int TEX_POS = 7;
     static final String TAG = "VBOTest";
 
     private int mProgramId;
+    private int mTextureLoc;
     private int mViewProjectionLoc;
     private int mLightVectorLoc;
     private int mColorLoc;
     private int mEnableLightLoc;
+    private int mEnableTexLoc;
 
 
-    Shader() {
+    public Shader() {
         mProgramId = loadProgram(kVertexShader, kFragmentShader);
         GLES20.glBindAttribLocation(mProgramId, Shader.VERTEX_POS, "position");
         GLES20.glBindAttribLocation(mProgramId, Shader.NORMAL_POS, "normal");
@@ -41,6 +47,10 @@ public class Shader {
                 GLES20.glGetUniformLocation(mProgramId, "color");
         mEnableLightLoc =
                 GLES20.glGetUniformLocation(mProgramId, "enableLight");
+        mEnableTexLoc =
+                GLES20.glGetUniformLocation(mProgramId, "enableTexture");
+        mTextureLoc =
+                GLES20.glGetUniformLocation(mProgramId, "textureSampler");
 
         // Other state.
         GLES20.glClearColor(0.7f, 0.7f, 0.7f, 1.0f);
@@ -65,6 +75,21 @@ public class Shader {
     }
     public void enableLight(boolean val) {
         GLES20.glUniform1i(mEnableLightLoc, val ? 1 : 0);
+    }
+    public void enableTexture(boolean val) {
+        GLES20.glUniform1i(mEnableTexLoc, val ? 1 : 0);
+        if(val) GLES20.glBlendFunc(GLES20.GL_ONE, GLES20.GL_ONE_MINUS_SRC_ALPHA);
+    }
+    public void setTexture(Context context, int bitmapId){
+        enableTexture(true);
+        GLES20.glEnable(GLES20.GL_TEXTURE_2D);
+        GLES20.glEnable(GLES20.GL_BLEND);
+
+
+        GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
+        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, loadTexture(context, bitmapId));
+        GLES20.glUniform1i(mTextureLoc, 0);
+
     }
 
     static public void setViewPort(int width, int height) {
@@ -109,6 +134,39 @@ public class Shader {
         return program;
     }
 
+    /**
+     * loads the texture into memory and returns a pointer to it's location in memory
+     *
+     * @param context: reference to the resources
+     * @param bitmapId: texture specific id
+     * @return: returns textureHandle which holds the location of the texture in memory
+     */
+    public static int loadTexture(Context context, int bitmapId){
+        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), bitmapId);
+
+        final int[] textureHandle = new int[1];
+        GLES20.glDeleteTextures(1,textureHandle,0);
+        GLES20.glGenTextures(1, textureHandle, 0);
+        //check if the textureHandle is already pointing to something
+        if(textureHandle[0] != 0){
+            // set textureHandle to point to bitmap
+            GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, textureHandle[0]);
+            //telling OpenGL how to render the texture
+            //GL_NEAREST -> nearest pixel (no blur)
+            GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_NEAREST);
+            GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_NEAREST);
+            //tells OpenGL how to render the texture on the shape
+            //GL_CLAMP_TO_EDGE -> clamp edge of texture to the edge of the shape
+            GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_S, GLES20.GL_CLAMP_TO_EDGE);
+            GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_T, GLES20.GL_CLAMP_TO_EDGE);
+            GLUtils.texImage2D(GLES20.GL_TEXTURE_2D, 0, bitmap, 0);
+            bitmap.recycle();
+        }
+        if(textureHandle[0] == 0){  //error handling
+            throw new RuntimeException("Error loading texture.");
+        }
+        return textureHandle[0];
+    }
 
     private static final String kVertexShader =
             "precision mediump float;                                   \n" +
@@ -125,18 +183,29 @@ public class Shader {
                     "}";
 
     private static final String kFragmentShader =
-            "precision mediump float;                                   \n" +
-                    "uniform sampler2D textureSampler;                          \n" +
-                    "uniform vec3 color;                                        \n" +
-                    "uniform int enableLight;                                   \n" +
-                    "varying float light;                                       \n" +
-                    "void main() {                                              \n" +
-                    "  if (1 == enableLight) {                                  \n" +
-                    "    gl_FragColor = light * vec4(color,1);                  \n" +
-                    "  } else {                                                 \n" +
-                    "    gl_FragColor = vec4(color,1);                          \n" +
-                    "  }                                                        \n" +
-                    // "  gl_FragColor = light * vec4(0.1,0.7,0.0,1);               \n" +
+                    "precision mediump float;                                                   \n" +
+                    "uniform sampler2D textureSampler;                                          \n" +
+                    "varying vec2 textureCoordinate;                                            \n" +
+                    "uniform vec3 color;                                                        \n" +
+                    "uniform int enableLight;                                                   \n" +
+                    "uniform int enableTexture;                                                 \n" +
+                    "varying float light;                                                       \n" +
+                    "void main() {                                                              \n" +
+                    "  if (1 == enableTexture) {                                                \n" +
+                    "    if (1 == enableLight) {                                                \n" +
+                    "      gl_FragColor = light * texture2D(textureSampler, textureCoordinate); \n" +
+                    "    } else {                                                               \n" +
+                    "      gl_FragColor = texture2D(textureSampler, textureCoordinate);         \n" +
+                    "    }                                                                      \n" +
+                    "  } else {                                                                 \n" +
+                    "    if (1 == enableLight) {                                                \n" +
+                    "      gl_FragColor = light * vec4(color,1);                                \n" +
+                    "    } else {                                                               \n" +
+                    "      gl_FragColor = vec4(color,1);                                        \n" +
+                    "    }                                                                      \n" +
+                    "  }                                                                        \n" +
+                    "                                                                           \n" +
+                    // "  gl_FragColor = light * vec4(0.1,0.7,0.0,1);                           \n" +
                     "}";
 
 

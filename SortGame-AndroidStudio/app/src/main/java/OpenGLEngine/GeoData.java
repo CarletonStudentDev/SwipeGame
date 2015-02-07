@@ -19,6 +19,36 @@ public class GeoData {
 
     private GeoData() {}
 
+    static public GeoData square(float x, float y, float width, float length){
+        GeoData creator = new GeoData();
+        float[] squareCoords = new float[]{
+                //x         y       z              lighting
+                x - width, -0.0f, y + length, 0.0f, -1.0f, 0.0f,// 0, Top Left
+                x - width, -0.0f, y - length, 0.0f, -1.0f, 0.0f,// 1, Bottom Left
+                x + width, -0.0f, y - length, 0.0f, -1.0f, 0.0f,// 2, Bottom Right
+                x + width, -0.0f, y + length, 0.0f, -1.0f, 0.0f,// 3, Top Right
+        };
+        short[] drawOrder = { 0, 1, 2, 0, 2, 3 };
+        creator.mVertices = squareCoords;
+        creator.mIndices = drawOrder;
+        return creator;
+    }
+
+    static public GeoData image(float x, float y, float width, float length){
+        GeoData creator = new GeoData();
+        float[] squareCoords = new float[]{
+                //x         y       z              lighting        texture
+                x - width, -0.0f, y + length, 0.0f, -1.0f, 0.0f, 0.0f, 1.0f,// 0, Top Left
+                x - width, -0.0f, y - length, 0.0f, -1.0f, 0.0f, 1.0f, 1.0f,// 1, Bottom Left
+                x + width, -0.0f, y - length, 0.0f, -1.0f, 0.0f, 0.0f, 0.0f,// 2, Bottom Right
+                x + width, -0.0f, y + length, 0.0f, -1.0f, 0.0f, 1.0f, 0.0f,// 3, Top Right
+        };
+        short[] drawOrder = { 0, 1, 2, 0, 2, 3 };
+        creator.mVertices = squareCoords;
+        creator.mIndices = drawOrder;
+        return creator;
+    }
+
     static public GeoData halfpipe() {
         GeoData creator = new GeoData();
         creator.mVertices = createVertices1(44);
@@ -26,10 +56,10 @@ public class GeoData {
         return creator;
     }
 
-    static public GeoData circle() {
+    static public GeoData circle(float x, float y, float radius) {
         GeoData creator = new GeoData();
-        creator.mVertices = createVertices2(32);
-        creator.mIndices = createIndices2(32);
+        creator.mVertices = createCircleVertices(32, x, y);
+        creator.mIndices = createCircleIndices(32);
         return creator;
     }
 
@@ -130,22 +160,22 @@ public class GeoData {
         return indices;
     }
 
-    static float[] createVertices2(int n) {
+    static float[] createCircleVertices(int n, float posX, float posY) {
         int NUM_COMPONENTS = 6;
         float[] vertices = new float[NUM_COMPONENTS*(n+2)];
         final float S = 0.9f;
         final float Y = -0.0f;
-        vertices[0] = 0;
+        vertices[0] = posX;
         vertices[1] = Y;
-        vertices[2] = 0;
+        vertices[2] = posY;
         vertices[3] = 0;
         vertices[4] =-1;
         vertices[5] = 0;
         for (int i=0; i<=n; i++) {
             int I = 6 + 6*i;
-            float a = (float) (0.75*2*Math.PI*i/n);
-            float x = (float) (S*Math.cos(a));
-            float z = (float) (S*Math.sin(a));
+            float a = (float) (2*Math.PI*i/n);
+            float x = (float) (S*Math.cos(a)+posX);
+            float z = (float) (S*Math.sin(a)+posY);
             vertices[I+0] = x;
             vertices[I+1] = Y;
             vertices[I+2] = z;
@@ -155,7 +185,7 @@ public class GeoData {
         }
         return vertices;
     }
-    static short[] createIndices2(int n) {
+    static short[] createCircleIndices(int n) {
         short[] indices = new short[(n+2)];
         for (short i=0; i<(n+2); i++) {
             indices[i] = i;

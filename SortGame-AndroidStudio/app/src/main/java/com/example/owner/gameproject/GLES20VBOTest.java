@@ -22,7 +22,7 @@ public class GLES20VBOTest extends Activity {
 
         GLSurfaceView view = new GLSurfaceView(this);
         view.setEGLContextClientVersion(2);
-        view.setRenderer(new GDC11Renderer());
+        view.setRenderer(new GDC11Renderer(getApplicationContext()));
 
         setContentView(view);
     }
