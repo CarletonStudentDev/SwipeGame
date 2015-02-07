@@ -15,7 +15,7 @@
         android:id="@+id/name_logo"
         android:layout_width="300dp"
         android:layout_height="100dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:layout_centerHorizontal="true"
         android:src="@drawable/menulogo" />
 
@@ -27,7 +27,7 @@
         android:text="@string/normal_mode"
         android:background="@color/menuButton"
         android:layout_marginBottom="5dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="100dp"
         android:layout_marginLeft="100dp"
         android:onClick="newGame"  />
 
