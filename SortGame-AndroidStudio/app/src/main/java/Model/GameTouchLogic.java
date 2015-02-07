@@ -1,8 +1,12 @@
 package Model;
 
 import android.content.Context;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.view.MotionEvent;
 import android.view.View;
+
+import com.example.owner.gameproject.R;
 
 import DrawableObjects.Card;
 import DrawableObjects.GameBoard;
@@ -10,10 +14,6 @@ import DrawableObjects.GameOverScreen;
 import DrawableObjects.MultiplierBar;
 import DrawableObjects.Numbers;
 import DrawableObjects.TopBar;
-import android.media.AudioManager;
-import android.media.SoundPool;
-
-import com.example.owner.gameproject.R;
 
 
 /**
@@ -223,7 +223,10 @@ public class GameTouchLogic
                 if (this.game.getGameOver()){
                     //Display GameOverScreen
                     this.clock.stopClock();
-                    
+                    AdManager adManager = new AdManager(context);
+                    adManager.displayAds();
+
+
                 }else{
                     if (this.gameBoard.getQuadrant(newX, newY) == this.card.getColorId())
                         this.correct();
