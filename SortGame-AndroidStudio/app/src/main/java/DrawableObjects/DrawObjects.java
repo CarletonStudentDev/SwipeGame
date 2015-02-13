@@ -1,6 +1,11 @@
 package DrawableObjects;
 
 
+
+import com.example.owner.gameproject.MyActivity;
+
+import Model.AdManager;
+
 import Model.GameTouchLogic;
 
 
@@ -43,6 +48,8 @@ public class DrawObjects
         if(gameTouchLogic.getDrawableTimer().getFullNumber() == 0) {
             gameTouchLogic.getDrawableTimer().setFullNumber(0);
             gameTouchLogic.timeOut();
+
+            //gameTouchLogic.getAdManager().displayAds();
         }else if(gameTouchLogic.getClock().timePassed() >= 1000) {
 
             if(gameTouchLogic.getDrawableTimer().getFullNumber() <= 4 && gameTouchLogic.getDrawableTimer().getFullNumber() != 1){

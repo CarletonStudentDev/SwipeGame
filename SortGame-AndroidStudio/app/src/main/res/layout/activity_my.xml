@@ -64,8 +64,12 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:checked="false" />
-        android:onClick="onToggleClicked"  />
+        android:textOff="@string/sound_off_toggleButton"
+        android:textOn="@string/sound_on_toggleButton"
+        android:checked="true"
+        android:onClick="onToggleClicked"/>
+
+
 
 </RelativeLayout>
 

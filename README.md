@@ -9,5 +9,6 @@ Stuff to Do:
 	- Multiplier change animation
 	- GooglePlay
 	- New sound mp3's and mute button(functionality, images instead of text)
-	
+	- Ads must display on game loss
+	- 
 	

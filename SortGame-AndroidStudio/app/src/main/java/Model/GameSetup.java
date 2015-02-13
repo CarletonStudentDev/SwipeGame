@@ -129,6 +129,8 @@ public class GameSetup
 
     private GameOverScreen gameOverScreen;
 
+    private AdManager adManager;
+
     /**
      * Constructor for the GameSetup class.
      *
@@ -162,6 +164,8 @@ public class GameSetup
         this.vibrate = new Vibrate(this.context);
 
         this.gameOverScreen = new GameOverScreen(this.context);
+
+        this.adManager = new AdManager(context);
     }
 
 
@@ -352,4 +356,14 @@ public class GameSetup
     {
         return this.gameOverScreen;
     }
+    /**
+     * Getter for the gameOverScreen
+     *
+     */
+
+    public AdManager getAdManager ()
+    {
+        return this.adManager;
+    }
+
 }

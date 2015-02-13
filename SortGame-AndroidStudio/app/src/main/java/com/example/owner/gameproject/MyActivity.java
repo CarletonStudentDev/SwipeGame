@@ -2,15 +2,23 @@ package com.example.owner.gameproject;
 
 import android.app.Activity;
 import android.content.Intent;
+
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.Toast; //Used for testing
 import android.widget.ToggleButton;
 
 
+
+
 public class MyActivity extends Activity {
+
+    public static float volume;
+
+    private ToggleButton toggleBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +27,6 @@ public class MyActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         setContentView(R.layout.activity_my);
-
 
     }
 
@@ -61,17 +68,39 @@ public class MyActivity extends Activity {
         startActivity(intent);
     }
 
-
+    //checks if the toggle button was clicked and sets the volume
     public void onToggleClicked(View view) {
-        // Is the toggle on?
-        boolean on = ((ToggleButton) view).isChecked();
 
-        if (on){
-            // Enable vibrate
-        }else {
-            // Disable vibrate
+        toggleBtn = (ToggleButton) findViewById(R.id.toggleButton);
+
+        toggleBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                    if (toggleBtn.isChecked()){
+                        volume = 1f;
+                    }else{
+                        volume = 0f;
+                    }
+            }
+        });
+
+    }
+
+
+    private void checkToggleButton (){
+
+        toggleBtn = (ToggleButton) findViewById(R.id.toggleButton);
+
+        if(toggleBtn.getTextOn().equals("SOUND ON")){
+            volume=1f;
+        }else if(toggleBtn.getTextOn().equals("SOUND OFF")){
+            volume=0;
         }
 
+    }
+
+    private ToggleButton getToggleBtn(){
+
+        return (ToggleButton) findViewById(R.id.toggleButton);
 
     }
 

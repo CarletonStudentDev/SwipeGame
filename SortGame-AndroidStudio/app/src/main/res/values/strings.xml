@@ -10,6 +10,8 @@
     <string name="title_activity_display_message">DisplayMessageActivity</string>
     <string name="title_activity_open_marathon">OpenStoreActivity</string>
     <string name="title_activity_open_endless">OpenSettingsActivity</string>
+    <string name="sound_on_toggleButton">SOUND ON</string>
+    <string name="sound_off_toggleButton">SOUND OFF</string>
 
 
 </resources>

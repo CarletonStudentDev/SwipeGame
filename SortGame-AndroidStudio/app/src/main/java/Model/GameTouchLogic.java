@@ -6,6 +6,7 @@ import android.media.SoundPool;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.example.owner.gameproject.MyActivity;
 import com.example.owner.gameproject.R;
 
 import DrawableObjects.Card;
@@ -14,6 +15,8 @@ import DrawableObjects.GameOverScreen;
 import DrawableObjects.MultiplierBar;
 import DrawableObjects.Numbers;
 import DrawableObjects.TopBar;
+
+
 
 
 /**
@@ -134,7 +137,8 @@ public class GameTouchLogic
 
     private Vibrate vibrate;
 
-    private SoundPool sounds;
+
+    public SoundPool sounds;
 
     public int correctSound;
 
@@ -142,6 +146,7 @@ public class GameTouchLogic
 
     public int beepSound;
 
+    private AdManager adManager;
 
 
     /**
@@ -177,6 +182,8 @@ public class GameTouchLogic
 
         this.gameOverScreen = gameSetup.getGameOverScreen();
 
+        this.adManager = gameSetup.getAdManager();
+
         if((android.os.Build.VERSION.SDK_INT) == 21){
             SoundPool.Builder builder =  new SoundPool.Builder();
             builder.setMaxStreams(10); //Assuming only 10 sounds will play simultaneously
@@ -191,7 +198,6 @@ public class GameTouchLogic
         correctSound = sounds.load(context, R.raw.correct,1);
         wrongSound = sounds.load(context, R.raw.wrong,1);
         beepSound = sounds.load(context, R.raw.beep, 1);
-
 
     }
 
@@ -214,7 +220,6 @@ public class GameTouchLogic
 
     public boolean onTouchEvent(MotionEvent event)
     {
-        //playTimeOutSound();
 
         if (event != null)
         {
@@ -230,7 +235,6 @@ public class GameTouchLogic
                     this.clock.stopClock();
                     AdManager adManager = new AdManager(context);
                     adManager.displayAds();
-
 
                 }else{
                     if (this.gameBoard.getQuadrant(newX, newY) == this.card.getColorId())
@@ -286,6 +290,7 @@ public class GameTouchLogic
 
         //Play correct match sound
         playSound(correctSound, 2f);
+
 
     }
 
@@ -450,9 +455,18 @@ public class GameTouchLogic
 
     public void playSound (int soundId, float speed){
 
-        sounds.play(soundId,1f, 1f, 0, 0, speed);
+        if (MyActivity.volume==1f){
+            sounds.play(soundId,1f, 1f, 0, 0, speed);
+        }else{
+            sounds.play(soundId,0, 0, 0, 0, speed);
+        }
+
 
     }
 
+    public AdManager getAdManager ()
+    {
+        return this.adManager;
+    }
 
 }
