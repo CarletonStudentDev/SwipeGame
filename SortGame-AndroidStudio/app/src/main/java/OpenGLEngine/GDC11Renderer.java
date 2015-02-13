@@ -74,11 +74,11 @@ public class GDC11Renderer implements GLSurfaceView.Renderer {
         mShader.setColor(red);
         mVBO1.draw();
 
-        //mShader.setColor(gold);
-        mShader.setTexture(context, R.drawable.zero);
+        mShader.setColor(gold);
+        //mShader.setTexture(context, R.drawable.zero);
         mVBO2.draw();
 
-        mShader.enableTexture(false);
+        //mShader.enableTexture(false);
         mShader.enableLight(false);
         mShader.setColor(brown);
         mVBO3.draw();

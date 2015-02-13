@@ -22,16 +22,17 @@ public class Shader {
     // - must be less than a maximum value
     static final int VERTEX_POS = 0;
     static final int NORMAL_POS = 3;
-    static final int TEX_POS = 7;
+    static final int TEX_POS = 5;
     static final String TAG = "VBOTest";
 
     private int mProgramId;
-    private int mTextureLoc;
     private int mViewProjectionLoc;
     private int mLightVectorLoc;
     private int mColorLoc;
     private int mEnableLightLoc;
     private int mEnableTexLoc;
+    private int mTextureLoc;
+    private int uTextureLoc;
 
 
     public Shader() {
@@ -50,7 +51,9 @@ public class Shader {
         mEnableTexLoc =
                 GLES20.glGetUniformLocation(mProgramId, "enableTexture");
         mTextureLoc =
-                GLES20.glGetUniformLocation(mProgramId, "textureSampler");
+                GLES20.glGetUniformLocation(mProgramId, "textureCoordinate");
+        uTextureLoc =
+                GLES20.glGetUniformLocation(mProgramId, "textureCoordinate");
 
         // Other state.
         GLES20.glClearColor(0.7f, 0.7f, 0.7f, 1.0f);
@@ -85,13 +88,12 @@ public class Shader {
         GLES20.glEnable(GLES20.GL_TEXTURE_2D);
         GLES20.glEnable(GLES20.GL_BLEND);
 
-
+        mTextureLoc = loadTexture(context, bitmapId);
         GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
-        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, loadTexture(context, bitmapId));
-        GLES20.glUniform1i(mTextureLoc, 0);
+        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, mTextureLoc);
+        GLES20.glUniform1i(uTextureLoc, 0);
 
     }
-
     static public void setViewPort(int width, int height) {
         GLES20.glViewport(0, 0, width, height);
     }
