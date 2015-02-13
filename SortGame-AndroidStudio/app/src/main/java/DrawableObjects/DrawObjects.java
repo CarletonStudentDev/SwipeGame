@@ -1,11 +1,6 @@
 package DrawableObjects;
 
-
-
-import com.example.owner.gameproject.MyActivity;
-
 import Model.AdManager;
-
 import Model.GameTouchLogic;
 
 
