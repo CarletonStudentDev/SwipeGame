@@ -84,6 +84,25 @@ public class GameBoard {
     }
 
 
+    public int getGameOverButton(float x, float y)
+    {
+        if (this.retryTouched(x, y))
+            return 1;
+
+        else if (this.menuTouched(x, y))
+            return 2;
+
+        return 0;
+    }
+
+    private boolean retryTouched(float x, float y){
+        return (x <= .4f && x> 0.04f) && (y <= -0.475f && y>-0.675f);
+    }
+
+    private boolean menuTouched(float x, float y){
+        return (x <= -0.05f && x>-0.4f) && (y <= -0.475f && y>-0.675f);
+    }
+
 
     public void draw(float[] mMVPMatrix){
         circle.draw(mMVPMatrix);

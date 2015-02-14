@@ -1,6 +1,7 @@
 package OpenGL;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
@@ -16,7 +17,6 @@ import Model.GameSetup;
 import Model.GameTouchLogic;
 
 
-
 public class MyRenderer implements Renderer {
     private GLSurfaceView view;
     private GameSetup gameSetup;
@@ -29,24 +29,23 @@ public class MyRenderer implements Renderer {
     public float mDeltaX;
     public float mDeltaY;
     private long gameLength;
+    private Activity activity;
 
 
-    public MyRenderer(Context context, GLSurfaceView view, long gameLength)
+    public MyRenderer(Context context, GLSurfaceView view, long gameLength, Activity activity)
     {
         this.view = view;
         this.context = context;
         this.gameLength=gameLength;
+        this.activity=activity;
     }
-
-
-
 
     @Override
     public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig)
     {
         GLES20.glClearColor( 236f/255f, 240f/255f, 241f/255f, 1.0f );
         this.gameSetup = new GameSetup(this.context, gameLength);
-        this.gameTouchLogic = new GameTouchLogic(this.view, this.gameSetup);
+        this.gameTouchLogic = new GameTouchLogic(this.view, this.gameSetup,activity);
         ratio = (float) view.getWidth() / (float) view.getHeight();
     }
 

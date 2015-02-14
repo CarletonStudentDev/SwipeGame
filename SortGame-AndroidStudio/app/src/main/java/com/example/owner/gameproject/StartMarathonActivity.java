@@ -19,7 +19,7 @@ public class StartMarathonActivity extends Activity {
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        surfaceView = new MyGLSurfaceView(getApplicationContext(),30);
+        surfaceView = new MyGLSurfaceView(getApplicationContext(),30,this);
         setContentView(surfaceView);
     }
 
