@@ -7,10 +7,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.widget.LinearLayout;
 import android.widget.ToggleButton;
 
-import Model.AdManager;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 
 public class MyActivity extends Activity {
@@ -25,19 +25,11 @@ public class MyActivity extends Activity {
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        AdManager adManager = new AdManager(this.getApplicationContext());
-        adManager.displayAds();
+        setContentView(R.layout.activity_my);
 
-        LinearLayout layout = new LinearLayout(this);
-        layout.setOrientation(LinearLayout.VERTICAL);
-
-        layout.addView(adManager.getInterstitial());
-
-        View view = View.inflate(this, R.layout.activity_my, null);
-        layout.addView(view);
-
-        setContentView(layout);
-
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
     }
 
