@@ -244,6 +244,7 @@ public class GameTouchLogic
                     if (this.gameBoard.getGameOverButton(newX, newY) == 2) {
                         activity.finish();
                     }else if (this.gameBoard.getGameOverButton(newX, newY) == 1) {
+                        activity.finish();
                         intent = new Intent(activity, StartNormalActivity.class);
                         activity.startActivity(intent);
                     }
