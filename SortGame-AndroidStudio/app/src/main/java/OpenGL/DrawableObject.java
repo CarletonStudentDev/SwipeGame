@@ -10,4 +10,5 @@ public interface DrawableObject {
     public void draw(float[] mMVPMatrix);
 
     public boolean isTouched(float x, float y);
+
 }

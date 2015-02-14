@@ -58,7 +58,6 @@ public class Numbers implements DrawableObject {
         //COLOR=2 WHITE
         if(color==1){
             zeroImage = new Image(context, x, y, numSize, R.drawable.zero);
-            zeroImage.setTextureCoords(textureCoords);
             oneImage = new Image(context, x, y, numSize, R.drawable.one);
             twoImage = new Image(context, x, y, numSize, R.drawable.two);
             threeImage = new Image(context, x, y, numSize, R.drawable.three);
@@ -178,7 +177,6 @@ public class Numbers implements DrawableObject {
             }else if(singleDigit == 9){
                 numbers[i-1] = nineImage;
             }
-
         }
     }
 

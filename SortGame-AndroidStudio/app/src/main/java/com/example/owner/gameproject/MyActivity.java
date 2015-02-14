@@ -16,7 +16,7 @@ import android.widget.ToggleButton;
 
 public class MyActivity extends Activity {
 
-    public static float volume;
+    public static float volume = 1f;
 
     private ToggleButton toggleBtn;
 
@@ -70,39 +70,26 @@ public class MyActivity extends Activity {
 
     //checks if the toggle button was clicked and sets the volume
     public void onToggleClicked(View view) {
-
+        boolean on = ((ToggleButton)view).isChecked();
+        if(on){
+            volume = 1f;
+        }else{
+            volume = 0f;
+        }
+        /*
         toggleBtn = (ToggleButton) findViewById(R.id.toggleButton);
-
         toggleBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                    if (toggleBtn.isChecked()){
-                        volume = 1f;
-                    }else{
-                        volume = 0f;
-                    }
+                if (toggleBtn.isChecked()) {
+                    volume = 1f;
+                } else {
+                    volume = 0f;
+                }
             }
         });
-
+        */
     }
-
-
-    private void checkToggleButton (){
-
-        toggleBtn = (ToggleButton) findViewById(R.id.toggleButton);
-
-        if(toggleBtn.getTextOn().equals("SOUND ON")){
-            volume=1f;
-        }else if(toggleBtn.getTextOn().equals("SOUND OFF")){
-            volume=0;
-        }
-
+    public static float getVolume(){
+        return volume;
     }
-
-    private ToggleButton getToggleBtn(){
-
-        return (ToggleButton) findViewById(R.id.toggleButton);
-
-    }
-
-
 }

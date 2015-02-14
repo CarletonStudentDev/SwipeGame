@@ -89,6 +89,6 @@ public class MyRenderer implements Renderer {
         Matrix.multiplyMM(scratch, 0, mMVPMatrix, 0, this.gameSetup.getCard().getSquare().mModelMatrix, 0);
         mDeltaX = 0f;
         mDeltaY = 0f;
-        DrawObjects.draw(this.gameTouchLogic, mMVPMatrix, scratch);
+        DrawObjects.draw(this.gameTouchLogic, mMVPMatrix);
     }
 }

@@ -3,6 +3,7 @@ package Model;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.SoundPool;
+import android.provider.MediaStore;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -284,7 +285,9 @@ public class GameTouchLogic
         // need to multiply 100 by the multiplier score
         this.score.increase(100*this.multiplierBar.giveMulti());
 
-        this.drawableTimer.increase(1);
+        if(drawableTimer.getFullNumber() >= 0) {
+            this.drawableTimer.increase(1);
+        }
 
         this.card = this.cardGenerator.generateCard(this.context);
 
@@ -455,12 +458,8 @@ public class GameTouchLogic
 
     public void playSound (int soundId, float speed){
 
-        if (MyActivity.volume==1f){
-            sounds.play(soundId,1f, 1f, 0, 0, speed);
-        }else{
-            sounds.play(soundId,0, 0, 0, 0, speed);
-        }
-
+        float volume = MyActivity.getVolume();
+        sounds.play(soundId,volume,volume,0,0,speed);
 
     }
 
