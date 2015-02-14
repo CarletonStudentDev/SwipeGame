@@ -468,7 +468,7 @@ public class GameTouchLogic
 
     public void playSound (int soundId, float speed){
 
-        float volume = MyActivity.getVolume();
+        float volume = MyActivity.volume;
         sounds.play(soundId,volume,volume,0,0,speed);
 
     }

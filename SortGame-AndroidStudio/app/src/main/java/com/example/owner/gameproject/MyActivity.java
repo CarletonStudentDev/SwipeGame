@@ -115,5 +115,10 @@ public class MyActivity extends Activity {
 
     }
 
+    public float getVolume()
+    {
+        return volume;
+    }
+
 
 }
