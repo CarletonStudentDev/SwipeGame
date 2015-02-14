@@ -86,11 +86,11 @@ public class MyActivity extends Activity {
 
         toggleBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                    if (toggleBtn.isChecked()){
-                        volume = 1f;
-                    }else{
-                        volume = 0f;
-                    }
+                if (toggleBtn.isChecked()){
+                    volume = 1f;
+                }else{
+                    volume = 0f;
+                }
             }
         });
 

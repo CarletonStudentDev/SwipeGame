@@ -23,42 +23,41 @@ public class DrawObjects
      *                        the game and the touch events.
      * @param mMVPMatrix: float [] representing the perspective projection of the
      *                    object on the screen.
-     * @param scratch: float [] representing the perspective projection of the
-     *                 object on the screen.
      *
      */
 
-    public static void draw(GameTouchLogic gameTouchLogic, float [] mMVPMatrix, float [] scratch)
+    public static void draw(GameTouchLogic gameTouchLogic, float [] mMVPMatrix)
     {
         gameTouchLogic.getTopBar().draw(mMVPMatrix);
         gameTouchLogic.getMultiplierBar().draw(mMVPMatrix);
         gameTouchLogic.getGameBoard().draw(mMVPMatrix);
-        gameTouchLogic.getCard().draw(scratch);
+        gameTouchLogic.getCard().draw(mMVPMatrix);
         gameTouchLogic.getScore().draw(mMVPMatrix);
 
         if(gameTouchLogic.getTopBar().getFullHearts() == 0){
             gameTouchLogic.getDrawableTimer().setFullNumber(0);
         }
+        if(gameTouchLogic.getDrawableTimer().getFullNumber() >= 0) {
+            if (gameTouchLogic.getDrawableTimer().getFullNumber() == 0) {
+                gameTouchLogic.getDrawableTimer().setFullNumber(0);
+                gameTouchLogic.timeOut();
 
-        if(gameTouchLogic.getDrawableTimer().getFullNumber() == 0) {
-            gameTouchLogic.getDrawableTimer().setFullNumber(0);
-            gameTouchLogic.timeOut();
+                //gameTouchLogic.getAdManager().displayAds();
+            } else if (gameTouchLogic.getClock().timePassed() >= 1000) {
 
-            //gameTouchLogic.getAdManager().displayAds();
-        }else if(gameTouchLogic.getClock().timePassed() >= 1000) {
+                if (gameTouchLogic.getDrawableTimer().getFullNumber() <= 4 && gameTouchLogic.getDrawableTimer().getFullNumber() != 1) {
 
-            if(gameTouchLogic.getDrawableTimer().getFullNumber() <= 4 && gameTouchLogic.getDrawableTimer().getFullNumber() != 1){
+                    gameTouchLogic.playSound(gameTouchLogic.beepSound, 1f);
 
-                gameTouchLogic.playSound(gameTouchLogic.beepSound, 1f);
+                }
+
+                gameTouchLogic.getDrawableTimer().decrease(1);
+                gameTouchLogic.getClock().resetTimer();
 
             }
 
-            gameTouchLogic.getDrawableTimer().decrease(1);
-            gameTouchLogic.getClock().resetTimer();
-
+            gameTouchLogic.getDrawableTimer().draw(mMVPMatrix);
         }
-
-        gameTouchLogic.getDrawableTimer().draw(mMVPMatrix);
 
         if(gameTouchLogic.getGame().getGameOver()){
             gameTouchLogic.getGameOverScreen().updateScore(gameTouchLogic.getScore().getFullNumber());

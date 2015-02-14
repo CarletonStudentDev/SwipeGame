@@ -166,6 +166,7 @@ public class GameSetup
         this.gameOverScreen = new GameOverScreen(this.context);
 
         this.adManager = new AdManager(context);
+
     }
 
 

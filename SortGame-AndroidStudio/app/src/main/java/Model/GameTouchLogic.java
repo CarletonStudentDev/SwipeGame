@@ -1,13 +1,17 @@
 package Model;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.media.AudioManager;
 import android.media.SoundPool;
+import android.provider.MediaStore;
 import android.view.MotionEvent;
 import android.view.View;
 
 import com.example.owner.gameproject.MyActivity;
 import com.example.owner.gameproject.R;
+import com.example.owner.gameproject.StartNormalActivity;
 
 import DrawableObjects.Card;
 import DrawableObjects.GameBoard;
@@ -15,8 +19,6 @@ import DrawableObjects.GameOverScreen;
 import DrawableObjects.MultiplierBar;
 import DrawableObjects.Numbers;
 import DrawableObjects.TopBar;
-
-
 
 
 /**
@@ -148,6 +150,8 @@ public class GameTouchLogic
 
     private AdManager adManager;
 
+    private Activity activity;
+    private Intent intent;
 
     /**
      * Constructor for the GameTouchLogic class.
@@ -158,8 +162,9 @@ public class GameTouchLogic
      *
      */
 
-    public GameTouchLogic(View view, GameSetup gameSetup)
+    public GameTouchLogic(View view, GameSetup gameSetup, Activity activity)
     {
+        this.activity=activity;
         this.view = view;
 
         this.player = gameSetup.getPlayer();
@@ -192,8 +197,6 @@ public class GameTouchLogic
         else{
             sounds = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
         }
-
-
 
         correctSound = sounds.load(context, R.raw.correct,1);
         wrongSound = sounds.load(context, R.raw.wrong,1);
@@ -233,9 +236,17 @@ public class GameTouchLogic
                 if (this.game.getGameOver()){
                     //Display GameOverScreen
                     this.clock.stopClock();
-                    AdManager adManager = new AdManager(context);
-                    adManager.displayAds();
+                    //AdManager adManager = new AdManager(context);
+                    //adManager.displayAds();
 
+
+
+                    if (this.gameBoard.getGameOverButton(newX, newY) == 2) {
+                        activity.finish();
+                    }else if (this.gameBoard.getGameOverButton(newX, newY) == 1) {
+                        intent = new Intent(activity, StartNormalActivity.class);
+                        activity.startActivity(intent);
+                    }
                 }else{
                     if (this.gameBoard.getQuadrant(newX, newY) == this.card.getColorId())
                         this.correct();
@@ -284,7 +295,9 @@ public class GameTouchLogic
         // need to multiply 100 by the multiplier score
         this.score.increase(100*this.multiplierBar.giveMulti());
 
-        this.drawableTimer.increase(1);
+        if(drawableTimer.getFullNumber() >= 0) {
+            this.drawableTimer.increase(1);
+        }
 
         this.card = this.cardGenerator.generateCard(this.context);
 
@@ -455,12 +468,8 @@ public class GameTouchLogic
 
     public void playSound (int soundId, float speed){
 
-        if (MyActivity.volume==1f){
-            sounds.play(soundId,1f, 1f, 0, 0, speed);
-        }else{
-            sounds.play(soundId,0, 0, 0, 0, speed);
-        }
-
+        float volume = MyActivity.getVolume();
+        sounds.play(soundId,volume,volume,0,0,speed);
 
     }
 
