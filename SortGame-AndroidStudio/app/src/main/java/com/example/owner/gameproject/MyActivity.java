@@ -2,16 +2,15 @@ package com.example.owner.gameproject;
 
 import android.app.Activity;
 import android.content.Intent;
-
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.widget.Toast; //Used for testing
+import android.widget.LinearLayout;
 import android.widget.ToggleButton;
 
-
+import Model.AdManager;
 
 
 public class MyActivity extends Activity {
@@ -26,7 +25,19 @@ public class MyActivity extends Activity {
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        setContentView(R.layout.activity_my);
+        AdManager adManager = new AdManager(this.getApplicationContext());
+        adManager.displayAds();
+
+        LinearLayout layout = new LinearLayout(this);
+        layout.setOrientation(LinearLayout.VERTICAL);
+
+        layout.addView(adManager.getInterstitial());
+
+        View view = View.inflate(this, R.layout.activity_my, null);
+        layout.addView(view);
+
+        setContentView(layout);
+
 
     }
 
