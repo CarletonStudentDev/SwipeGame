@@ -1,7 +1,6 @@
 package DrawableObjects;
 
 import android.content.Context;
-import android.view.View;
 
 import com.example.owner.gameproject.R;
 
@@ -12,41 +11,47 @@ import OpenGL.Square;
 
 public class GameOverScreen implements DrawableObject {
 
-    private Square backgroundSquare;
-    private Square retrySquare;
-    private Square menuSquare;
-    public float x,y;
-    Context context;
+    private static final int SCORENUM = 0,
+                             HIGHNUM = 9999999,
+                             CARDSPERSEC = 0;
 
-    private Image outoflives;
-    private Image outoftime;
-    private Image scoretitle;
-    private Image cardspersectitle;
-    private Image highscoretitle;
-    private Image dot;
-    public Numbers score;
-    public Numbers highscore;
-    public Numbers cardspersecscore;
-    private Image retry;
-    private Image back;
-    private int scoreNum=0;
-    private int highNum=9999999;
-    private int cardsPerSec=0;
+
+    private Square backgroundSquare,
+                   retrySquare,
+                   menuSquare;
+
+    private float x,
+                  y;
+
+    private Image outoflives,
+                  outoftime,
+                  scoretitle,
+                  cardspersectitle,
+                  highscoretitle,
+                  dot,
+                  retry,
+                  back;
+
+
+    private Numbers score,
+                   highscore,
+                   cardspersecscore;
+
+
+
 
     private boolean isOutOfLives,
                     isTimedOut;
 
-    private View view;
 
     public GameOverScreen(Context context)
     {
-        this.context = context;
 
         this.isOutOfLives = false;
         this.isTimedOut = false;
 
-        this.x=0;
-        this.y=0;
+        this.x = 0;
+        this.y = 0;
 
         float backgroundColor[] = GraphicsHelper.RGBArray(context, R.color.darkBlue);
         backgroundSquare = new Square(x, y, 1.1f, 1.5f, backgroundColor);
@@ -55,13 +60,13 @@ public class GameOverScreen implements DrawableObject {
         outoftime = new Image(context, x, y+0.5f, 1f, R.drawable.outoftime);
 
         scoretitle = new Image(context, x, y+0.37f, 0.5f, R.drawable.score);
-        score = new Numbers(context,-0.35f,y+0.25f,scoreNum,8,0,0.12f,0.1f,2);
+        score = new Numbers(context,-0.35f,y+0.25f,SCORENUM,8,0,0.12f,0.1f,2);
 
         highscoretitle = new Image(context, x, y+0.05f, 0.9f, R.drawable.highscore);
-        highscore = new Numbers(context,-0.35f,y-0.1f,highNum,8,0,0.12f,0.1f,2);
+        highscore = new Numbers(context,-0.35f,y-0.1f,HIGHNUM,8,0,0.12f,0.1f,2);
 
         cardspersectitle = new Image(context, 0.155f, y-0.3f, 0.8f, R.drawable.cardspersec);
-        cardspersecscore = new Numbers(context,-0.45f,y-0.3f,cardsPerSec,3,3,0.12f,0.11f,2);
+        cardspersecscore = new Numbers(context,-0.45f,y-0.3f,CARDSPERSEC,3,3,0.12f,0.11f,2);
         dot = new Image(context, -0.285f, y-0.35f, 0.045f, R.drawable.dot);
 
 
@@ -83,12 +88,6 @@ public class GameOverScreen implements DrawableObject {
     {
         this.isTimedOut = isTimedOut;
     }
-
-    public void setView(View view)
-    {
-        this.view = view;
-    }
-
 
 
 

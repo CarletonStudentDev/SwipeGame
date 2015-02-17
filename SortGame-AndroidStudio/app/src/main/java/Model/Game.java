@@ -127,7 +127,6 @@ public class Game
     {
         GameEvent ge = new GameEvent(this);
 
-        //this.setTimedOut(true);
         this.gameOver = true;
 
         this.player.timeOut(ge);

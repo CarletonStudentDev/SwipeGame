@@ -35,17 +35,14 @@ public class DrawObjects
 
         if(gameTouchLogic.getTopBar().getFullHearts() == 0)
         {
-            //gameTouchLogic.getDrawableTimer().setFullNumber(0);
             gameTouchLogic.getGameOverScreen().setOutOfLives(true);
             gameTouchLogic.livesFinished();
-
         }
 
-        if(gameTouchLogic.getDrawableTimer().getFullNumber() >= 0)
+        else if(gameTouchLogic.getDrawableTimer().getFullNumber() >= 0)
         {
             if (gameTouchLogic.getDrawableTimer().getFullNumber() == 0)
             {
-                //gameTouchLogic.getDrawableTimer().setFullNumber(0);
                 gameTouchLogic.getGameOverScreen().setTimedOut(true);
                 gameTouchLogic.timeOut();
             }
@@ -54,7 +51,7 @@ public class DrawObjects
             {
 
                 if (gameTouchLogic.getDrawableTimer().getFullNumber() <= 4 && gameTouchLogic.getDrawableTimer().getFullNumber() != 1)
-                    gameTouchLogic.playSound(gameTouchLogic.beepSound, 1f);
+                    gameTouchLogic.playSound(gameTouchLogic.getBeepSound(), 1f);
 
                 gameTouchLogic.getDrawableTimer().decrease(1);
                 gameTouchLogic.getClock().resetTimer();

@@ -2,15 +2,11 @@ package Model;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.media.AudioManager;
 import android.media.SoundPool;
 import android.view.MotionEvent;
 import android.view.View;
 
 import com.example.owner.gameproject.MyActivity;
-import com.example.owner.gameproject.R;
-import com.example.owner.gameproject.StartNormalActivity;
 
 import DrawableObjects.Card;
 import DrawableObjects.GameBoard;
@@ -139,13 +135,36 @@ public class GameTouchLogic
     private Vibrate vibrate;
 
 
-    public SoundPool sounds;
+    /**
+     * sounds: SoundPool instance representing the audio resources
+     *         of the app.
+     *
+     */
 
-    public int correctSound;
+    private SoundPool sounds;
 
-    public int wrongSound;
 
-    public int beepSound;
+    /**
+     * correctSound: integer value representing the sound to be played
+     *               when there is a correct match.
+     *
+     * wrongSound: integer value representing the sound to be played
+     *             when there is an incorrect match.
+     *
+     * beepSound: integer value representing the sound to be played
+     *            when the timer is below 4 seconds.
+     *
+     */
+
+    private int correctSound,
+                wrongSound,
+                beepSound;
+
+
+    /**
+     * activity: Activity instance representing android.app.Activity.
+     *
+     */
 
     private Activity activity;
 
@@ -156,13 +175,11 @@ public class GameTouchLogic
      * @param view: View instance representing the android.view.View class.
      * @param gameSetup: GameSetup instance representing the setup of the
      *                   SwipeGame.
-     * @param activity: Activity representing android.app.Activity class.
      *
      */
 
-    public GameTouchLogic(View view, GameSetup gameSetup, Activity activity)
+    public GameTouchLogic(View view, GameSetup gameSetup)
     {
-        this.activity = activity;
         this.view = view;
 
         this.player = gameSetup.getPlayer();
@@ -184,20 +201,13 @@ public class GameTouchLogic
         this.vibrate = gameSetup.getVibrate();
 
         this.gameOverScreen = gameSetup.getGameOverScreen();
-        this.gameOverScreen.setView(this.view);
+        this.sounds = gameSetup.getSoundPool();
 
-        if((android.os.Build.VERSION.SDK_INT) == 21){
-            SoundPool.Builder builder =  new SoundPool.Builder();
-            builder.setMaxStreams(10); //Assuming only 10 sounds will play simultaneously
-            sounds = builder.build(); // Builder.build returns a new instance of SoundPool.
-        }
-        else{
-            sounds = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
-        }
+        this.correctSound = gameSetup.getCorrectSound();
+        this.wrongSound = gameSetup.getWrongSound();
 
-        correctSound = sounds.load(context, R.raw.correct,1);
-        wrongSound = sounds.load(context, R.raw.wrong,1);
-        beepSound = sounds.load(context, R.raw.beep, 1);
+        this.beepSound = gameSetup.getBeepSound();
+        this.activity = gameSetup.getActivity();
 
     }
 
@@ -297,7 +307,7 @@ public class GameTouchLogic
         this.card = this.cardGenerator.generateCard(this.context);
 
         //Play correct match sound
-        playSound(correctSound, 2f);
+        this.playSound(correctSound, 2f);
 
 
     }
@@ -317,7 +327,7 @@ public class GameTouchLogic
         this.vibrate.vibrate();
 
         //Play wrong match sound
-        playSound(wrongSound, 2f);
+        this.playSound(wrongSound, 2f);
 
     }
 
@@ -371,7 +381,7 @@ public class GameTouchLogic
     public void playSound (int soundId, float speed)
     {
         float volume = MyActivity.volume;
-        sounds.play(soundId,volume,volume,0,0,speed);
+        this.sounds.play(soundId,volume,volume,0,0,speed);
     }
 
 
@@ -505,6 +515,20 @@ public class GameTouchLogic
     public Player getPlayer()
     {
         return this.player;
+    }
+
+
+    /**
+     * Getter for the timer beep.
+     *
+     * @return beepSound: integer value representing the sound to be played
+     *                    when the timer is below 4 seconds.
+     *
+     */
+
+    public int getBeepSound()
+    {
+        return this.beepSound;
     }
 
 }

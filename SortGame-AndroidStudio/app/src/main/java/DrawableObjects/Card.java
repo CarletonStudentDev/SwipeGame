@@ -227,25 +227,23 @@ public class Card implements DrawableObject
         this.xCoordinate = square.x;
         this.yCoordinate = square.y;
     }
+
+
+    /**
+     * Checks if the object is touched.
+     *
+     * @param x: float value representing the x-coordinate.
+     * @param y: float value representing the y-coordinate.
+     *
+     * @return bool: boolean value representing whether or not the
+     *               object has been touched.
+     *
+     */
+
     @Override
     public boolean isTouched(float x, float y) {
         return false;
     }
-
-    /**
-     * Checks if the drawn object is within the bounds
-     * of the restriction set by the WIDTH and LENGTH.
-     *
-     * @param x: float representing the x-coordinate of
-     *           the Card.
-     * @param y: float representing the y-coordinate of
-     *           the Card.
-     *
-     * @return bool: boolean value representing whether or
-     *               not the drawn object is within the
-     *               bounds.
-     *
-     */
 
 
     /**
