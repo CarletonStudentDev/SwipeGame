@@ -29,7 +29,6 @@ import DrawableObjects.TopBar;
 public class GameTouchLogic
 {
 
-    private GameOverScreen gameOverScreen;
     /**
      * view: View instance representing the android.view.View class.
      *
@@ -68,6 +67,14 @@ public class GameTouchLogic
      */
 
     private Clock clock;
+
+
+    /**
+     * gameOverScreen: GameOverScreen instance representing the Drawable GameOverScreen class.
+     *
+     */
+
+    private GameOverScreen gameOverScreen;
 
 
     /**

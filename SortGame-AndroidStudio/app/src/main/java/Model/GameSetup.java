@@ -34,6 +34,14 @@ public class GameSetup
 
 
     /**
+     * gameOverScreen: GameOverScreen instance representing the Drawable GameOverScreen class.
+     *
+     */
+
+    private GameOverScreen gameOverScreen;
+
+    
+    /**
      * multiplierBar: MultiplierBar instance representing the DrawableObjects MultiplierBar class.
      *
      */
@@ -135,14 +143,6 @@ public class GameSetup
      */
 
     private Vibrate vibrate;
-
-
-    /**
-     * gameOverScreen: variable representing the gameOverScreen object.
-     *
-     */
-
-    private GameOverScreen gameOverScreen;
 
 
     /**
