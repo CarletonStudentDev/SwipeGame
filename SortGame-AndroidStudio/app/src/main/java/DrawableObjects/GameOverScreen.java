@@ -1,6 +1,7 @@
 package DrawableObjects;
 
 import android.content.Context;
+import android.view.View;
 
 import com.example.owner.gameproject.R;
 
@@ -35,6 +36,7 @@ public class GameOverScreen implements DrawableObject {
     private boolean isOutOfLives,
                     isTimedOut;
 
+    private View view;
 
     public GameOverScreen(Context context)
     {
@@ -82,6 +84,12 @@ public class GameOverScreen implements DrawableObject {
         this.isTimedOut = isTimedOut;
     }
 
+    public void setView(View view)
+    {
+        this.view = view;
+    }
+
+
 
 
     @Override
@@ -93,6 +101,7 @@ public class GameOverScreen implements DrawableObject {
     @Override
     public void draw(float[] mMVPMatrix)
     {
+
         backgroundSquare.draw(mMVPMatrix);
 
         if (isOutOfLives)

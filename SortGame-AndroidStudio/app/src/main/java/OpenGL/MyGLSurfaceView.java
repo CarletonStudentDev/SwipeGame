@@ -17,7 +17,7 @@ public class MyGLSurfaceView extends GLSurfaceView {
         super(context);
         this.context = context;
 
-        renderer = new MyRenderer(context, this, (gameLength*1000),activity);
+        renderer = new MyRenderer(context, this, gameLength * 1000, activity);
         setEGLContextClientVersion(2);
         setRenderer(renderer);
         //setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);

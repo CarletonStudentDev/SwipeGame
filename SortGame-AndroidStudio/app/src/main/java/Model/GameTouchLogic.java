@@ -148,7 +148,6 @@ public class GameTouchLogic
     public int beepSound;
 
     private Activity activity;
-    private Intent intent;
 
 
     /**
@@ -157,6 +156,7 @@ public class GameTouchLogic
      * @param view: View instance representing the android.view.View class.
      * @param gameSetup: GameSetup instance representing the setup of the
      *                   SwipeGame.
+     * @param activity: Activity representing android.app.Activity class.
      *
      */
 
@@ -184,6 +184,7 @@ public class GameTouchLogic
         this.vibrate = gameSetup.getVibrate();
 
         this.gameOverScreen = gameSetup.getGameOverScreen();
+        this.gameOverScreen.setView(this.view);
 
         if((android.os.Build.VERSION.SDK_INT) == 21){
             SoundPool.Builder builder =  new SoundPool.Builder();
@@ -234,17 +235,11 @@ public class GameTouchLogic
                 {
                     this.clock.stopClock();
 
-
                     if (this.gameBoard.getGameOverButton(newX, newY) == 2)
                         activity.finish();
 
                     else if (this.gameBoard.getGameOverButton(newX, newY) == 1)
-                    {
-                        activity.finish();
-                        intent = new Intent(activity, StartNormalActivity.class);
-                        activity.startActivity(intent);
-                        
-                    }
+                        activity.recreate();
 
                 }
 
