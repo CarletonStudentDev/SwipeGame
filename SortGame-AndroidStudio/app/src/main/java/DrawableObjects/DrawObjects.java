@@ -1,6 +1,5 @@
 package DrawableObjects;
 
-import Model.AdManager;
 import Model.GameTouchLogic;
 
 
@@ -34,22 +33,28 @@ public class DrawObjects
         gameTouchLogic.getCard().draw(mMVPMatrix);
         gameTouchLogic.getScore().draw(mMVPMatrix);
 
-        if(gameTouchLogic.getTopBar().getFullHearts() == 0){
-            gameTouchLogic.getDrawableTimer().setFullNumber(0);
+        if(gameTouchLogic.getTopBar().getFullHearts() == 0)
+        {
+            //gameTouchLogic.getDrawableTimer().setFullNumber(0);
+            gameTouchLogic.getGameOverScreen().setOutOfLives(true);
+            gameTouchLogic.livesFinished();
+
         }
-        if(gameTouchLogic.getDrawableTimer().getFullNumber() >= 0) {
-            if (gameTouchLogic.getDrawableTimer().getFullNumber() == 0) {
-                gameTouchLogic.getDrawableTimer().setFullNumber(0);
+
+        if(gameTouchLogic.getDrawableTimer().getFullNumber() >= 0)
+        {
+            if (gameTouchLogic.getDrawableTimer().getFullNumber() == 0)
+            {
+                //gameTouchLogic.getDrawableTimer().setFullNumber(0);
+                gameTouchLogic.getGameOverScreen().setTimedOut(true);
                 gameTouchLogic.timeOut();
+            }
 
-                //gameTouchLogic.getAdManager().displayAds();
-            } else if (gameTouchLogic.getClock().timePassed() >= 1000) {
+            else if (gameTouchLogic.getClock().timePassed() >= 1000)
+            {
 
-                if (gameTouchLogic.getDrawableTimer().getFullNumber() <= 4 && gameTouchLogic.getDrawableTimer().getFullNumber() != 1) {
-
+                if (gameTouchLogic.getDrawableTimer().getFullNumber() <= 4 && gameTouchLogic.getDrawableTimer().getFullNumber() != 1)
                     gameTouchLogic.playSound(gameTouchLogic.beepSound, 1f);
-
-                }
 
                 gameTouchLogic.getDrawableTimer().decrease(1);
                 gameTouchLogic.getClock().resetTimer();
@@ -59,8 +64,11 @@ public class DrawObjects
             gameTouchLogic.getDrawableTimer().draw(mMVPMatrix);
         }
 
-        if(gameTouchLogic.getGame().getGameOver()){
+
+        if(gameTouchLogic.getGame().getGameOver())
+        {
             gameTouchLogic.getGameOverScreen().updateScore(gameTouchLogic.getScore().getFullNumber());
+            gameTouchLogic.getGameOverScreen().updateHighScore(gameTouchLogic.getPlayer().getHighScore());
             gameTouchLogic.getGameOverScreen().draw(mMVPMatrix);
         }
 

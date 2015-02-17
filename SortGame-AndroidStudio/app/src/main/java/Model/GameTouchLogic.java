@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.SoundPool;
-import android.provider.MediaStore;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -148,10 +147,9 @@ public class GameTouchLogic
 
     public int beepSound;
 
-    private AdManager adManager;
-
     private Activity activity;
     private Intent intent;
+
 
     /**
      * Constructor for the GameTouchLogic class.
@@ -164,7 +162,7 @@ public class GameTouchLogic
 
     public GameTouchLogic(View view, GameSetup gameSetup, Activity activity)
     {
-        this.activity=activity;
+        this.activity = activity;
         this.view = view;
 
         this.player = gameSetup.getPlayer();
@@ -186,8 +184,6 @@ public class GameTouchLogic
         this.vibrate = gameSetup.getVibrate();
 
         this.gameOverScreen = gameSetup.getGameOverScreen();
-
-        this.adManager = gameSetup.getAdManager();
 
         if((android.os.Build.VERSION.SDK_INT) == 21){
             SoundPool.Builder builder =  new SoundPool.Builder();
@@ -232,31 +228,34 @@ public class GameTouchLogic
             float newX = (-(event.getX() * 2) / this.view.getWidth() + 1f) / r;
             float newY = -(event.getY() * 2) / this.view.getHeight() + 1f;
 
-            if(event.getAction() == MotionEvent.ACTION_DOWN) {
-                if (this.game.getGameOver()){
-                    //Display GameOverScreen
+            if(event.getAction() == MotionEvent.ACTION_DOWN)
+            {
+                if (this.game.getGameOver())
+                {
                     this.clock.stopClock();
-                    //AdManager adManager = new AdManager(context);
-                    //adManager.displayAds();
 
 
-
-                    if (this.gameBoard.getGameOverButton(newX, newY) == 2) {
+                    if (this.gameBoard.getGameOverButton(newX, newY) == 2)
                         activity.finish();
-                    }else if (this.gameBoard.getGameOverButton(newX, newY) == 1) {
+
+                    else if (this.gameBoard.getGameOverButton(newX, newY) == 1)
+                    {
                         activity.finish();
                         intent = new Intent(activity, StartNormalActivity.class);
                         activity.startActivity(intent);
+                        
                     }
-                }else{
+
+                }
+
+                else
+                {
                     if (this.gameBoard.getQuadrant(newX, newY) == this.card.getColorId())
                         this.correct();
-                    else if (this.gameBoard.getQuadrant(newX, newY) == 0)
-                        //Do nothing
-                        ;
-                    else {
+
+                    else if (this.gameBoard.getQuadrant(newX, newY) != 0)
                         this.incorrect();
-                    }
+
                 }
             }
 
@@ -296,9 +295,9 @@ public class GameTouchLogic
         // need to multiply 100 by the multiplier score
         this.score.increase(100*this.multiplierBar.giveMulti());
 
-        if(drawableTimer.getFullNumber() >= 0) {
+        if(drawableTimer.getFullNumber() >= 0)
             this.drawableTimer.increase(1);
-        }
+
 
         this.card = this.cardGenerator.generateCard(this.context);
 
@@ -335,7 +334,20 @@ public class GameTouchLogic
 
     public void timeOut()
     {
+        this.player.setCurrentScore(this.score.getFullNumber());
         this.game.timeOut();
+    }
+
+
+    /**
+     * The player's lives have finished.
+     *
+     */
+
+    public void livesFinished()
+    {
+        this.player.setCurrentScore(this.score.getFullNumber());
+        this.game.livesFinish();
     }
 
 
@@ -348,6 +360,23 @@ public class GameTouchLogic
     {
         this.multiplierBar.reset();
         this.topBar.decreaseHearts();
+    }
+
+
+    /**
+     * Plays the corresponding sound depending on the correctness
+     * of the match.
+     *
+     * @param soundId: integer value representing the sound to be played.
+     * @param speed: float value representing the speed of the sound to be
+     *               played.
+     *
+     */
+
+    public void playSound (int soundId, float speed)
+    {
+        float volume = MyActivity.volume;
+        sounds.play(soundId,volume,volume,0,0,speed);
     }
 
 
@@ -447,6 +476,7 @@ public class GameTouchLogic
         return this.drawableTimer;
     }
 
+
     /**
      * Getter for the gameOverScreen
      *
@@ -456,6 +486,7 @@ public class GameTouchLogic
     {
         return this.gameOverScreen;
     }
+
 
     /**
      * Getter for the game
@@ -467,16 +498,18 @@ public class GameTouchLogic
         return this.game;
     }
 
-    public void playSound (int soundId, float speed){
 
-        float volume = MyActivity.volume;
-        sounds.play(soundId,volume,volume,0,0,speed);
+    /**
+     * Getter for the player.
+     *
+     * @return player: Player instance representing the player
+     *                 the game.
+     *
+     */
 
-    }
-
-    public AdManager getAdManager ()
+    public Player getPlayer()
     {
-        return this.adManager;
+        return this.player;
     }
 
 }

@@ -1,7 +1,6 @@
 package DrawableObjects;
 
 import android.content.Context;
-import android.content.res.Resources;
 
 import com.example.owner.gameproject.R;
 
@@ -16,7 +15,7 @@ public class GameOverScreen implements DrawableObject {
     private Square retrySquare;
     private Square menuSquare;
     public float x,y;
-    Resources resources;
+    Context context;
 
     private Image outoflives;
     private Image outoftime;
@@ -33,8 +32,17 @@ public class GameOverScreen implements DrawableObject {
     private int highNum=9999999;
     private int cardsPerSec=0;
 
-    public GameOverScreen(Context context) {
-        this.resources=resources;
+    private boolean isOutOfLives,
+                    isTimedOut;
+
+
+    public GameOverScreen(Context context)
+    {
+        this.context = context;
+
+        this.isOutOfLives = false;
+        this.isTimedOut = false;
+
         this.x=0;
         this.y=0;
 
@@ -63,23 +71,46 @@ public class GameOverScreen implements DrawableObject {
 
     }
 
+    public void setOutOfLives(boolean isOutOfLives)
+    {
+        this.isOutOfLives = isOutOfLives;
+    }
+
+
+    public void setTimedOut(boolean isTimedOut)
+    {
+        this.isTimedOut = isTimedOut;
+    }
+
+
+
     @Override
-    public void move(float x, float y) {
+    public void move(float x, float y)
+    {
 
     }
 
     @Override
-    public void draw(float[] mMVPMatrix) {
+    public void draw(float[] mMVPMatrix)
+    {
         backgroundSquare.draw(mMVPMatrix);
-        //outoflives.draw(mMVPMatrix);
-        outoftime.draw(mMVPMatrix);
+
+        if (isOutOfLives)
+            outoflives.draw(mMVPMatrix);
+
+        else if (isTimedOut)
+            outoftime.draw(mMVPMatrix);
+
         scoretitle.draw(mMVPMatrix);
         score.draw(mMVPMatrix);
+
         highscoretitle.draw(mMVPMatrix);
         highscore.draw(mMVPMatrix);
+
         cardspersectitle.draw(mMVPMatrix);
         cardspersecscore.draw(mMVPMatrix);
         dot.draw(mMVPMatrix);
+
         retrySquare.draw(mMVPMatrix);
         menuSquare.draw(mMVPMatrix);
         retry.draw(mMVPMatrix);
@@ -88,6 +119,11 @@ public class GameOverScreen implements DrawableObject {
 
     public void updateScore(int scoreNum){
         this.score.setFullNumber(scoreNum);
+    }
+
+    public void updateHighScore(int scoreNum)
+    {
+        this.highscore.setFullNumber(scoreNum);
     }
 
     public boolean isTouched(float x, float y){
