@@ -40,7 +40,7 @@ public class GameSetup
 
     private GameOverScreen gameOverScreen;
 
-    
+
     /**
      * multiplierBar: MultiplierBar instance representing the DrawableObjects MultiplierBar class.
      *

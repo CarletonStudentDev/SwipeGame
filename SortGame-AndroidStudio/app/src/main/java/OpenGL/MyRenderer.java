@@ -2,7 +2,6 @@ package OpenGL;
 
 
 import android.app.Activity;
-import android.content.Context;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLSurfaceView.Renderer;
@@ -25,17 +24,15 @@ public class MyRenderer implements Renderer {
     private final float[] mMVPMatrix = new float[16];
     private final float[] mProjectionMatrix = new float[16];
     private final float[] mViewMatrix = new float[16];
-    private Context context;
     public float mDeltaX;
     public float mDeltaY;
     private long gameLength;
     private Activity activity;
 
 
-    public MyRenderer(Context context, GLSurfaceView view, long gameLength, Activity activity)
+    public MyRenderer(GLSurfaceView view, Activity activity, long gameLength)
     {
         this.view = view;
-        this.context = context;
         this.gameLength = gameLength;
         this.activity = activity;
     }
@@ -77,8 +74,8 @@ public class MyRenderer implements Renderer {
         float[] scratch = new float[16];
 
         //TODO see if we can make it just use 'card.mModelMatrix'
-        Matrix.translateM(this.gameSetup.getCard().getSquare().mModelMatrix, 0, -mDeltaX * (ratio / 100f), -mDeltaY * (ratio / 100f), 0);
-        Matrix.multiplyMM(scratch, 0, mMVPMatrix, 0, this.gameSetup.getCard().getSquare().mModelMatrix, 0);
+        Matrix.translateM(this.gameTouchLogic.getCard().getSquare().mModelMatrix, 0, -mDeltaX * (ratio / 100f), -mDeltaY * (ratio / 100f), 0);
+        Matrix.multiplyMM(scratch, 0, mMVPMatrix, 0, this.gameTouchLogic.getCard().getSquare().mModelMatrix, 0);
         mDeltaX = 0f;
         mDeltaY = 0f;
 

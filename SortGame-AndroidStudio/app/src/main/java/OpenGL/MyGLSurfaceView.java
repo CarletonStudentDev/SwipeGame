@@ -1,30 +1,25 @@
 package OpenGL;
 
 import android.app.Activity;
-import android.content.Context;
 import android.opengl.GLSurfaceView;
 import android.view.MotionEvent;
 
 public class MyGLSurfaceView extends GLSurfaceView {
 
-    Context context;
-    MyRenderer renderer;
+    private MyRenderer renderer;
 
-    private float mPreviousX;
-    private float mPreviousY;
+    public MyGLSurfaceView(Activity activity, long gameLength) {
+        super(activity.getApplicationContext());
 
-    public MyGLSurfaceView(Context context, long gameLength, Activity activity) {
-        super(context);
-        this.context = context;
-
-        renderer = new MyRenderer(context, this, gameLength * 1000, activity);
+        this.renderer = new MyRenderer(this, activity, gameLength * 1000);
         setEGLContextClientVersion(2);
-        setRenderer(renderer);
+        setRenderer(this.renderer);
         //setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
+    public boolean onTouchEvent(MotionEvent event)
+    {
         if (event != null)
             return renderer.onTouchEvent(event);
 
