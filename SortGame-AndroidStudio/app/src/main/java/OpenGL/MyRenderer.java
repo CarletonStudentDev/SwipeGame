@@ -17,17 +17,25 @@ import Model.GameTouchLogic;
 
 
 public class MyRenderer implements Renderer {
+
+    private final float[] mMVPMatrix = new float[16],
+                          mProjectionMatrix = new float[16],
+                          mViewMatrix = new float[16];
+
+    private Activity activity;
     private GLSurfaceView view;
+
     private GameSetup gameSetup;
     private GameTouchLogic gameTouchLogic;
-    private float ratio;
-    private final float[] mMVPMatrix = new float[16];
-    private final float[] mProjectionMatrix = new float[16];
-    private final float[] mViewMatrix = new float[16];
-    public float mDeltaX;
-    public float mDeltaY;
+
+
+
+    private float ratio,
+                  mDeltaX,
+                  mDeltaY;
+
     private long gameLength;
-    private Activity activity;
+
 
 
     public MyRenderer(GLSurfaceView view, Activity activity, long gameLength)

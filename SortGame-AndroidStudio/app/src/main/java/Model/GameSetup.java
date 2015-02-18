@@ -2,11 +2,9 @@ package Model;
 
 import android.app.Activity;
 import android.content.Context;
-import android.media.AudioManager;
-import android.media.SoundPool;
 
-import com.example.owner.gameproject.R;
-
+import AndroidServices.MediaSounds;
+import AndroidServices.Vibrate;
 import DrawableObjects.Card;
 import DrawableObjects.GameBoard;
 import DrawableObjects.GameOverScreen;
@@ -18,7 +16,7 @@ import DrawableObjects.TopBar;
  * GameSetup sets up the SwipeGame.
  *
  * @author Jeton Sinoimeri
- * @version 1.3
+ * @version 1.5
  * @since 2014-01-15
  *
  */
@@ -145,32 +143,6 @@ public class GameSetup
     private Vibrate vibrate;
 
 
-    /**
-     * sounds: SoundPool instance representing the audio resources
-     *         of the app.
-     *
-     */
-
-    private SoundPool sounds;
-
-
-    /**
-     * correctSound: integer value representing the sound to be played
-     *               when there is a correct match.
-     *
-     * wrongSound: integer value representing the sound to be played
-     *             when there is an incorrect match.
-     *
-     * beepSound: integer value representing the sound to be played
-     *            when the timer is below 4 seconds.
-     *
-     */
-
-    private int correctSound,
-                wrongSound,
-                beepSound;
-
-
 
     /**
      * Constructor for the GameSetup class.
@@ -206,33 +178,7 @@ public class GameSetup
         this.gameOverScreen = new GameOverScreen(this.context);
         this.clock = new Clock(gameLength);
 
-        this.initSoundPool();
-        this.correctSound = this.sounds.load(context, R.raw.correct,1);
-
-        this.wrongSound = this.sounds.load(context, R.raw.wrong,1);
-        this.beepSound = this.sounds.load(context, R.raw.beep, 1);
-
-
-    }
-
-
-    /**
-     * Initializes the Sound Pool instance depending on the OS version.
-     *
-     */
-
-    private void initSoundPool()
-    {
-        if(android.os.Build.VERSION.SDK_INT >= 21)
-        {
-            SoundPool.Builder builder =  new SoundPool.Builder();
-            builder.setMaxStreams(10); //Assuming only 10 sounds will play simultaneously
-            this.sounds = builder.build(); // Builder.build returns a new instance of SoundPool.
-        }
-
-        else
-            this.sounds = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
-
+        MediaSounds.initializeSoundPool();
     }
 
 
@@ -423,62 +369,6 @@ public class GameSetup
     public GameOverScreen getGameOverScreen ()
     {
         return this.gameOverScreen;
-    }
-
-
-    /**
-     * Getter for the correct sound.
-     *
-     * @return correctSound: integer value representing the sound to be played
-     *                       when there is a correct match.
-     *
-     */
-
-    public int getCorrectSound()
-    {
-        return this.correctSound;
-    }
-
-
-    /**
-     * Getter for the incorrect sound.
-     *
-     * @return wrongSound: integer value representing the sound to be played
-     *                     when there is an incorrect match.
-     *
-     */
-
-    public int getWrongSound()
-    {
-        return this.wrongSound;
-    }
-
-
-    /**
-     * Getter for the timer beep.
-     *
-     * @return beepSound: integer value representing the sound to be played
-     *                    when the timer is below 4 seconds.
-     *
-     */
-
-    public int getBeepSound()
-    {
-        return this.beepSound;
-    }
-
-
-    /**
-     * Getter for the SoundPool.
-     *
-     * @return sounds: SoundPool instance representing the audio resources
-     *                 of the app.
-     *
-     */
-
-    public SoundPool getSoundPool()
-    {
-        return this.sounds;
     }
 
 

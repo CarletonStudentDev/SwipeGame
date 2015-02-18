@@ -2,12 +2,13 @@ package Model;
 
 import android.app.Activity;
 import android.content.Context;
-import android.media.SoundPool;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.example.owner.gameproject.MyActivity;
+import com.example.owner.gameproject.R;
 
+import AndroidServices.MediaSounds;
+import AndroidServices.Vibrate;
 import DrawableObjects.Card;
 import DrawableObjects.GameBoard;
 import DrawableObjects.GameOverScreen;
@@ -21,7 +22,7 @@ import DrawableObjects.TopBar;
  * the SwipeGame.
  *
  * @author Jeton Sinoimeri
- * @version 1.4
+ * @version 1.8
  * @since 2014-01-15
  *
  */
@@ -143,37 +144,12 @@ public class GameTouchLogic
 
 
     /**
-     * sounds: SoundPool instance representing the audio resources
-     *         of the app.
-     *
-     */
-
-    private SoundPool sounds;
-
-
-    /**
-     * correctSound: integer value representing the sound to be played
-     *               when there is a correct match.
-     *
-     * wrongSound: integer value representing the sound to be played
-     *             when there is an incorrect match.
-     *
-     * beepSound: integer value representing the sound to be played
-     *            when the timer is below 4 seconds.
-     *
-     */
-
-    private int correctSound,
-                wrongSound,
-                beepSound;
-
-
-    /**
      * activity: Activity instance representing android.app.Activity.
      *
      */
 
     private Activity activity;
+
 
 
     /**
@@ -208,12 +184,6 @@ public class GameTouchLogic
         this.vibrate = gameSetup.getVibrate();
 
         this.gameOverScreen = gameSetup.getGameOverScreen();
-        this.sounds = gameSetup.getSoundPool();
-
-        this.correctSound = gameSetup.getCorrectSound();
-        this.wrongSound = gameSetup.getWrongSound();
-
-        this.beepSound = gameSetup.getBeepSound();
         this.activity = gameSetup.getActivity();
 
     }
@@ -310,13 +280,9 @@ public class GameTouchLogic
         if(drawableTimer.getFullNumber() >= 0)
             this.drawableTimer.increase(1);
 
-
         this.card = this.cardGenerator.generateCard(this.context);
 
-        //Play correct match sound
-        this.playSound(correctSound, 2f);
-
-
+        MediaSounds.loadPlaySound(this.context, R.raw.correct, 1, 2f);
     }
 
 
@@ -333,9 +299,7 @@ public class GameTouchLogic
         this.card = this.cardGenerator.generateCard(this.context);
         this.vibrate.vibrate();
 
-        //Play wrong match sound
-        this.playSound(wrongSound, 2f);
-
+        MediaSounds.loadPlaySound(this.context, R.raw.wrong, 1, 2f);
     }
 
 
@@ -372,23 +336,6 @@ public class GameTouchLogic
     {
         this.multiplierBar.reset();
         this.topBar.decreaseHearts();
-    }
-
-
-    /**
-     * Plays the corresponding sound depending on the correctness
-     * of the match.
-     *
-     * @param soundId: integer value representing the sound to be played.
-     * @param speed: float value representing the speed of the sound to be
-     *               played.
-     *
-     */
-
-    public void playSound (int soundId, float speed)
-    {
-        float volume = MyActivity.volume;
-        this.sounds.play(soundId,volume,volume,0,0,speed);
     }
 
 
@@ -526,16 +473,15 @@ public class GameTouchLogic
 
 
     /**
-     * Getter for the timer beep.
+     * Getter for the context of the app.
      *
-     * @return beepSound: integer value representing the sound to be played
-     *                    when the timer is below 4 seconds.
+     * @return context: Context instance representing the Context of the app.
      *
      */
 
-    public int getBeepSound()
+    public Context getContext()
     {
-        return this.beepSound;
+        return this.context;
     }
 
 }

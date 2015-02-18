@@ -1,13 +1,16 @@
 package DrawableObjects;
 
+import com.example.owner.gameproject.R;
+
 import Model.GameTouchLogic;
+import AndroidServices.MediaSounds;
 
 
 /**
  * Draws objects to the Screen.
  *
  * @author Jeton Sinoimeri
- * @version 1.1
+ * @version 1.6
  * @since 2014-01-15
  *
  */
@@ -51,7 +54,7 @@ public class DrawObjects
             {
 
                 if (gameTouchLogic.getDrawableTimer().getFullNumber() <= 4 && gameTouchLogic.getDrawableTimer().getFullNumber() != 1)
-                    gameTouchLogic.playSound(gameTouchLogic.getBeepSound(), 1f);
+                    MediaSounds.loadPlaySound(gameTouchLogic.getContext(), R.raw.beep, 1, 2f);
 
                 gameTouchLogic.getDrawableTimer().decrease(1);
                 gameTouchLogic.getClock().resetTimer();

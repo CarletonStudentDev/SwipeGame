@@ -1,4 +1,4 @@
-package Model;
+package AndroidServices;
 
 import android.content.Context;
 import android.os.Vibrator;
@@ -8,7 +8,7 @@ import android.os.Vibrator;
  * @see android.os.Vibrator
  *
  * @author Varun Sriram
- * @version 1.0
+ * @version 1.1
  * @since 2015-01-23
  *
  */

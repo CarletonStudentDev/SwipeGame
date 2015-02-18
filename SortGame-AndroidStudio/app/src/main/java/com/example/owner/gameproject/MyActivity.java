@@ -15,7 +15,7 @@ import com.google.android.gms.ads.AdView;
 
 public class MyActivity extends Activity {
 
-    public static float volume;
+    private static float volume;
 
     private ToggleButton toggleBtn;
 
@@ -107,7 +107,7 @@ public class MyActivity extends Activity {
 
     }
 
-    public float getVolume()
+    public static float getVolume()
     {
         return volume;
     }
