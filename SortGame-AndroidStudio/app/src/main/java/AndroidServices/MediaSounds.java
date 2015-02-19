@@ -4,15 +4,13 @@ import android.content.Context;
 import android.media.AudioManager;
 import android.media.SoundPool;
 
-import com.example.owner.gameproject.MyActivity;
-
 
 /**
  * MediaSounds loads and plays all the required sounds
  * for the app.
  *
  * @author Jeton Sinoimeri
- * @version 1.0
+ * @version 1.1
  * @since 2015-02-18
  *
  */
@@ -27,6 +25,15 @@ public class MediaSounds
      */
 
     private static SoundPool sounds;
+
+
+    /**
+     * volume: float value representing the volume of the audio
+     *         to be played.
+     *
+     */
+
+    private static float volume;
 
 
     /**
@@ -49,23 +56,34 @@ public class MediaSounds
 
 
     /**
+     * Sets the volume of the audio file to be played.
+     *
+     * @param vol: float value representing the volume of the audio
+     *             to be played.
+     *
+     */
+
+    public static void setVolume(float vol)
+    {
+        volume = vol;
+    }
+
+
+    /**
      * Loads and Plays the corresponding sound.
      *
      * @param context: Context instance representing the context of the app.
      * @param soundFile: integer value representing the sound file to be
      *                   loaded and played.
      * @param priority: integer value representing the priority of the sound.
-     * @param speed: float value representing the speed of which the sound
+     * @param speed: final float value representing the speed of which the sound
      *               should be played at.
      *
      */
 
-    public static void loadPlaySound(Context context, int soundFile, int priority, float speed)
+    public static void loadPlaySound(Context context, int soundFile, int priority, final float speed)
     {
         final int soundId = sounds.load(context, soundFile, priority);
-
-        final float playSpeed = speed,
-                    volume = MyActivity.getVolume();
 
         // wait until sound has been loaded before playing it
         sounds.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener()
@@ -73,7 +91,7 @@ public class MediaSounds
             @Override
             public void onLoadComplete(SoundPool soundPool, int sampleId, int status)
             {
-                sounds.play(soundId, volume, volume, 0, 0, playSpeed);
+                sounds.play(soundId, volume, volume, 0, 0, speed);
             }
         });
     }

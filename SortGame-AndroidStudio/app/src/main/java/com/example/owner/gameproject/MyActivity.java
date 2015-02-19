@@ -12,25 +12,31 @@ import android.widget.ToggleButton;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
+import AndroidServices.MediaSounds;
 
-public class MyActivity extends Activity {
 
-    private static float volume;
+public class MyActivity extends Activity
+{
 
     private ToggleButton toggleBtn;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
+
         super.onCreate(savedInstanceState);
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         setContentView(R.layout.activity_my);
 
-        volume = 1f;
+        // sets the volume of the app to be on.
+        MediaSounds.setVolume(1f);
 
+        // calls the button pressing check for the volume
         this.onToggleClicked();
 
+        // initializes ads at bottom of screen
         AdView mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
@@ -39,25 +45,28 @@ public class MyActivity extends Activity {
 
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.my, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+
+        if (id == R.id.action_settings)
             return true;
-        }
+
         return super.onOptionsItemSelected(item);
     }
 
-    /** Called when the user clicks the New Game button */
+    /** Called when the user clicks the Normal button */
     public void openNormal(View view)
     {
         Intent intent = new Intent(this, StartNormalActivity.class);
@@ -79,7 +88,8 @@ public class MyActivity extends Activity {
     }
 
     //checks if the toggle button was clicked and sets the volume
-    private void onToggleClicked() {
+    private void onToggleClicked()
+    {
 
         toggleBtn = (ToggleButton) findViewById(R.id.toggleButton);
 
@@ -88,20 +98,14 @@ public class MyActivity extends Activity {
             public void onClick(View view)
             {
                 if (toggleBtn.isChecked())
-                    volume = 1f;
+                    MediaSounds.setVolume(1f);
 
                 else
-                    volume = 0f;
+                    MediaSounds.setVolume(0f);
 
             }
         });
 
     }
-
-    public static float getVolume()
-    {
-        return volume;
-    }
-
 
 }
