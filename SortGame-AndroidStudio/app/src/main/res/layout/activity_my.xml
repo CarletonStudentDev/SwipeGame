@@ -30,7 +30,7 @@
         android:layout_marginBottom="5dp"
         android:layout_marginTop="100dp"
         android:layout_marginLeft="100dp"
-        android:onClick="newGame"  />
+        android:onClick="openNormal"  />
 
     <Button
         android:id="@+id/marathon_mode_button"

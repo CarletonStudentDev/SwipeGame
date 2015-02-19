@@ -27,6 +27,10 @@ public class MyActivity extends Activity {
 
         setContentView(R.layout.activity_my);
 
+        volume = 1f;
+
+        this.onToggleClicked();
+
         AdView mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
@@ -54,56 +58,43 @@ public class MyActivity extends Activity {
     }
 
     /** Called when the user clicks the New Game button */
-    public void newGame(View view) {
+    public void openNormal(View view)
+    {
         Intent intent = new Intent(this, StartNormalActivity.class);
         startActivity(intent);
     }
 
-    /** Called when the user clicks the Store button */
-    public void openMarathon(View view) {
+    /** Called when the user clicks the Marathon button */
+    public void openMarathon(View view)
+    {
         Intent intent = new Intent(this, StartMarathonActivity.class);
         startActivity(intent);
     }
 
-    /** Called when the user clicks the Store button */
-    public void openEndless(View view) {
+    /** Called when the user clicks the Endless button */
+    public void openEndless(View view)
+    {
         Intent intent = new Intent(this, StartEndlessActivity.class);
         startActivity(intent);
     }
 
     //checks if the toggle button was clicked and sets the volume
-    public void onToggleClicked(View view) {
+    private void onToggleClicked() {
 
         toggleBtn = (ToggleButton) findViewById(R.id.toggleButton);
 
-        toggleBtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                if (toggleBtn.isChecked()){
+        toggleBtn.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View view)
+            {
+                if (toggleBtn.isChecked())
                     volume = 1f;
-                }else{
+
+                else
                     volume = 0f;
-                }
+
             }
         });
-
-    }
-
-
-    private void checkToggleButton (){
-
-        toggleBtn = (ToggleButton) findViewById(R.id.toggleButton);
-
-        if(toggleBtn.getTextOn().equals("SOUND ON")){
-            volume=1f;
-        }else if(toggleBtn.getTextOn().equals("SOUND OFF")){
-            volume=0;
-        }
-
-    }
-
-    private ToggleButton getToggleBtn(){
-
-        return (ToggleButton) findViewById(R.id.toggleButton);
 
     }
 
