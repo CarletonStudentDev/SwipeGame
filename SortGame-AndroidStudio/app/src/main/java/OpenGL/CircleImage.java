@@ -1,8 +1,6 @@
 package OpenGL;
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
 
 import com.example.owner.gameproject.R;
 
@@ -33,7 +31,7 @@ public class CircleImage extends Circle {
                     "   gl_Position = uMVPMatrix * vPosition;" +
                     "}";;
     private float radius;
-    int vertices = 360;
+    private int vertices = 360;
 
     public CircleImage(Context context, float radius, float x, float y, int bitmapId){
         super(radius, x, y, GraphicsHelper.RGBArray(context, R.color.red));

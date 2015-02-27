@@ -151,6 +151,15 @@ public class GameTouchLogic
     private Activity activity;
 
 
+    /**
+     * numCorrectMatches: integer value representing the number of correct
+     *                    matches the player has obtained.
+     *
+     */
+
+    private int numCorrectMatches;
+
+
 
     /**
      * Constructor for the GameTouchLogic class.
@@ -164,6 +173,7 @@ public class GameTouchLogic
     public GameTouchLogic(View view, GameSetup gameSetup)
     {
         this.view = view;
+        this.numCorrectMatches = 0;
 
         this.player = gameSetup.getPlayer();
         this.game = gameSetup.getGame();
@@ -277,8 +287,10 @@ public class GameTouchLogic
         // need to multiply 100 by the multiplier score
         this.score.increase(100*this.multiplierBar.giveMulti());
 
-        if(drawableTimer.getFullNumber() >= 0)
-            this.drawableTimer.increase(1);
+        this.numCorrectMatches ++;
+
+        if(drawableTimer.getFullNumber() >= 0 && this.numCorrectMatches % 5 == 0)
+            this.drawableTimer.increase(5);
 
         this.card = this.cardGenerator.generateCard(this.context);
 
@@ -298,6 +310,8 @@ public class GameTouchLogic
 
         this.card = this.cardGenerator.generateCard(this.context);
         this.vibrate.vibrate();
+
+        this.numCorrectMatches = 0;
 
         MediaSounds.loadPlaySound(this.context, R.raw.wrong, 1, 2f);
     }
