@@ -9,11 +9,9 @@ package com.example.owner.gameproject;
  * Created by Robert on 27/02/2015.
  */
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -22,8 +20,9 @@ public class GameView extends SurfaceView {
     private SurfaceHolder holder;
     private GameLoopThread gameLoopThread;
     private int x = 0;
+    private Canvas canvas;
 
-    private Card card;
+    private GameManager gameManager;
     public GameView(Context context) {
         super(context);
         gameLoopThread = new GameLoopThread(this);
@@ -55,7 +54,7 @@ public class GameView extends SurfaceView {
             }
         });
         bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
-        card = new Card(this);
+        gameManager = new GameManager(this);
     }
 
     @Override
@@ -65,6 +64,6 @@ public class GameView extends SurfaceView {
             x++;
         }
         canvas.drawBitmap(bmp, x, 10, null);
-        card.draw(canvas);
+        gameManager.draw(canvas);
     }
 }

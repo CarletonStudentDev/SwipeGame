@@ -1,7 +1,6 @@
 package com.example.owner.gameproject;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 
 /**
@@ -12,7 +11,7 @@ import android.graphics.Paint;
  * @since 2015-02-27
  * Created by Robert on 27/02/2015.
  */
-public class Card {
+public class Card{
 
     private Paint paint;
     private GameView view;
@@ -20,6 +19,7 @@ public class Card {
     private int y = 0;
     private float width = 0.5f;
     private float height = 0.5f;
+
     public Card(GameView view){
         paint = new Paint();
         paint.setColor(view.getResources().getColor(R.color.blue));
