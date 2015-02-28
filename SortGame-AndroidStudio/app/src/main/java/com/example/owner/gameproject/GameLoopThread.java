@@ -1,13 +1,12 @@
 package com.example.owner.gameproject;
-
+import android.graphics.Canvas;
 public class GameLoopThread extends Thread {
-    /*
-    static final long FPS = 10;
 
-    private MyGLSurfaceView view;
+    static final long FPS = 10;
+    private GameView view;
     private boolean running = false;
 
-    public GameLoopThread(MyGLSurfaceView view) {
+    public GameLoopThread(GameView view) {
         this.view = view;
     }
 
@@ -21,10 +20,10 @@ public class GameLoopThread extends Thread {
         long startTime;
         long sleepTime;
         while (running) {
-            MyRenderer r = null;
+            Canvas c = null;
             startTime = System.currentTimeMillis();
             try {
-                r = view.getRenderer();
+                c = view.getHolder().lockCanvas();
                 synchronized (view.getHolder()) {
                     view.onDraw(c);
                 }
@@ -33,14 +32,14 @@ public class GameLoopThread extends Thread {
                     view.getHolder().unlockCanvasAndPost(c);
                 }
             }
-            sleepTime = ticksPS-(System.currentTimeMillis() - startTime);
+            sleepTime = ticksPS - (System.currentTimeMillis() - startTime);
             try {
                 if (sleepTime > 0)
                     sleep(sleepTime);
                 else
                     sleep(10);
-            } catch (Exception e) {}
+            } catch (Exception e) {
+            }
         }
     }
-    */
 }

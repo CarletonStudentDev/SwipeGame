@@ -7,11 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 
-import OpenGL.MyGLSurfaceView;
-
 public class StartNormalActivity extends Activity {
-
-    private GLSurfaceView surfaceView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,8 +15,7 @@ public class StartNormalActivity extends Activity {
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        surfaceView = new MyGLSurfaceView(getApplicationContext());
-        setContentView(surfaceView);
+        setContentView(new GameView(this));
 
         //GooglePlay LoginHere
 

@@ -47,7 +47,7 @@ public class MyActivity extends Activity {
 
     /** Called when the user clicks the Store button */
     public void openStore(View view) {
-        Intent intent = new Intent(this, GLES20VBOTest.class);
+        Intent intent = new Intent(this, StartMarathonActivity.class);
         startActivity(intent);
     }
 
