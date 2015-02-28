@@ -6,6 +6,8 @@ public class GameLoopThread extends Thread {
     private GameView view;
     private boolean running = false;
 
+    public static Canvas canvas;
+
     public GameLoopThread(GameView view) {
         this.view = view;
     }
@@ -24,6 +26,7 @@ public class GameLoopThread extends Thread {
             startTime = System.currentTimeMillis();
             try {
                 c = view.getHolder().lockCanvas();
+                canvas = c;
                 synchronized (view.getHolder()) {
                     view.onDraw(c);
                 }

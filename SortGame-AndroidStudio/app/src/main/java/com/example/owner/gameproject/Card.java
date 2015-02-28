@@ -2,6 +2,7 @@ package com.example.owner.gameproject;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.util.Log;
 
 /**
  * Class description
@@ -12,24 +13,29 @@ import android.graphics.Paint;
  * Created by Robert on 27/02/2015.
  */
 public class Card{
+    private Paint color;
+    private float x;
+    private float y;
+    private float x2;
+    private float y2;
+    private float size = 1f;
 
-    private Paint paint;
-    private GameView view;
-    private int x = 0;
-    private int y = 0;
-    private float width = 0.5f;
-    private float height = 0.5f;
+    public Card(){
+        color = new Paint();
+        color.setColor(GameView.instance.getResources().getColor(R.color.blue));
 
-    public Card(GameView view){
-        paint = new Paint();
-        paint.setColor(view.getResources().getColor(R.color.blue));
-        this.view = view;
     }
 
-    public void draw(Canvas canvas){
-        x = view.getWidth()/2;
-        y = view.getHeight()/2;
-        canvas.drawRect(x - width*view.getWidth()/2, y - height*view.getWidth()/2,
-                x + width*view.getWidth()/2, y + height*view.getWidth()/2, paint);
+    public void pixelOffset(){
+        x = GameManager.instance.centerX - (size * GameManager.instance.scale);
+        y = GameManager.instance.centerY - (size * GameManager.instance.scale);
+        x2 = GameManager.instance.centerX + (size * GameManager.instance.scale);
+        y2 = GameManager.instance.centerY + (size * GameManager.instance.scale);
+
+    }
+
+    public void draw(){
+        pixelOffset();
+        GameLoopThread.canvas.drawRect(x, y, x2, y2, color);
     }
 }

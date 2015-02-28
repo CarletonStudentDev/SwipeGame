@@ -12,6 +12,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -20,7 +21,13 @@ public class GameView extends SurfaceView {
     private SurfaceHolder holder;
     private GameLoopThread gameLoopThread;
     private int x = 0;
-    private Canvas canvas;
+
+    private Canvas canvas = null;
+    public static float centerX;
+    public static float centerY;
+    public static float scale;
+
+    public static GameView instance = null;
 
     private GameManager gameManager;
     public GameView(Context context) {
@@ -53,6 +60,11 @@ public class GameView extends SurfaceView {
                                        int width, int height) {
             }
         });
+
+        if(instance == null){
+            instance = this;
+        }
+
         bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
         gameManager = new GameManager(this);
     }
@@ -64,6 +76,7 @@ public class GameView extends SurfaceView {
             x++;
         }
         canvas.drawBitmap(bmp, x, 10, null);
-        gameManager.draw(canvas);
+
+        gameManager.draw();
     }
 }
