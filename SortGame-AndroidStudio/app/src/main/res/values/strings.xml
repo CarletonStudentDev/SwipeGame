@@ -2,13 +2,16 @@
 <resources>
 
     <string name="app_name">GameProject</string>
-    <string name="new_game">New Game</string>
-    <string name="store">Store</string>
-    <string name="action_settings">Settings</string>
-    <string name="title_activity_start_new_game">StartNewGameActivity</string>
+    <string name="normal_mode">Normal</string>
+    <string name="marathon_mode">Marathon</string>
+    <string name="endless_mode"> Endless</string>
+    <string name="title_activity_open_normal">OpenNormalActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_display_message">DisplayMessageActivity</string>
-    <string name="title_activity_open_store">OpenStoreActivity</string>
-    <string name="title_activity_open_settings">OpenSettingsActivity</string>
+    <string name="title_activity_open_marathon">OpenMarathonActivity</string>
+    <string name="title_activity_open_endless">OpenEndlessActivity</string>
+    <string name="sound_on_toggleButton">MUTE</string>
+    <string name="sound_off_toggleButton">UNMUTE</string>
+
 
 </resources>

@@ -1,39 +1,87 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:background="@color/mediumRed"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     tools:context=".MyActivity">
 
-    <Button
-        android:id="@+id/new_game_button"
-        android:layout_width="@dimen/button_size"
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/new_game"
-        android:background="@color/lightRed"
-        android:layout_marginBottom="5dp"
-        android:onClick="newGame"  />
+        android:src="@drawable/bg"
+        android:scaleType="centerCrop"/>
+
+    <ImageView
+        android:id="@+id/name_logo"
+        android:layout_width="320dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="75dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/nl" />
 
     <Button
-        android:id="@+id/store_button"
+        android:id="@+id/normal_mode_button"
         android:layout_width="@dimen/button_size"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/new_game_button"
-        android:text="@string/store"
-        android:background="@color/lightRed"
+        android:layout_below="@+id/name_logo"
+        android:text="@string/normal_mode"
+        android:background="@color/menuButton"
         android:layout_marginBottom="5dp"
-        android:onClick="openStore" />
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="100dp"
+        android:onClick="openNormal"  />
 
     <Button
-        android:id="@+id/settings_button"
+        android:id="@+id/marathon_mode_button"
         android:layout_width="@dimen/button_size"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/store_button"
-        android:text="@string/action_settings"
-        android:background="@color/lightRed"
+        android:layout_below="@+id/normal_mode_button"
+        android:text="@string/marathon_mode"
+        android:background="@color/menuButton"
         android:layout_marginBottom="5dp"
-        android:onClick="openSettings"  />
+        android:layout_marginLeft="100dp"
+        android:onClick="openMarathon" />
+
+    <Button
+        android:id="@+id/endless_mode_button"
+        android:layout_width="@dimen/button_size"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/marathon_mode_button"
+        android:text="@string/endless_mode"
+        android:background="@color/menuButton"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="100dp"
+        android:onClick="openEndless"  />
+
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New ToggleButton"
+        android:id="@+id/toggleButton"
+        android:background="@color/menuButton"
+        android:layout_marginBottom="55dp"
+        android:layout_marginRight="5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textOff="@string/sound_off_toggleButton"
+        android:textOn="@string/sound_on_toggleButton"
+        android:checked="true"
+        android:onClick="onToggleClicked"/>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
+
+    </com.google.android.gms.ads.AdView>
+
+
 
 </RelativeLayout>
 

@@ -24,19 +24,15 @@ public class Player implements Listener
      * BASEPOINTS: integer representing the base points for
      *             the calculation of the Player's score.
      *
-     */
-
-    private static final int DEFAULTLIVES = 3,
-                             BASEPOINTS = 100;
-
-
-    /**
-     * DEFAULTSCORE: long representing the default score of
+     * DEFAULTSCORE: integer representing the default score of
      *               the Player at the start of each game.
      *
      */
 
-    private static final long DEFAULTSCORE = 0L;
+    private static final int DEFAULTLIVES = 3,
+                             BASEPOINTS = 100,
+                             DEFAULTSCORE = 0;
+
 
 
 
@@ -44,22 +40,18 @@ public class Player implements Listener
      * lives: integer representing the current lives
      *        of the player.
      *
-     */
-
-    private int lives;
-
-
-    /**
-     * score: long representing the current score of
+     * score: integer representing the current score of
      *        the Player.
      *
-     * highScore: long representing the highest score
+     * highScore: integer representing the highest score
      *            the Player has achieved in the game.
      *
      */
 
-    private long score,
-                 highScore;
+    private int lives,
+                score,
+                highScore;
+
 
 
     /**
@@ -113,12 +105,12 @@ public class Player implements Listener
     /**
      * Getter for the score of the Player.
      *
-     * @return score: long representing the current
+     * @return score: int representing the current
      *                score of the Player.
      *
      */
 
-    public long getCurrentScore()
+    public int getCurrentScore()
     {
         return this.score;
     }
@@ -127,13 +119,13 @@ public class Player implements Listener
     /**
      * Getter for the high score of the Player.
      *
-     * @return highScore: long representing the highest
+     * @return highScore: int representing the highest
      *                    score the Player has achieved
      *                    in the game.
      *
      */
 
-    public long getHighScore()
+    public int getHighScore()
     {
         return this.highScore;
     }
@@ -150,13 +142,27 @@ public class Player implements Listener
      *
      */
 
-    public void setCurrentScore(long score)
+    public void setCurrentScore(int score)
     {
         if (score > -1)
             this.score = score;
 
         else
             this.score = DEFAULTSCORE;
+    }
+
+
+    /**
+     * Mutator for the high score of the Player.
+     *
+     * @param highScore: integer value representing the high score
+     *                   of the Player.
+     *
+     */
+
+    public void setHighScore(int highScore)
+    {
+        this.highScore = highScore;
     }
 
 
@@ -197,8 +203,7 @@ public class Player implements Listener
     @Override
     public void timeOut(GameEvent ge)
     {
-        if(this.lives - 1 > -1)
-            this.lives--;
+        this.updateHighScore();
     }
 
 
@@ -210,7 +215,13 @@ public class Player implements Listener
     @Override
     public void livesFinish(GameEvent ge)
     {
-        if (this.score > this.highScore && this.lives > -1)
+        this.updateHighScore();
+    }
+
+
+    private void updateHighScore()
+    {
+        if (this.score > this.highScore)
             this.highScore = this.score;
     }
 

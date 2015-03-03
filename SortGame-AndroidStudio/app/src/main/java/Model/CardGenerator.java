@@ -1,6 +1,10 @@
 package Model;
 
+import android.content.Context;
+
 import java.util.Random;
+
+import DrawableObjects.Card;
 
 
 /**
@@ -8,7 +12,7 @@ import java.util.Random;
  * pattern attribute chosen at random.
  *
  * @author Varun Sriram
- * @version 1.3
+ * @version 1.5
  * @since 2014-11-28
  *
  */
@@ -19,11 +23,24 @@ public class CardGenerator
 
     /**
      * DEFAULTNUMPATTERNATTR: integer value representing the default number
-     *                        of pattern attributes for a Card
+     * of pattern attributes for a Card
      *
      */
 
     private static final int DEFAULTNUMPATTERNATTR = 4;
+
+
+    /**
+     * DEFAULTPOSX: float value representing the default x position
+     * of the Card on the screen.
+     *
+     * DEAFULTPOSY: float value representing the default y position
+     * of the Card on the screen.
+     *
+     */
+
+    private static final float DEFAULTPOSX = 0.0f,
+                               DEFAULTPOSY = -0.2f;
 
 
     /**
@@ -39,9 +56,18 @@ public class CardGenerator
      * numOfPatternAttr: integer value representing the number of
      *                   pattern attributes that will be used to
      *                   generate different cards.
+     *
+     * currentColor: integer representing the current pattern
+     *                 of the Card.
+     *
+     * prevColor: integer representing the previous pattern
+     *              of the Card.
+     *
      */
 
-    private int numOfPatternAttr;
+    private int numOfPatternAttr,
+                currentColor,
+                prevColor;
 
 
     /**
@@ -51,8 +77,11 @@ public class CardGenerator
 
     public CardGenerator()
     {
-        this.numOfPatternAttr = DEFAULTNUMPATTERNATTR;
         random = new Random();
+
+        this.numOfPatternAttr = DEFAULTNUMPATTERNATTR;
+        this.prevColor = 0;
+        this.currentColor = 0;
     }
 
 
@@ -81,9 +110,13 @@ public class CardGenerator
      *
      */
 
-    public Card generateCard()
+    public Card generateCard(Context context)
     {
-        Card card = new Card(this.getRandValue(1, this.numOfPatternAttr + 1));
+
+        this.generateColor();
+
+        Card card = new Card(context, DEFAULTPOSX, DEFAULTPOSY, this.currentColor);
+
         return card;
     }
 
@@ -107,10 +140,29 @@ public class CardGenerator
 
     private int getRandValue(int low, int high)
     {
-
         int R = random.nextInt(high-low) + low;
         return R;
     }
 
+
+    /**
+     * Generates a random color and checks if the generated
+     * color is the same color as the previous. If it is the
+     * method keeps generating a random color until they are
+     * different.
+     *
+     */
+
+    private void generateColor()
+    {
+        this.currentColor = this.getRandValue(1, this.numOfPatternAttr + 1);
+
+        while (this.currentColor == this.prevColor)
+            this.currentColor = this.getRandValue(1, this.numOfPatternAttr + 1);
+
+
+        this.prevColor = this.currentColor;
+
+    }
 
 }
