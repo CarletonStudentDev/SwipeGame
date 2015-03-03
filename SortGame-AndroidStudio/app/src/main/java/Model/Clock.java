@@ -36,7 +36,7 @@ public class Clock
 
     public long timePassed()
     {
-        if(stopClock == false){
+        if(!stopClock){
             return System.currentTimeMillis() - startTime;
         }else{
             return maxTime;

@@ -29,7 +29,7 @@ public class CircleImage extends Circle {
                     "void main() {" +
                     "   v_TexCoordinate = a_TexCoordinate;" +
                     "   gl_Position = uMVPMatrix * vPosition;" +
-                    "}";;
+                    "}";
     private float radius;
     private int vertices = 360;
 
