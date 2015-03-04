@@ -11,6 +11,8 @@ import DrawableObjects.GameOverScreen;
 import DrawableObjects.MultiplierBar;
 import DrawableObjects.Numbers;
 import DrawableObjects.TopBar;
+import OpenGL.TextManager;
+import OpenGL.TextObject;
 
 /**
  * GameSetup sets up the SwipeGame.
@@ -76,7 +78,7 @@ public class GameSetup
      *
      */
 
-    private Numbers score;
+    private TextObject score;
 
 
     /**
@@ -143,6 +145,13 @@ public class GameSetup
     private Vibrate vibrate;
 
 
+    private TextManager textManager;
+
+
+    public TextManager getTextManager()
+    {
+        return textManager;
+    }
 
     /**
      * Constructor for the GameSetup class.
@@ -170,13 +179,18 @@ public class GameSetup
         this.topBar.setFullHearts(this.player.getLives());
 
         this.multiplierBar = new MultiplierBar(this.context, 0.0f, 0.7f);
-        this.score = new Numbers(context,-0.15f,0.9f,0,8,0,0.12f,0.1f,2);
+        this.score = new TextObject("0", -0.15f, 0.9f, 1.0f);
+        //this.score = new Numbers(context,-0.15f,0.9f,0,8,0,0.12f,0.1f,2);
 
         this.drawableTimer = new Numbers(context,-0.075f,0.45f,(int)(gameLength/1000),2,2,0.175f,0.13f,1);
         this.vibrate = new Vibrate(this.context);
 
-        this.gameOverScreen = new GameOverScreen(this.context);
+        this.gameOverScreen = new GameOverScreen(this.context, 0);
         this.clock = new Clock(gameLength);
+
+        this.textManager = new TextManager();
+        this.textManager.setTextureID(0);
+        this.textManager.addText(this.score);
 
         MediaSounds.initializeSoundPool();
     }
@@ -246,7 +260,7 @@ public class GameSetup
      *
      */
 
-    public Numbers getScore()
+    public TextObject getScore()
     {
         return this.score;
     }

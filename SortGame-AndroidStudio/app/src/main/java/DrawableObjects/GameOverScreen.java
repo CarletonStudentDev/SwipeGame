@@ -8,6 +8,8 @@ import OpenGL.DrawableObject;
 import OpenGL.GraphicsHelper;
 import OpenGL.Image;
 import OpenGL.Square;
+import OpenGL.TextManager;
+import OpenGL.TextObject;
 
 public class GameOverScreen implements DrawableObject {
 
@@ -33,18 +35,20 @@ public class GameOverScreen implements DrawableObject {
                   back;
 
 
-    private Numbers score,
-                   highscore,
-                   cardspersecscore;
+    private Numbers cardspersecscore;
 
 
+    private TextObject score,
+                       highscore;
 
+
+    private TextManager textManager;
 
     private boolean isOutOfLives,
                     isTimedOut;
 
 
-    public GameOverScreen(Context context)
+    public GameOverScreen(Context context, int textureHandle)
     {
 
         this.isOutOfLives = false;
@@ -60,10 +64,12 @@ public class GameOverScreen implements DrawableObject {
         outoftime = new Image(context, x, y+0.5f, 1f, R.drawable.outoftime);
 
         scoretitle = new Image(context, x, y+0.37f, 0.5f, R.drawable.score);
-        score = new Numbers(context,-0.35f,y+0.25f,SCORENUM,8,0,0.12f,0.1f,2);
+        this.score = new TextObject("0", -0.35f, y+0.25f, 1.0f);
+        //score = new Numbers(context,-0.35f,y+0.25f,SCORENUM,8,0,0.12f,0.1f,2);
 
         highscoretitle = new Image(context, x, y+0.05f, 0.9f, R.drawable.highscore);
-        highscore = new Numbers(context,-0.35f,y-0.1f,HIGHNUM,8,0,0.12f,0.1f,2);
+        this.highscore = new TextObject("0", -0.35f, y-0.1f, 1.0f);
+        //highscore = new Numbers(context,-0.35f,y-0.1f,HIGHNUM,8,0,0.12f,0.1f,2);
 
         cardspersectitle = new Image(context, 0.155f, y-0.3f, 0.8f, R.drawable.cardspersec);
         cardspersecscore = new Numbers(context,-0.45f,y-0.3f,CARDSPERSEC,3,3,0.12f,0.11f,2);
@@ -75,6 +81,12 @@ public class GameOverScreen implements DrawableObject {
         menuSquare = new Square(x-0.225f, y-0.575f, 0.42f, 0.2f, backgroundColor2);
         retry = new Image(context, x+0.25f, y-0.575f, 0.2f, R.drawable.retry);
         back = new Image(context, x-0.225f, y-0.575f, 0.2f, R.drawable.back);
+
+        this.textManager = new TextManager();
+        this.textManager.setTextureID(textureHandle);
+        this.textManager.addText(this.score);
+        this.textManager.addText(this.highscore);
+        this.textManager.setUniformscale(this.highscore.getTextSize());
 
     }
 
@@ -110,10 +122,11 @@ public class GameOverScreen implements DrawableObject {
             outoftime.draw(mMVPMatrix);
 
         scoretitle.draw(mMVPMatrix);
-        score.draw(mMVPMatrix);
+        this.textManager.draw(mMVPMatrix);
+        //score.draw(mMVPMatrix);
 
         highscoretitle.draw(mMVPMatrix);
-        highscore.draw(mMVPMatrix);
+        //highscore.draw(mMVPMatrix);
 
         cardspersectitle.draw(mMVPMatrix);
         cardspersecscore.draw(mMVPMatrix);
@@ -126,12 +139,12 @@ public class GameOverScreen implements DrawableObject {
     }
 
     public void updateScore(int scoreNum){
-        this.score.setFullNumber(scoreNum);
+        this.score.setText(""+scoreNum);
     }
 
     public void updateHighScore(int scoreNum)
     {
-        this.highscore.setFullNumber(scoreNum);
+        this.highscore.setText(""+scoreNum);
     }
 
     public boolean isTouched(float x, float y){

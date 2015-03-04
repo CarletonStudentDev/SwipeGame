@@ -15,6 +15,8 @@ import DrawableObjects.GameOverScreen;
 import DrawableObjects.MultiplierBar;
 import DrawableObjects.Numbers;
 import DrawableObjects.TopBar;
+import OpenGL.TextManager;
+import OpenGL.TextObject;
 
 
 /**
@@ -100,7 +102,7 @@ public class GameTouchLogic
      *
      */
 
-    private Numbers score;
+    private TextObject score;
 
 
     /**
@@ -160,6 +162,9 @@ public class GameTouchLogic
     private int numCorrectMatches;
 
 
+    private TextManager textManager;
+
+
 
     /**
      * Constructor for the GameTouchLogic class.
@@ -196,6 +201,7 @@ public class GameTouchLogic
         this.gameOverScreen = gameSetup.getGameOverScreen();
         this.activity = gameSetup.getActivity();
 
+        this.textManager = gameSetup.getTextManager();
     }
 
 
@@ -285,7 +291,8 @@ public class GameTouchLogic
         this.multiplierBar.increaseNumFull();
 
         // need to multiply 100 by the multiplier score
-        this.score.increase(100*this.multiplierBar.giveMulti());
+        this.score.setText(""+this.player.getCurrentScore());
+        //this.score.increase(100*this.multiplierBar.giveMulti());
 
         this.numCorrectMatches ++;
 
@@ -324,7 +331,7 @@ public class GameTouchLogic
 
     public void timeOut()
     {
-        this.player.setCurrentScore(this.score.getFullNumber());
+        //this.player.setCurrentScore(this.score.getFullNumber());
         this.game.timeOut();
     }
 
@@ -336,7 +343,7 @@ public class GameTouchLogic
 
     public void livesFinished()
     {
-        this.player.setCurrentScore(this.score.getFullNumber());
+        //this.player.setCurrentScore(this.score.getFullNumber());
         this.game.livesFinish();
     }
 
@@ -417,7 +424,7 @@ public class GameTouchLogic
      *
      */
 
-    public Numbers getScore()
+    public TextObject getScore()
     {
         return this.score;
     }
@@ -496,6 +503,12 @@ public class GameTouchLogic
     public Context getContext()
     {
         return this.context;
+    }
+
+
+    public TextManager getTextManager()
+    {
+        return this.textManager;
     }
 
 }

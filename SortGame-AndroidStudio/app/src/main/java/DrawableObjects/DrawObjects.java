@@ -34,7 +34,7 @@ public class DrawObjects
         gameTouchLogic.getMultiplierBar().draw(mMVPMatrix);
         gameTouchLogic.getGameBoard().draw(mMVPMatrix);
         gameTouchLogic.getCard().draw(mMVPMatrix);
-        gameTouchLogic.getScore().draw(mMVPMatrix);
+        gameTouchLogic.getTextManager().draw(mMVPMatrix);
 
         if(gameTouchLogic.getTopBar().getFullHearts() == 0)
         {
@@ -67,7 +67,7 @@ public class DrawObjects
 
         if(gameTouchLogic.getGame().getGameOver())
         {
-            gameTouchLogic.getGameOverScreen().updateScore(gameTouchLogic.getScore().getFullNumber());
+            gameTouchLogic.getGameOverScreen().updateScore(gameTouchLogic.getPlayer().getCurrentScore());
             gameTouchLogic.getGameOverScreen().updateHighScore(gameTouchLogic.getPlayer().getHighScore());
             gameTouchLogic.getGameOverScreen().draw(mMVPMatrix);
         }

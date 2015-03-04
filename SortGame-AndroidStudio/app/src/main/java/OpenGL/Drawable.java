@@ -1,14 +1,11 @@
 package OpenGL;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.opengl.GLES20;
 import android.opengl.GLUtils;
 import android.opengl.Matrix;
-
-import com.example.owner.gameproject.R;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -295,4 +292,10 @@ public class Drawable {
         }
         return textureHandle[0];
     }
+
+    public int getTextureHandle()
+    {
+        return this.textureHandle;
+    }
+
 }
