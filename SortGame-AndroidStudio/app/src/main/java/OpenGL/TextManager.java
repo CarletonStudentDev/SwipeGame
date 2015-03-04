@@ -1,6 +1,7 @@
 package OpenGL;
 
 import android.opengl.GLES20;
+import android.util.Log;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -49,9 +50,9 @@ public class TextManager
                 texturenr;
 	
 	private float uniformscale;
+	
 
-
-
+	
 	private Vector<TextObject> textCollection;
 
 	public TextManager()
@@ -106,6 +107,7 @@ public class TextManager
             if(textObject != null)
             {
                 String text = textObject.getText();
+                Log.i("In TM text = ", text);
 
                 if(text != null)
                     charcount += text.length();
@@ -355,6 +357,11 @@ public class TextManager
         this.texturenr = val;
     }
 
+    public int getTexturenr()
+    {
+        return this.texturenr;
+    }
+
     public void draw(float[] m)
     {
         this.prepareDraw();
@@ -376,7 +383,7 @@ public class TextManager
         int mTexCoordLoc = GLES20.glGetAttribLocation(riGraphicTools.sp_Text, "a_texCoord" );
 
         // Prepare the texturecoordinates
-        GLES20.glVertexAttribPointer ( mTexCoordLoc, 2, GLES20.GL_FLOAT, false, 0, this.textureBuffer);
+        GLES20.glVertexAttribPointer(mTexCoordLoc, 2, GLES20.GL_FLOAT, false, 0, this.textureBuffer);
 
         GLES20.glEnableVertexAttribArray ( mPositionHandle );
         GLES20.glEnableVertexAttribArray ( mTexCoordLoc );

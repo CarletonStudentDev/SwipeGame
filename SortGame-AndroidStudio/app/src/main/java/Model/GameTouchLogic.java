@@ -15,6 +15,7 @@ import DrawableObjects.GameOverScreen;
 import DrawableObjects.MultiplierBar;
 import DrawableObjects.Numbers;
 import DrawableObjects.TopBar;
+import OpenGL.SpriteSetup;
 import OpenGL.TextManager;
 import OpenGL.TextObject;
 
@@ -164,6 +165,7 @@ public class GameTouchLogic
 
     private TextManager textManager;
 
+    private SpriteSetup spriteSetup;
 
 
     /**
@@ -202,6 +204,8 @@ public class GameTouchLogic
         this.activity = gameSetup.getActivity();
 
         this.textManager = gameSetup.getTextManager();
+        this.spriteSetup = gameSetup.getSpriteSetup();
+
     }
 
 
@@ -506,9 +510,9 @@ public class GameTouchLogic
     }
 
 
-    public TextManager getTextManager()
+    public SpriteSetup getSpriteSetup()
     {
-        return this.textManager;
+        return this.spriteSetup;
     }
 
 }

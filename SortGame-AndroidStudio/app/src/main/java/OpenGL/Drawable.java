@@ -292,10 +292,4 @@ public class Drawable {
         }
         return textureHandle[0];
     }
-
-    public int getTextureHandle()
-    {
-        return this.textureHandle;
-    }
-
 }

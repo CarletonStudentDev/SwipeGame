@@ -11,6 +11,7 @@ import DrawableObjects.GameOverScreen;
 import DrawableObjects.MultiplierBar;
 import DrawableObjects.Numbers;
 import DrawableObjects.TopBar;
+import OpenGL.SpriteSetup;
 import OpenGL.TextManager;
 import OpenGL.TextObject;
 
@@ -78,7 +79,7 @@ public class GameSetup
      *
      */
 
-    private TextObject score;
+    //private Numbers score;
 
 
     /**
@@ -145,13 +146,10 @@ public class GameSetup
     private Vibrate vibrate;
 
 
+    private SpriteSetup spriteSetup;
     private TextManager textManager;
+    private TextObject score;
 
-
-    public TextManager getTextManager()
-    {
-        return textManager;
-    }
 
     /**
      * Constructor for the GameSetup class.
@@ -179,18 +177,20 @@ public class GameSetup
         this.topBar.setFullHearts(this.player.getLives());
 
         this.multiplierBar = new MultiplierBar(this.context, 0.0f, 0.7f);
-        this.score = new TextObject("0", -0.15f, 0.9f, 1.0f);
+        this.score = new TextObject("0", 10f, 10f, 2.0f);
         //this.score = new Numbers(context,-0.15f,0.9f,0,8,0,0.12f,0.1f,2);
 
         this.drawableTimer = new Numbers(context,-0.075f,0.45f,(int)(gameLength/1000),2,2,0.175f,0.13f,1);
         this.vibrate = new Vibrate(this.context);
 
-        this.gameOverScreen = new GameOverScreen(this.context, 0);
+        this.gameOverScreen = new GameOverScreen(this.context);
         this.clock = new Clock(gameLength);
 
+        this.spriteSetup = new SpriteSetup(this.context);
         this.textManager = new TextManager();
-        this.textManager.setTextureID(0);
+        //this.textManager.setTextureID(1);
         this.textManager.addText(this.score);
+        this.spriteSetup.setTextManager(this.textManager);
 
         MediaSounds.initializeSoundPool();
     }
@@ -396,6 +396,17 @@ public class GameSetup
     public Activity getActivity()
     {
         return this.activity;
+    }
+
+
+    public TextManager getTextManager()
+    {
+        return this.textManager;
+    }
+
+    public SpriteSetup getSpriteSetup()
+    {
+        return this.spriteSetup;
     }
 
 }
