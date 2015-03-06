@@ -27,10 +27,10 @@ public class Card{
     }
 
     public void pixelOffset(){
-        x = GameManager.centerX - (size * GameManager.scale);
-        y = GameManager.centerY - (size * GameManager.scale);
-        x2 = GameManager.centerX + (size * GameManager.scale);
-        y2 = GameManager.centerY + (size * GameManager.scale);
+        x = GameManager.centerX - (size * GameManager.scaleX);
+        y = GameManager.centerY - (size * GameManager.scaleX);
+        x2 = GameManager.centerX + (size * GameManager.scaleX);
+        y2 = GameManager.centerY + (size * GameManager.scaleX);
 
     }
 
