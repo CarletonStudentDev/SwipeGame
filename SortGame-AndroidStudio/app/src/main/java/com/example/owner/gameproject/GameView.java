@@ -27,9 +27,7 @@ public class GameView extends SurfaceView {
     public static float centerY;
     public static float scale;
 
-    public static GameView instance = null;
-
-    private GameManager gameManager;
+    private GameManger gameManger;
     public GameView(Context context) {
         super(context);
         gameLoopThread = new GameLoopThread(this);
