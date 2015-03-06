@@ -29,7 +29,7 @@ public class GameManager{
         view = gameview;
     }
 
-    public void draw(){
+    public static void draw(){
         if(start){
             centerX = view.getWidth()/2;
             centerY = view.getHeight()/2;
