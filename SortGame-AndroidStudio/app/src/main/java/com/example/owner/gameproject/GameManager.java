@@ -24,12 +24,13 @@ public class GameManager{
     //Boolean which is true only on first draw
     private boolean start = true;
 
+
     public GameManager(GameView gameview){
         card = new Card();
         view = gameview;
     }
 
-    public static void draw(){
+    public void draw(){
         if(start){
             centerX = view.getWidth()/2;
             centerY = view.getHeight()/2;

@@ -23,11 +23,12 @@ public class GameView extends SurfaceView {
     private int x = 0;
 
     private Canvas canvas = null;
+    public static GameView instance;
     public static float centerX;
     public static float centerY;
     public static float scale;
 
-    private GameManger gameManger;
+    private GameManager gameManager;
     public GameView(Context context) {
         super(context);
         gameLoopThread = new GameLoopThread(this);
@@ -59,12 +60,11 @@ public class GameView extends SurfaceView {
             }
         });
 
-        if(instance == null){
-            instance = this;
-        }
+        instance = this;
+
 
         bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
-        gameManager = new GameManager(this);
+        this.gameManager = new GameManager(this);
     }
 
     @Override
