@@ -12,7 +12,7 @@ import java.util.Random;
  * at the sides of the screen.
  *
  * @author Robert
- * @version 1.2
+ * @version 1.3
  * @since 2015-02-27
  *
  */
@@ -166,6 +166,20 @@ public class Card
                                                            getRandValue(1, DEFAULTNUMPATTERNATTR))));
 
         color = currentColor;
+    }
+
+
+    /**
+     * Getter for the color of the card.
+     *
+     * @return color: Paint instance representing the color of
+     *                the card.
+     *
+     */
+
+    public int getColorId()
+    {
+        return color.getColor();
     }
 
 
