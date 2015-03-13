@@ -13,60 +13,28 @@ import android.view.MotionEvent;
 
 public class GameManager
 {
-
-    /**
-     * game: Game instance representing the game to be played.
-     *
-     */
-
+    /*** game: Game instance representing the game to be played.**/
     private Game game;
 
-
-    /**
-     * card: Card instance representing the card at center of screen.
-     *
-     */
-
+    /*** card: Card instance representing the card at center of screen.**/
     private Card card;
 
-
-    /**
-     * view: GameView instance representing the view of the app.
-     *
-     */
-
+    /*** view: GameView instance representing the view of the app.**/
     private GameView view;
 
-
-    /**
-     * gameBoard: GameBoard instance representing board of the game.
-     *
-     */
-
+    /*** gameBoard: GameBoard instance representing board of the game.**/
     private GameBoard gameBoard;
 
+    /*** start: boolean value representing the start of the application**/
+    private boolean start;
 
     /**
      * centerX: static float value representing the x-coordinate of screen center in pixels.
      * centerY: static float value representing the y-coordinate of screen center in pixels.
      * scaleX: static float value representing the scale of images depending on centerX
      * scaleY: static float value representing the scale of images depending on centerY
-     *
      */
-
-    public static float centerX,
-                        centerY,
-                        scaleX,
-                        scaleY;
-
-    /**
-     * start: boolean value representing the start of the application
-     *
-     */
-
-    private boolean start;
-
-
+    public static float centerX, centerY, scaleX, scaleY;
 
     public GameManager(GameView gameview)
     {
@@ -82,28 +50,20 @@ public class GameManager
 
         //score = new TextObject();
         //score.setText(game.getScore());
-
-
-
     }
 
-
-    /**
-     * Checks whether or not an motion event has occurred. It is
+    /*** Checks whether or not an motion event has occurred. It is
      * also responsible for determining a correct, incorrect match or
      * a time out has occurred depending on the motion event.
      *
      * @see android.view.MotionEvent;
-     *
      *
      * @param event: MotionEvent instance representing the
      * motion of event that has occurred.
      *
      * @return bool: boolean representing whether or not
      * an event has occurred.
-     *
-     */
-
+     **/
     public boolean onTouchEvent(MotionEvent event)
     {
         if (event != null)
@@ -153,7 +113,6 @@ public class GameManager
                 //mPreviousY = y;
             return true;
         }
-
         return false;
     }
 
@@ -161,21 +120,15 @@ public class GameManager
     {
         game.correct();
         //score.setText(game.getScore());
-
         this.genNewColorSetMultValue();
-
     }
 
     private void incorrect()
     {
         game.incorrect();
         //lives.setText(game.getLives());
-
         this.genNewColorSetMultValue();
-
-
     }
-
 
     private void genNewColorSetMultValue()
     {
@@ -183,8 +136,6 @@ public class GameManager
         //multiplierBar.setBarNum(game.getBarNum());
         //multiplierBar.setMultiplerNum(game.getMultiplierNum());
     }
-
-
 
     public void draw(){
         if(start){
@@ -194,14 +145,11 @@ public class GameManager
             scaleY = centerY / 2;
             start = false;
         }
-
         card.draw();
         gameBoard.draw();
 
         //lives.draw();
         //score.draw();
         //multiplierBar.draw();
-
-
     }
 }

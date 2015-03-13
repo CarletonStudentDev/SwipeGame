@@ -81,8 +81,7 @@ public class Game
      * Getter for the score of the game.
      *
      * @return score: long value representing the score of the game.
-     *
-     */
+     **/
 
     public long getScore()
     {
@@ -90,11 +89,7 @@ public class Game
     }
 
 
-    /**
-     * Increment the score and notify multiplier bar accordingly.
-     *
-     */
-
+    /*** Increment the score and notify multiplier bar accordingly.**/
     public void correct()
     {
         this.score += BASESCORE;
@@ -102,11 +97,7 @@ public class Game
     }
 
 
-    /**
-     * Decrement the lives and notify multiplier bar accordingly.
-     *
-     */
-
+    /*** Decrement the lives and notify multiplier bar accordingly.**/
     public void incorrect()
     {
         this.lives --;
