@@ -13,19 +13,19 @@ import android.view.MotionEvent;
 
 public class GameManager
 {
-    /*** game: Game instance representing the game to be played.**/
+    /** game: Game instance representing the game to be played.*/
     private Game game;
 
-    /*** card: Card instance representing the card at center of screen.**/
+    /** card: Card instance representing the card at center of screen.*/
     private Card card;
 
-    /*** view: GameView instance representing the view of the app.**/
+    /** view: GameView instance representing the view of the app.*/
     private GameView view;
 
-    /*** gameBoard: GameBoard instance representing board of the game.**/
+    /** gameBoard: GameBoard instance representing board of the game.*/
     private GameBoard gameBoard;
 
-    /*** start: boolean value representing the start of the application**/
+    /** start: boolean value representing the start of the application.*/
     private boolean start;
 
     /**
@@ -34,7 +34,10 @@ public class GameManager
      * scaleX: static float value representing the scale of images depending on centerX
      * scaleY: static float value representing the scale of images depending on centerY
      */
-    public static float centerX, centerY, scaleX, scaleY;
+    public static float centerX,
+                        centerY,
+                        scaleX,
+                        scaleY;
 
     public GameManager(GameView gameview)
     {
@@ -50,9 +53,13 @@ public class GameManager
 
         //score = new TextObject();
         //score.setText(game.getScore());
+
+        //multiplierBar = new MultiplierBar();
+        //multiplierBar.setMultiplierValues(game.getMultiplierNum(), game.getBarNum());
     }
 
-    /*** Checks whether or not an motion event has occurred. It is
+    /**
+     * Checks whether or not an motion event has occurred. It is
      * also responsible for determining a correct, incorrect match or
      * a time out has occurred depending on the motion event.
      *
@@ -63,7 +70,7 @@ public class GameManager
      *
      * @return bool: boolean representing whether or not
      * an event has occurred.
-     **/
+     */
     public boolean onTouchEvent(MotionEvent event)
     {
         if (event != null)
@@ -133,8 +140,7 @@ public class GameManager
     private void genNewColorSetMultValue()
     {
         card.generateNewColor();
-        //multiplierBar.setBarNum(game.getBarNum());
-        //multiplierBar.setMultiplerNum(game.getMultiplierNum());
+        //multiplier.setMultiplierValues(game.getMultiplierNum(), game.getBarNum());
     }
 
     public void draw(){

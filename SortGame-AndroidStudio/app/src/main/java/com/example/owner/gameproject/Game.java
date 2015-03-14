@@ -5,7 +5,7 @@ package com.example.owner.gameproject;
  * about playing the card game.
  *
  * @author Jeton Sinoimeri
- * @version 1.0
+ * @version 1.1
  * @since 2015-03-12
  *
  */
@@ -52,6 +52,15 @@ public class Game
 
 
     /**
+     * multiplier: Multiplier instance representing the multiplier
+     *             of the game.
+     *
+     */
+
+    private Multiplier multiplier;
+
+
+    /**
      * Constructor for the Game class.
      *
      */
@@ -60,6 +69,7 @@ public class Game
     {
         this.lives = DEFAULTLIVES;
         this.score = DEFAULTSCORE;
+        this.multiplier = new Multiplier();
     }
 
 
@@ -81,7 +91,7 @@ public class Game
      * Getter for the score of the game.
      *
      * @return score: long value representing the score of the game.
-     **/
+     */
 
     public long getScore()
     {
@@ -89,19 +99,45 @@ public class Game
     }
 
 
-    /*** Increment the score and notify multiplier bar accordingly.**/
-    public void correct()
-    {
-        this.score += BASESCORE;
+    /**
+     * Getter for the current meter count.
+     *
+     * @return integer value representing the current meter count.
+     *
+     */
 
+    public int getBarNum()
+    {
+        return this.multiplier.getMultiplierBarNum();
     }
 
 
-    /*** Decrement the lives and notify multiplier bar accordingly.**/
+    /**
+     * Getter for the current multiplier value.
+     *
+     * @return integer value representing the current multiplier value.
+     *
+     */
+
+    public int getMultiplierNum()
+    {
+        return this.multiplier.getMultiplier();
+    }
+
+
+    /** Increment the score and notify multiplier bar accordingly.*/
+    public void correct()
+    {
+        this.multiplier.correctMatch();
+        this.score += BASESCORE * this.multiplier.getMultiplier();
+    }
+
+
+    /** Decrement the lives and notify multiplier bar accordingly.*/
     public void incorrect()
     {
         this.lives --;
-
+        this.multiplier.incorrectMatch();
     }
 
 
