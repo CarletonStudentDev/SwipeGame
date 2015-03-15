@@ -5,7 +5,7 @@ package com.example.owner.gameproject;
  * about playing the card game.
  *
  * @author Jeton Sinoimeri
- * @version 1.1
+ * @version 1.2
  * @since 2015-03-12
  *
  */
@@ -14,8 +14,8 @@ public class Game
 {
 
     /**
-     * DEFAULTLIVES: integer constant value representing the default number
-     *               of lives present at beginning of the game.
+     * DEFAULTLIVES integer constant value representing the default number
+     *              of lives present at beginning of the game.
      *
      */
 
@@ -23,11 +23,11 @@ public class Game
 
 
     /**
-     * DEFAULTSCORE: long constant value representing the default score
-     *               value at beginning of the game.
+     * DEFAULTSCORE long constant value representing the default score
+     *              value at beginning of the game.
      *
-     * BASESCORE: long constant value representing the base amount the
-     *            score will increment by.
+     * BASESCORE long constant value representing the base amount the
+     *           score will increment by.
      *
      */
 
@@ -36,7 +36,7 @@ public class Game
 
 
     /**
-     * lives: integer value representing the amount of lives in the game.
+     * lives integer value representing the amount of lives in the game.
      *
      */
 
@@ -44,7 +44,7 @@ public class Game
 
 
     /**
-     * score: long value representing the score of the game.
+     * score long value representing the score of the game.
      *
      */
 
@@ -52,8 +52,8 @@ public class Game
 
 
     /**
-     * multiplier: Multiplier instance representing the multiplier
-     *             of the game.
+     * multiplier Multiplier instance representing the multiplier
+     *            of the game.
      *
      */
 
@@ -76,8 +76,8 @@ public class Game
     /**
      * Getter for the amount of lives in the game.
      *
-     * @return lives: integer value representing the amount of
-     *                lives in the game.
+     * @return lives integer value representing the amount of
+     *               lives in the game.
      *
      */
 
@@ -90,7 +90,7 @@ public class Game
     /**
      * Getter for the score of the game.
      *
-     * @return score: long value representing the score of the game.
+     * @return score long value representing the score of the game.
      */
 
     public long getScore()

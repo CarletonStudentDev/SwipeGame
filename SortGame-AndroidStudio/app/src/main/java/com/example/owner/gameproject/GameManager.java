@@ -1,5 +1,7 @@
 package com.example.owner.gameproject;
 
+import android.graphics.Canvas;
+import android.util.Log;
 import android.view.MotionEvent;
 
 /**
@@ -55,7 +57,8 @@ public class GameManager
         //lives.setText(game.getLives());
 
         // temporary values
-        score = new TextObject(""+game.getScore(), 100f, 200f, "Droid Sans Mono", R.color.blue, 100f);
+        score = new TextObject(""+game.getScore(), 100f, 200f, GameView.typeface,
+                               GameView.instance.getResources().getColor(R.color.blue), 100f);
 
         //multiplierBar = new MultiplierBar();
         //multiplierBar.setMultiplierValues(game.getMultiplierNum(), game.getBarNum());
@@ -68,12 +71,13 @@ public class GameManager
      *
      * @see android.view.MotionEvent;
      *
-     * @param event: MotionEvent instance representing the
+     * @param event MotionEvent instance representing the
      * motion of event that has occurred.
      *
-     * @return bool: boolean representing whether or not
+     * @return boolean representing whether or not
      * an event has occurred.
      */
+
     public boolean onTouchEvent(MotionEvent event)
     {
         if (event != null)
@@ -129,7 +133,7 @@ public class GameManager
     private void correct()
     {
         game.correct();
-        score.setText(""+game.getScore());
+        score.setText("" + game.getScore());
         this.genNewColorSetMultiValue();
     }
 
@@ -137,6 +141,7 @@ public class GameManager
     {
         game.incorrect();
         //lives.setText(game.getLives());
+        Log.i("Incorrect! Score", "" + game.getScore());
         this.genNewColorSetMultiValue();
     }
 
@@ -146,7 +151,7 @@ public class GameManager
         //multiplier.setMultiplierValues(game.getMultiplierNum(), game.getBarNum());
     }
 
-    public void draw(){
+    public void draw(Canvas canvas){
         if(start){
             centerX = view.getWidth() / 2;
             centerY = view.getHeight() / 2;
@@ -154,11 +159,11 @@ public class GameManager
             scaleY = centerY / 2;
             start = false;
         }
-        card.draw();
-        gameBoard.draw();
+        card.draw(canvas);
+        gameBoard.draw(canvas);
 
         //lives.draw();
-        score.draw();
+        score.draw(canvas);
         //multiplierBar.draw();
     }
 }

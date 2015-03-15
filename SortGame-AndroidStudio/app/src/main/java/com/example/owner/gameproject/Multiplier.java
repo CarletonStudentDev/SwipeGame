@@ -8,29 +8,29 @@ package com.example.owner.gameproject;
  * reset it to zero.
  *
  * @author Varun Sriram
- * @version 1.0
+ * @version 1.1
  * @since 2014-11-27
  *
  */
 public class Multiplier
 {
     /**
-     * MAXIMUM: integer value representing the maximum correct matches
+     * MAXIMUM integer value representing the maximum correct matches
      * the Player has to get before the multiplier has been
      * incremented.
      *
-     * MAX_MULTIPLIER: integer value representing the maximum value the
+     * MAX_MULTIPLIER integer value representing the maximum value the
      * multiplier will achieve
      *
-     * MULTIPLIER_SCALIER: integer value representing the scalier of the
+     * MULTIPLIER_SCALIER integer value representing the scalier of the
      * multiplier
      *
-     * DEFAULTMULTIPLIER: integer value representing the default multiplier
+     * DEFAULTMULTIPLIER integer value representing the default multiplier
      * value which the multiplier will be set to at
      * beginning of game and each time there is a lose
      * of life/incorrect match
      *
-     * DEFAULTMETERCOUNT: integer value representing the default meter count
+     * DEFAULTMETERCOUNT integer value representing the default meter count
      * of the multiplier which the meter will be set to
      * at beginning of game and each time the multiplier is
      * reset or multiplier is incremented
@@ -45,10 +45,10 @@ public class Multiplier
 
 
     /**
-     * currentMultiplier: integer representing the current
+     * currentMultiplier integer representing the current
      * multiplier the meter will show.
      *
-     * meterCount: integer representing the number of correct
+     * meterCount integer representing the number of correct
      * matches the player made.
      *
      */
@@ -85,8 +85,8 @@ public class Multiplier
     /**
      * Getter for the meter count.
      *
-     * @return meterCount: integer value representing the current
-     *                     meter count.
+     * @return meterCount integer value representing the current
+     *                    meter count.
      *
      */
 

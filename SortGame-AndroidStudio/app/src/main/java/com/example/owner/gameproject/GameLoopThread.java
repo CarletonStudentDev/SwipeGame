@@ -4,11 +4,10 @@ import android.graphics.Canvas;
 
 public class GameLoopThread extends Thread
 {
-    private static final long FPS = 60;
     private GameView view;
     private boolean running;
+    private GameManager gameManager;
 
-    public static Canvas canvas;
 
     public GameLoopThread(GameView view)
     {
@@ -21,48 +20,38 @@ public class GameLoopThread extends Thread
         running = run;
     }
 
+    public void setGameManager(GameManager gameManager)
+    {
+        this.gameManager = gameManager;
+    }
+
     @Override
     public void run()
     {
-        long ticksPS = 1000 / FPS;
-        long startTime;
-        long sleepTime;
-
-        Canvas c = null;
+        Canvas canvas;
 
         while (running)
         {
-            startTime = System.currentTimeMillis();
+            canvas = null;
+
             try
             {
-                c = view.getHolder().lockCanvas();
-                canvas = c;
+                canvas = view.getHolder().lockCanvas();
+
 
                 synchronized (view.getHolder())
                 {
-                    view.draw(c);
+                    view.draw(canvas);
                 }
             }
 
             finally
             {
-                if (c != null)
-                    view.getHolder().unlockCanvasAndPost(c);
+                if (canvas != null)
+                    view.getHolder().unlockCanvasAndPost(canvas);
 
             }
 
-            sleepTime = ticksPS - (System.currentTimeMillis() - startTime);
-
-            try
-            {
-                if (sleepTime > 0)
-                    sleep(sleepTime);
-
-                else
-                    sleep(10);
-            }
-
-            catch (Exception e) { }
         }
     }
 }
