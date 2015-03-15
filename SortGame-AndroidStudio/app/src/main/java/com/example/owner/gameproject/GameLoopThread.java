@@ -1,48 +1,68 @@
 package com.example.owner.gameproject;
 import android.graphics.Canvas;
-public class GameLoopThread extends Thread {
 
-    static final long FPS = 60;
+
+public class GameLoopThread extends Thread
+{
+    private static final long FPS = 60;
     private GameView view;
-    private boolean running = false;
+    private boolean running;
 
     public static Canvas canvas;
 
-    public GameLoopThread(GameView view) {
+    public GameLoopThread(GameView view)
+    {
+        this.running = false;
         this.view = view;
     }
 
-    public void setRunning(boolean run) {
+    public void setRunning(boolean run)
+    {
         running = run;
     }
 
     @Override
-    public void run() {
+    public void run()
+    {
         long ticksPS = 1000 / FPS;
         long startTime;
         long sleepTime;
-        while (running) {
-            Canvas c = null;
+
+        Canvas c = null;
+
+        while (running)
+        {
             startTime = System.currentTimeMillis();
-            try {
+            try
+            {
                 c = view.getHolder().lockCanvas();
                 canvas = c;
-                synchronized (view.getHolder()) {
-                    view.onDraw(c);
-                }
-            } finally {
-                if (c != null) {
-                    view.getHolder().unlockCanvasAndPost(c);
+
+                synchronized (view.getHolder())
+                {
+                    view.draw(c);
                 }
             }
+
+            finally
+            {
+                if (c != null)
+                    view.getHolder().unlockCanvasAndPost(c);
+
+            }
+
             sleepTime = ticksPS - (System.currentTimeMillis() - startTime);
-            try {
+
+            try
+            {
                 if (sleepTime > 0)
                     sleep(sleepTime);
+
                 else
                     sleep(10);
-            } catch (Exception e) {
             }
+
+            catch (Exception e) { }
         }
     }
 }

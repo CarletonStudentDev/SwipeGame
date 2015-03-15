@@ -1,22 +1,22 @@
 package com.example.owner.gameproject;
 
-/**
- * Class description
- *
- * @author Robert
- * @version version_number
- * @since 2015-02-27
- * Created by Robert on 27/02/2015.
- */
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-public class GameView extends SurfaceView {
+/**
+ * Class description
+ *
+ * @author Robert
+ * @version 1.2
+ * @since 2015-02-27
+ */
+
+public class GameView extends SurfaceView
+{
     private Bitmap bmp;
     private SurfaceHolder holder;
     private GameLoopThread gameLoopThread;
@@ -29,34 +29,33 @@ public class GameView extends SurfaceView {
     public static float scale;
 
     private GameManager gameManager;
-    public GameView(Context context) {
+
+    public GameView(Context context)
+    {
         super(context);
+
         gameLoopThread = new GameLoopThread(this);
         holder = getHolder();
+
         holder.addCallback(new SurfaceHolder.Callback() {
 
             @Override
-            public void surfaceDestroyed(SurfaceHolder holder) {
-                boolean retry = true;
+            public void surfaceDestroyed(SurfaceHolder holder)
+            {
                 gameLoopThread.setRunning(false);
-                while (retry) {
-                    try {
-                        gameLoopThread.join();
-                        retry = false;
-                    } catch (InterruptedException e) {
-                    }
-                }
             }
 
             @Override
-            public void surfaceCreated(SurfaceHolder holder) {
+            public void surfaceCreated(SurfaceHolder holder)
+            {
                 gameLoopThread.setRunning(true);
                 gameLoopThread.start();
             }
 
             @Override
-            public void surfaceChanged(SurfaceHolder holder, int format,
-                                       int width, int height) {
+            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height)
+            {
+
             }
         });
 
@@ -68,13 +67,22 @@ public class GameView extends SurfaceView {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
-        canvas.drawColor(getResources().getColor(R.color.white));
-        if (x < getWidth() - bmp.getWidth()) {
-            x++;
-        }
-        canvas.drawBitmap(bmp, x, 10, null);
+    public void draw(Canvas canvas)
+    {
+        if (canvas != null)
+        {
+            canvas.drawColor(getResources().getColor(R.color.white));
 
-        gameManager.draw();
+            if (x < getWidth() - bmp.getWidth())
+                x++;
+
+            canvas.drawBitmap(bmp, x, 10, null);
+
+            gameManager.draw();
+
+        }
     }
+
+
+
 }

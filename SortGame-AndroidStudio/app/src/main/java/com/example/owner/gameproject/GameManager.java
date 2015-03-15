@@ -39,6 +39,9 @@ public class GameManager
                         scaleX,
                         scaleY;
 
+    private TextObject score;
+
+
     public GameManager(GameView gameview)
     {
         view = gameview;
@@ -51,8 +54,8 @@ public class GameManager
         //lives = new TextObject();
         //lives.setText(game.getLives());
 
-        //score = new TextObject();
-        //score.setText(game.getScore());
+        // temporary values
+        score = new TextObject(""+game.getScore(), 100f, 200f, "Droid Sans Mono", R.color.blue, 100f);
 
         //multiplierBar = new MultiplierBar();
         //multiplierBar.setMultiplierValues(game.getMultiplierNum(), game.getBarNum());
@@ -126,18 +129,18 @@ public class GameManager
     private void correct()
     {
         game.correct();
-        //score.setText(game.getScore());
-        this.genNewColorSetMultValue();
+        score.setText(""+game.getScore());
+        this.genNewColorSetMultiValue();
     }
 
     private void incorrect()
     {
         game.incorrect();
         //lives.setText(game.getLives());
-        this.genNewColorSetMultValue();
+        this.genNewColorSetMultiValue();
     }
 
-    private void genNewColorSetMultValue()
+    private void genNewColorSetMultiValue()
     {
         card.generateNewColor();
         //multiplier.setMultiplierValues(game.getMultiplierNum(), game.getBarNum());
@@ -155,7 +158,7 @@ public class GameManager
         gameBoard.draw();
 
         //lives.draw();
-        //score.draw();
+        score.draw();
         //multiplierBar.draw();
     }
 }
