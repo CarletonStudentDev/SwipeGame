@@ -88,28 +88,30 @@ public class GameManager
             float newX = (-(event.getX() * 2) / this.view.getWidth() + 1f) / r;
             float newY = -(event.getY() * 2) / this.view.getHeight() + 1f;
 
-            if(event.getAction() == MotionEvent.ACTION_DOWN)
+            if(event.getAction() == MotionEvent.ACTION_UP)
             {
-                /*
+
                 if (this.game.getGameOver())
                 {
-                    this.clock.stopClock();
+                    /*this.clock.stopClock();
 
                     if (this.gameBoard.getGameOverButton(newX, newY) == 2)
                         activity.finish();
 
                     else if (this.gameBoard.getGameOverButton(newX, newY) == 1)
                         activity.recreate();
+                        */
                 }
 
                 else
-                {*/
+                {
                     if (this.gameBoard.getQuadrantColor(newX, newY) == this.card.getColorId())
                         this.correct();
 
                     else if (this.gameBoard.getQuadrantColor(newX, newY) != 0)
                         this.incorrect();
-                //}
+
+                }
             }
 
              /*if (event.getAction() == MotionEvent.ACTION_MOVE)
@@ -125,8 +127,12 @@ public class GameManager
              }*/
                 //mPreviousX = x;
                 //mPreviousY = y;
+
+            card.generateNewColor();
+
             return true;
         }
+
         return false;
     }
 
@@ -134,7 +140,7 @@ public class GameManager
     {
         game.correct();
         score.setText("" + game.getScore());
-        this.genNewColorSetMultiValue();
+        this.setMultiValue();
     }
 
     private void incorrect()
@@ -142,12 +148,11 @@ public class GameManager
         game.incorrect();
         //lives.setText(game.getLives());
         Log.i("Incorrect! Score", "" + game.getScore());
-        this.genNewColorSetMultiValue();
+        this.setMultiValue();
     }
 
-    private void genNewColorSetMultiValue()
+    private void setMultiValue()
     {
-        card.generateNewColor();
         //multiplier.setMultiplierValues(game.getMultiplierNum(), game.getBarNum());
     }
 

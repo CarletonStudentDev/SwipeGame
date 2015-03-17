@@ -34,13 +34,13 @@ public class GameBoard
         this.redCircleColor.setColor(GameView.instance.getResources().getColor(R.color.red));
 
         this.blueCircleColor = new Paint();
-        this.blueCircleColor.setColor(GameView.instance.getResources().getColor(R.color.blue));
+        this.blueCircleColor.setColor(GameView.instance.getResources().getColor(R.color.purple));
 
         this.greenCircleColor = new Paint();
         this.greenCircleColor.setColor(GameView.instance.getResources().getColor(R.color.green));
 
         this.purpleCircleColor = new Paint();
-        this.purpleCircleColor.setColor(GameView.instance.getResources().getColor(R.color.purple));
+        this.purpleCircleColor.setColor(GameView.instance.getResources().getColor(R.color.blue));
     }
 
     /**
