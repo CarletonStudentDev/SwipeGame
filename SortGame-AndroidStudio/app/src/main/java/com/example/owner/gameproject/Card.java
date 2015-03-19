@@ -13,7 +13,7 @@ import java.util.Random;
  * at the sides of the screen.
  *
  * @author Robert
- * @version 1.3
+ * @version 1.4
  * @since 2015-02-27
  *
  */
@@ -70,25 +70,14 @@ public class Card
     {
         color = new Paint();
 
+        float offsetFromCentre = SIZE * GameView.scaleX;
+
+        xCoordinate1 = GameView.centerX - offsetFromCentre;
+        yCoordinate1 = GameView.centerY - offsetFromCentre;
+        xCoordinate2 = GameView.centerX + offsetFromCentre;
+        yCoordinate2 = GameView.centerY + offsetFromCentre;
+
         this.generateNewColor();
-    }
-
-
-    /**
-     * Calculates the pixel offset from the center of the
-     * screen for each vertex of the square.
-     *
-     */
-
-    private void pixelOffset()
-    {
-        float offsetFromCentre = SIZE * GameManager.scaleX;
-
-        xCoordinate1 = GameManager.centerX - offsetFromCentre;
-        yCoordinate1 = GameManager.centerY - offsetFromCentre;
-        xCoordinate2 = GameManager.centerX + offsetFromCentre;
-        yCoordinate2 = GameManager.centerY + offsetFromCentre;
-
     }
 
 
@@ -192,8 +181,6 @@ public class Card
 
     public void draw(Canvas canvas)
     {
-        pixelOffset();
-
         canvas.drawRect(xCoordinate1, yCoordinate1, xCoordinate2, yCoordinate2, color);
     }
 }

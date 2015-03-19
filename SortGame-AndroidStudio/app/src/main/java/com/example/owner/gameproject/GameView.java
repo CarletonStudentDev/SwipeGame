@@ -26,34 +26,33 @@ import android.view.SurfaceView;
 public class GameView extends SurfaceView implements SurfaceHolder.Callback
 {
     private Bitmap bmp;
-    private SurfaceHolder holder;
+    private SurfaceHolder surfaceHolder;
     private GameLoopThread gameLoopThread;
     private int x = 0;
 
     public static GameView instance;
     public static float centerX;
     public static float centerY;
-    public static float scale;
+    public static float scaleX;
+    public static float scaleY;
 
     private GameManager gameManager;
 
     public static Typeface typeface;
+    public static Activity activity;
 
-    public GameView(Activity activity)
+    public GameView(Activity appActivity)
     {
-        super(activity);
+        super(appActivity);
 
-        typeface = Typeface.createFromAsset(activity.getAssets(), "fonts/calibri.ttf");
+        typeface = Typeface.createFromAsset(appActivity.getAssets(), "fonts/calibri.ttf");
 
-        holder = getHolder();
-        holder.addCallback(this);
+        surfaceHolder = getHolder();
+        surfaceHolder.addCallback(this);
 
         instance = this;
+        activity = appActivity;
 
-        gameLoopThread = new GameLoopThread(this);
-        this.gameManager = new GameManager(this);
-
-        gameLoopThread.setGameManager(gameManager);
 
         bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
     }
@@ -109,9 +108,20 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
     @Override
     public void surfaceCreated(SurfaceHolder holder)
     {
+
+        centerX = getWidth() / 2;
+        centerY = getHeight() / 2;
+        scaleX = centerX / 2;
+        scaleY = centerY / 2;
+
+        gameLoopThread = new GameLoopThread(this);
+        this.gameManager = new GameManager(this);
+
         gameLoopThread.setRunning(true);
         gameLoopThread.start();
+
     }
+
 
     /**
      * @see SurfaceHolder.Callback
@@ -122,7 +132,13 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
      */
 
     @Override
-    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) { }
+    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height)
+    {
+        centerX = width / 2;
+        centerY = height / 2;
+        scaleX = centerX / 2;
+        scaleY = centerY / 2;
+    }
 
     /**
      * @see SurfaceHolder.Callback

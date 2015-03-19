@@ -1,7 +1,6 @@
 package com.example.owner.gameproject;
 
 import android.graphics.Canvas;
-import android.util.Log;
 import android.view.MotionEvent;
 
 /**
@@ -15,6 +14,11 @@ import android.view.MotionEvent;
 
 public class GameManager
 {
+
+    private static final String EMPTYSTRING = "",
+                                LIVESFINISHED = "OUT OF LIVES!",
+                                TIMERANOUT = "TIME RAN OUT!";
+
     /** game: Game instance representing the game to be played.*/
     private Game game;
 
@@ -27,37 +31,36 @@ public class GameManager
     /** gameBoard: GameBoard instance representing board of the game.*/
     private GameBoard gameBoard;
 
-    /** start: boolean value representing the start of the application.*/
-    private boolean start;
-
     /**
-     * centerX: static float value representing the x-coordinate of screen center in pixels.
-     * centerY: static float value representing the y-coordinate of screen center in pixels.
-     * scaleX: static float value representing the scale of images depending on centerX
-     * scaleY: static float value representing the scale of images depending on centerY
+     * gameFinished boolean value representing whether the game finished or not.
      */
-    public static float centerX,
-                        centerY,
-                        scaleX,
-                        scaleY;
+    private boolean gameFinished,
+                    timedOut;
 
     private TextObject score;
+
+    private GameOverScreen gameOverScreen;
 
 
     public GameManager(GameView gameview)
     {
         view = gameview;
-        start = true;
+        gameFinished = false;
+        timedOut = false;
 
         card = new Card();
         gameBoard = new GameBoard();
         game = new Game();
 
+
+        gameOverScreen = new GameOverScreen(GameView.typeface,
+                         GameView.instance.getResources().getColor(R.color.white));
+
         //lives = new TextObject();
         //lives.setText(game.getLives());
 
         // temporary values
-        score = new TextObject(""+game.getScore(), 100f, 200f, GameView.typeface,
+        score = new TextObject(EMPTYSTRING + game.getScore(), 100f, 200f, GameView.typeface,
                                GameView.instance.getResources().getColor(R.color.blue), 100f);
 
         //multiplierBar = new MultiplierBar();
@@ -91,16 +94,16 @@ public class GameManager
             if(event.getAction() == MotionEvent.ACTION_UP)
             {
 
-                if (this.game.getGameOver())
+                if (gameFinished)
                 {
                     /*this.clock.stopClock();
 
-                    if (this.gameBoard.getGameOverButton(newX, newY) == 2)
-                        activity.finish();
+                    if (this.gameOverScreen.getGameOverButton(newX, newY) == 2)
+                        GameView.activity.finish();
 
-                    else if (this.gameBoard.getGameOverButton(newX, newY) == 1)
-                        activity.recreate();
-                        */
+                    else if (this.gameOverScreen.getGameOverButton(newX, newY) == 1)
+                        GameView.activity.recreate();*/
+
                 }
 
                 else
@@ -128,7 +131,7 @@ public class GameManager
                 //mPreviousX = x;
                 //mPreviousY = y;
 
-            card.generateNewColor();
+
 
             return true;
         }
@@ -139,36 +142,63 @@ public class GameManager
     private void correct()
     {
         game.correct();
-        score.setText("" + game.getScore());
-        this.setMultiValue();
+        score.setText(EMPTYSTRING + game.getScore());
+        this.setMultiValueCardColor();
     }
 
     private void incorrect()
     {
         game.incorrect();
         //lives.setText(game.getLives());
-        Log.i("Incorrect! Score", "" + game.getScore());
-        this.setMultiValue();
+        this.setMultiValueCardColor();
     }
 
-    private void setMultiValue()
+    private void setMultiValueCardColor()
     {
+        card.generateNewColor();
         //multiplier.setMultiplierValues(game.getMultiplierNum(), game.getBarNum());
     }
 
-    public void draw(Canvas canvas){
-        if(start){
-            centerX = view.getWidth() / 2;
-            centerY = view.getHeight() / 2;
-            scaleX = centerX / 2;
-            scaleY = centerY / 2;
-            start = false;
+
+    private void checkHighScore()
+    {
+        //if (game.getScore() > GooglePlayServices.getHighScore())
+            //GooglePlayServices.setHighScore(game.getScore());
+    }
+
+
+    private void gameOver(Canvas canvas)
+    {
+        if (game.getLivesFinished() || timedOut)
+        {
+            gameFinished = true;
+
+            if (timedOut)
+                gameOverScreen.setLossReason(TIMERANOUT);
+
+            else if (game.getLivesFinished())
+                gameOverScreen.setLossReason(LIVESFINISHED);
+
+            this.checkHighScore();
+
+            gameOverScreen.setScores(game.getScore(), 0);
+
+            gameOverScreen.draw(canvas);
         }
+
+    }
+
+    public void draw(Canvas canvas)
+    {
+
         card.draw(canvas);
         gameBoard.draw(canvas);
 
         //lives.draw();
         score.draw(canvas);
         //multiplierBar.draw();
+
+        gameOver(canvas);
+
     }
 }

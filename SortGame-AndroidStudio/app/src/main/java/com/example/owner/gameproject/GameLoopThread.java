@@ -6,7 +6,6 @@ public class GameLoopThread extends Thread
 {
     private GameView view;
     private boolean running;
-    private GameManager gameManager;
 
 
     public GameLoopThread(GameView view)
@@ -20,10 +19,6 @@ public class GameLoopThread extends Thread
         running = run;
     }
 
-    public void setGameManager(GameManager gameManager)
-    {
-        this.gameManager = gameManager;
-    }
 
     @Override
     public void run()
