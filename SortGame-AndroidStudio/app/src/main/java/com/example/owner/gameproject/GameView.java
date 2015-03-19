@@ -1,8 +1,6 @@
 package com.example.owner.gameproject;
 
 import android.app.Activity;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Typeface;
 import android.view.MotionEvent;
@@ -25,16 +23,14 @@ import android.view.SurfaceView;
 
 public class GameView extends SurfaceView implements SurfaceHolder.Callback
 {
-    private Bitmap bmp;
     private SurfaceHolder surfaceHolder;
     private GameLoopThread gameLoopThread;
-    private int x = 0;
 
-    public static GameView instance;
-    public static float centerX;
-    public static float centerY;
-    public static float scaleX;
-    public static float scaleY;
+
+    public static float centerX,
+                        centerY,
+                        scaleX,
+                        scaleY;
 
     private GameManager gameManager;
 
@@ -50,11 +46,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
         surfaceHolder = getHolder();
         surfaceHolder.addCallback(this);
 
-        instance = this;
+        ColorsLoader.setResources(getResources());
+
         activity = appActivity;
-
-
-        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
     }
 
 
@@ -68,15 +62,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
     {
         if (canvas != null)
         {
-            canvas.drawColor(getResources().getColor(R.color.white));
-
-            if (x < getWidth() - bmp.getWidth())
-                x++;
-
-            canvas.drawBitmap(bmp, x, 10, null);
+            canvas.drawColor(ColorsLoader.loadColorByName("white"));
 
             gameManager.draw(canvas);
-
         }
     }
 

@@ -3,6 +3,7 @@ package com.example.owner.gameproject;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.view.View;
 
 /**
  * GameOverScreen class displays the reason for the loss
@@ -11,7 +12,7 @@ import android.graphics.Typeface;
  * to either go back to main menu or to play again.
  *
  * @author Jeton Sinoimeri
- * @version 1.0
+ * @version 1.2
  * @since 2015-03-18
  *
  */
@@ -69,13 +70,14 @@ public class GameOverScreen
     /**
      * Constructor for the GameOverScreen class.
      *
+     * @param view View instance representing the view of the application.
      * @param typeface Typeface object representing the font type of the text.
      * @param textColor integer value obtained from getResources() representing
      *                  the color of the text.
      *
      */
 
-    public GameOverScreen(Typeface typeface, int textColor)
+    public GameOverScreen(View view, Typeface typeface, int textColor)
     {
         this.lossReason = new TextObject("", 150f, 300f, typeface, textColor, 100f);
         this.score = new TextObject(SCORESTRING, 150f, 400f, typeface, textColor , 100f);
@@ -83,13 +85,13 @@ public class GameOverScreen
         this.backToMenu = new TextObject("Back", 150f, 1000f, typeface, textColor, 100f);
         this.retryGame = new TextObject("Retry", 450f, 1000f, typeface, textColor, 100f);
 
-        this.leftCoordinate = 0.1f * GameView.instance.getWidth();
-        this.rightCoordinate = 0.9f * GameView.instance.getWidth();
-        this.topCoordinate = 0.1f * GameView.instance.getHeight();
-        this.bottomCoordinate =  0.9f * GameView.instance.getHeight();
+        this.leftCoordinate = 0.1f * view.getWidth();
+        this.rightCoordinate = 0.9f * view.getWidth();
+        this.topCoordinate = 0.1f * view.getHeight();
+        this.bottomCoordinate =  0.9f * view.getHeight();
 
         this.paint = new Paint();
-        this.paint.setColor(GameView.instance.getResources().getColor(R.color.blue));
+        this.paint.setColor(ColorsLoader.loadColorByName("blue"));
 
     }
 

@@ -31,16 +31,16 @@ public class GameBoard
     public GameBoard()
     {
         this.redCircleColor = new Paint();
-        this.redCircleColor.setColor(GameView.instance.getResources().getColor(R.color.red));
+        this.redCircleColor.setColor(ColorsLoader.loadColorByName("red"));
 
         this.blueCircleColor = new Paint();
-        this.blueCircleColor.setColor(GameView.instance.getResources().getColor(R.color.purple));
+        this.blueCircleColor.setColor(ColorsLoader.loadColorByName("blue"));
 
         this.greenCircleColor = new Paint();
-        this.greenCircleColor.setColor(GameView.instance.getResources().getColor(R.color.green));
+        this.greenCircleColor.setColor(ColorsLoader.loadColorByName("green"));
 
         this.purpleCircleColor = new Paint();
-        this.purpleCircleColor.setColor(GameView.instance.getResources().getColor(R.color.blue));
+        this.purpleCircleColor.setColor(ColorsLoader.loadColorByName("purple"));
     }
 
     /**
@@ -53,16 +53,16 @@ public class GameBoard
     public int getQuadrantColor(float x, float y)
     {
         if (this.redTouched(x, y))
-            return GameView.instance.getResources().getColor(R.color.red);
+            return ColorsLoader.loadColorByName("red");
 
         else if (this.blueTouched(x, y))
-            return GameView.instance.getResources().getColor(R.color.blue);
+            return ColorsLoader.loadColorByName("blue");
 
         else if (this.greenTouched(x, y))
-            return GameView.instance.getResources().getColor(R.color.green);
+            return ColorsLoader.loadColorByName("green");
 
         else if (this.purpleTouched(x, y))
-            return GameView.instance.getResources().getColor(R.color.purple);
+            return ColorsLoader.loadColorByName("purple");
 
         return 0;
     }

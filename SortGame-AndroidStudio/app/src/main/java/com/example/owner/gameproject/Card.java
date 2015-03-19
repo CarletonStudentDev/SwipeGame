@@ -13,7 +13,7 @@ import java.util.Random;
  * at the sides of the screen.
  *
  * @author Robert
- * @version 1.4
+ * @version 1.5
  * @since 2015-02-27
  *
  */
@@ -82,33 +82,6 @@ public class Card
 
 
     /**
-     * Gives the corresponding resource color according to the
-     * color id.
-     *
-     * @param colorId integer value representing the color
-     *                 of the Card given by the CardGenerator.
-     *
-     * @return integer value representing the corresponding
-     *         resource color determined by the colorId.
-     *
-     */
-
-    private int getResourceColor(int colorId)
-    {
-        if (colorId == 1)
-            return R.color.blue;
-
-        else if (colorId == 2)
-            return R.color.green;
-
-        else if (colorId == 3)
-            return R.color.red;
-
-        return R.color.purple;
-    }
-
-
-    /**
      * Gets a random integer using random.nextInt method.
      *
      * @see java.util.Random
@@ -145,14 +118,12 @@ public class Card
     public void generateNewColor()
     {
         Paint currentColor = new Paint();
-        currentColor.setColor(GameView.instance.getResources()
-                                               .getColor(getResourceColor(
-                                                       getRandValue(1, DEFAULTNUMPATTERNATTR))));
+        currentColor.setColor(ColorsLoader
+                .loadColorByInt(getRandValue(1, DEFAULTNUMPATTERNATTR)));
 
         while (currentColor.getColor() == color.getColor())
-            currentColor.setColor(GameView.instance.getResources()
-                                                   .getColor(getResourceColor(
-                                                           getRandValue(1, DEFAULTNUMPATTERNATTR))));
+            currentColor.setColor(ColorsLoader
+                    .loadColorByInt(getRandValue(1, DEFAULTNUMPATTERNATTR)));
 
         color = currentColor;
     }

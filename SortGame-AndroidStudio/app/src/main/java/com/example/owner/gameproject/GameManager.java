@@ -15,8 +15,13 @@ import android.view.MotionEvent;
 public class GameManager
 {
 
-    private static final String EMPTYSTRING = "",
-                                LIVESFINISHED = "OUT OF LIVES!",
+    /**
+     * LIVESFINISHED String constant representing the text displayed on game over screen for
+     *               lossing all the lives.
+     * TIMERANOUT String constant representing the text displayed on game over screen when the
+     *            clock has finished.
+     */
+    private static final String LIVESFINISHED = "OUT OF LIVES!",
                                 TIMERANOUT = "TIME RAN OUT!";
 
     /** game: Game instance representing the game to be played.*/
@@ -33,12 +38,20 @@ public class GameManager
 
     /**
      * gameFinished boolean value representing whether the game finished or not.
+     * timedOut boolean value representing whether the clock has finished or not.
      */
     private boolean gameFinished,
                     timedOut;
 
+    /**
+     * score TextObject instance representing the score text displaying on the screen.
+     */
     private TextObject score;
 
+    /**
+     * gameOverScreen GameOverScreen instance representing the stats of the game displayed
+     *                at end of game.
+     */
     private GameOverScreen gameOverScreen;
 
 
@@ -53,15 +66,14 @@ public class GameManager
         game = new Game();
 
 
-        gameOverScreen = new GameOverScreen(GameView.typeface,
-                         GameView.instance.getResources().getColor(R.color.white));
+        gameOverScreen = new GameOverScreen(view, GameView.typeface, ColorsLoader.loadColorByName("white"));
 
         //lives = new TextObject();
         //lives.setText(game.getLives());
 
         // temporary values
-        score = new TextObject(EMPTYSTRING + game.getScore(), 100f, 200f, GameView.typeface,
-                               GameView.instance.getResources().getColor(R.color.blue), 100f);
+        score = new TextObject("" + game.getScore(), 100f, 200f, GameView.typeface,
+                               ColorsLoader.loadColorByName("blue"), 100f);
 
         //multiplierBar = new MultiplierBar();
         //multiplierBar.setMultiplierValues(game.getMultiplierNum(), game.getBarNum());
@@ -142,7 +154,7 @@ public class GameManager
     private void correct()
     {
         game.correct();
-        score.setText(EMPTYSTRING + game.getScore());
+        score.setText("" + game.getScore());
         this.setMultiValueCardColor();
     }
 
