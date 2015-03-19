@@ -9,7 +9,7 @@ import android.graphics.Typeface;
  * android.graphics.Canvas class.
  *
  * @author Jeton Sinoimeri
- * @version 1.1
+ * @version 1.2
  * @since 2015-03-14
  */
 
@@ -74,6 +74,17 @@ public class TextObject
         this.text = text;
     }
 
+
+    /**
+     * Getter for the text.
+     *
+     * @return text String object representing the text being displayed on screen.
+     */
+
+    public String getText()
+    {
+        return this.text;
+    }
 
     /**
      * Draws to android's canvas.
