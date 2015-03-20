@@ -46,7 +46,7 @@ public class TextObject
      * @param xCoordinate float value representing the x-coordinate location of text in pixels.
      * @param yCoordinate float value representing the y-coordinate location of text in pixels.
      * @param typeface Typeface object representing the font type of the text.
-     * @param color integer value obtained from getResources() representing the color of the text.
+     * @param color integer value obtained from ColorLoader representing the color of the text.
      * @param textSize float value representing the size of the text in pixels.
      */
 

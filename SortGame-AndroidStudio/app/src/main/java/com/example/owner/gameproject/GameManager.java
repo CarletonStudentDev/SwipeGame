@@ -215,7 +215,7 @@ public class GameManager
 
         score.draw(canvas);
         multiplierBar.draw(canvas);
-        //lives.draw(canvas);
+        lives.draw(canvas);
 
         gameOver(canvas);
 

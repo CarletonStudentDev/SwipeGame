@@ -69,7 +69,7 @@ public class MultiplierBar
      * @param multiplierNum integer value representing the multiplier number for multiplying the score.
      * @param multiplierBarNum integer value representing the amount of correct answers.
      * @param typeface Typeface object representing the font type of the text
-     * @param textColor integer value obtained from getResources() representing the color of the text.
+     * @param textColor integer value obtained from ColorLoader representing the color of the text.
      */
 
     public MultiplierBar(int multiplierNum, int multiplierBarNum, Typeface typeface, int textColor)
