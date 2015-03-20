@@ -69,7 +69,7 @@
         android:textOn="@string/sound_on_toggleButton"
         android:checked="true"
         android:onClick="onToggleClicked"/>
-    <!--
+<!--
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
         android:layout_width="wrap_content"
