@@ -7,8 +7,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.ToggleButton;
 
 public class MyActivity extends Activity {
+
+    private ToggleButton toggleBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,21 +42,43 @@ public class MyActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    /** Called when the user clicks the New Game button */
-    public void newGame(View view) {
+    /** Called when the user clicks the Normal button */
+    public void openNormal(View view)
+    {
         Intent intent = new Intent(this, StartNormalActivity.class);
         startActivity(intent);
     }
 
-    /** Called when the user clicks the Store button */
-    public void openStore(View view) {
+    /** Called when the user clicks the Marathon button */
+    public void openMarathon(View view)
+    {
         Intent intent = new Intent(this, StartMarathonActivity.class);
         startActivity(intent);
     }
 
-    /** Called when the user clicks the Store button */
-    public void openSettings(View view) {
+    /** Called when the user clicks the Endless button */
+    public void openEndless(View view)
+    {
         Intent intent = new Intent(this, StartEndlessActivity.class);
         startActivity(intent);
+    }
+
+    //checks if the toggle button was clicked and sets the volume
+    private void onToggleClicked()
+    {
+
+        toggleBtn = (ToggleButton) findViewById(R.id.toggleButton);
+
+        toggleBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                if (toggleBtn.isChecked())
+                    MediaSounds.setVolume(1f);
+
+                else
+                    MediaSounds.setVolume(0f);
+
+            }
+        });
+
     }
 }
