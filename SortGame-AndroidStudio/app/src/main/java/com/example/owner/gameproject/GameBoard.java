@@ -1,5 +1,7 @@
 package com.example.owner.gameproject;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
@@ -18,7 +20,7 @@ public class GameBoard
 {
     /** RADIUS constant float value representing the radius of the circle.*/
     private static final float RADIUS = GameView.WIDTH * (110.0f/720.0f);
-
+    private Bitmap bitmap;
     /**
      * redCircleColor android.graphics.Paint instance representing color red.
      * blueCircleColor android.graphics.Paint instance representing color blue.
@@ -41,6 +43,9 @@ public class GameBoard
 
         this.purpleCircleColor = new Paint();
         this.purpleCircleColor.setColor(ColorsLoader.loadColorByName("purple"));
+
+        bitmap = BitmapFactory.decodeResource(GameView.activity.getResources(), R.drawable.fullheart);
+        bitmap = Bitmap.createScaledBitmap(bitmap, 100, 100, true);
     }
 
     /**
@@ -125,6 +130,12 @@ public class GameBoard
     {
         // this values are temporary
         // 720 x 1230
+        for(int i = 0; i<3; i++){
+            canvas.drawBitmap(bitmap, ((700f+(i*120))/1080)*GameView.WIDTH, (37f/1701)*GameView.HEIGHT, null);
+
+        }
+
+
         canvas.drawCircle(150.0f, 1080.0f, RADIUS, this.redCircleColor);
         canvas.drawCircle(570.0f, 1080.0f, RADIUS, this.greenCircleColor);
 
