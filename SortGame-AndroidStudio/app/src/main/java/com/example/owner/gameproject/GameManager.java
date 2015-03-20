@@ -55,6 +55,9 @@ public class GameManager
     private GameOverScreen gameOverScreen;
 
 
+    private Lives lives;
+
+
     private MultiplierBar multiplierBar;
 
 
@@ -71,8 +74,7 @@ public class GameManager
 
         gameOverScreen = new GameOverScreen(view, GameView.typeface, ColorsLoader.loadColorByName("white"));
 
-        //lives = new TextObject();
-        //lives.setText(game.getLives());
+        lives = new Lives("x" + game.getLives(), GameView.typeface, ColorsLoader.loadColorByName("black"));
 
         // temporary values
         score = new TextObject("" + game.getScore(), 100f, 200f, GameView.typeface,
@@ -165,7 +167,7 @@ public class GameManager
     private void incorrect()
     {
         game.incorrect();
-        //lives.setText(game.getLives());
+        lives.setText("x" + game.getLives());
         this.setMultiValueCardColor();
     }
 
@@ -210,9 +212,10 @@ public class GameManager
         card.draw(canvas);
         gameBoard.draw(canvas);
 
-        //lives.draw();
+
         score.draw(canvas);
         multiplierBar.draw(canvas);
+        //lives.draw(canvas);
 
         gameOver(canvas);
 

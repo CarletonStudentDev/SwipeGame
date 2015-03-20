@@ -151,7 +151,7 @@ public class Multiplier
 
     public void incorrectMatch()
     {
-        //this.clear();
+        this.clear();
     }
 
 }
