@@ -64,7 +64,7 @@ public class MyActivity extends Activity {
     }
 
     //checks if the toggle button was clicked and sets the volume
-    private void onToggleClicked()
+    public void onToggleClicked(View view)
     {
 
         toggleBtn = (ToggleButton) findViewById(R.id.toggleButton);
