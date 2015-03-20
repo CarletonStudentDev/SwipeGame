@@ -17,7 +17,7 @@ import android.graphics.Paint;
 public class GameBoard
 {
     /** RADIUS constant float value representing the radius of the circle.*/
-    private static final float RADIUS = 100.0f;
+    private static final float RADIUS = GameView.WIDTH * (110.0f/720.0f);
 
     /**
      * redCircleColor android.graphics.Paint instance representing color red.
@@ -124,11 +124,12 @@ public class GameBoard
     public void draw(Canvas canvas)
     {
         // this values are temporary
-        canvas.drawCircle(140.0f, 230.0f, RADIUS, this.redCircleColor);
-        canvas.drawCircle(400.0f, 230.0f, RADIUS, this.greenCircleColor);
+        // 720 x 1230
+        canvas.drawCircle(150.0f, 1080.0f, RADIUS, this.redCircleColor);
+        canvas.drawCircle(570.0f, 1080.0f, RADIUS, this.greenCircleColor);
 
-        canvas.drawCircle(400.0f, 800.0f, RADIUS, this.blueCircleColor);
-        canvas.drawCircle(140.0f, 800.0f, RADIUS, this.purpleCircleColor);
+        canvas.drawCircle(150.0f, 400.0f, RADIUS, this.blueCircleColor);
+        canvas.drawCircle(570.0f, 400.0f, RADIUS, this.purpleCircleColor);
 
     }
 }
