@@ -54,7 +54,7 @@
         android:layout_marginLeft="100dp"
         android:onClick="openEndless"  />
 
-    <!-- <ToggleButton
+    <ToggleButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New ToggleButton"
@@ -68,7 +68,7 @@
         android:textOff="@string/sound_off_toggleButton"
         android:textOn="@string/sound_on_toggleButton"
         android:checked="true"
-        android:onClick="onToggleClicked"/> -->
+        android:onClick="onToggleClicked"/> 
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
