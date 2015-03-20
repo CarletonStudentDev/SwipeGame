@@ -121,7 +121,7 @@ public class Game
     {
         this.multiplier.correctMatch();
         this.score += BASESCORE * this.multiplier.getMultiplier();
-        MediaSounds.loadPlaySound();
+        MediaSounds.loadPlaySound(R.raw.correct, 1, 2f);
     }
 
 
@@ -136,6 +136,7 @@ public class Game
             this.liveFinished = true;
 
         this.multiplier.incorrectMatch();
+        MediaSounds.loadPlaySound(R.raw.wrong, 1, 2f);
     }
 
 
