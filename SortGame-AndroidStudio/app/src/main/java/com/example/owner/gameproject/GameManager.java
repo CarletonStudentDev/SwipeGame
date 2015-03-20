@@ -77,8 +77,8 @@ public class GameManager
         lives = new Lives("x" + game.getLives(), GameView.typeface, ColorsLoader.loadColorByName("black"));
 
         // temporary values
-        score = new TextObject("" + game.getScore(), 100f, 200f, GameView.typeface,
-                               ColorsLoader.loadColorByName("blue"), 100f);
+        score = new TextObject("" + game.getScore(), (100f/1080)*GameView.WIDTH, (125f/1701)*GameView.HEIGHT, GameView.typeface,
+                               ColorsLoader.loadColorByName("blue"), 175f);
 
         multiplierBar = new MultiplierBar(game.getMultiplierNum(), game.getBarNum(),
                                           GameView.typeface, ColorsLoader.loadColorByName("white"));
@@ -215,7 +215,7 @@ public class GameManager
 
         score.draw(canvas);
         multiplierBar.draw(canvas);
-        lives.draw(canvas);
+        //lives.draw(canvas);
 
         gameOver(canvas);
 
