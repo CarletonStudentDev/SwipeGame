@@ -33,6 +33,7 @@ public class MediaSounds
 
     private static float volume;
 
+    private static Context context;
 
     /**
      * Initializes the Sound Pool instance depending on the OS version.
@@ -67,6 +68,12 @@ public class MediaSounds
     }
 
 
+    public static void setContext(Context context)
+    {
+        MediaSounds.context = context;
+    }
+
+
     /**
      * Loads and Plays the corresponding sound.
      *
@@ -79,7 +86,7 @@ public class MediaSounds
      *
      */
 
-    public static void loadPlaySound(Context context, int soundFile, int priority, final float speed)
+    public static void loadPlaySound(int soundFile, int priority, final float speed)
     {
         final int soundId = sounds.load(context, soundFile, priority);
 
@@ -93,4 +100,5 @@ public class MediaSounds
             }
         });
     }
+
 }

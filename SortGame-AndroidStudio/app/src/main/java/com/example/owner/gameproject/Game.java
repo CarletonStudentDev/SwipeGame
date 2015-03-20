@@ -121,6 +121,7 @@ public class Game
     {
         this.multiplier.correctMatch();
         this.score += BASESCORE * this.multiplier.getMultiplier();
+        MediaSounds.loadPlaySound();
     }
 
 

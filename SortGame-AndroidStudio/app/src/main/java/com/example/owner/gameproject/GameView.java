@@ -45,6 +45,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
         surfaceHolder.addCallback(this);
 
         ColorsLoader.setResources(getResources());
+        MediaSounds.setContext(getContext());
 
         activity = appActivity;
     }
