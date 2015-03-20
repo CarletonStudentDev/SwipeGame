@@ -8,7 +8,7 @@ package com.example.owner.gameproject;
  * reset it to zero.
  *
  * @author Varun Sriram
- * @version 1.1
+ * @version 1.2
  * @since 2014-11-27
  *
  */
@@ -151,7 +151,7 @@ public class Multiplier
 
     public void incorrectMatch()
     {
-        this.clear();
+        //this.clear();
     }
 
 }

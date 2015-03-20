@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="lightGray">#BFDCF5</color>
+    <color name="lightGray">#FFCCCCCC</color>
     <color name="lightRed">#C4273C</color>
     <color name="mediumRed">#AB2234</color>
     <color name="darkRed">#851B29</color>
@@ -18,15 +18,16 @@
 
 
     <color name="orange">#FF4B23</color>
-    <color name="white">#ECF0F1</color>
+    <color name="white">#FFFFFFFF</color>
     <color name="red">#C4273C</color>
     <color name="green">#2B9C1A</color>
-    <color name="gray">#EFEFEF</color>
+    <color name="gray">#FF888888</color>
     <color name="purple">#9723C4</color>
 
     <color name="menuButton">#007AD9</color>
     <color name="menuBackground">#ECF0F1</color>
     <color name="gameBackground">#ECF0F1</color>
+    <color name="black">#000000</color>
 
 
 </resources>

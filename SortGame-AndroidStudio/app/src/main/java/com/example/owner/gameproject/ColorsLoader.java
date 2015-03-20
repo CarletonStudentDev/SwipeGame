@@ -8,7 +8,7 @@ import android.content.res.Resources;
  * @see android.content.res.Resources
  *
  * @author Jeton Sinoimeri
- * @version 1.0
+ * @version 1.1
  * @since 2015-03-19
  *
  */
@@ -93,6 +93,9 @@ public class ColorsLoader
         else if (colorId == 16)
             return resources.getColor(R.color.gray);
 
+        else if (colorId == 17)
+            return resources.getColor(R.color.black);
+
         return 0;
     }
 
@@ -107,53 +110,58 @@ public class ColorsLoader
 
     public static int loadColorByName(String colorName)
     {
-        if (colorName.toLowerCase().equals("red"))
+        colorName = colorName.toLowerCase();
+
+        if (colorName.equals("red"))
             return loadColorByInt(1);
 
-        else if (colorName.toLowerCase().equals("green"))
+        else if (colorName.equals("green"))
             return loadColorByInt(2);
 
-        else if (colorName.toLowerCase().equals("blue"))
+        else if (colorName.equals("blue"))
             return loadColorByInt(3);
 
-        else if (colorName.toLowerCase().equals("purple"))
+        else if (colorName.equals("purple"))
             return loadColorByInt(4);
 
-        else if (colorName.toLowerCase().equals("white"))
+        else if (colorName.equals("white"))
             return loadColorByInt(5);
 
-        else if (colorName.toLowerCase().equals("lightgray") || colorName.toLowerCase().equals("light gray"))
+        else if (colorName.equals("lightgray") || colorName.equals("light gray"))
             return loadColorByInt(6);
 
-        else if (colorName.toLowerCase().equals("lightred") || colorName.toLowerCase().equals("light red"))
+        else if (colorName.equals("lightred") || colorName.equals("light red"))
             return loadColorByInt(7);
 
-        else if (colorName.toLowerCase().equals("mediumred") || colorName.toLowerCase().equals("medium red"))
+        else if (colorName.equals("mediumred") || colorName.equals("medium red"))
             return loadColorByInt(8);
 
-        else if (colorName.toLowerCase().equals("darkred") || colorName.toLowerCase().equals("dark red"))
+        else if (colorName.equals("darkred") || colorName.equals("dark red"))
             return loadColorByInt(9);
 
-        else if (colorName.toLowerCase().equals("darkestred") || colorName.toLowerCase().equals("darkest red"))
+        else if (colorName.equals("darkestred") || colorName.equals("darkest red"))
             return loadColorByInt(10);
 
-        else if (colorName.toLowerCase().equals("lightblue") || colorName.toLowerCase().equals("light blue"))
+        else if (colorName.equals("lightblue") || colorName.equals("light blue"))
             return loadColorByInt(11);
 
-        else if (colorName.toLowerCase().equals("mediumblue") || colorName.toLowerCase().equals("medium blue"))
+        else if (colorName.equals("mediumblue") || colorName.equals("medium blue"))
             return loadColorByInt(12);
 
-        else if (colorName.toLowerCase().equals("darkblue") || colorName.toLowerCase().equals("dark blue"))
+        else if (colorName.equals("darkblue") || colorName.equals("dark blue"))
             return loadColorByInt(13);
 
-        else if (colorName.toLowerCase().equals("darkestblue") || colorName.toLowerCase().equals("darkest blue"))
+        else if (colorName.equals("darkestblue") || colorName.equals("darkest blue"))
             return loadColorByInt(14);
 
-        else if (colorName.toLowerCase().equals("orange"))
+        else if (colorName.equals("orange"))
             return loadColorByInt(15);
 
-        else if (colorName.toLowerCase().equals("gray"))
+        else if (colorName.equals("gray"))
             return loadColorByInt(16);
+
+        else if (colorName.equals("black"))
+            return loadColorByInt(17);
 
         return 0;
     }

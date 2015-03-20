@@ -55,6 +55,9 @@ public class GameManager
     private GameOverScreen gameOverScreen;
 
 
+    private MultiplierBar multiplierBar;
+
+
     public GameManager(GameView gameview)
     {
         view = gameview;
@@ -75,8 +78,9 @@ public class GameManager
         score = new TextObject("" + game.getScore(), 100f, 200f, GameView.typeface,
                                ColorsLoader.loadColorByName("blue"), 100f);
 
-        //multiplierBar = new MultiplierBar();
-        //multiplierBar.setMultiplierValues(game.getMultiplierNum(), game.getBarNum());
+        multiplierBar = new MultiplierBar(game.getMultiplierNum(), game.getBarNum(),
+                                          GameView.typeface, ColorsLoader.loadColorByName("white"));
+
     }
 
     /**
@@ -168,7 +172,7 @@ public class GameManager
     private void setMultiValueCardColor()
     {
         card.generateNewColor();
-        //multiplier.setMultiplierValues(game.getMultiplierNum(), game.getBarNum());
+        multiplierBar.setMultiplierValues(game.getMultiplierNum(), game.getBarNum());
     }
 
 
@@ -208,7 +212,7 @@ public class GameManager
 
         //lives.draw();
         score.draw(canvas);
-        //multiplierBar.draw();
+        multiplierBar.draw(canvas);
 
         gameOver(canvas);
 

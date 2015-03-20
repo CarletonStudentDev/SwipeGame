@@ -17,6 +17,14 @@ import android.graphics.Typeface;
 public class MultiplierBar
 {
 
+    private static final int BACKGROUNDALPHA = 50,
+                             BLOCKNUM = 4;
+
+    private static final float BLOCKSIZE = 175f,
+                               SPACEBETWEENBLOCKS = 5f,
+                               BACKGROUNDMULTIPLIER = (BLOCKSIZE + SPACEBETWEENBLOCKS) * BLOCKNUM - SPACEBETWEENBLOCKS;
+
+
     /**
      * multiplierTextObject TextObject instance representing the text to be displayed on screen.
      */
@@ -32,10 +40,12 @@ public class MultiplierBar
                 multiplier;
 
     /**
-     * paint Paint instance representing the color, and font of the TextObject.
+     * backgroundPaint Paint instance representing the color of the multiplier bar.
      */
 
-    private Paint paint;
+    private Paint backgroundPaint,
+                  currentMultiPaint,
+                  multiplierCirclePaint;
 
 
     /**
@@ -50,10 +60,18 @@ public class MultiplierBar
     public MultiplierBar(int multiplierNum, int multiplierBarNum, Typeface typeface, int textColor)
     {
         this.multiplier = multiplierNum;
-        this.multiplierTextObject = new TextObject("x" + multiplierNum, 1000f, 100f, typeface, textColor, 20f);
+        this.multiplierTextObject = new TextObject("x" + multiplierNum, 20f +  BACKGROUNDMULTIPLIER + 100f , 20f, typeface, textColor, 20f);
         this.multiplierBarNum = multiplierBarNum;
 
-        this.paint = new Paint();
+        this.backgroundPaint = new Paint();
+        this.backgroundPaint.setColor(ColorsLoader.loadColorByName("light gray"));
+        this.backgroundPaint.setAlpha(BACKGROUNDALPHA);
+
+        this.currentMultiPaint = new Paint();
+        this.currentMultiPaint.setColor(ColorsLoader.loadColorByInt(this.findCorrespondingColor()));;
+
+        this.multiplierCirclePaint = new Paint();
+        this.multiplierCirclePaint.setColor(ColorsLoader.loadColorByName("black"));
     }
 
 
@@ -69,6 +87,14 @@ public class MultiplierBar
     {
         this.multiplier = multiplierNum;
         this.multiplierBarNum = multiplierBarNum;
+        this.currentMultiPaint.setColor(ColorsLoader.loadColorByInt(this.findCorrespondingColor()));
+    }
+
+
+    private int findCorrespondingColor()
+    {
+        int value = (int) (Math.log10((double)this.multiplier) / Math.log10((double)2)) + 1;
+        return value;
     }
 
 
@@ -81,18 +107,24 @@ public class MultiplierBar
 
     public void draw(Canvas canvas)
     {
-        /*canvas.drawRect();
+        canvas.drawRect(20f, 20f, 20f +  BACKGROUNDMULTIPLIER, 150f, this.backgroundPaint);
 
-        for (int i = 0; i < this.multiplierBarNum; i++)
-            canvas.drawRect();
+        for(int i= 0; i < this.multiplierBarNum ; i++)
+        {
+            float left = 20f + (SPACEBETWEENBLOCKS + BLOCKSIZE) * i;
+            float right = left + BLOCKSIZE;
+            canvas.drawRect(left, 20f, right, 150f, this.currentMultiPaint);
+        }
+
+
 
         if (this.multiplier > 1)
         {
             this.multiplierTextObject.setText("x" + this.multiplier);
-            canvas.drawCircle();
-            canvas.drawText();
+            canvas.drawCircle(20f +  BACKGROUNDMULTIPLIER + 100f, 20f, 100f, this.multiplierCirclePaint);
+            this.multiplierTextObject.draw(canvas);
         }
-        */
+
 
     }
 }
