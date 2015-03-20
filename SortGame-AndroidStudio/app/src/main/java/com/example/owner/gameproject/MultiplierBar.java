@@ -9,7 +9,7 @@ import android.graphics.Typeface;
  * the multiplier bar on the screen.
  *
  * @author Jeton Sinoimeri
- * @version 1.0
+ * @version 1.2
  * @since 2015-03-19
  *
  */
@@ -17,8 +17,20 @@ import android.graphics.Typeface;
 public class MultiplierBar
 {
 
+    /**
+     * BACKGROUNDALPHA integer constant representing the transparency of the background multiplier
+     * BLOCKNUM integer constant representing the number of blocks to fill before multiplier increased.
+     */
+
     private static final int BACKGROUNDALPHA = 50,
                              BLOCKNUM = 4;
+
+
+    /**
+     * BLOCKSIZE float constant representing the size of the blocks in pixels.
+     * SPACEBETWEENBLOCKS float constant representing the size of the space between each block in pixels.
+     * BACKGROUNDMULTIPLIER float constant representing the size of the background multiplier.
+     */
 
     private static final float BLOCKSIZE = 175f,
                                SPACEBETWEENBLOCKS = 5f,
@@ -40,7 +52,10 @@ public class MultiplierBar
                 multiplier;
 
     /**
-     * backgroundPaint Paint instance representing the color of the multiplier bar.
+     * backgroundPaint Paint instance representing the color of the background multiplier bar.
+     * currentMutliPaint Paint instance representing the color of the current multiplier.
+     * multiplierCirclePaint Paint instance representing the color of the multiplier circle to show
+     *                       the multiplier text.
      */
 
     private Paint backgroundPaint,
@@ -91,6 +106,12 @@ public class MultiplierBar
     }
 
 
+    /**
+     * Finds the corresponding multiplier bar color.
+     *
+     * @return integer value representing the color of the multiplier bar color.
+     */
+
     private int findCorrespondingColor()
     {
         int value = (int) (Math.log10((double)this.multiplier) / Math.log10((double)2)) + 1;
@@ -109,6 +130,7 @@ public class MultiplierBar
     {
         canvas.drawRect(20f, 20f, 20f +  BACKGROUNDMULTIPLIER, 150f, this.backgroundPaint);
 
+        // draws the bars with spaces in between
         for(int i= 0; i < this.multiplierBarNum ; i++)
         {
             float left = 20f + (SPACEBETWEENBLOCKS + BLOCKSIZE) * i;
@@ -116,8 +138,7 @@ public class MultiplierBar
             canvas.drawRect(left, 20f, right, 150f, this.currentMultiPaint);
         }
 
-
-
+        // draws the black circle and multiplier text object
         if (this.multiplier > 1)
         {
             this.multiplierTextObject.setText("x" + this.multiplier);
