@@ -58,7 +58,7 @@ public class ColorsLoader
             return resources.getColor(R.color.purple);
 
         else if (colorId == 5)
-            return resources.getColor(R.color.white);
+            return resources.getColor(R.color.orange);
 
         else if (colorId == 6)
             return resources.getColor(R.color.lightGray);
@@ -88,7 +88,7 @@ public class ColorsLoader
             return resources.getColor(R.color.darkestBlue);
 
         else if (colorId == 15)
-            return resources.getColor(R.color.orange);
+            return resources.getColor(R.color.white);
 
         else if (colorId == 16)
             return resources.getColor(R.color.gray);
@@ -124,7 +124,7 @@ public class ColorsLoader
         else if (colorName.equals("purple"))
             return loadColorByInt(4);
 
-        else if (colorName.equals("white"))
+        else if (colorName.equals("orange"))
             return loadColorByInt(5);
 
         else if (colorName.equals("lightgray") || colorName.equals("light gray"))
@@ -154,7 +154,7 @@ public class ColorsLoader
         else if (colorName.equals("darkestblue") || colorName.equals("darkest blue"))
             return loadColorByInt(14);
 
-        else if (colorName.equals("orange"))
+        else if (colorName.equals("white"))
             return loadColorByInt(15);
 
         else if (colorName.equals("gray"))

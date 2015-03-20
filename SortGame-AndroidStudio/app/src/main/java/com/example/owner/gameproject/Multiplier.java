@@ -115,6 +115,11 @@ public class Multiplier
                 this.currentMultiplier *= MULTIPLIER_SCALIER;
                 this.meterCount = DEFAULTMETERCOUNT;
             }
+
+            else if(currentMultiplier >= MAX_MULTIPLIER && meterCount == MAXIMUM)
+                meterCount --;
+            
+
         }
     }
 
@@ -151,7 +156,7 @@ public class Multiplier
 
     public void incorrectMatch()
     {
-        this.clear();
+        //this.clear();
     }
 
 }

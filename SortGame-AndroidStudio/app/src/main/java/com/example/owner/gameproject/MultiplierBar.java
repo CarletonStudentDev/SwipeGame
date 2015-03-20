@@ -131,7 +131,7 @@ public class MultiplierBar
         canvas.drawRect(20f, 20f, 20f +  BACKGROUNDMULTIPLIER, 150f, this.backgroundPaint);
 
         // draws the bars with spaces in between
-        for(int i= 0; i < this.multiplierBarNum ; i++)
+        for(int i= 0; i < this.multiplierBarNum; i++)
         {
             float left = 20f + (SPACEBETWEENBLOCKS + BLOCKSIZE) * i;
             float right = left + BLOCKSIZE;

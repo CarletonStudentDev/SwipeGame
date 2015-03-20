@@ -16,7 +16,7 @@ public class Game
      *  DEFAULTLIVES integer constant value representing the default number
      *               of lives present at beginning of the game.
      */
-    private static final int DEFAULTLIVES = 3;
+    private static final int DEFAULTLIVES = 10000;
 
     /**
      * DEFAULTSCORE long constant value representing the default score
