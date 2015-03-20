@@ -3,6 +3,7 @@ package com.example.owner.gameproject;
 import android.app.Activity;
 import android.graphics.Canvas;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -27,10 +28,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
     private GameLoopThread gameLoopThread;
 
 
-    public static float centerX,
-                        centerY,
-                        scaleX,
-                        scaleY;
+    public static float WIDTH, HEIGHT;
 
     private GameManager gameManager;
 
@@ -97,10 +95,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
     public void surfaceCreated(SurfaceHolder holder)
     {
 
-        centerX = getWidth() / 2;
-        centerY = getHeight() / 2;
-        scaleX = centerX / 2;
-        scaleY = centerY / 2;
+        Log.i("width1", Integer.toString(getWidth()));
+        Log.i("height1", Integer.toString(getHeight()));
+        WIDTH = getWidth();
+        HEIGHT = getHeight();
 
         gameLoopThread = new GameLoopThread(this);
         this.gameManager = new GameManager(this);
@@ -122,10 +120,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height)
     {
-        centerX = width / 2;
-        centerY = height / 2;
-        scaleX = centerX / 2;
-        scaleY = centerY / 2;
+        WIDTH = width;
+        HEIGHT = height;
     }
 
     /**
