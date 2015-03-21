@@ -70,12 +70,12 @@ public class Card
     {
         color = new Paint();
 
-        float offsetFromCentre = SIZE * GameView.WIDTH/4;
+        float offsetFromCentre = SIZE * GameView.WIDTH/6;
 
         xCoordinate1 = GameView.WIDTH/2 - offsetFromCentre;
-        yCoordinate1 = GameView.HEIGHT/2 - offsetFromCentre;
+        yCoordinate1 = GameView.HEIGHT*0.625f - offsetFromCentre;
         xCoordinate2 = GameView.WIDTH/2 + offsetFromCentre;
-        yCoordinate2 = GameView.HEIGHT/2 + offsetFromCentre;
+        yCoordinate2 = GameView.HEIGHT*0.625f + offsetFromCentre;
 
         this.generateNewColor();
     }
