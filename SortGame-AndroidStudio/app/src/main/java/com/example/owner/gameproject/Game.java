@@ -130,13 +130,14 @@ public class Game
      */
     public void incorrect()
     {
-        this.lives --;
+        this.lives--;
 
         if(lives < 1)
             this.liveFinished = true;
 
         this.multiplier.incorrectMatch();
         MediaSounds.loadPlaySound(R.raw.wrong, 1, 2f);
+        Vibrate.vibrate();
     }
 
 
