@@ -33,7 +33,7 @@ public class Vibrate
      *
      */
 
-    private Vibrator vibrator;
+    private static Vibrator vibrator;
 
 
     /**
@@ -57,7 +57,7 @@ public class Vibrate
 
     public static void vibrate()
     {
-        this.vibrator.vibrate(VIBRATETIME);
+        vibrator.vibrate(VIBRATETIME);
     }
 
 }
