@@ -1,5 +1,6 @@
 package com.example.owner.gameproject;
 
+
 /**
  * Game contains all the rules and information
  * about playing the card game.
@@ -58,6 +59,7 @@ public class Game
         this.score = DEFAULTSCORE;
         this.multiplier = new Multiplier();
         this.liveFinished = false;
+        MediaSounds.initializeSoundPool();
     }
 
     /**
