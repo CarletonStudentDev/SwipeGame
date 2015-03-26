@@ -1,7 +1,6 @@
 package com.example.owner.gameproject;
 
 import android.app.Activity;
-import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;

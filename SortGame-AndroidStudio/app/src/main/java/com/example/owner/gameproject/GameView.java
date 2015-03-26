@@ -102,7 +102,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
         HEIGHT = getHeight();
 
         gameLoopThread = new GameLoopThread(this);
-        this.gameManager = new GameManager(this);
+        this.gameManager = new GameManager(this, activity.getBaseContext());
 
         gameLoopThread.setRunning(true);
         gameLoopThread.start();

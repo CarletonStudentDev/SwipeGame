@@ -1,6 +1,8 @@
 package com.example.owner.gameproject;
 
 
+import android.content.Context;
+
 /**
  * Game contains all the rules and information
  * about playing the card game.
@@ -53,13 +55,15 @@ public class Game
     /**
      * Constructor for the Game class.
      */
-    public Game()
+    public Game(Context appContext)
     {
         this.lives = DEFAULTLIVES;
         this.score = DEFAULTSCORE;
         this.multiplier = new Multiplier();
         this.liveFinished = false;
         MediaSounds.initializeSoundPool();
+        MediaSounds.setContext(appContext);
+        MediaSounds.setVolume(1f);
     }
 
     /**
@@ -139,7 +143,8 @@ public class Game
 
         this.multiplier.incorrectMatch();
         MediaSounds.loadPlaySound(R.raw.wrong, 1, 2f);
-        Vibrate.vibrate();
+        //vibrate crashing app
+        //Vibrate.vibrate();
     }
 
 

@@ -1,5 +1,6 @@
 package com.example.owner.gameproject;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 
@@ -61,7 +62,7 @@ public class GameManager
     private MultiplierBar multiplierBar;
 
 
-    public GameManager(GameView gameview)
+    public GameManager(GameView gameview, Context appContext)
     {
         view = gameview;
         gameFinished = false;
@@ -69,7 +70,7 @@ public class GameManager
 
         card = new Card();
         gameBoard = new GameBoard();
-        game = new Game();
+        game = new Game(appContext);
 
 
         gameOverScreen = new GameOverScreen(view, GameView.typeface, ColorsLoader.loadColorByName("white"));
