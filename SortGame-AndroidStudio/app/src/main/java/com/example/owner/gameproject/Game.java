@@ -51,6 +51,11 @@ public class Game
      */
     private boolean liveFinished;
 
+    /**
+     * vibrator for when a wrong answer occurs
+     */
+    private Vibrate v;
+
 
     /**
      * Constructor for the Game class.
@@ -64,6 +69,7 @@ public class Game
         MediaSounds.initializeSoundPool();
         MediaSounds.setContext(appContext);
         MediaSounds.setVolume(1f);
+        v = new Vibrate(appContext);
     }
 
     /**
@@ -143,10 +149,6 @@ public class Game
 
         this.multiplier.incorrectMatch();
         MediaSounds.loadPlaySound(R.raw.wrong, 1, 2f);
-        //vibrate crashing app
-        //Vibrate.vibrate();
+        v.vibrate();
     }
-
-
-
 }

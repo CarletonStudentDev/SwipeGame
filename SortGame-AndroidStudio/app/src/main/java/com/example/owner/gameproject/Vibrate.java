@@ -55,7 +55,7 @@ public class Vibrate
      *
      */
 
-    public static void vibrate()
+    public void vibrate()
     {
         vibrator.vibrate(VIBRATETIME);
     }
