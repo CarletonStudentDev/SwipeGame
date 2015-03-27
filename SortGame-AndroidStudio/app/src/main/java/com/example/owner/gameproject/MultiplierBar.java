@@ -30,11 +30,36 @@ public class MultiplierBar
      * BLOCKSIZE float constant representing the size of the blocks in pixels.
      * SPACEBETWEENBLOCKS float constant representing the size of the space between each block in pixels.
      * BACKGROUNDMULTIPLIER float constant representing the size of the background multiplier.
+     *
+     * LEFTCOORDINATE float constant representing the left coordinate of the multiplier bar in pixels.
+     * RIGHTCOORDINATE float constant representing the right coordinate of the multiplier bar in pixels.
+     * TOPCOORDINATE float constant representing the top coordinate of the multiplier bar in pixels.
+     *
+     * BOTTOMCOORDINATE float constant representing the bottom coordinate of the multiplier bar in pixels.
+     * LEFTCIRCLECOORDINATE float constant representing the left coordinate of the circle in pixels.
+     * TOPCIRCLECOORDINATE float constant representing the top coordinate of the circle in pixels.
+     *
+     * RADIUS float constant representing the radius of the circle in pixels.
+     * LEFTTEXTCOORDINATE_1 float constant representing the left coordinate of the text of length 2.
+     * LEFTTEXTCOORDINATE_2 float constant representing the left coordinate of the text of length 3.
+     *
+     * TOPTEXTCOORDINATE float constant representing the top coordinate of the text of any length.
      */
 
     private static final float BLOCKSIZE = 175f,
                                SPACEBETWEENBLOCKS = 5f,
-                               BACKGROUNDMULTIPLIER = (BLOCKSIZE + SPACEBETWEENBLOCKS) * BLOCKNUM - SPACEBETWEENBLOCKS;
+                               BACKGROUNDMULTIPLIER = (BLOCKSIZE + SPACEBETWEENBLOCKS) * BLOCKNUM - SPACEBETWEENBLOCKS,
+                               LEFTCOORDINATE = (20f/1080) * GameView.WIDTH,
+                               RIGHTCOORDINATE = LEFTCOORDINATE + BACKGROUNDMULTIPLIER,
+                               TOPCOORDINATE = (150f/1080) * GameView.HEIGHT,
+                               BOTTOMCOORDINATE = TOPCOORDINATE + 150f,
+                               LEFTCIRCLECOORDINATE = RIGHTCOORDINATE + 150f,
+                               TOPCIRCLECOORDINATE = TOPCOORDINATE + 80.75f,
+                               RADIUS = 100f,
+                               LEFTTEXTCOORDINATE_1 = LEFTCIRCLECOORDINATE - 40f,
+                               LEFTTEXTCOORDINATE_2 = LEFTCIRCLECOORDINATE - 70f,
+                               TOPTEXTCOORDINATE = TOPCIRCLECOORDINATE + 20f;
+
 
 
     /**
@@ -75,7 +100,9 @@ public class MultiplierBar
     public MultiplierBar(int multiplierNum, int multiplierBarNum, Typeface typeface, int textColor)
     {
         this.multiplier = multiplierNum;
-        this.multiplierTextObject = new TextObject("x" + multiplierNum, 20f +  BACKGROUNDMULTIPLIER + 100f , 20f, typeface, textColor, 20f);
+        this.multiplierTextObject = new TextObject("x" + multiplierNum, LEFTTEXTCOORDINATE_1,
+                                                   TOPTEXTCOORDINATE, typeface, textColor, 100f);
+
         this.multiplierBarNum = multiplierBarNum;
 
         this.backgroundPaint = new Paint();
@@ -128,21 +155,25 @@ public class MultiplierBar
 
     public void draw(Canvas canvas)
     {
-        canvas.drawRect(20f, 20f, 20f +  BACKGROUNDMULTIPLIER, 150f, this.backgroundPaint);
+        canvas.drawRect(LEFTCOORDINATE, TOPCOORDINATE, RIGHTCOORDINATE, BOTTOMCOORDINATE, this.backgroundPaint);
 
         // draws the bars with spaces in between
         for(int i= 0; i < this.multiplierBarNum; i++)
         {
-            float left = 20f + (SPACEBETWEENBLOCKS + BLOCKSIZE) * i;
+            float left = LEFTCOORDINATE + (SPACEBETWEENBLOCKS + BLOCKSIZE) * i;
             float right = left + BLOCKSIZE;
-            canvas.drawRect(left, 20f, right, 150f, this.currentMultiPaint);
+            canvas.drawRect(left, TOPCOORDINATE, right, BOTTOMCOORDINATE, this.currentMultiPaint);
         }
 
         // draws the black circle and multiplier text object
         if (this.multiplier > 1)
         {
             this.multiplierTextObject.setText("x" + this.multiplier);
-            canvas.drawCircle(20f +  BACKGROUNDMULTIPLIER + 100f, 20f, 100f, this.multiplierCirclePaint);
+
+            if (multiplierTextObject.getText().length() > 2)
+                this.multiplierTextObject.setXcoordinate(LEFTTEXTCOORDINATE_2);
+
+            canvas.drawCircle(LEFTCIRCLECOORDINATE, TOPCIRCLECOORDINATE, RADIUS, this.multiplierCirclePaint);
             this.multiplierTextObject.draw(canvas);
         }
 

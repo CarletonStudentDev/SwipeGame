@@ -86,6 +86,30 @@ public class TextObject
         return this.text;
     }
 
+
+    /**
+     * Setter for the xCoordinate in pixels.
+     *
+     * @param xCoordinate float value representing the x-coordinate location of text in pixels.
+     */
+
+    public void setXcoordinate(float xCoordinate)
+    {
+        this.xCoordinate = xCoordinate;
+    }
+
+
+    /**
+     * Setter for the yCoordinate in pixels.
+     *
+     * @param yCoordinate float value representing the y-coordinate location of text in pixels.
+     */
+
+    public void setYcoordinate(float yCoordinate)
+    {
+        this.yCoordinate = yCoordinate;
+    }
+
     /**
      * Draws to android's canvas.
      *
