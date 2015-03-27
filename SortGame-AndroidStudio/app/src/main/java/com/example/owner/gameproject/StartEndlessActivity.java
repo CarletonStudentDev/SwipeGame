@@ -16,7 +16,7 @@ public class StartEndlessActivity extends Activity {
         //getSupportActionBar().hide();
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        setContentView(R.layout.activity_start_endless);
+        setContentView(new GameView(this, 0));
     }
 
 

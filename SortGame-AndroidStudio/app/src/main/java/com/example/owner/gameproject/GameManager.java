@@ -44,9 +44,11 @@ public class GameManager implements Observer
     /**
      * gameFinished boolean value representing whether the game finished or not.
      * timedOut boolean value representing whether the clock has finished or not.
+     * endless boolean value representing whether the game is endless or not.
      */
     private boolean gameFinished,
-                    timedOut;
+                    timedOut,
+                    endless;
 
     /**
      * score TextObject instance representing the score text displaying on the screen.
@@ -94,10 +96,14 @@ public class GameManager implements Observer
         view = gameview;
         gameFinished = false;
         timedOut = false;
+        endless = false;
 
         card = new Card();
         gameBoard = new GameBoard();
         game = new Game();
+
+        if (gameTime < 1)
+            endless = true;
 
         gameClock = new GameClock(gameTime);
         gameClock.addObserver(this);
@@ -206,7 +212,8 @@ public class GameManager implements Observer
         score.setText("" + game.getScore());
         this.setMultiValueCardColor();
 
-        gameClock.addTime(1000L);
+        if (!endless)
+            gameClock.addTime(1000L);
     }
 
 

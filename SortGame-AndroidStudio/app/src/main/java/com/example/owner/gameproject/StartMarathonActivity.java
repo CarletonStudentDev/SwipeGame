@@ -14,7 +14,7 @@ public class StartMarathonActivity extends Activity {
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        setContentView(R.layout.activity_start_marathon);
+        setContentView(new GameView(this, 31000L));
     }
 
 
