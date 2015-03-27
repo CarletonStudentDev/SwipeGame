@@ -18,8 +18,11 @@ public class MyActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+        MediaSounds.setVolume(1f);
 
         setContentView(R.layout.activity_my);
+
+        onToggleClicked();
     }
 
 
@@ -64,19 +67,18 @@ public class MyActivity extends Activity {
     }
 
     //checks if the toggle button was clicked and sets the volume
-    public void onToggleClicked(View view)
+    private void onToggleClicked()
     {
 
         toggleBtn = (ToggleButton) findViewById(R.id.toggleButton);
-
-        toggleBtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
+        toggleBtn.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View view)
+            {
                 if (toggleBtn.isChecked())
                     MediaSounds.setVolume(1f);
-
                 else
                     MediaSounds.setVolume(0f);
-
             }
         });
 

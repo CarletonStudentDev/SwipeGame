@@ -1,8 +1,6 @@
 package com.example.owner.gameproject;
 
 
-import android.content.Context;
-
 /**
  * Game contains all the rules and information
  * about playing the card game.
@@ -19,7 +17,7 @@ public class Game
      *  DEFAULTLIVES integer constant value representing the default number
      *               of lives present at beginning of the game.
      */
-    private static final int DEFAULTLIVES = 10000;
+    private static final int DEFAULTLIVES = 3;
 
     /**
      * DEFAULTSCORE long constant value representing the default score
@@ -52,24 +50,14 @@ public class Game
     private boolean liveFinished;
 
     /**
-     * vibrator for when a wrong answer occurs
-     */
-    private Vibrate v;
-
-
-    /**
      * Constructor for the Game class.
      */
-    public Game(Context appContext)
+    public Game()
     {
         this.lives = DEFAULTLIVES;
         this.score = DEFAULTSCORE;
         this.multiplier = new Multiplier();
         this.liveFinished = false;
-        MediaSounds.initializeSoundPool();
-        MediaSounds.setContext(appContext);
-        MediaSounds.setVolume(1f);
-        v = new Vibrate(appContext);
     }
 
     /**
@@ -133,6 +121,7 @@ public class Game
     {
         this.multiplier.correctMatch();
         this.score += BASESCORE * this.multiplier.getMultiplier();
+
         MediaSounds.loadPlaySound(R.raw.correct, 1, 2f);
     }
 
@@ -148,7 +137,8 @@ public class Game
             this.liveFinished = true;
 
         this.multiplier.incorrectMatch();
+
         MediaSounds.loadPlaySound(R.raw.wrong, 1, 2f);
-        v.vibrate();
+        Vibrate.vibrate();
     }
 }

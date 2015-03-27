@@ -1,8 +1,5 @@
 package com.example.owner.gameproject;
 
-/**
- * Created by erickadbay on 15-03-20.
- */
 import android.content.Context;
 import android.os.Vibrator;
 
@@ -11,7 +8,7 @@ import android.os.Vibrator;
  * @see android.os.Vibrator
  *
  * @author Varun Sriram
- * @version 1.1
+ * @version 1.2
  * @since 2015-01-23
  *
  */
@@ -20,8 +17,8 @@ public class Vibrate
 {
 
     /**
-     * VIBRATETIME: long value representing the length of the
-     *              vibrator time.
+     * VIBRATETIME long value representing the length of the
+     *             vibrator time.
      *
      */
 
@@ -29,7 +26,7 @@ public class Vibrate
 
 
     /**
-     * vibrator: Vibrator instance representing the Android Vibrator.
+     * vibrator Vibrator instance representing the Android Vibrator.
      *
      */
 
@@ -37,16 +34,34 @@ public class Vibrate
 
 
     /**
-     * Constructor for the Vibrate class.
-     *
-     * @param context: Context instance representing the Context
-     *                 of the app.
+     * context Context instance representing the context of the app.
      *
      */
 
-    public Vibrate(Context context)
+    private static Context context;
+
+
+    /**
+     * Initializes the vibrator using context.VIBRATOR_SERVICE
+     *
+     */
+
+    public static void initializeVibrate()
     {
-        this.vibrator = (Vibrator) context.getSystemService(context.VIBRATOR_SERVICE);
+        vibrator = (Vibrator) context.getSystemService(context.VIBRATOR_SERVICE);
+    }
+
+
+    /**
+     * Setter for the context.
+     *
+     * @param context Context instance representing the context of the app.
+     *
+     */
+
+    public static void setContext(Context context)
+    {
+        Vibrate.context = context;
     }
 
 
@@ -55,7 +70,7 @@ public class Vibrate
      *
      */
 
-    public void vibrate()
+    public static void vibrate()
     {
         vibrator.vibrate(VIBRATETIME);
     }

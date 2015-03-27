@@ -1,8 +1,5 @@
 package com.example.owner.gameproject;
 
-/**
- * Created by erickadbay on 15-03-20.
- */
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.SoundPool;
@@ -11,14 +8,18 @@ import android.media.SoundPool;
 /**
  * MediaSounds loads and plays all the required sounds
  * for the app.
+ *
+ * @author Jeton Sinoimeri
+ * @version 1.1
+ * @since 2015-02-18
  */
 
 public class MediaSounds
 {
 
     /**
-     * sounds: SoundPool instance representing the audio resources
-     *         of the app.
+     * sounds SoundPool instance representing the audio resources
+     *        of the app.
      *
      */
 
@@ -26,14 +27,21 @@ public class MediaSounds
 
 
     /**
-     * volume: float value representing the volume of the audio
-     *         to be played.
+     * volume float value representing the volume of the audio
+     *        to be played.
      *
      */
 
     private static float volume;
 
+
+    /**
+     * context Context instance representing the context of the app.
+     *
+     */
+
     private static Context context;
+
 
     /**
      * Initializes the Sound Pool instance depending on the OS version.
@@ -57,8 +65,8 @@ public class MediaSounds
     /**
      * Sets the volume of the audio file to be played.
      *
-     * @param vol: float value representing the volume of the audio
-     *             to be played.
+     * @param vol float value representing the volume of the audio
+     *            to be played.
      *
      */
 
@@ -67,6 +75,13 @@ public class MediaSounds
         volume = vol;
     }
 
+
+    /**
+     * Setter for the context.
+     *
+     * @param context Context instance representing the context of the app.
+     *
+     */
 
     public static void setContext(Context context)
     {
@@ -77,12 +92,11 @@ public class MediaSounds
     /**
      * Loads and Plays the corresponding sound.
      *
-     * @param context: Context instance representing the context of the app.
-     * @param soundFile: integer value representing the sound file to be
+     * @param soundFile integer value representing the sound file to be
      *                   loaded and played.
-     * @param priority: integer value representing the priority of the sound.
-     * @param speed: final float value representing the speed of which the sound
-     *               should be played at.
+     * @param priority integer value representing the priority of the sound.
+     * @param speed final float value representing the speed of which the sound
+     *              should be played at.
      *
      */
 

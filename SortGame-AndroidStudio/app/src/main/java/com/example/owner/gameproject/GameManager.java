@@ -1,6 +1,7 @@
 package com.example.owner.gameproject;
 
-import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 
@@ -55,14 +56,25 @@ public class GameManager
      */
     private GameOverScreen gameOverScreen;
 
-
-    private Lives lives;
-
-
+    /**
+     * multiplierBar MultiplierBar instance representing the displayed multiplier bar.
+     */
     private MultiplierBar multiplierBar;
 
 
-    public GameManager(GameView gameview, Context appContext)
+    /**
+     * fullLivesBitmap Bitmap instance representing the image used to display the number of
+     *                 lives left in the game.
+     */
+    private Bitmap fullLivesBitmap;
+
+
+    /**
+     * Constructor for the GameManager class.
+     * @param gameview GameView instance representing the SurfaceView of the app.
+     */
+
+    public GameManager(GameView gameview)
     {
         view = gameview;
         gameFinished = false;
@@ -70,14 +82,14 @@ public class GameManager
 
         card = new Card();
         gameBoard = new GameBoard();
-        game = new Game(appContext);
+        game = new Game();
 
 
         gameOverScreen = new GameOverScreen(view, GameView.typeface, ColorsLoader.loadColorByName("white"));
 
-        lives = new Lives("x" + game.getLives(), GameView.typeface, ColorsLoader.loadColorByName("black"));
+        fullLivesBitmap = BitmapFactory.decodeResource(GameView.activity.getResources(), R.drawable.fullheart);
+        fullLivesBitmap = Bitmap.createScaledBitmap(fullLivesBitmap, 100, 100, true);
 
-        // temporary values
         score = new TextObject("" + game.getScore(), (100f/1080)*GameView.WIDTH, (125f/1701)*GameView.HEIGHT, GameView.typeface,
                                ColorsLoader.loadColorByName("blue"), 175f);
 
@@ -158,6 +170,12 @@ public class GameManager
         return false;
     }
 
+
+    /**
+     * Notifies the game of correct, updates the score, generates a new card and
+     * updates the multiplier bar accordingly.
+     */
+
     private void correct()
     {
         game.correct();
@@ -165,12 +183,23 @@ public class GameManager
         this.setMultiValueCardColor();
     }
 
+
+    /**
+     * Notifies the game of incorrect, decrements the lives, generates a new card and
+     * updates the multiplier bar accordingly.
+     */
+
     private void incorrect()
     {
         game.incorrect();
-        lives.setText("x" + game.getLives());
+
         this.setMultiValueCardColor();
     }
+
+
+    /**
+     * Generates a new card and updates the multiplier bar accordingly.
+     */
 
     private void setMultiValueCardColor()
     {
@@ -185,6 +214,13 @@ public class GameManager
             //GooglePlayServices.setHighScore(game.getScore());
     }
 
+
+    /**
+     * Checks if gameOver has occurred and displays the appropriate message onto the screen.
+     *
+     * @see android.graphics.Canvas
+     * @param canvas Canvas instance representing android.graphics.Canvas class.
+     */
 
     private void gameOver(Canvas canvas)
     {
@@ -207,18 +243,25 @@ public class GameManager
 
     }
 
+
+    /**
+     * Draws to android's canvas.
+     *
+     * @see android.graphics.Canvas
+     * @param canvas Canvas instance representing android.graphics.Canvas class.
+     */
+
     public void draw(Canvas canvas)
     {
-
         card.draw(canvas);
         gameBoard.draw(canvas);
 
-
         score.draw(canvas);
         multiplierBar.draw(canvas);
-        //lives.draw(canvas);
+
+        for(int i = 0; i < game.getLives(); i++)
+            canvas.drawBitmap(fullLivesBitmap, ((700f+(i*120))/1080)*GameView.WIDTH, (37f/1701)*GameView.HEIGHT, null);
 
         gameOver(canvas);
-
     }
 }

@@ -26,14 +26,15 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 {
     private SurfaceHolder surfaceHolder;
     private GameLoopThread gameLoopThread;
+    private GameManager gameManager;
 
 
     public static float WIDTH, HEIGHT;
 
-    private GameManager gameManager;
-
     public static Typeface typeface;
+
     public static Activity activity;
+
 
     public GameView(Activity appActivity)
     {
@@ -45,7 +46,12 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
         surfaceHolder.addCallback(this);
 
         ColorsLoader.setResources(getResources());
+
         MediaSounds.setContext(getContext());
+        MediaSounds.initializeSoundPool();
+
+        Vibrate.setContext(getContext());
+        Vibrate.initializeVibrate();
 
         activity = appActivity;
     }
@@ -102,7 +108,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
         HEIGHT = getHeight();
 
         gameLoopThread = new GameLoopThread(this);
-        this.gameManager = new GameManager(this, activity.getBaseContext());
+        this.gameManager = new GameManager(this);
 
         gameLoopThread.setRunning(true);
         gameLoopThread.start();
