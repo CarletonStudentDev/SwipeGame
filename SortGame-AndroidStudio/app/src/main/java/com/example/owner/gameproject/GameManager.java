@@ -70,8 +70,11 @@ public class GameManager implements Observer
     /**
      * fullLivesBitmap Bitmap instance representing the image used to display the number of
      *                 lives left in the game.
+     * emptyLivesBitmap Bitmap instance representing the image used to display the total number
+     *                  of lives in the game.
      */
-    private Bitmap fullLivesBitmap;
+    private Bitmap fullLivesBitmap,
+                   emptyLivesBitmap;
 
 
     /**
@@ -79,9 +82,11 @@ public class GameManager implements Observer
      */
     private GameClock gameClock;
 
+
     /**
      * Constructor for the GameManager class.
      * @param gameview GameView instance representing the SurfaceView of the app.
+     * @param gameTime Long value representing the amount of time at start of game.
      */
 
     public GameManager(GameView gameview, long gameTime)
@@ -105,8 +110,12 @@ public class GameManager implements Observer
         fullLivesBitmap = BitmapFactory.decodeResource(GameView.activity.getResources(), R.drawable.fullheart);
         fullLivesBitmap = Bitmap.createScaledBitmap(fullLivesBitmap, 100, 100, true);
 
-        score = new TextObject("" + game.getScore(), (100f/1080)*GameView.WIDTH, (125f/1701)*GameView.HEIGHT, GameView.typeface,
-                               ColorsLoader.loadColorByName("blue"), 175f);
+        emptyLivesBitmap = BitmapFactory.decodeResource(GameView.activity.getResources(), R.drawable.blankheart);
+        emptyLivesBitmap = Bitmap.createScaledBitmap(emptyLivesBitmap, 100, 100, true);
+
+
+        score = new TextObject("" + game.getScore(), (100f/1080)*GameView.WIDTH, (125f/1701)*GameView.HEIGHT,
+                              GameView.typeface, ColorsLoader.loadColorByName("white"), 175f);
 
         multiplierBar = new MultiplierBar(game.getMultiplierNum(), game.getBarNum(),
                                           GameView.typeface, ColorsLoader.loadColorByName("white"));
@@ -277,6 +286,9 @@ public class GameManager implements Observer
         score.draw(canvas);
         multiplierBar.draw(canvas);
         timer.draw(canvas);
+
+        for (int i = 0; i < 3; i++)
+            canvas.drawBitmap(emptyLivesBitmap, ((700f+(i*120))/1080)*GameView.WIDTH, (37f/1701)*GameView.HEIGHT, null);
 
         for(int i = 0; i < game.getLives(); i++)
             canvas.drawBitmap(fullLivesBitmap, ((700f+(i*120))/1080)*GameView.WIDTH, (37f/1701)*GameView.HEIGHT, null);

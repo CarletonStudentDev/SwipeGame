@@ -18,6 +18,7 @@ public class GameClock extends Observable
 
     public GameClock(long TimeInMillis)
     {
+        remainingTimeLeft = TimeInMillis;
         this.createNewTimer(TimeInMillis);
     }
 

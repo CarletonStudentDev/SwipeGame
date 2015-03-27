@@ -10,7 +10,7 @@ import android.graphics.Paint;
  * discarded colored card.
  *
  * @author Jeton Sinoimeri
- * @version 1.1
+ * @version 1.2
  * @since 2015-03-08
  */
 
@@ -123,6 +123,7 @@ public class GameBoard
      */
     public void draw(Canvas canvas)
     {
+        canvas.drawRect(0f, 0f, GameView.WIDTH, (100f/1080f)*GameView.HEIGHT, this.blueCircleColor);
         canvas.drawCircle((200f/1080)*GameView.WIDTH,0.85f*GameView.HEIGHT, RADIUS, this.blueCircleColor);
         canvas.drawCircle((880f/1080)*GameView.WIDTH,0.85f*GameView.HEIGHT, RADIUS, this.purpleCircleColor);
 
