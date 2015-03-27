@@ -109,19 +109,19 @@ public class GameManager implements Observer
         gameClock.addObserver(this);
 
         timer = new ClockTextObject(""+gameTime, (455f/1080)*GameView.WIDTH,(550f/1701)*GameView.HEIGHT,
-                GameView.typeface, ColorsLoader.loadColorByName("black"), 175f);
+                GameView.typeface, ColorsLoader.loadColorByName("black"), (175f/1080) * GameView.WIDTH);
 
         gameOverScreen = new GameOverScreen(view, GameView.typeface, ColorsLoader.loadColorByName("white"));
 
         fullLivesBitmap = BitmapFactory.decodeResource(GameView.activity.getResources(), R.drawable.fullheart);
-        fullLivesBitmap = Bitmap.createScaledBitmap(fullLivesBitmap, 100, 100, true);
+        fullLivesBitmap = Bitmap.createScaledBitmap(fullLivesBitmap, (int)((100f/1080) * GameView.WIDTH), (int)((100f/1080) * GameView.WIDTH), true);
 
         emptyLivesBitmap = BitmapFactory.decodeResource(GameView.activity.getResources(), R.drawable.blankheart);
-        emptyLivesBitmap = Bitmap.createScaledBitmap(emptyLivesBitmap, 100, 100, true);
+        emptyLivesBitmap = Bitmap.createScaledBitmap(emptyLivesBitmap, (int)((100f/1080) * GameView.WIDTH), (int)((100f/1080) * GameView.WIDTH), true);
 
 
         score = new TextObject("" + game.getScore(), (100f/1080)*GameView.WIDTH, (125f/1701)*GameView.HEIGHT,
-                              GameView.typeface, ColorsLoader.loadColorByName("white"), 175f);
+                              GameView.typeface, ColorsLoader.loadColorByName("white"), (175f/1080) * GameView.WIDTH);
 
         multiplierBar = new MultiplierBar(game.getMultiplierNum(), game.getBarNum(),
                                           GameView.typeface, ColorsLoader.loadColorByName("white"));

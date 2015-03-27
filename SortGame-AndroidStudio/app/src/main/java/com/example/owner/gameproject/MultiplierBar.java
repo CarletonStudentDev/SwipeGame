@@ -46,19 +46,19 @@ public class MultiplierBar
      * TOPTEXTCOORDINATE float constant representing the top coordinate of the text of any length.
      */
 
-    private static final float BLOCKSIZE = 175f,
-                               SPACEBETWEENBLOCKS = 5f,
+    private static final float BLOCKSIZE = (175f/1080) * GameView.WIDTH,
+                               SPACEBETWEENBLOCKS = (5f/1080) * GameView.WIDTH,
                                BACKGROUNDMULTIPLIER = (BLOCKSIZE + SPACEBETWEENBLOCKS) * BLOCKNUM - SPACEBETWEENBLOCKS,
                                LEFTCOORDINATE = (20f/1080) * GameView.WIDTH,
                                RIGHTCOORDINATE = LEFTCOORDINATE + BACKGROUNDMULTIPLIER,
-                               TOPCOORDINATE = (150f/1080) * GameView.HEIGHT,
-                               BOTTOMCOORDINATE = TOPCOORDINATE + 150f,
-                               LEFTCIRCLECOORDINATE = RIGHTCOORDINATE + 150f,
-                               TOPCIRCLECOORDINATE = TOPCOORDINATE + 80.75f,
-                               RADIUS = 100f,
-                               LEFTTEXTCOORDINATE_1 = LEFTCIRCLECOORDINATE - 40f,
-                               LEFTTEXTCOORDINATE_2 = LEFTCIRCLECOORDINATE - 70f,
-                               TOPTEXTCOORDINATE = TOPCIRCLECOORDINATE + 20f;
+                               TOPCOORDINATE = (170f/1701) * GameView.HEIGHT,
+                               BOTTOMCOORDINATE = TOPCOORDINATE + (150f/1701) * GameView.HEIGHT,
+                               LEFTCIRCLECOORDINATE = RIGHTCOORDINATE + (150f/1080) * GameView.WIDTH,
+                               TOPCIRCLECOORDINATE = TOPCOORDINATE + (80.75f/1701) * GameView.HEIGHT,
+                               RADIUS = (100f/1080) * GameView.WIDTH,
+                               LEFTTEXTCOORDINATE_1 = LEFTCIRCLECOORDINATE - (40f/1080) * GameView.WIDTH,
+                               LEFTTEXTCOORDINATE_2 = LEFTCIRCLECOORDINATE - (70f/1080) * GameView.WIDTH,
+                               TOPTEXTCOORDINATE = TOPCIRCLECOORDINATE + (20f/1701) * GameView.HEIGHT;
 
 
 
@@ -101,7 +101,7 @@ public class MultiplierBar
     {
         this.multiplier = multiplierNum;
         this.multiplierTextObject = new TextObject("x" + multiplierNum, LEFTTEXTCOORDINATE_1,
-                                                   TOPTEXTCOORDINATE, typeface, textColor, 100f);
+                                                   TOPTEXTCOORDINATE, typeface, textColor, (100f/1080) * GameView.WIDTH);
 
         this.multiplierBarNum = multiplierBarNum;
 

@@ -79,11 +79,11 @@ public class GameOverScreen
 
     public GameOverScreen(View view, Typeface typeface, int textColor)
     {
-        this.lossReason = new TextObject("", 150f, 300f, typeface, textColor, 100f);
-        this.score = new TextObject(SCORESTRING, 150f, 400f, typeface, textColor , 100f);
-        this.highScore = new TextObject(HIGHSCORESTRING, 150f, 500f, typeface, textColor , 100f);
-        this.backToMenu = new TextObject("Back", 150f, 1000f, typeface, textColor, 100f);
-        this.retryGame = new TextObject("Retry", 450f, 1000f, typeface, textColor, 100f);
+        this.lossReason = new TextObject("", 150f, 300f, typeface, textColor, (100f/1080) * GameView.WIDTH);
+        this.score = new TextObject(SCORESTRING, 150f, 400f, typeface, textColor , (100f/1080) * GameView.WIDTH);
+        this.highScore = new TextObject(HIGHSCORESTRING, 150f, 500f, typeface, textColor , (100f/1080) * GameView.WIDTH);
+        this.backToMenu = new TextObject("Back", 150f, 1000f, typeface, textColor, (100f/1080) * GameView.WIDTH);
+        this.retryGame = new TextObject("Retry", 450f, 1000f, typeface, textColor, (100f/1080) * GameView.WIDTH);
 
         this.leftCoordinate = 0.1f * view.getWidth();
         this.rightCoordinate = 0.9f * view.getWidth();
