@@ -8,6 +8,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.ToggleButton;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
+import static com.example.owner.gameproject.R.id.adView;
 
 public class MyActivity extends Activity {
 
@@ -23,6 +27,11 @@ public class MyActivity extends Activity {
         setContentView(R.layout.activity_my);
 
         onToggleClicked();
+
+        // initializes ads at bottom of screen
+        AdView mAdView = (AdView) findViewById(adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
     }
 
 

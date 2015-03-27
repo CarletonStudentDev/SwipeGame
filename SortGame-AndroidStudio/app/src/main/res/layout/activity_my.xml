@@ -57,7 +57,6 @@
     <ToggleButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New ToggleButton"
         android:id="@+id/toggleButton"
         android:background="@color/menuButton"
         android:layout_marginBottom="55dp"
@@ -70,7 +69,6 @@
         android:checked="true"
         android:onClick="onToggleClicked"/>
 
-    <!--
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
         android:layout_width="wrap_content"
@@ -80,7 +78,7 @@
         ads:adSize="SMART_BANNER"
         ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
 
-    </com.google.android.gms.ads.AdView> -->
+    </com.google.android.gms.ads.AdView>
 
 
 
