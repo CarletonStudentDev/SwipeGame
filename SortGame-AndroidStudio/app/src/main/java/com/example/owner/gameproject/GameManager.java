@@ -108,7 +108,7 @@ public class GameManager implements Observer
         gameClock = new GameClock(gameTime);
         gameClock.addObserver(this);
 
-        timer = new TextObject(""+gameTime, (200f/1080)*GameView.WIDTH,(255f/1701)*GameView.HEIGHT,
+        timer = new ClockTextObject(""+gameTime, (455f/1080)*GameView.WIDTH,(550f/1701)*GameView.HEIGHT,
                 GameView.typeface, ColorsLoader.loadColorByName("black"), 175f);
 
         gameOverScreen = new GameOverScreen(view, GameView.typeface, ColorsLoader.loadColorByName("white"));
