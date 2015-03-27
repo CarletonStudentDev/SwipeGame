@@ -5,6 +5,9 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 
+import java.util.Observable;
+import java.util.Observer;
+
 /**
  * GameManager class manages the logic of the game.
  *
@@ -14,7 +17,7 @@ import android.view.MotionEvent;
  *
  */
 
-public class GameManager
+public class GameManager implements Observer
 {
 
     /**
@@ -47,8 +50,10 @@ public class GameManager
 
     /**
      * score TextObject instance representing the score text displaying on the screen.
+     * timer TextObject instance representing the timer text displaying on the screen.
      */
-    private TextObject score;
+    private TextObject score,
+                       timer;
 
     /**
      * gameOverScreen GameOverScreen instance representing the stats of the game displayed
@@ -70,11 +75,16 @@ public class GameManager
 
 
     /**
+     * gameClock GameClock instance representing the countdown timer of the game.
+     */
+    private GameClock gameClock;
+
+    /**
      * Constructor for the GameManager class.
      * @param gameview GameView instance representing the SurfaceView of the app.
      */
 
-    public GameManager(GameView gameview)
+    public GameManager(GameView gameview, long gameTime)
     {
         view = gameview;
         gameFinished = false;
@@ -84,6 +94,11 @@ public class GameManager
         gameBoard = new GameBoard();
         game = new Game();
 
+        gameClock = new GameClock(gameTime);
+        gameClock.addObserver(this);
+
+        timer = new TextObject(""+gameTime, (200f/1080)*GameView.WIDTH,(255f/1701)*GameView.HEIGHT,
+                GameView.typeface, ColorsLoader.loadColorByName("black"), 175f);
 
         gameOverScreen = new GameOverScreen(view, GameView.typeface, ColorsLoader.loadColorByName("white"));
 
@@ -127,13 +142,13 @@ public class GameManager
 
                 if (gameFinished)
                 {
-                    /*this.clock.stopClock();
+                    gameClock.stopTime();
 
                     if (this.gameOverScreen.getGameOverButton(newX, newY) == 2)
                         GameView.activity.finish();
 
                     else if (this.gameOverScreen.getGameOverButton(newX, newY) == 1)
-                        GameView.activity.recreate();*/
+                        GameView.activity.recreate();
 
                 }
 
@@ -181,6 +196,8 @@ public class GameManager
         game.correct();
         score.setText("" + game.getScore());
         this.setMultiValueCardColor();
+
+        gameClock.addTime(1000L);
     }
 
 
@@ -239,6 +256,7 @@ public class GameManager
             gameOverScreen.setScores(game.getScore(), 0);
 
             gameOverScreen.draw(canvas);
+
         }
 
     }
@@ -258,10 +276,29 @@ public class GameManager
 
         score.draw(canvas);
         multiplierBar.draw(canvas);
+        timer.draw(canvas);
 
         for(int i = 0; i < game.getLives(); i++)
             canvas.drawBitmap(fullLivesBitmap, ((700f+(i*120))/1080)*GameView.WIDTH, (37f/1701)*GameView.HEIGHT, null);
 
         gameOver(canvas);
+
+        if (!this.timedOut)
+            timer.setText(""+gameClock.getRemainingTimeLeft());
+    }
+
+    /**
+     * This method is called if the specified {@code Observable} object's
+     * {@code notifyObservers} method is called (because the {@code Observable}
+     * object has been updated.
+     *
+     * @param observable the {@link java.util.Observable} object.
+     * @param data       the data passed to {@link java.util.Observable#notifyObservers(Object)}.
+     */
+    @Override
+    public void update(Observable observable, Object data)
+    {
+        this.timedOut = (boolean) data;
+        timer.setText("0");
     }
 }

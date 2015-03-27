@@ -27,6 +27,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
     private SurfaceHolder surfaceHolder;
     private GameLoopThread gameLoopThread;
     private GameManager gameManager;
+    private long gameTime;
 
 
     public static float WIDTH, HEIGHT;
@@ -36,7 +37,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
     public static Activity activity;
 
 
-    public GameView(Activity appActivity)
+    public GameView(Activity appActivity, long gameTime)
     {
         super(appActivity);
 
@@ -54,6 +55,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
         Vibrate.initializeVibrate();
 
         activity = appActivity;
+
+        this.gameTime = gameTime;
     }
 
 
@@ -108,7 +111,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
         HEIGHT = getHeight();
 
         gameLoopThread = new GameLoopThread(this);
-        this.gameManager = new GameManager(this);
+        this.gameManager = new GameManager(this, gameTime);
 
         gameLoopThread.setRunning(true);
         gameLoopThread.start();

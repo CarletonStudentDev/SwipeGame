@@ -14,7 +14,7 @@ public class StartNormalActivity extends Activity {
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        setContentView(new GameView(this));
+        setContentView(new GameView(this, 10000L));
 
         //GooglePlay LoginHere
 

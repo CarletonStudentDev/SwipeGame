@@ -113,6 +113,20 @@ public class GameOverScreen
 
 
     /**
+     * Getter for the game over buttons.
+     *
+     * @param xCoordinate float value representing the x-coordinate in pixels.
+     * @param yCoordinate float value represnting the y-coordinate in pixels.
+     * @return integer representing the corresponding game over button.
+     */
+
+    public int getGameOverButton(float xCoordinate, float yCoordinate)
+    {
+        return 0;
+    }
+
+
+    /**
      * Setter for the reason the game was lost.
      *
      * @param lossReason String object representing the reason the game was lost.
