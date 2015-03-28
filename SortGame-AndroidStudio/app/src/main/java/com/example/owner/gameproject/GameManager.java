@@ -26,8 +26,8 @@ public class GameManager implements Observer
      * TIMERANOUT String constant representing the text displayed on game over screen when the
      *            clock has finished.
      */
-    private static final String LIVESFINISHED = "OUT OF LIVES!",
-                                TIMERANOUT = "TIME RAN OUT!";
+    private static final String LIVESFINISHED = "Out of Lives!",
+                                TIMERANOUT = "Out of Time!";
 
     /** game: Game instance representing the game to be played.*/
     private Game game;
@@ -108,8 +108,9 @@ public class GameManager implements Observer
         gameClock = new GameClock(gameTime);
         gameClock.addObserver(this);
 
-        timer = new ClockTextObject(""+gameClock.getRemainingTimeLeft(), (525f/1080)*GameView.WIDTH,(550f/1701)*GameView.HEIGHT,
-                GameView.typeface, ColorsLoader.loadColorByName("black"), (225f/1080) * GameView.WIDTH);
+
+        timer = new ClockTextObject("" + gameClock.getRemainingTimeLeft(), (525f / 1080) * GameView.WIDTH, (550f / 1701) * GameView.HEIGHT,
+                    GameView.typeface, ColorsLoader.loadColorByName("black"), (225f / 1080) * GameView.WIDTH);
 
         gameOverScreen = new GameOverScreen(view, GameView.typeface, ColorsLoader.loadColorByName("white"));
 
@@ -303,7 +304,11 @@ public class GameManager implements Observer
         gameOver(canvas);
 
         if (!this.timedOut)
-            timer.setText(""+gameClock.getRemainingTimeLeft());
+            if(!endless) {
+                timer.setText("" + gameClock.getRemainingTimeLeft());
+            }else{
+                timer.setText(" ∞");
+            }
     }
 
     /**
