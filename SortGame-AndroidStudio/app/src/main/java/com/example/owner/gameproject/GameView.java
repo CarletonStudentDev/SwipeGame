@@ -105,8 +105,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
     public void surfaceCreated(SurfaceHolder holder)
     {
 
-        Log.i("width1", Integer.toString(getWidth()));
-        Log.i("height1", Integer.toString(getHeight()));
         WIDTH = getWidth();
         HEIGHT = getHeight();
 
