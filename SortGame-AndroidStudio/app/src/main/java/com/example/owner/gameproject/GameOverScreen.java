@@ -79,11 +79,11 @@ public class GameOverScreen
 
     public GameOverScreen(View view, Typeface typeface, int textColor)
     {
-        this.lossReason = new TextObject("", 150f, 300f, typeface, textColor, (100f/1080) * GameView.WIDTH);
-        this.score = new TextObject(SCORESTRING, 150f, 400f, typeface, textColor , (100f/1080) * GameView.WIDTH);
-        this.highScore = new TextObject(HIGHSCORESTRING, 150f, 500f, typeface, textColor , (100f/1080) * GameView.WIDTH);
-        this.backToMenu = new TextObject("Back", 150f, 1000f, typeface, textColor, (100f/1080) * GameView.WIDTH);
-        this.retryGame = new TextObject("Retry", 450f, 1000f, typeface, textColor, (100f/1080) * GameView.WIDTH);
+        this.lossReason = new TextObject("", (500f/1080)*GameView.WIDTH, (300f/1701)*GameView.HEIGHT, typeface, textColor, (100f/1080) * GameView.WIDTH);
+        this.score = new TextObject(SCORESTRING, (500f/1080)*GameView.WIDTH, (500f/1701)*GameView.HEIGHT, typeface, textColor , (100f/1080) * GameView.WIDTH);
+        this.highScore = new TextObject(HIGHSCORESTRING, (500f/1080)*GameView.WIDTH, (900f/1701)*GameView.HEIGHT, typeface, textColor , (100f/1080) * GameView.WIDTH);
+        this.backToMenu = new TextObject("Back", (350f/1080)*GameView.WIDTH, (1300f/1701)*GameView.HEIGHT, typeface, textColor, (100f/1080) * GameView.WIDTH);
+        this.retryGame = new TextObject("Retry", (650f/1080)*GameView.WIDTH, (1300f/1701)*GameView.HEIGHT, typeface, textColor, (100f/1080) * GameView.WIDTH);
 
         this.leftCoordinate = 0.1f * view.getWidth();
         this.rightCoordinate = 0.9f * view.getWidth();

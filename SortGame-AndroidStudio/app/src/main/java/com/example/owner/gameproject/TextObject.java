@@ -60,6 +60,7 @@ public class TextObject
         this.paint.setTypeface(typeface);
         this.paint.setColor(color);
         this.paint.setTextSize(textSize);
+        this.paint.setTextAlign(Paint.Align.CENTER);
     }
 
 
