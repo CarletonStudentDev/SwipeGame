@@ -170,7 +170,7 @@ public class GameManager implements Observer
 
                 else
                 {
-                    if (this.gameBoard.getQuadrantColor(newX, newY) == this.card.getColorId())
+                    if (this.gameBoard.getQuadrantColor(event.getX(), event.getY()) == this.card.getColorId())
                         this.correct();
 
                     else if (this.gameBoard.getQuadrantColor(newX, newY) != 0)

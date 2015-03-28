@@ -79,9 +79,8 @@ public class GameBoard
      */
     private boolean redTouched(float x, float y)
     {
-        return (x >= 0.1f) && (y >= 0.05f);
+        return (x <= (500f/1080)*GameView.WIDTH) && (y <= (950f/1920)*GameView.HEIGHT);
     }
-
     /**
      * Checks if the color green is touched.
      *
@@ -91,7 +90,7 @@ public class GameBoard
      */
     private boolean greenTouched(float x, float y)
     {
-        return (x <= -0.1f) && (y >= 0.05f);
+        return (x >= (600f/1080)*GameView.WIDTH) && (y <= (950f/1920)*GameView.HEIGHT);
     }
 
     /**
@@ -103,7 +102,7 @@ public class GameBoard
      */
     private boolean blueTouched(float x, float y)
     {
-        return (x >= 0.1f) && (y <= -0.45f);
+        return (x <= (500f/1080)*GameView.WIDTH) && (y >= (1380f/1920)*GameView.HEIGHT);
     }
 
     /**
@@ -115,7 +114,7 @@ public class GameBoard
      */
     private boolean purpleTouched(float x, float y)
     {
-        return (x <= -0.1f) && (y <= -0.45f);
+        return (x >= (600f/1080)*GameView.WIDTH) && (y >= (1380f/1920)*GameView.HEIGHT);
     }
 
     /**
