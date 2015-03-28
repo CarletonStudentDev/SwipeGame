@@ -91,7 +91,7 @@ public class GameOverScreen
         this.bottomCoordinate =  0.9f * view.getHeight();
 
         this.paint = new Paint();
-        this.paint.setColor(ColorsLoader.loadColorByName("blue"));
+        this.paint.setColor(ColorsLoader.loadColorByName("darkBlue"));
 
     }
 
