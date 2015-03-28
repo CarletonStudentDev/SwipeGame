@@ -103,7 +103,7 @@ public class ColorsLoader
             return resources.getColor(R.color.darkYellow);
 
         else if (colorId == 20)
-            return resources.getColor(R.color.darkGreen);
+            return resources.getColor(R.color.emergRed);
 
         return 0;
     }
@@ -178,7 +178,7 @@ public class ColorsLoader
         else if (colorName.equals("darkyellow") || colorName.equals("dark yellow"))
             return loadColorByInt(19);
 
-        else if (colorName.equals("darkgreen") || colorName.equals("dark green"))
+        else if (colorName.equals("emergencyred") || colorName.equals("emergency red"))
             return loadColorByInt(20);
 
         return 0;

@@ -28,8 +28,8 @@
     <color name="menuBackground">#ECF0F1</color>
     <color name="gameBackground">#ECF0F1</color>
     <color name="black">#000000</color>
-    <color name="darkYellow">#C79217</color>
-    <color name="darkGreen">#FF006328</color>
+    <color name="darkYellow">#FFD625</color>
+    <color name="emergRed">#C41E1C</color>
 
 
 </resources>

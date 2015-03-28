@@ -51,15 +51,31 @@ public class ClockTextObject extends TextObject
         if (text.length() < 2)
            text = "0" + text;
 
-        if (text.equals("03"))
+        if (text.equals("01"))
         {
-            paint.setColor(ColorsLoader.loadColorByName("dark green"));
-            paint.setTextSize(this.textSize + (20f/1080) *GameView.WIDTH);
+            paint.setColor(ColorsLoader.loadColorByName("emergency red"));
+            paint.setTextSize(this.textSize + (40f/1080) *GameView.WIDTH);
 
             this.setPaint(paint);
         }
 
         else if (text.equals("02"))
+        {
+            paint.setColor(ColorsLoader.loadColorByName("emergency red"));
+            paint.setTextSize(this.textSize + (40f/1080) *GameView.WIDTH);
+
+            this.setPaint(paint);
+        }
+
+        else if (text.equals("03"))
+        {
+            paint.setColor(ColorsLoader.loadColorByName("emergency red"));
+            paint.setTextSize(this.textSize + (40f/1080) *GameView.WIDTH);
+
+            this.setPaint(paint);
+        }
+
+        else if (text.equals("04"))
         {
             paint.setColor(ColorsLoader.loadColorByName("dark yellow"));
             paint.setTextSize(this.textSize + (20f/1080) *GameView.WIDTH);
@@ -67,9 +83,9 @@ public class ClockTextObject extends TextObject
             this.setPaint(paint);
         }
 
-        else if (text.equals("01"))
+        else if (text.equals("05"))
         {
-            paint.setColor(ColorsLoader.loadColorByName("darkest red"));
+            paint.setColor(ColorsLoader.loadColorByName("dark yellow"));
             paint.setTextSize(this.textSize + (20f/1080) *GameView.WIDTH);
 
             this.setPaint(paint);

@@ -158,8 +158,8 @@ public class GameOverScreen
 
         this.highScore.draw(canvas);
         this.highScoreNum.draw(canvas);
-        canvas.drawRect(leftCoordinate, topCoordinate, rightCoordinate, bottomCoordinate, paint);
-        canvas.drawRect(leftCoordinate, topCoordinate, rightCoordinate, bottomCoordinate, paint);
+        //canvas.drawRect(leftCoordinate, topCoordinate, rightCoordinate, bottomCoordinate, paint);
+        //canvas.drawRect(leftCoordinate, topCoordinate, rightCoordinate, bottomCoordinate, paint);
 
         this.backToMenu.draw(canvas);
         this.retryGame.draw(canvas);
