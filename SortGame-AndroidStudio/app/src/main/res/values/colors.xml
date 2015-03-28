@@ -5,7 +5,7 @@
     <color name="lightRed">#C4273C</color>
     <color name="mediumRed">#AB2234</color>
     <color name="darkRed">#851B29</color>
-    <color name="darkestRed">#450E15</color>
+    <color name="darkestRed">#ff771112</color>
 
 
     <color name="lightBlue">#007BFF</color>
@@ -28,6 +28,8 @@
     <color name="menuBackground">#ECF0F1</color>
     <color name="gameBackground">#ECF0F1</color>
     <color name="black">#000000</color>
+    <color name="darkYellow">#C79217</color>
+    <color name="darkGreen">#FF006328</color>
 
 
 </resources>

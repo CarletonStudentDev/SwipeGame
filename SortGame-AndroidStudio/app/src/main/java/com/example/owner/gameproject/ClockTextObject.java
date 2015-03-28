@@ -1,5 +1,6 @@
 package com.example.owner.gameproject;
 
+import android.graphics.Paint;
 import android.graphics.Typeface;
 
 /**
@@ -13,6 +14,10 @@ import android.graphics.Typeface;
  */
 public class ClockTextObject extends TextObject
 {
+
+    private float textSize;
+
+    private Paint paint;
 
     /**
      * Constructor for the TextObject class.
@@ -28,6 +33,8 @@ public class ClockTextObject extends TextObject
     public ClockTextObject(String text, float xCoordinate, float yCoordinate, Typeface typeface, int color, float textSize)
     {
         super(text, xCoordinate, yCoordinate, typeface, color, textSize);
+        this.textSize = textSize;
+        this.paint = new Paint(this.getPaint());
     }
 
     /**
@@ -39,8 +46,38 @@ public class ClockTextObject extends TextObject
     @Override
     public void setText(String text)
     {
+        Paint paint = new Paint(this.getPaint());
+
         if (text.length() < 2)
            text = "0" + text;
+
+        if (text.equals("03"))
+        {
+            paint.setColor(ColorsLoader.loadColorByName("dark green"));
+            paint.setTextSize(this.textSize + (20f/1080) *GameView.WIDTH);
+
+            this.setPaint(paint);
+        }
+
+        else if (text.equals("02"))
+        {
+            paint.setColor(ColorsLoader.loadColorByName("dark yellow"));
+            paint.setTextSize(this.textSize + (20f/1080) *GameView.WIDTH);
+
+            this.setPaint(paint);
+        }
+
+        else if (text.equals("01"))
+        {
+            paint.setColor(ColorsLoader.loadColorByName("darkest red"));
+            paint.setTextSize(this.textSize + (20f/1080) *GameView.WIDTH);
+
+            this.setPaint(paint);
+        }
+
+        else
+            this.setPaint(this.paint);
+
 
         super.setText(text);
     }

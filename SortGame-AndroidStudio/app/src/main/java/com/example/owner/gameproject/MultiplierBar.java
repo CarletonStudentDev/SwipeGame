@@ -85,7 +85,8 @@ public class MultiplierBar
 
     private Paint backgroundPaint,
                   currentMultiPaint,
-                  multiplierCirclePaint;
+                  multiplierCirclePaint,
+                  prevMultiPaint;
 
 
     /**
@@ -110,7 +111,9 @@ public class MultiplierBar
         this.backgroundPaint.setAlpha(BACKGROUNDALPHA);
 
         this.currentMultiPaint = new Paint();
-        this.currentMultiPaint.setColor(ColorsLoader.loadColorByInt(this.findCorrespondingColor()));;
+        this.currentMultiPaint.setColor(ColorsLoader.loadColorByInt(this.findCorrespondingColor()));
+
+        this.prevMultiPaint = new Paint();
 
         this.multiplierCirclePaint = new Paint();
         this.multiplierCirclePaint.setColor(ColorsLoader.loadColorByName("black"));
@@ -130,6 +133,10 @@ public class MultiplierBar
         this.multiplier = multiplierNum;
         this.multiplierBarNum = multiplierBarNum;
         this.currentMultiPaint.setColor(ColorsLoader.loadColorByInt(this.findCorrespondingColor()));
+
+        if (this.multiplier > 1)
+            this.prevMultiPaint.setColor(ColorsLoader.loadColorByInt(this.findCorrespondingColor() - 1));
+
     }
 
 
@@ -157,17 +164,19 @@ public class MultiplierBar
     {
         canvas.drawRect(LEFTCOORDINATE, TOPCOORDINATE, RIGHTCOORDINATE, BOTTOMCOORDINATE, this.backgroundPaint);
 
-        // draws the bars with spaces in between
-        for(int i= 0; i < this.multiplierBarNum; i++)
-        {
-            float left = LEFTCOORDINATE + (SPACEBETWEENBLOCKS + BLOCKSIZE) * i;
-            float right = left + BLOCKSIZE;
-            canvas.drawRect(left, TOPCOORDINATE, right, BOTTOMCOORDINATE, this.currentMultiPaint);
-        }
 
         // draws the black circle and multiplier text object
         if (this.multiplier > 1)
         {
+            // draws the bars with spaces in between
+            for(int i= 0; i < BLOCKNUM; i++)
+            {
+                float left = LEFTCOORDINATE + (SPACEBETWEENBLOCKS + BLOCKSIZE) * i;
+                float right = left + BLOCKSIZE;
+                canvas.drawRect(left, TOPCOORDINATE, right, BOTTOMCOORDINATE, this.prevMultiPaint);
+            }
+
+
             this.multiplierTextObject.setText("x" + this.multiplier);
 
             if (multiplierTextObject.getText().length() > 2)
@@ -176,6 +185,16 @@ public class MultiplierBar
             canvas.drawCircle(LEFTCIRCLECOORDINATE, TOPCIRCLECOORDINATE, RADIUS, this.multiplierCirclePaint);
             this.multiplierTextObject.draw(canvas);
         }
+
+
+        // draws the bars with spaces in between
+        for(int i= 0; i < this.multiplierBarNum; i++)
+        {
+            float left = LEFTCOORDINATE + (SPACEBETWEENBLOCKS + BLOCKSIZE) * i;
+            float right = left + BLOCKSIZE;
+            canvas.drawRect(left, TOPCOORDINATE, right, BOTTOMCOORDINATE, this.currentMultiPaint);
+        }
+
 
 
     }

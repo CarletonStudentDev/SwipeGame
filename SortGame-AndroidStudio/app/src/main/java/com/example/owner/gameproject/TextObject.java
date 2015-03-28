@@ -101,6 +101,22 @@ public class TextObject
 
 
     /**
+     * Setter for the color of the text.
+     *
+     * @param paint Paint instance representing the color, and font of the TextObject.
+     */
+
+    public void setPaint(Paint paint)
+    {
+        this.paint = paint;
+    }
+
+    public Paint getPaint()
+    {
+        return this.paint;
+    }
+
+    /**
      * Setter for the yCoordinate in pixels.
      *
      * @param yCoordinate float value representing the y-coordinate location of text in pixels.
