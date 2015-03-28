@@ -96,6 +96,9 @@ public class ColorsLoader
         else if (colorId == 17)
             return resources.getColor(R.color.black);
 
+        else if (colorId == 18)
+            return resources.getColor(R.color.menuBackground);
+
         return 0;
     }
 
@@ -162,6 +165,9 @@ public class ColorsLoader
 
         else if (colorName.equals("black"))
             return loadColorByInt(17);
+
+        else if (colorName.equals("menubackground"))
+            return loadColorByInt(18);
 
         return 0;
     }

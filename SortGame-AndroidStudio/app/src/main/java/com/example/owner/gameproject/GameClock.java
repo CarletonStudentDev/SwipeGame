@@ -55,8 +55,8 @@ public class GameClock extends Observable
             public void onTick(final long millisUntilFinished)
             {
                 remainingTimeLeft = millisUntilFinished;
-                if (remainingTimeLeft / millisInterval < 4)
-                    MediaSounds.loadPlaySound(R.raw.correct, 1, 1f);
+                //if (remainingTimeLeft / millisInterval < 4)
+                //    MediaSounds.loadPlaySound(R.raw.correct, 1, 1f);
             }
 
             @Override

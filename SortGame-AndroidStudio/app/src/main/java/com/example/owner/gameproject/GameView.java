@@ -41,7 +41,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
     {
         super(appActivity);
 
-        typeface = Typeface.createFromAsset(appActivity.getAssets(), "fonts/calibri.ttf");
+        typeface = Typeface.createFromAsset(appActivity.getAssets(), "fonts/calibribold.ttf");
 
         surfaceHolder = getHolder();
         surfaceHolder.addCallback(this);
@@ -70,7 +70,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
     {
         if (canvas != null)
         {
-            canvas.drawColor(ColorsLoader.loadColorByName("white"));
+            canvas.drawColor(ColorsLoader.loadColorByName("menubackground"));
 
             gameManager.draw(canvas);
         }

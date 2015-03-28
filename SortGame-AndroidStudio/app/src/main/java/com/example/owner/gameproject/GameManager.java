@@ -108,8 +108,8 @@ public class GameManager implements Observer
         gameClock = new GameClock(gameTime);
         gameClock.addObserver(this);
 
-        timer = new ClockTextObject(""+gameClock.getRemainingTimeLeft(), (455f/1080)*GameView.WIDTH,(550f/1701)*GameView.HEIGHT,
-                GameView.typeface, ColorsLoader.loadColorByName("black"), (175f/1080) * GameView.WIDTH);
+        timer = new ClockTextObject(""+gameClock.getRemainingTimeLeft(), (435f/1080)*GameView.WIDTH,(550f/1701)*GameView.HEIGHT,
+                GameView.typeface, ColorsLoader.loadColorByName("black"), (225f/1080) * GameView.WIDTH);
 
         gameOverScreen = new GameOverScreen(view, GameView.typeface, ColorsLoader.loadColorByName("white"));
 
@@ -121,7 +121,7 @@ public class GameManager implements Observer
 
 
         score = new TextObject("" + game.getScore(), (100f/1080)*GameView.WIDTH, (125f/1701)*GameView.HEIGHT,
-                              GameView.typeface, ColorsLoader.loadColorByName("white"), (175f/1080) * GameView.WIDTH);
+                              GameView.typeface, ColorsLoader.loadColorByName("white"), (150f/1080) * GameView.WIDTH);
 
         multiplierBar = new MultiplierBar(game.getMultiplierNum(), game.getBarNum(),
                                           GameView.typeface, ColorsLoader.loadColorByName("white"));
