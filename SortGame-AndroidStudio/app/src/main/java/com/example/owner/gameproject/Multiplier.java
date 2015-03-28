@@ -38,7 +38,7 @@ public class Multiplier
      */
 
     private static final int MAXIMUM = 5,
-                             MAX_MULTIPLIER = 16,
+                             MAX_MULTIPLIER = 8,
                              MULTIPLIER_SCALIER = 2,
                              DEFAULTMULTIPLIER = 1,
                              DEFAULTMETERCOUNT = 0;

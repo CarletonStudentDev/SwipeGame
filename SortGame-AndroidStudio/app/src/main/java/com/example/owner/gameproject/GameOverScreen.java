@@ -64,7 +64,7 @@ public class GameOverScreen
      *
      */
 
-    private Paint paint;
+    private Paint paint, paintSquares;
 
 
     /**
@@ -95,6 +95,11 @@ public class GameOverScreen
         this.paint = new Paint();
         this.paint.setColor(ColorsLoader.loadColorByName("darkBlue"));
 
+        this.paintSquares=new Paint();
+        this.paintSquares.setColor(ColorsLoader.loadColorByName("blue"));
+
+
+
     }
 
 
@@ -118,13 +123,23 @@ public class GameOverScreen
      * Getter for the game over buttons.
      *
      * @param xCoordinate float value representing the x-coordinate in pixels.
-     * @param yCoordinate float value represnting the y-coordinate in pixels.
+     * @param yCoordinate float value representing the y-coordinate in pixels.
      * @return integer representing the corresponding game over button.
      */
 
     public int getGameOverButton(float xCoordinate, float yCoordinate)
     {
-        return 0;
+
+        if( xCoordinate >= (200f/1080)*GameView.WIDTH && xCoordinate <= (500f/1080)*GameView.WIDTH
+                && yCoordinate>=(1275f/1701)*GameView.HEIGHT && yCoordinate<=(1470f/1701)*GameView.HEIGHT){
+            return 1;
+        } else if(xCoordinate >=(600f/1080)*GameView.WIDTH && xCoordinate <= (900f/1080)*GameView.WIDTH
+            && yCoordinate>=(1275f/1701)*GameView.HEIGHT && yCoordinate<=(1470f/1701)*GameView.HEIGHT){
+            return 2;
+        }else{
+            return 0;
+        }
+
     }
 
 
@@ -154,14 +169,17 @@ public class GameOverScreen
         canvas.drawRect(leftCoordinate, topCoordinate, rightCoordinate, bottomCoordinate, paint);
         this.lossReason.draw(canvas);
         this.score.draw(canvas);
+
         this.scoreNum.draw(canvas);
 
         this.highScore.draw(canvas);
         this.highScoreNum.draw(canvas);
-        //canvas.drawRect(leftCoordinate, topCoordinate, rightCoordinate, bottomCoordinate, paint);
-        //canvas.drawRect(leftCoordinate, topCoordinate, rightCoordinate, bottomCoordinate, paint);
 
+        canvas.drawRect((200f/1080)*GameView.WIDTH, (1275f/1701)*GameView.HEIGHT,(500f/1080)*GameView.WIDTH, (1470f/1701)*GameView.HEIGHT, paintSquares);
         this.backToMenu.draw(canvas);
+
+        canvas.drawRect((600f/1080)*GameView.WIDTH, (1275f/1701)*GameView.HEIGHT,(900f/1080)*GameView.WIDTH, (1470f/1701)*GameView.HEIGHT, paintSquares);
         this.retryGame.draw(canvas);
+
     }
 }

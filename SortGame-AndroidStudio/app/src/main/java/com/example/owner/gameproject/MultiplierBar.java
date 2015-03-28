@@ -107,16 +107,14 @@ public class MultiplierBar
         this.multiplierBarNum = multiplierBarNum;
 
         this.backgroundPaint = new Paint();
-        this.backgroundPaint.setColor(ColorsLoader.loadColorByName("light gray"));
-        this.backgroundPaint.setAlpha(BACKGROUNDALPHA);
 
         this.currentMultiPaint = new Paint();
+
         this.currentMultiPaint.setColor(ColorsLoader.loadColorByInt(this.findCorrespondingColor()));
 
         this.prevMultiPaint = new Paint();
 
-        this.multiplierCirclePaint = new Paint();
-        this.multiplierCirclePaint.setColor(ColorsLoader.loadColorByName("black"));
+
     }
 
 
@@ -132,6 +130,7 @@ public class MultiplierBar
     {
         this.multiplier = multiplierNum;
         this.multiplierBarNum = multiplierBarNum;
+
         this.currentMultiPaint.setColor(ColorsLoader.loadColorByInt(this.findCorrespondingColor()));
 
         if (this.multiplier > 1)
@@ -162,7 +161,9 @@ public class MultiplierBar
 
     public void draw(Canvas canvas)
     {
+
         canvas.drawRect(LEFTCOORDINATE, TOPCOORDINATE, RIGHTCOORDINATE, BOTTOMCOORDINATE, this.backgroundPaint);
+
 
 
         // draws the black circle and multiplier text object

@@ -150,8 +150,8 @@ public class GameManager implements Observer
             float r = (float)this.view.getHeight() / this.view.getWidth();
 
             // convert touch coordinates into OpenGL coordinates
-            float newX = (-(event.getX() * 2) / this.view.getWidth() + 1f) / r;
-            float newY = -(event.getY() * 2) / this.view.getHeight() + 1f;
+            float newX = (-(event.getX() * 2) / this.view.getWidth()) / r;
+            float newY = -(event.getY() * 2) / this.view.getHeight();
 
             if(event.getAction() == MotionEvent.ACTION_UP)
             {
@@ -160,10 +160,10 @@ public class GameManager implements Observer
                 {
                     gameClock.stopTime();
 
-                    if (this.gameOverScreen.getGameOverButton(newX, newY) == 2)
+                    if (this.gameOverScreen.getGameOverButton(event.getX(), event.getY()) == 1)
                         GameView.activity.finish();
 
-                    else if (this.gameOverScreen.getGameOverButton(newX, newY) == 1)
+                    else if (this.gameOverScreen.getGameOverButton(event.getX(), event.getY()) == 2)
                         GameView.activity.recreate();
 
                 }
