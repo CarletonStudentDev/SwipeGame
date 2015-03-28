@@ -38,7 +38,7 @@ public class Multiplier
      */
 
     private static final int MAXIMUM = 5,
-                             MAX_MULTIPLIER = 8,
+                             MAX_MULTIPLIER = 16,
                              MULTIPLIER_SCALIER = 2,
                              DEFAULTMULTIPLIER = 1,
                              DEFAULTMETERCOUNT = 0;
@@ -116,8 +116,8 @@ public class Multiplier
                 this.meterCount = DEFAULTMETERCOUNT;
             }
 
-            else if(currentMultiplier >= MAX_MULTIPLIER && meterCount == MAXIMUM)
-                meterCount --;
+            else if(currentMultiplier >= MAX_MULTIPLIER && meterCount >= MAXIMUM)
+                meterCount = MAXIMUM;
             
 
         }

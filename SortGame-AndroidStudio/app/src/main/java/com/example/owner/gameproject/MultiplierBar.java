@@ -54,7 +54,7 @@ public class MultiplierBar
                                LEFTCIRCLECOORDINATE = RIGHTCOORDINATE + (95f/1080) * GameView.WIDTH,
                                TOPCIRCLECOORDINATE = TOPCOORDINATE + (50f/1701) * GameView.HEIGHT,
                                RADIUS = (90f/1080) * GameView.WIDTH,
-                               LEFTTEXTCOORDINATE_1 = LEFTCIRCLECOORDINATE ,
+                               LEFTTEXTCOORDINATE_1 = LEFTCIRCLECOORDINATE,
                                TOPTEXTCOORDINATE = TOPCIRCLECOORDINATE + (20f/1701) * GameView.HEIGHT;
 
 
@@ -104,13 +104,15 @@ public class MultiplierBar
         this.multiplierBarNum = multiplierBarNum;
 
         this.backgroundPaint = new Paint();
+        this.backgroundPaint.setColor(ColorsLoader.loadColorByName("light gray"));
 
         this.currentMultiPaint = new Paint();
-
         this.currentMultiPaint.setColor(ColorsLoader.loadColorByInt(this.findCorrespondingColor()));
 
         this.prevMultiPaint = new Paint();
 
+        this.multiplierCirclePaint = new Paint();
+        this.multiplierCirclePaint.setColor(ColorsLoader.loadColorByName("black"));
 
     }
 

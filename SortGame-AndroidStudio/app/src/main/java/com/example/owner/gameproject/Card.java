@@ -26,7 +26,7 @@ public class Card
      *
      */
 
-    private static final float SIZE = 1.25f;
+    private static final float SIZE = 1.35f;
 
 
     /**
