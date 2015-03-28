@@ -23,7 +23,7 @@ public class MultiplierBar
      */
 
     private static final int BACKGROUNDALPHA = 50,
-                             BLOCKNUM = 4;
+                             BLOCKNUM = 5;
 
 
     /**
@@ -41,23 +41,20 @@ public class MultiplierBar
      *
      * RADIUS float constant representing the radius of the circle in pixels.
      * LEFTTEXTCOORDINATE_1 float constant representing the left coordinate of the text of length 2.
-     * LEFTTEXTCOORDINATE_2 float constant representing the left coordinate of the text of length 3.
-     *
      * TOPTEXTCOORDINATE float constant representing the top coordinate of the text of any length.
      */
 
     private static final float BLOCKSIZE = (175f/1080) * GameView.WIDTH,
                                SPACEBETWEENBLOCKS = (5f/1080) * GameView.WIDTH,
                                BACKGROUNDMULTIPLIER = (BLOCKSIZE + SPACEBETWEENBLOCKS) * BLOCKNUM - SPACEBETWEENBLOCKS,
-                               LEFTCOORDINATE = (20f/1080) * GameView.WIDTH,
+                               LEFTCOORDINATE = 0f,
                                RIGHTCOORDINATE = LEFTCOORDINATE + BACKGROUNDMULTIPLIER,
-                               TOPCOORDINATE = (170f/1701) * GameView.HEIGHT,
-                               BOTTOMCOORDINATE = TOPCOORDINATE + (150f/1701) * GameView.HEIGHT,
-                               LEFTCIRCLECOORDINATE = RIGHTCOORDINATE + (150f/1080) * GameView.WIDTH,
-                               TOPCIRCLECOORDINATE = TOPCOORDINATE + (80.75f/1701) * GameView.HEIGHT,
-                               RADIUS = (100f/1080) * GameView.WIDTH,
-                               LEFTTEXTCOORDINATE_1 = LEFTCIRCLECOORDINATE - (40f/1080) * GameView.WIDTH,
-                               LEFTTEXTCOORDINATE_2 = LEFTCIRCLECOORDINATE - (70f/1080) * GameView.WIDTH,
+                               TOPCOORDINATE = (220f/1701) * GameView.HEIGHT,
+                               BOTTOMCOORDINATE = TOPCOORDINATE + (90f/1701) * GameView.HEIGHT,
+                               LEFTCIRCLECOORDINATE = RIGHTCOORDINATE + (95f/1080) * GameView.WIDTH,
+                               TOPCIRCLECOORDINATE = TOPCOORDINATE + (50f/1701) * GameView.HEIGHT,
+                               RADIUS = (90f/1080) * GameView.WIDTH,
+                               LEFTTEXTCOORDINATE_1 = LEFTCIRCLECOORDINATE ,
                                TOPTEXTCOORDINATE = TOPCIRCLECOORDINATE + (20f/1701) * GameView.HEIGHT;
 
 
@@ -133,6 +130,9 @@ public class MultiplierBar
 
         this.currentMultiPaint.setColor(ColorsLoader.loadColorByInt(this.findCorrespondingColor()));
 
+        if (this.multiplier > 8)
+            this.currentMultiPaint.setColor(this.prevMultiPaint.getColor());
+
         if (this.multiplier > 1)
             this.prevMultiPaint.setColor(ColorsLoader.loadColorByInt(this.findCorrespondingColor() - 1));
 
@@ -179,9 +179,6 @@ public class MultiplierBar
 
 
             this.multiplierTextObject.setText("x" + this.multiplier);
-
-            if (multiplierTextObject.getText().length() > 2)
-                this.multiplierTextObject.setXcoordinate(LEFTTEXTCOORDINATE_2);
 
             canvas.drawCircle(LEFTCIRCLECOORDINATE, TOPCIRCLECOORDINATE, RADIUS, this.multiplierCirclePaint);
             this.multiplierTextObject.draw(canvas);
