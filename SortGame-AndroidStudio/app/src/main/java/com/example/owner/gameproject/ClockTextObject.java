@@ -9,15 +9,28 @@ import android.graphics.Typeface;
  * This class is a subclass of TextObject.
  *
  * @author Jeton Sinoimeri
- * @version 1.0
+ * @version 1.1
  * @since 2015-03-27
  */
+
 public class ClockTextObject extends TextObject
 {
 
+    /**
+     * textSize float value representing the text size to be displayed on screen.
+     *
+     */
+
     private float textSize;
 
+
+    /**
+     * paint Paint instance representing the color of the text being displayed on screen.
+     */
+
     private Paint paint;
+
+
 
     /**
      * Constructor for the TextObject class.
@@ -37,6 +50,7 @@ public class ClockTextObject extends TextObject
         this.paint = new Paint(this.getPaint());
     }
 
+
     /**
      * Setter for the text.
      *
@@ -51,7 +65,7 @@ public class ClockTextObject extends TextObject
         if (text.length() < 2)
            text = "0" + text;
 
-        if (text.equals("01"))
+        if (text.equals("01") || text.equals("02") || text.equals("03"))
         {
             paint.setColor(ColorsLoader.loadColorByName("emergency red"));
             paint.setTextSize(this.textSize + (40f/1080) *GameView.WIDTH);
@@ -59,31 +73,8 @@ public class ClockTextObject extends TextObject
             this.setPaint(paint);
         }
 
-        else if (text.equals("02"))
-        {
-            paint.setColor(ColorsLoader.loadColorByName("emergency red"));
-            paint.setTextSize(this.textSize + (40f/1080) *GameView.WIDTH);
 
-            this.setPaint(paint);
-        }
-
-        else if (text.equals("03"))
-        {
-            paint.setColor(ColorsLoader.loadColorByName("emergency red"));
-            paint.setTextSize(this.textSize + (40f/1080) *GameView.WIDTH);
-
-            this.setPaint(paint);
-        }
-
-        else if (text.equals("04"))
-        {
-            paint.setColor(ColorsLoader.loadColorByName("dark yellow"));
-            paint.setTextSize(this.textSize + (20f/1080) *GameView.WIDTH);
-
-            this.setPaint(paint);
-        }
-
-        else if (text.equals("05"))
+        else if (text.equals("04") || text.equals("05"))
         {
             paint.setColor(ColorsLoader.loadColorByName("dark yellow"));
             paint.setTextSize(this.textSize + (20f/1080) *GameView.WIDTH);

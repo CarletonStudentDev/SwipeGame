@@ -35,9 +35,6 @@ public class GameManager implements Observer
     /** card: Card instance representing the card at center of screen.*/
     private Card card;
 
-    /** view: GameView instance representing the view of the app.*/
-    private GameView view;
-
     /** gameBoard: GameBoard instance representing board of the game.*/
     private GameBoard gameBoard;
 
@@ -87,13 +84,11 @@ public class GameManager implements Observer
 
     /**
      * Constructor for the GameManager class.
-     * @param gameview GameView instance representing the SurfaceView of the app.
      * @param gameTime Long value representing the amount of time at start of game.
      */
 
-    public GameManager(GameView gameview, long gameTime)
+    public GameManager(long gameTime)
     {
-        view = gameview;
         gameFinished = false;
         timedOut = false;
         endless = false;
@@ -151,10 +146,8 @@ public class GameManager implements Observer
     {
         if (event != null)
         {
-
             if(event.getAction() == MotionEvent.ACTION_UP)
             {
-
                 if (gameFinished)
                 {
                     if (this.gameOverScreen.getGameOverButton(event.getX(), event.getY()) == 1)
@@ -168,11 +161,8 @@ public class GameManager implements Observer
                 else if (this.gameBoard.getQuadrantColor(event.getX(), event.getY()) == this.card.getColorId())
                     this.correct();
 
-
-
                 else if (this.gameBoard.getQuadrantColor(event.getX(), event.getY()) != 0)
                     this.incorrect();
-
             }
 
              /*if (event.getAction() == MotionEvent.ACTION_MOVE)

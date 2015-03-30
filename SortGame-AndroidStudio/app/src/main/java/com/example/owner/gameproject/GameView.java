@@ -3,7 +3,6 @@ package com.example.owner.gameproject;
 import android.app.Activity;
 import android.graphics.Canvas;
 import android.graphics.Typeface;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -109,7 +108,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
         HEIGHT = getHeight();
 
         gameLoopThread = new GameLoopThread(this);
-        this.gameManager = new GameManager(this, gameTime);
+        this.gameManager = new GameManager(gameTime);
 
         gameLoopThread.setRunning(true);
         gameLoopThread.start();

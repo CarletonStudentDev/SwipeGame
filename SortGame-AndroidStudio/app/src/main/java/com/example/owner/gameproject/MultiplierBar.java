@@ -9,7 +9,7 @@ import android.graphics.Typeface;
  * the multiplier bar on the screen.
  *
  * @author Jeton Sinoimeri
- * @version 1.2
+ * @version 1.5
  * @since 2015-03-19
  *
  */
@@ -18,12 +18,11 @@ public class MultiplierBar
 {
 
     /**
-     * BACKGROUNDALPHA integer constant representing the transparency of the background multiplier
      * BLOCKNUM integer constant representing the number of blocks to fill before multiplier increased.
+     *
      */
 
-    private static final int BACKGROUNDALPHA = 50,
-                             BLOCKNUM = 5;
+    private static final int BLOCKNUM = 5;
 
 
     /**
@@ -40,27 +39,27 @@ public class MultiplierBar
      * TOPCIRCLECOORDINATE float constant representing the top coordinate of the circle in pixels.
      *
      * RADIUS float constant representing the radius of the circle in pixels.
-     * LEFTTEXTCOORDINATE_1 float constant representing the left coordinate of the text of length 2.
      * TOPTEXTCOORDINATE float constant representing the top coordinate of the text of any length.
+     *
      */
 
-    private static final float BLOCKSIZE = (175f/1080) * GameView.WIDTH,
+    private static final float BLOCKSIZE = (173f/1080) * GameView.WIDTH,
                                SPACEBETWEENBLOCKS = (5f/1080) * GameView.WIDTH,
                                BACKGROUNDMULTIPLIER = (BLOCKSIZE + SPACEBETWEENBLOCKS) * BLOCKNUM - SPACEBETWEENBLOCKS,
                                LEFTCOORDINATE = 0f,
                                RIGHTCOORDINATE = LEFTCOORDINATE + BACKGROUNDMULTIPLIER,
                                TOPCOORDINATE = (220f/1701) * GameView.HEIGHT,
                                BOTTOMCOORDINATE = TOPCOORDINATE + (90f/1701) * GameView.HEIGHT,
-                               LEFTCIRCLECOORDINATE = RIGHTCOORDINATE + (95f/1080) * GameView.WIDTH,
+                               LEFTCIRCLECOORDINATE = RIGHTCOORDINATE + (97f/1080) * GameView.WIDTH,
                                TOPCIRCLECOORDINATE = TOPCOORDINATE + (50f/1701) * GameView.HEIGHT,
                                RADIUS = (90f/1080) * GameView.WIDTH,
-                               LEFTTEXTCOORDINATE_1 = LEFTCIRCLECOORDINATE,
                                TOPTEXTCOORDINATE = TOPCIRCLECOORDINATE + (20f/1701) * GameView.HEIGHT;
 
 
 
     /**
      * multiplierTextObject TextObject instance representing the text to be displayed on screen.
+     *
      */
 
     private TextObject multiplierTextObject;
@@ -68,6 +67,7 @@ public class MultiplierBar
     /**
      * multiplierBarNum integer value representing the amount of correct answers.
      * multiplier integer value representing the multiplier number for multiplying the score.
+     *
      */
 
     private int multiplierBarNum,
@@ -78,6 +78,7 @@ public class MultiplierBar
      * currentMutliPaint Paint instance representing the color of the current multiplier.
      * multiplierCirclePaint Paint instance representing the color of the multiplier circle to show
      *                       the multiplier text.
+     *
      */
 
     private Paint backgroundPaint,
@@ -93,13 +94,14 @@ public class MultiplierBar
      * @param multiplierBarNum integer value representing the amount of correct answers.
      * @param typeface Typeface object representing the font type of the text
      * @param textColor integer value obtained from ColorLoader representing the color of the text.
+     *
      */
 
     public MultiplierBar(int multiplierNum, int multiplierBarNum, Typeface typeface, int textColor)
     {
         this.multiplier = multiplierNum;
-        this.multiplierTextObject = new TextObject("x" + multiplierNum, LEFTTEXTCOORDINATE_1,
-                                                   TOPTEXTCOORDINATE, typeface, textColor, (100f/1080) * GameView.WIDTH);
+        this.multiplierTextObject = new TextObject("x" + multiplierNum, LEFTCIRCLECOORDINATE, TOPTEXTCOORDINATE,
+                                                   typeface, textColor, (100f/1080) * GameView.WIDTH);
 
         this.multiplierBarNum = multiplierBarNum;
 
@@ -123,6 +125,7 @@ public class MultiplierBar
      * @param multiplierNum integer value representing the multiplier number for multiplying the score.
      * @param multiplierBarNum integer value representing the amount of correct answers for that
      *                         particular multiplier number.
+     *
      */
 
     public void setMultiplierValues(int multiplierNum, int multiplierBarNum)
@@ -145,6 +148,7 @@ public class MultiplierBar
      * Finds the corresponding multiplier bar color.
      *
      * @return integer value representing the color of the multiplier bar color.
+     *
      */
 
     private int findCorrespondingColor()
@@ -159,13 +163,12 @@ public class MultiplierBar
      *
      * @see android.graphics.Canvas
      * @param canvas Canvas instance representing android.graphics.Canvas class.
+     *
      */
 
     public void draw(Canvas canvas)
     {
-
         canvas.drawRect(LEFTCOORDINATE, TOPCOORDINATE, RIGHTCOORDINATE, BOTTOMCOORDINATE, this.backgroundPaint);
-
 
 
         // draws the black circle and multiplier text object
@@ -178,7 +181,6 @@ public class MultiplierBar
                 float right = left + BLOCKSIZE;
                 canvas.drawRect(left, TOPCOORDINATE, right, BOTTOMCOORDINATE, this.prevMultiPaint);
             }
-
 
             this.multiplierTextObject.setText("x" + this.multiplier);
 
@@ -194,8 +196,6 @@ public class MultiplierBar
             float right = left + BLOCKSIZE;
             canvas.drawRect(left, TOPCOORDINATE, right, BOTTOMCOORDINATE, this.currentMultiPaint);
         }
-
-
 
     }
 }
