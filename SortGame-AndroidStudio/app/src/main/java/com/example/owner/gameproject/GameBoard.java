@@ -10,7 +10,7 @@ import android.graphics.Paint;
  * discarded colored card.
  *
  * @author Jeton Sinoimeri
- * @version 1.2
+ * @version 1.5
  * @since 2015-03-08
  */
 
@@ -24,8 +24,9 @@ public class GameBoard
      * blueCircleColor android.graphics.Paint instance representing color blue.
      * greenCircleColor android.graphics.Paint instance representing color green.
      * purpleCircleColor android.graphics.Paint instance representing color purple.
+     * darkBlueTopBarColor android.graphics.Paint instance representing color dark blue.
      */
-    private Paint redCircleColor, blueCircleColor,  greenCircleColor, purpleCircleColor, darkBlue;
+    private Paint redCircleColor, blueCircleColor,  greenCircleColor, purpleCircleColor, darkBlueTopBarColor;
 
     /** Constructor for the GameBoard class.*/
     public GameBoard()
@@ -42,8 +43,8 @@ public class GameBoard
         this.purpleCircleColor = new Paint();
         this.purpleCircleColor.setColor(ColorsLoader.loadColorByName("purple"));
 
-        this.darkBlue = new Paint();
-        this.darkBlue.setColor(ColorsLoader.loadColorByName("darkBlue"));
+        this.darkBlueTopBarColor = new Paint();
+        this.darkBlueTopBarColor.setColor(ColorsLoader.loadColorByName("darkBlue"));
     }
 
     /**
@@ -79,7 +80,7 @@ public class GameBoard
      */
     private boolean redTouched(float x, float y)
     {
-        return (x <= (500f/1080)*GameView.WIDTH) && (y <= (950f/1920)*GameView.HEIGHT);
+        return (x <= (330f/1080) * GameView.WIDTH) && (y <= (875f/1920) * GameView.HEIGHT && y >= (550f/1920) * GameView.HEIGHT);
     }
     /**
      * Checks if the color green is touched.
@@ -90,7 +91,7 @@ public class GameBoard
      */
     private boolean greenTouched(float x, float y)
     {
-        return (x >= (600f/1080)*GameView.WIDTH) && (y <= (950f/1920)*GameView.HEIGHT);
+        return (x >= (745f/1080)*GameView.WIDTH) && (y <= (875f/1920)*GameView.HEIGHT && y >= (550f/1920) * GameView.HEIGHT);
     }
 
     /**
@@ -102,7 +103,7 @@ public class GameBoard
      */
     private boolean blueTouched(float x, float y)
     {
-        return (x <= (500f/1080)*GameView.WIDTH) && (y >= (1380f/1920)*GameView.HEIGHT);
+        return (x <= (330f/1080)*GameView.WIDTH) && (y >= (1580f/1920)*GameView.HEIGHT);
     }
 
     /**
@@ -114,7 +115,7 @@ public class GameBoard
      */
     private boolean purpleTouched(float x, float y)
     {
-        return (x >= (600f/1080)*GameView.WIDTH) && (y >= (1380f/1920)*GameView.HEIGHT);
+        return (x >= (745f/1080)*GameView.WIDTH) && (y >= (1580f/1920)*GameView.HEIGHT);
     }
 
     /**
@@ -125,7 +126,7 @@ public class GameBoard
      */
     public void draw(Canvas canvas)
     {
-        canvas.drawRect(0f, 0f, GameView.WIDTH, (100f/1080f)*GameView.HEIGHT, this.darkBlue);
+        canvas.drawRect(0f, 0f, GameView.WIDTH, (100f/1080f)*GameView.HEIGHT, this.darkBlueTopBarColor);
         canvas.drawCircle((175f/1080)*GameView.WIDTH,0.9f*GameView.HEIGHT, RADIUS, this.blueCircleColor);
         canvas.drawCircle((905f/1080)*GameView.WIDTH,0.9f*GameView.HEIGHT, RADIUS, this.purpleCircleColor);
 

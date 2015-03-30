@@ -112,7 +112,11 @@ public class GameManager implements Observer
         timer = new ClockTextObject("" + gameClock.getRemainingTimeLeft(), (525f / 1080) * GameView.WIDTH, (550f / 1701) * GameView.HEIGHT,
                     GameView.typeface, ColorsLoader.loadColorByName("black"), (225f / 1080) * GameView.WIDTH);
 
-        gameOverScreen = new GameOverScreen(view, GameView.typeface, ColorsLoader.loadColorByName("white"));
+
+        if (endless)
+            timer.setText(" ∞");
+
+        gameOverScreen = new GameOverScreen(GameView.typeface, ColorsLoader.loadColorByName("white"));
 
         fullLivesBitmap = BitmapFactory.decodeResource(GameView.activity.getResources(), R.drawable.fullheart);
         fullLivesBitmap = Bitmap.createScaledBitmap(fullLivesBitmap, (int)((100f/1080) * GameView.WIDTH), (int)((100f/1080) * GameView.WIDTH), true);
@@ -147,19 +151,12 @@ public class GameManager implements Observer
     {
         if (event != null)
         {
-            float r = (float)this.view.getHeight() / this.view.getWidth();
-
-            // convert touch coordinates into OpenGL coordinates
-            float newX = (-(event.getX() * 2) / this.view.getWidth()) / r;
-            float newY = -(event.getY() * 2) / this.view.getHeight();
 
             if(event.getAction() == MotionEvent.ACTION_UP)
             {
 
                 if (gameFinished)
                 {
-                    gameClock.stopTime();
-
                     if (this.gameOverScreen.getGameOverButton(event.getX(), event.getY()) == 1)
                         GameView.activity.finish();
 
@@ -168,15 +165,14 @@ public class GameManager implements Observer
 
                 }
 
-                else
-                {
-                    if (this.gameBoard.getQuadrantColor(event.getX(), event.getY()) == this.card.getColorId())
-                        this.correct();
+                else if (this.gameBoard.getQuadrantColor(event.getX(), event.getY()) == this.card.getColorId())
+                    this.correct();
 
-                    else if (this.gameBoard.getQuadrantColor(newX, newY) != 0)
-                        this.incorrect();
 
-                }
+
+                else if (this.gameBoard.getQuadrantColor(event.getX(), event.getY()) != 0)
+                    this.incorrect();
+
             }
 
              /*if (event.getAction() == MotionEvent.ACTION_MOVE)
@@ -258,7 +254,7 @@ public class GameManager implements Observer
 
     private void gameOver(Canvas canvas)
     {
-        if (game.getLivesFinished() || timedOut)
+        if ((game.getLivesFinished() || timedOut) && !gameFinished)
         {
             gameFinished = true;
 
@@ -272,9 +268,11 @@ public class GameManager implements Observer
 
             gameOverScreen.setScores(game.getScore(), 0);
 
-            gameOverScreen.draw(canvas);
-
+            gameClock.stopTime();
         }
+
+        if (gameFinished)
+            gameOverScreen.draw(canvas);
 
     }
 
@@ -301,14 +299,11 @@ public class GameManager implements Observer
         for(int i = 0; i < game.getLives(); i++)
             canvas.drawBitmap(fullLivesBitmap, ((700f+(i*120))/1080)*GameView.WIDTH, (37f/1701)*GameView.HEIGHT, null);
 
+        if (!(this.timedOut || endless))
+            timer.setText("" + gameClock.getRemainingTimeLeft());
+
         gameOver(canvas);
 
-        if (!this.timedOut)
-            if(!endless) {
-                timer.setText("" + gameClock.getRemainingTimeLeft());
-            }else{
-                timer.setText(" ∞");
-            }
     }
 
     /**

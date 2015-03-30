@@ -3,7 +3,6 @@ package com.example.owner.gameproject;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Typeface;
-import android.view.View;
 
 /**
  * GameOverScreen class displays the reason for the loss
@@ -12,7 +11,7 @@ import android.view.View;
  * to either go back to main menu or to play again.
  *
  * @author Jeton Sinoimeri
- * @version 1.2
+ * @version 1.5
  * @since 2015-03-18
  *
  */
@@ -61,6 +60,7 @@ public class GameOverScreen
 
     /**
      * paint Paint instance representing the color, and font of the TextObject.
+     * paintSquares Paint instance representing the color of the game over buttons.
      *
      */
 
@@ -70,27 +70,29 @@ public class GameOverScreen
     /**
      * Constructor for the GameOverScreen class.
      *
-     * @param view View instance representing the view of the application.
      * @param typeface Typeface object representing the font type of the text.
      * @param textColor integer value obtained from getResources() representing
      *                  the color of the text.
      *
      */
 
-    public GameOverScreen(View view, Typeface typeface, int textColor)
+    public GameOverScreen(Typeface typeface, int textColor)
     {
         this.lossReason = new TextObject("", (540f/1080)*GameView.WIDTH, (325f/1701)*GameView.HEIGHT, typeface, textColor, (150f/1080) * GameView.WIDTH);
-        this.score = new TextObject("Score:", (540f/1080)*GameView.WIDTH, (500f/1701)*GameView.HEIGHT, typeface, textColor , (150f/1080) * GameView.WIDTH);
-        this.scoreNum = new TextObject(SCORESTRING, (540f/1080)*GameView.WIDTH, (650f/1701)*GameView.HEIGHT, typeface, textColor , (150f/1080) * GameView.WIDTH);
-        this.highScore = new TextObject("High Score:", (540f/1080)*GameView.WIDTH, (800f/1701)*GameView.HEIGHT, typeface, textColor , (150f/1080) * GameView.WIDTH);
-        this.highScoreNum = new TextObject(HIGHSCORESTRING, (540f/1080)*GameView.WIDTH, (950f/1701)*GameView.HEIGHT, typeface, textColor , (150f/1080) * GameView.WIDTH);
+
+        this.score = new TextObject(SCORESTRING, (540f/1080)*GameView.WIDTH, (500f/1701)*GameView.HEIGHT, typeface, textColor , (150f/1080) * GameView.WIDTH);
+        this.scoreNum = new TextObject("", (540f/1080)*GameView.WIDTH, (650f/1701)*GameView.HEIGHT, typeface, textColor , (150f/1080) * GameView.WIDTH);
+
+        this.highScore = new TextObject(HIGHSCORESTRING, (540f/1080)*GameView.WIDTH, (800f/1701)*GameView.HEIGHT, typeface, textColor , (150f/1080) * GameView.WIDTH);
+        this.highScoreNum = new TextObject("", (540f/1080)*GameView.WIDTH, (950f/1701)*GameView.HEIGHT, typeface, textColor , (150f/1080) * GameView.WIDTH);
+
         this.backToMenu = new TextObject("Back", (350f/1080)*GameView.WIDTH, (1400f/1701)*GameView.HEIGHT, typeface, textColor, (100f/1080) * GameView.WIDTH);
         this.retryGame = new TextObject("Retry", (750f/1080)*GameView.WIDTH, (1400f/1701)*GameView.HEIGHT, typeface, textColor, (100f/1080) * GameView.WIDTH);
 
-        this.leftCoordinate = 0.1f * view.getWidth();
-        this.rightCoordinate = 0.9f * view.getWidth();
-        this.topCoordinate = 0.1f * view.getHeight();
-        this.bottomCoordinate =  0.9f * view.getHeight();
+        this.leftCoordinate = 0.1f * GameView.WIDTH;
+        this.rightCoordinate = 0.9f * GameView.WIDTH;
+        this.topCoordinate = 0.1f * GameView.HEIGHT;
+        this.bottomCoordinate =  0.9f * GameView.HEIGHT;
 
         this.paint = new Paint();
         this.paint.setColor(ColorsLoader.loadColorByName("darkBlue"));
@@ -125,20 +127,20 @@ public class GameOverScreen
      * @param xCoordinate float value representing the x-coordinate in pixels.
      * @param yCoordinate float value representing the y-coordinate in pixels.
      * @return integer representing the corresponding game over button.
+     *
      */
 
     public int getGameOverButton(float xCoordinate, float yCoordinate)
     {
-
         if( xCoordinate >= (200f/1080)*GameView.WIDTH && xCoordinate <= (500f/1080)*GameView.WIDTH
-                && yCoordinate>=(1275f/1701)*GameView.HEIGHT && yCoordinate<=(1470f/1701)*GameView.HEIGHT){
+                && yCoordinate >= (1275f/1701)*GameView.HEIGHT && yCoordinate <= (1470f/1701)*GameView.HEIGHT)
             return 1;
-        } else if(xCoordinate >=(600f/1080)*GameView.WIDTH && xCoordinate <= (900f/1080)*GameView.WIDTH
-            && yCoordinate>=(1275f/1701)*GameView.HEIGHT && yCoordinate<=(1470f/1701)*GameView.HEIGHT){
+
+        else if(xCoordinate >=(600f/1080)*GameView.WIDTH && xCoordinate <= (900f/1080)*GameView.WIDTH
+               && yCoordinate>=(1275f/1701)*GameView.HEIGHT && yCoordinate <= (1470f/1701)*GameView.HEIGHT)
             return 2;
-        }else{
-            return 0;
-        }
+
+        return 0;
 
     }
 
@@ -168,8 +170,8 @@ public class GameOverScreen
     {
         canvas.drawRect(leftCoordinate, topCoordinate, rightCoordinate, bottomCoordinate, paint);
         this.lossReason.draw(canvas);
-        this.score.draw(canvas);
 
+        this.score.draw(canvas);
         this.scoreNum.draw(canvas);
 
         this.highScore.draw(canvas);
