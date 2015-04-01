@@ -93,7 +93,7 @@ public class GameManager implements Observer
         timedOut = false;
         endless = false;
 
-        card = new Card();
+        card = new Card(GameView.typeface, ColorsLoader.loadColorByName("red"));
         gameBoard = new GameBoard();
         game = new Game();
 
@@ -223,7 +223,6 @@ public class GameManager implements Observer
 
     private void setMultiValueCardColor()
     {
-        card.generateNewColor();
         multiplierBar.setMultiplierValues(game.getMultiplierNum(), game.getBarNum());
     }
 
@@ -276,8 +275,8 @@ public class GameManager implements Observer
 
     public void draw(Canvas canvas)
     {
-        card.draw(canvas);
         gameBoard.draw(canvas);
+        card.draw(canvas);
 
         score.draw(canvas);
         multiplierBar.draw(canvas);

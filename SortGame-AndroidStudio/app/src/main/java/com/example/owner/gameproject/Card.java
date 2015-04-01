@@ -2,6 +2,7 @@ package com.example.owner.gameproject;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 
 import java.util.Random;
 
@@ -21,44 +22,18 @@ import java.util.Random;
 public class Card
 {
 
-    /**
-     * SIZE constant float value representing the size of the rectangle.
-     *
-     */
-
-    private static final float SIZE = 1.35f;
+    private final Paint red, blue, green;
+    private TextObject word;
+    public String WORDSTRING;
 
 
     /**
-     * DEFAULTNUMPATTERNATTR integer value representing the default number
-     *                       of pattern attributes for a Card.
+     * color android.graphics.Paint instance representing the color of the word.
      *
      */
 
-    private static final int DEFAULTNUMPATTERNATTR = 5;
-
-
-    /**
-     * color android.graphics.Paint instance representing the color of the card.
-     *
-     */
-
-    private Paint color;
-
-
-    /**
-     * xCoordinate1 float value representing the left side's pixel x-coordinate of rectangle.
-     * yCoordinate1 float value representing the left side's pixel y-coordinate of rectangle.
-     * xCoordinate2 float value representing the right side's pixel x-coordinate of rectangle.
-     * yCoordinate2 float value representing the right side's pixel y-coordinate of rectangle.
-     *
-     */
-
-    private float xCoordinate1,
-                  yCoordinate1,
-                  xCoordinate2,
-                  yCoordinate2;
-
+    private int color = 0;
+    private TextObject backToMenu;
 
 
     /**
@@ -66,18 +41,27 @@ public class Card
      *
      */
 
-    public Card()
+    public Card(Typeface typeface, int color)
     {
-        color = new Paint();
+        WORDSTRING = randomColorString();
+        this.word = new TextObject("Blue", (540f/1080)*GameView.WIDTH, (1100f/1701)*GameView.HEIGHT, typeface, color, (250f/1080) * GameView.WIDTH);
 
-        float offsetFromCentre = SIZE * GameView.WIDTH/6;
+        this.red = new Paint();
+        this.red.setColor(ColorsLoader.loadColorByName("red"));
 
-        xCoordinate1 = GameView.WIDTH/2 - offsetFromCentre;
-        yCoordinate1 = GameView.HEIGHT*0.625f - offsetFromCentre;
-        xCoordinate2 = GameView.WIDTH/2 + offsetFromCentre;
-        yCoordinate2 = GameView.HEIGHT*0.625f + offsetFromCentre;
 
-        this.generateNewColor();
+        this.blue = new Paint();
+        this.blue.setColor(ColorsLoader.loadColorByName("blue"));
+
+
+        this.green = new Paint();
+        this.green.setColor(ColorsLoader.loadColorByName("green"));
+
+    }
+
+    private String randomColorString() {
+
+        return "Blue";
     }
 
 
@@ -100,48 +84,13 @@ public class Card
     private int getRandValue(int low, int high)
     {
         Random random = new Random();
+        int randomInt = 99999;
 
-        int randomInt = random.nextInt(high-low) + low;
+        while(randomInt!=color)
+            randomInt = random.nextInt(high-low) + low;
 
         return randomInt;
     }
-
-
-    /**
-     * Generates a random color and checks if the generated
-     * color is the same color as the previous. If it is the
-     * method keeps generating a random color until they are
-     * different.
-     *
-     */
-
-    public void generateNewColor()
-    {
-        Paint currentColor = new Paint();
-        currentColor.setColor(ColorsLoader
-                .loadColorByInt(getRandValue(1, DEFAULTNUMPATTERNATTR)));
-
-        while (currentColor.getColor() == color.getColor())
-            currentColor.setColor(ColorsLoader
-                    .loadColorByInt(getRandValue(1, DEFAULTNUMPATTERNATTR)));
-
-        color = currentColor;
-    }
-
-
-    /**
-     * Getter for the color of the card.
-     *
-     * @return color Paint instance representing the color of
-     *               the card.
-     *
-     */
-
-    public int getColorId()
-    {
-        return color.getColor();
-    }
-
 
     /**
      * Draws to android's canvas.
@@ -152,6 +101,15 @@ public class Card
 
     public void draw(Canvas canvas)
     {
-        canvas.drawRect(xCoordinate1, yCoordinate1, xCoordinate2, yCoordinate2, color);
+        this.word.draw(canvas);
+
     }
+
+    public int getColorId()
+    {
+        return color;
+    }
+
+
+
 }
