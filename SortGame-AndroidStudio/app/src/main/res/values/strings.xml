@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">GameProject</string>
+    <string name="normal_mode">Normal</string>
+    <string name="marathon_mode">Marathon</string>
+    <string name="endless_mode"> Endless</string>
+    <string name="sound_off_toggleButton">OFF</string>
+    <string name="sound_on_toggleButton">ON</string>
+
+
+</resources>
