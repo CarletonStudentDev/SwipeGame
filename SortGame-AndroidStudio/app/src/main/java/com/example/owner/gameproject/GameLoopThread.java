@@ -32,19 +32,16 @@ public class GameLoopThread extends Thread
             try
             {
                 canvas = view.getHolder().lockCanvas();
+                view.draw(canvas);
 
-
-                synchronized (view.getHolder())
-                {
-                    view.draw(canvas);
-                }
             }
+
+            catch (IllegalArgumentException iae) { }
 
             finally
             {
                 if (canvas != null)
                     view.getHolder().unlockCanvasAndPost(canvas);
-
             }
 
         }
