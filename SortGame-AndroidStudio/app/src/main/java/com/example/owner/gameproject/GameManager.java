@@ -171,18 +171,19 @@ public class GameManager implements Observer
                     else if (this.gameOverScreen.getGameOverButton(event.getX(), event.getY()) == 2)
                         GameView.activity.recreate();
 
-                }
-
-                if(stroopMode==true){
-                    if (this.gameBoard.getQuadrantColor(event.getX(), event.getY()) == this.stroop.getColorId())
-                        this.correct();
-                    else if (this.gameBoard.getQuadrantColor(event.getX(), event.getY()) != 0)
-                        this.incorrect();
                 }else {
-                    if (this.gameBoard.getQuadrantColor(event.getX(), event.getY()) == this.card.getColorId())
-                        this.correct();
-                    else if (this.gameBoard.getQuadrantColor(event.getX(), event.getY()) != 0)
-                        this.incorrect();
+
+                    if (stroopMode == true) {
+                        if (this.gameBoard.getQuadrantColor(event.getX(), event.getY()) == this.stroop.getColorId())
+                            this.correct();
+                        else if (this.gameBoard.getQuadrantColor(event.getX(), event.getY()) != 0)
+                            this.incorrect();
+                    } else {
+                        if (this.gameBoard.getQuadrantColor(event.getX(), event.getY()) == this.card.getColorId())
+                            this.correct();
+                        else if (this.gameBoard.getQuadrantColor(event.getX(), event.getY()) != 0)
+                            this.incorrect();
+                    }
                 }
             }
 
@@ -310,7 +311,6 @@ public class GameManager implements Observer
         if (!(this.timedOut || endless))
             timer.setText("" + gameClock.getRemainingTimeLeft());
 
-        if((cardsCorrect%3)==0 && cardsCorrect!=0 && plus2secondsSeen<5)
             plus2seconds.draw(canvas);
             plus2secondsSeen++;
 
