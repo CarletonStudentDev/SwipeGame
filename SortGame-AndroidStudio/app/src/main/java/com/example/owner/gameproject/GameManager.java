@@ -52,7 +52,8 @@ public class GameManager implements Observer
      * timer TextObject instance representing the timer text displaying on the screen.
      */
     private TextObject score,
-                       timer;
+                       timer,
+                        plus2seconds;
 
     /**
      * gameOverScreen GameOverScreen instance representing the stats of the game displayed
@@ -80,6 +81,7 @@ public class GameManager implements Observer
      * gameClock GameClock instance representing the countdown timer of the game.
      */
     private GameClock gameClock;
+    private int cardsCorrect,plus2secondsSeen;
 
 
     /**
@@ -92,6 +94,8 @@ public class GameManager implements Observer
         gameFinished = false;
         timedOut = false;
         endless = false;
+        cardsCorrect = 0;
+        plus2secondsSeen=0;
 
         card = new Card();
         gameBoard = new GameBoard();
@@ -126,6 +130,8 @@ public class GameManager implements Observer
         multiplierBar = new MultiplierBar(game.getMultiplierNum(), game.getBarNum(),
                                           GameView.typeface, ColorsLoader.loadColorByName("white"));
 
+        plus2seconds = new ClockTextObject("+2", (525f / 1080) * GameView.WIDTH, (750f / 1701) * GameView.HEIGHT,
+                GameView.typeface, ColorsLoader.loadColorByName("green"), (225f / 1080) * GameView.WIDTH);
     }
 
     /**
@@ -165,22 +171,6 @@ public class GameManager implements Observer
                     this.incorrect();
             }
 
-             /*if (event.getAction() == MotionEvent.ACTION_MOVE)
-             {
-                float deltaX = (x - mPreviousX) / r / 2f;
-                float deltaY = (y - mPreviousY) / r / 2f;
-                if(renderer.card.inShape(newX, newY))
-                {
-                   renderer.mDeltaX += deltaX;
-                   renderer.mDeltaY += deltaY;
-                }
-
-             }*/
-                //mPreviousX = x;
-                //mPreviousY = y;
-
-
-
             return true;
         }
 
@@ -195,12 +185,16 @@ public class GameManager implements Observer
 
     private void correct()
     {
+        cardsCorrect ++;
         game.correct();
         score.setText("" + game.getScore());
         this.setMultiValueCardColor();
 
         if (!endless)
-            gameClock.addTime(1000L);
+            if((cardsCorrect%3)==0 )
+                gameClock.addTime(2000L);
+                plus2secondsSeen = 0;
+        card.generateNewColor();
     }
 
 
@@ -223,7 +217,6 @@ public class GameManager implements Observer
 
     private void setMultiValueCardColor()
     {
-        card.generateNewColor();
         multiplierBar.setMultiplierValues(game.getMultiplierNum(), game.getBarNum());
     }
 
@@ -256,7 +249,7 @@ public class GameManager implements Observer
 
             this.checkHighScore();
 
-            gameOverScreen.setScores(game.getScore(), 0);
+            gameOverScreen.setScores(game.getScore(), 0, cardsCorrect);
 
             gameClock.stopTime();
         }
@@ -276,8 +269,8 @@ public class GameManager implements Observer
 
     public void draw(Canvas canvas)
     {
-        card.draw(canvas);
         gameBoard.draw(canvas);
+        card.draw(canvas);
 
         score.draw(canvas);
         multiplierBar.draw(canvas);
@@ -291,6 +284,11 @@ public class GameManager implements Observer
 
         if (!(this.timedOut || endless))
             timer.setText("" + gameClock.getRemainingTimeLeft());
+
+        if((cardsCorrect%3)==0 && cardsCorrect!=0 && plus2secondsSeen<5)
+            plus2seconds.draw(canvas);
+            plus2secondsSeen++;
+
 
         gameOver(canvas);
 

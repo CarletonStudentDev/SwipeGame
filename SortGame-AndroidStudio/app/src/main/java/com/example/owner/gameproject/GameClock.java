@@ -15,9 +15,11 @@ public class GameClock extends Observable
     private long remainingTimeLeft;
     private CountDownTimer timer;
     public static long millisInterval = 1000L;
+    public int secondsPassed;
 
     public GameClock(long TimeInMillis)
     {
+        secondsPassed = 0;
         remainingTimeLeft = TimeInMillis;
         this.createNewTimer(TimeInMillis);
     }
@@ -55,6 +57,8 @@ public class GameClock extends Observable
             public void onTick(final long millisUntilFinished)
             {
                 remainingTimeLeft = millisUntilFinished;
+                secondsPassed++;
+
                 //if (remainingTimeLeft / millisInterval < 4)
                 //    MediaSounds.loadPlaySound(R.raw.correct, 1, 1f);
             }
