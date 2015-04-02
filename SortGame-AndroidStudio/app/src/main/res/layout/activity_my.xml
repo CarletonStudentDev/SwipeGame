@@ -37,11 +37,11 @@
         android:layout_width="@dimen/button_size"
         android:layout_height="wrap_content"
         android:layout_below="@+id/normal_mode_button"
-        android:text="@string/marathon_mode"
+        android:text="@string/stroop_mode"
         android:background="@color/menuButton"
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="100dp"
-        android:onClick="openMarathon" />
+        android:onClick="openStroop" />
 
     <Button
         android:id="@+id/endless_mode_button"

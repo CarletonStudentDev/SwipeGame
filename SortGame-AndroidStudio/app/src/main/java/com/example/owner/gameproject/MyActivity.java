@@ -62,9 +62,9 @@ public class MyActivity extends Activity {
     }
 
     /** Called when the user clicks the Marathon button */
-    public void openMarathon(View view)
+    public void openStroop(View view)
     {
-        Intent intent = new Intent(this, StartMarathonActivity.class);
+        Intent intent = new Intent(this, StartStroopActivity.class);
         startActivity(intent);
     }
 

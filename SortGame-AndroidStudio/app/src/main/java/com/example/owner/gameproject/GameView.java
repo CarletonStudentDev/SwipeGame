@@ -23,6 +23,7 @@ import android.view.SurfaceView;
 
 public class GameView extends SurfaceView implements SurfaceHolder.Callback
 {
+    private final boolean stroopMode;
     private SurfaceHolder surfaceHolder;
     private GameLoopThread gameLoopThread;
     private GameManager gameManager;
@@ -36,10 +37,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
     public static Activity activity;
 
 
-    public GameView(Activity appActivity, long gameTime)
+    public GameView(Activity appActivity, long gameTime, boolean stroopMode)
     {
         super(appActivity);
-
+        this.stroopMode = stroopMode;
         typeface = Typeface.createFromAsset(appActivity.getAssets(), "fonts/calibribold.ttf");
 
         surfaceHolder = getHolder();
@@ -108,7 +109,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
         HEIGHT = getHeight();
 
         gameLoopThread = new GameLoopThread(this);
-        this.gameManager = new GameManager(gameTime);
+        this.gameManager = new GameManager(gameTime,stroopMode);
 
         gameLoopThread.setRunning(true);
         gameLoopThread.start();

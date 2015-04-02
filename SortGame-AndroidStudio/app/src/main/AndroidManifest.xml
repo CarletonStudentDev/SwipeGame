@@ -33,8 +33,8 @@
                 android:value="com.example.owner.gameproject.MyActivity" />
         </activity>
         <activity
-            android:name=".StartMarathonActivity"
-            android:label="@string/marathon_mode"
+            android:name=".StartStroopActivity"
+            android:label="@string/stroop_mode"
             android:screenOrientation="portrait"
             android:parentActivityName=".MyActivity" >
             <meta-data

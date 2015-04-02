@@ -2,9 +2,9 @@
 <resources>
 
     <string name="app_name">GameProject</string>
-    <string name="normal_mode">Normal</string>
-    <string name="marathon_mode">Marathon</string>
-    <string name="endless_mode"> Endless</string>
+    <string name="normal_mode">Cards</string>
+    <string name="stroop_mode">Stroop</string>
+    <string name="endless_mode"> Endless Cards</string>
     <string name="sound_off_toggleButton">OFF</string>
     <string name="sound_on_toggleButton">ON</string>
 

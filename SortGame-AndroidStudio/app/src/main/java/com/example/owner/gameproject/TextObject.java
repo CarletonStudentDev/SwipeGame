@@ -111,6 +111,11 @@ public class TextObject
         this.paint = paint;
     }
 
+    public void setColor(int color)
+    {
+        this.paint.setColor(color);
+    }
+
     public Paint getPaint()
     {
         return this.paint;

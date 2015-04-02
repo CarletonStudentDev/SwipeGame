@@ -25,7 +25,8 @@ public class GameOverScreen
      */
 
     private static final String SCORESTRING = "Score: ",
-                                HIGHSCORESTRING = "High Score: ";
+                                HIGHSCORESTRING = "High Score: ",
+                                CARDSPERSEC = "Cards Done: ";
 
 
     /**
@@ -41,7 +42,9 @@ public class GameOverScreen
                        highScore,highScoreNum,
                        lossReason,
                        backToMenu,
-                       retryGame;
+                       retryGame,
+                        cardsPerSec,
+                        cardsPerSecNum;
 
 
     /**
@@ -78,7 +81,7 @@ public class GameOverScreen
 
     public GameOverScreen(Typeface typeface, int textColor)
     {
-        this.lossReason = new TextObject("", (540f/1080)*GameView.WIDTH, (325f/1701)*GameView.HEIGHT, typeface, textColor, (150f/1080) * GameView.WIDTH);
+        this.lossReason = new TextObject("", (540f/1080)*GameView.WIDTH, (350f/1701)*GameView.HEIGHT, typeface, textColor, (150f/1080) * GameView.WIDTH);
 
         this.score = new TextObject(SCORESTRING, (540f/1080)*GameView.WIDTH, (500f/1701)*GameView.HEIGHT, typeface, textColor , (150f/1080) * GameView.WIDTH);
         this.scoreNum = new TextObject("", (540f/1080)*GameView.WIDTH, (650f/1701)*GameView.HEIGHT, typeface, textColor , (150f/1080) * GameView.WIDTH);
@@ -86,15 +89,18 @@ public class GameOverScreen
         this.highScore = new TextObject(HIGHSCORESTRING, (540f/1080)*GameView.WIDTH, (800f/1701)*GameView.HEIGHT, typeface, textColor , (150f/1080) * GameView.WIDTH);
         this.highScoreNum = new TextObject("", (540f/1080)*GameView.WIDTH, (950f/1701)*GameView.HEIGHT, typeface, textColor , (150f/1080) * GameView.WIDTH);
 
-        this.backToMenu = new TextObject("Back", (350f/1080)*GameView.WIDTH, (1400f/1701)*GameView.HEIGHT, typeface, textColor, (100f/1080) * GameView.WIDTH);
-        this.retryGame = new TextObject("Retry", (750f/1080)*GameView.WIDTH, (1400f/1701)*GameView.HEIGHT, typeface, textColor, (100f/1080) * GameView.WIDTH);
+        this.cardsPerSec = new TextObject(CARDSPERSEC, (540f/1080)*GameView.WIDTH, (1100f/1701)*GameView.HEIGHT, typeface, textColor , (150f/1080) * GameView.WIDTH);
+        this.cardsPerSecNum = new TextObject("", (540f/1080)*GameView.WIDTH, (1250f/1701)*GameView.HEIGHT, typeface, textColor , (150f/1080) * GameView.WIDTH);
+
+        this.backToMenu = new TextObject("Back", (350f/1080)*GameView.WIDTH, (1450f/1701)*GameView.HEIGHT, typeface, textColor, (100f/1080) * GameView.WIDTH);
+        this.retryGame = new TextObject("Retry", (750f/1080)*GameView.WIDTH, (1450f/1701)*GameView.HEIGHT, typeface, textColor, (100f/1080) * GameView.WIDTH);
 
         this.leftCoordinate = 0.1f * GameView.WIDTH;
-        this.rightCoordinate = 0.9f * GameView.WIDTH;
         this.topCoordinate = 0.1f * GameView.HEIGHT;
-        this.bottomCoordinate =  0.9f * GameView.HEIGHT;
+        this.rightCoordinate = 0.9f * GameView.WIDTH;
+        this.bottomCoordinate =  0.95f * GameView.HEIGHT;
 
-                this.paint = new Paint();
+        this.paint = new Paint();
         this.paint.setColor(ColorsLoader.loadColorByName("darkBlue"));
 
         this.paintSquares=new Paint();
@@ -114,10 +120,11 @@ public class GameOverScreen
      *
      */
 
-    public void setScores(long score, long highScore)
+    public void setScores(long score, long highScore, int cardsPerSec)
     {
         this.scoreNum.setText("" + score);
         this.highScoreNum.setText("" + highScore);
+        this.cardsPerSecNum.setText("" + cardsPerSec);
     }
 
 
@@ -133,11 +140,11 @@ public class GameOverScreen
     public int getGameOverButton(float xCoordinate, float yCoordinate)
     {
         if( xCoordinate >= (200f/1080)*GameView.WIDTH && xCoordinate <= (500f/1080)*GameView.WIDTH
-                && yCoordinate >= (1275f/1701)*GameView.HEIGHT && yCoordinate <= (1470f/1701)*GameView.HEIGHT)
+                && yCoordinate >= (1325f/1701)*GameView.HEIGHT && yCoordinate <= (1520f/1701)*GameView.HEIGHT)
             return 1;
 
         else if(xCoordinate >=(600f/1080)*GameView.WIDTH && xCoordinate <= (900f/1080)*GameView.WIDTH
-               && yCoordinate>=(1275f/1701)*GameView.HEIGHT && yCoordinate <= (1470f/1701)*GameView.HEIGHT)
+               && yCoordinate>=(1325f/1701)*GameView.HEIGHT && yCoordinate <= (1520f/1701)*GameView.HEIGHT)
             return 2;
 
         return 0;
@@ -177,10 +184,13 @@ public class GameOverScreen
         this.highScore.draw(canvas);
         this.highScoreNum.draw(canvas);
 
-        canvas.drawRect((200f/1080)*GameView.WIDTH, (1275f/1701)*GameView.HEIGHT,(500f/1080)*GameView.WIDTH, (1470f/1701)*GameView.HEIGHT, paintSquares);
+        this.cardsPerSec.draw(canvas);
+        this.cardsPerSecNum.draw(canvas);
+
+        canvas.drawRect((200f/1080)*GameView.WIDTH, (1325f/1701)*GameView.HEIGHT,(500f/1080)*GameView.WIDTH, (1520f/1701)*GameView.HEIGHT, paintSquares);
         this.backToMenu.draw(canvas);
 
-        canvas.drawRect((600f/1080)*GameView.WIDTH, (1275f/1701)*GameView.HEIGHT,(900f/1080)*GameView.WIDTH, (1470f/1701)*GameView.HEIGHT, paintSquares);
+        canvas.drawRect((600f/1080)*GameView.WIDTH, (1325f/1701)*GameView.HEIGHT,(900f/1080)*GameView.WIDTH, (1520f/1701)*GameView.HEIGHT, paintSquares);
         this.retryGame.draw(canvas);
 
     }
