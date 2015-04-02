@@ -311,6 +311,7 @@ public class GameManager implements Observer
         if (!(this.timedOut || endless))
             timer.setText("" + gameClock.getRemainingTimeLeft());
 
+        if((cardsCorrect%3)==0 && cardsCorrect!=0 && plus2secondsSeen<10)
             plus2seconds.draw(canvas);
             plus2secondsSeen++;
 
