@@ -1,8 +1,6 @@
 package com.example.owner.gameproject;
 
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Typeface;
 
 import java.util.Random;
 
@@ -12,16 +10,10 @@ import java.util.Random;
 public class Stroop {
 
     private TextObject word;
+
     public String blueString="Blue",redString="Red",greenString="Green",purpleString="Purple",yellowString="Yellow",orangeString="Orange";
 
-    /**
-     * color android.graphics.Paint instance representing the color of the word.
-     *
-     */
-
     private int color,lastColor=0,num,lastNum=0;
-    private TextObject backToMenu;
-
 
     /**
      * Constructor for the Stroop class.
@@ -30,7 +22,6 @@ public class Stroop {
 
     public Stroop()
     {
-
         this.word = new TextObject(redString, (540f/1080)*GameView.WIDTH, (1100f/1701)*GameView.HEIGHT, GameView.typeface, ColorsLoader.loadColorByName("green"), (250f/1080) * GameView.WIDTH);
         randomColorString();
     }
