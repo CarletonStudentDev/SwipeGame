@@ -277,7 +277,7 @@ public class GameManager implements Observer
 
             this.checkHighScore();
 
-            gameOverScreen.setScores(game.getScore(), 0, cardsCorrect);
+            gameOverScreen.setScores(game.getScore(), 0, cardsCorrect, gameClock.secondsPassed);
 
             gameClock.stopTime();
         }
@@ -318,13 +318,15 @@ public class GameManager implements Observer
         if (!(this.timedOut || endless))
             timer.setText("" + gameClock.getRemainingTimeLeft());
 
-        if(minusHeartsSeen<20 && minusHearts==true)
-            canvas.drawBitmap(minusHeartsBitmap, (400f / 1080) * GameView.WIDTH, (635f / 1701) * GameView.HEIGHT, null);
+        if(minusHeartsSeen <= 20 && minusHearts==true)
+            canvas.drawBitmap(minusHeartsBitmap, (425f / 1080) * GameView.WIDTH, (590f / 1701) * GameView.HEIGHT, null);
             minusHeartsSeen++;
-            minusHearts=false;
+            if(minusHeartsSeen == 20) {
+                minusHearts = false;
+            }
 
 
-        if((cardsCorrect%3)==0 && cardsCorrect!=0 && plus2secondsSeen<10 && minusHearts==false)
+        if((cardsCorrect%3)==0 && cardsCorrect!=0 && plus2secondsSeen<20 && minusHearts==false)
             plus2seconds.draw(canvas);
             plus2secondsSeen++;
 

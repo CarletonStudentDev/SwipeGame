@@ -26,7 +26,7 @@ public class GameOverScreen
 
     private static final String SCORESTRING = "Score: ",
                                 HIGHSCORESTRING = "High Score: ",
-                                CARDSPERSEC = "Cards Done: ";
+                                CARDSPERSEC = "Cards/Sec: ";
 
 
     /**
@@ -58,7 +58,8 @@ public class GameOverScreen
     private float leftCoordinate,
                   topCoordinate,
                   rightCoordinate,
-                  bottomCoordinate;
+                  bottomCoordinate,
+                  calculatedCardsPerSec;
 
 
     /**
@@ -120,11 +121,12 @@ public class GameOverScreen
      *
      */
 
-    public void setScores(long score, long highScore, int cardsPerSec)
+    public void setScores(long score, long highScore, int cardsDone, int secondsPassed)
     {
         this.scoreNum.setText("" + score);
         this.highScoreNum.setText("" + highScore);
-        this.cardsPerSecNum.setText("" + cardsPerSec);
+        calculatedCardsPerSec = (float) cardsDone / (float) secondsPassed;
+        this.cardsPerSecNum.setText("" + String.format("%.3f" , calculatedCardsPerSec));
     }
 
 
@@ -150,7 +152,6 @@ public class GameOverScreen
         return 0;
 
     }
-
 
     /**
      * Setter for the reason the game was lost.
