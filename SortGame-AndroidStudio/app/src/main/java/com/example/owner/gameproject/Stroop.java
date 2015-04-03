@@ -27,9 +27,9 @@ public class Stroop {
     }
 
     public void randomColorString() {
-        num = getRandValue(1,6);
+        num = getRandValue(1,7);
         while(num==lastNum)
-            num = getRandValue(1,6);
+            num = getRandValue(1,7);
 
         if(num==1)
             word.setText(blueString);
@@ -45,9 +45,9 @@ public class Stroop {
             word.setText(orangeString);
         lastNum = num;
 
-        color = getRandValue(1,4);
+        color = getRandValue(1,5);
         while(color==num || color==lastColor)
-            color = getRandValue(1,4);
+            color = getRandValue(1,5);
 
         if(color==1)
             word.setColor(ColorsLoader.loadColorByName("blue"));
