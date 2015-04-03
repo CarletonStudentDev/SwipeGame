@@ -145,7 +145,7 @@ public class GameManager implements Observer
         multiplierBar = new MultiplierBar(game.getMultiplierNum(), game.getBarNum(),
                                           GameView.typeface, ColorsLoader.loadColorByName("white"));
 
-        plus2seconds = new ClockTextObject("+2", (525f / 1080) * GameView.WIDTH, (750f / 1701) * GameView.HEIGHT,
+        plus2seconds = new ClockTextObject("+1", (525f / 1080) * GameView.WIDTH, (750f / 1701) * GameView.HEIGHT,
                 GameView.typeface, ColorsLoader.loadColorByName("green"), (225f / 1080) * GameView.WIDTH);
     }
 
@@ -214,7 +214,7 @@ public class GameManager implements Observer
 
         if (!endless)
             if((cardsCorrect%3)==0 )
-                gameClock.addTime(2000L);
+                gameClock.addTime(1000L);
                 plus2secondsSeen = 0;
         if(stroopMode==true){
             stroop.randomColorString();
