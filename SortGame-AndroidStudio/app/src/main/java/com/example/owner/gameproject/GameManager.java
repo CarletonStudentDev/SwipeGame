@@ -48,7 +48,8 @@ public class GameManager implements Observer
     private boolean gameFinished,
                     timedOut,
                     endless,
-                    stroopMode;
+                    stroopMode,
+                    minusHearts;
 
     /**
      * score TextObject instance representing the score text displaying on the screen.
@@ -77,14 +78,14 @@ public class GameManager implements Observer
      *                  of lives in the game.
      */
     private Bitmap fullLivesBitmap,
-                   emptyLivesBitmap;
+                   emptyLivesBitmap,minusHeartsBitmap;
 
 
     /**
      * gameClock GameClock instance representing the countdown timer of the game.
      */
     private GameClock gameClock;
-    private int cardsCorrect,plus2secondsSeen;
+    private int cardsCorrect,plus2secondsSeen,minusHeartsSeen;
 
 
     /**
@@ -97,8 +98,10 @@ public class GameManager implements Observer
         gameFinished = false;
         timedOut = false;
         endless = false;
+        minusHearts=false;
         cardsCorrect = 0;
         plus2secondsSeen=0;
+        minusHeartsSeen=0;
         this.stroopMode = stroopMode;
 
         if(stroopMode==true){
@@ -131,6 +134,9 @@ public class GameManager implements Observer
 
         emptyLivesBitmap = BitmapFactory.decodeResource(GameView.activity.getResources(), R.drawable.blankheart);
         emptyLivesBitmap = Bitmap.createScaledBitmap(emptyLivesBitmap, (int)((100f/1080) * GameView.WIDTH), (int)((100f/1080) * GameView.WIDTH), true);
+
+        minusHeartsBitmap= BitmapFactory.decodeResource(GameView.activity.getResources(), R.drawable.minusfullheart);
+        minusHeartsBitmap = Bitmap.createScaledBitmap(minusHeartsBitmap, (int)((200f/1080) * GameView.WIDTH), (int)((200f/1080) * GameView.WIDTH), true);
 
 
         score = new TextObject("" + game.getScore(), (350f/1080)*GameView.WIDTH, (125f/1701)*GameView.HEIGHT,
@@ -227,7 +233,8 @@ public class GameManager implements Observer
     private void incorrect()
     {
         game.incorrect();
-
+        minusHeartsSeen=0;
+        minusHearts=true;
         this.setMultiValueCardColor();
     }
 
@@ -311,9 +318,17 @@ public class GameManager implements Observer
         if (!(this.timedOut || endless))
             timer.setText("" + gameClock.getRemainingTimeLeft());
 
-        if((cardsCorrect%3)==0 && cardsCorrect!=0 && plus2secondsSeen<10)
+        if(minusHeartsSeen<20 && minusHearts==true)
+            canvas.drawBitmap(minusHeartsBitmap, (400f / 1080) * GameView.WIDTH, (635f / 1701) * GameView.HEIGHT, null);
+            minusHeartsSeen++;
+            minusHearts=false;
+
+
+        if((cardsCorrect%3)==0 && cardsCorrect!=0 && plus2secondsSeen<10 && minusHearts==false)
             plus2seconds.draw(canvas);
             plus2secondsSeen++;
+
+
 
 
         gameOver(canvas);
