@@ -15,7 +15,7 @@ public class Stroop {
 
     private int color,lastColor=0,num,lastNum=0;
 
-    private float centerX = (560f/1080)*GameView.WIDTH;
+    private float centerX = (600f/1080)*GameView.WIDTH;
 
     /**
      * Constructor for the Stroop class.
