@@ -88,9 +88,18 @@ public class Game
         return this.score;
     }
 
-    public void getHighScoreFromGoogle()
-    {
-        //GET HIGHSCORE FROM GOOGLE PLAY  AND LOCAL
+    public void getHighScoreFromGoogle() {
+        //GET HIGHSCORE FROM GOOGLE PLAY
+        //Googlescore = ;
+
+        //highscore = getLocalHighsScore();
+
+        //if(highscore>Googlescore){
+            //POST SCORE TO GOOGLE
+        //}else{
+            //highscore=Googlescore
+        //}
+
         highscore = 9L;//Test
     }
 
@@ -98,9 +107,11 @@ public class Game
         if(score>highscore){
             highscore=score;
             //SET HIGHSCORE TO GOOGLE AND LOCAL
+
+            
         }
     }
-    
+
     /**
      * Getter for the current meter count.
      *
