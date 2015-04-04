@@ -5,9 +5,11 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Observable;
 import java.util.Observer;
-
+import java.util.ArrayList;
 /**
  * GameManager class manages the logic of the game.
  *
@@ -34,6 +36,8 @@ public class GameManager implements Observer
 
     /** card: Card instance representing the card at center of screen.*/
     private Card card;
+    private ArrayList<MoveCard> moveCards = new ArrayList<MoveCard>();
+    private ArrayList<MoveCard> toRemove = new ArrayList<MoveCard>();
 
     private Stroop stroop;
 
@@ -213,7 +217,9 @@ public class GameManager implements Observer
         if(stroopMode==true){
             stroop.randomColorString();
         }else{
+            moveCards.add(new MoveCard(card.getColorId(), card.getXCoord(), card.getYCoord()));
             card.generateNewColor();
+
         }
 
     }
@@ -308,10 +314,18 @@ public class GameManager implements Observer
         for(int i = 0; i < game.getLives(); i++)
             canvas.drawBitmap(fullLivesBitmap, ((700f+(i*120))/1080)*GameView.WIDTH, (37f/1701)*GameView.HEIGHT, null);
 
+        for(MoveCard mc : moveCards){
+            if(mc.inQuadrant()){
+                toRemove.add(mc);
+            }
+            mc.draw(canvas);
+
+        }
+        moveCards.removeAll(toRemove);
         if (!(this.timedOut || endless))
             timer.setText("" + gameClock.getRemainingTimeLeft());
 
-        if((cardsCorrect%3)==0 && cardsCorrect!=0 && plus2secondsSeen<10)
+        if((cardsCorrect%3)==0 && cardsCorrect!=0 && plus2secondsSeen<20)
             plus2seconds.draw(canvas);
             plus2secondsSeen++;
 
