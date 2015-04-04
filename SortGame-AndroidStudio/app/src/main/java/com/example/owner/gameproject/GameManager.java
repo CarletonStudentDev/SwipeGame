@@ -146,7 +146,7 @@ public class GameManager implements Observer
         multiplierBar = new MultiplierBar(game.getMultiplierNum(), game.getBarNum(),
                                           GameView.typeface, ColorsLoader.loadColorByName("white"));
 
-        plus2seconds = new ClockTextObject("+1", (525f / 1080) * GameView.WIDTH, (750f / 1701) * GameView.HEIGHT,
+        plus2seconds = new ClockTextObject("+1", (525f / 1080) * GameView.WIDTH, (775f / 1701) * GameView.HEIGHT,
                 GameView.typeface, ColorsLoader.loadColorByName("green"), (225f / 1080) * GameView.WIDTH);
     }
 
@@ -319,7 +319,7 @@ public class GameManager implements Observer
             timer.setText("" + gameClock.getRemainingTimeLeft());
 
         if (minusHeartsSeen <= 20 && minusHearts == true) {
-            canvas.drawBitmap(minusHeartsBitmap, (425f / 1080) * GameView.WIDTH, (590f / 1701) * GameView.HEIGHT + minusHeartsSeen*2, null);
+            canvas.drawBitmap(minusHeartsBitmap, (425f / 1080) * GameView.WIDTH, (560f / 1701) * GameView.HEIGHT + minusHeartsSeen*2, null);
             minusHeartsSeen++;
             if (minusHeartsSeen == 20) {
                 minusHearts = false;
