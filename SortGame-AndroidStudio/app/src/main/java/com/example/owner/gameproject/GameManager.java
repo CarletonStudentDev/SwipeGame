@@ -3,6 +3,7 @@ package com.example.owner.gameproject;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.view.MotionEvent;
 
 import java.util.Observable;
@@ -57,7 +58,7 @@ public class GameManager implements Observer
      */
     private TextObject score,
                        timer,
-                        plus2seconds;
+                       plus2seconds;
 
     /**
      * gameOverScreen GameOverScreen instance representing the stats of the game displayed
@@ -295,13 +296,12 @@ public class GameManager implements Observer
      * @param canvas Canvas instance representing android.graphics.Canvas class.
      */
 
-    public void draw(Canvas canvas)
-    {
+    public void draw(Canvas canvas) {
         gameBoard.draw(canvas);
 
-        if(stroopMode==true){
+        if (stroopMode == true) {
             stroop.draw(canvas);
-        }else{
+        } else {
             card.draw(canvas);
         }
 
@@ -310,25 +310,34 @@ public class GameManager implements Observer
         timer.draw(canvas);
 
         for (int i = 0; i < 3; i++)
-            canvas.drawBitmap(emptyLivesBitmap, ((700f+(i*120))/1080)*GameView.WIDTH, (37f/1701)*GameView.HEIGHT, null);
+            canvas.drawBitmap(emptyLivesBitmap, ((700f + (i * 120)) / 1080) * GameView.WIDTH, (37f / 1701) * GameView.HEIGHT, null);
 
-        for(int i = 0; i < game.getLives(); i++)
-            canvas.drawBitmap(fullLivesBitmap, ((700f+(i*120))/1080)*GameView.WIDTH, (37f/1701)*GameView.HEIGHT, null);
+        for (int i = 0; i < game.getLives(); i++)
+            canvas.drawBitmap(fullLivesBitmap, ((700f + (i * 120)) / 1080) * GameView.WIDTH, (37f / 1701) * GameView.HEIGHT, null);
 
         if (!(this.timedOut || endless))
             timer.setText("" + gameClock.getRemainingTimeLeft());
 
-        if(minusHeartsSeen <= 20 && minusHearts==true)
-            canvas.drawBitmap(minusHeartsBitmap, (425f / 1080) * GameView.WIDTH, (590f / 1701) * GameView.HEIGHT, null);
+        if (minusHeartsSeen <= 20 && minusHearts == true) {
+            canvas.drawBitmap(minusHeartsBitmap, (425f / 1080) * GameView.WIDTH, (590f / 1701) * GameView.HEIGHT + minusHeartsSeen*2, null);
             minusHeartsSeen++;
-            if(minusHeartsSeen == 20) {
+            if (minusHeartsSeen == 20) {
                 minusHearts = false;
             }
+        }
 
 
-        if((cardsCorrect%3)==0 && cardsCorrect!=0 && plus2secondsSeen<20 && minusHearts==false)
+        if ((cardsCorrect % 3) == 0 && cardsCorrect != 0 && plus2secondsSeen < 20 && minusHearts == false){
+
             plus2seconds.draw(canvas);
+            plus2seconds.setYcoordinate(plus2seconds.getYcoordinate() - 2);
             plus2secondsSeen++;
+
+            if(plus2secondsSeen == 20){
+                plus2seconds.setYcoordinate((750f / 1701) * GameView.HEIGHT);
+            }
+
+        }
 
 
 

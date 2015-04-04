@@ -147,4 +147,12 @@ public class TextObject
     {
         canvas.drawText(this.text, this.xCoordinate, this.yCoordinate, this.paint);
     }
+
+    public float getYcoordinate(){
+        return yCoordinate;
+    }
+
+    public float getxCoordinate(){
+        return xCoordinate;
+    }
 }
