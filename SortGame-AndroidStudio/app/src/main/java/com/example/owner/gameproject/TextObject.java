@@ -100,6 +100,10 @@ public class TextObject
     }
 
 
+    public float getXcoordinate()
+    {
+        return xCoordinate;
+    }
     /**
      * Setter for the color of the text.
      *
@@ -142,5 +146,13 @@ public class TextObject
     public void draw(Canvas canvas)
     {
         canvas.drawText(this.text, this.xCoordinate, this.yCoordinate, this.paint);
+    }
+
+    public float getYcoordinate(){
+        return yCoordinate;
+    }
+
+    public float getxCoordinate(){
+        return xCoordinate;
     }
 }

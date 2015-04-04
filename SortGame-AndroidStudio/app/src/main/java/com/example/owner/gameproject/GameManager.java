@@ -3,6 +3,7 @@ package com.example.owner.gameproject;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.view.MotionEvent;
 
 import java.util.Iterator;
@@ -52,7 +53,8 @@ public class GameManager implements Observer
     private boolean gameFinished,
                     timedOut,
                     endless,
-                    stroopMode;
+                    stroopMode,
+                    minusHearts;
 
     /**
      * score TextObject instance representing the score text displaying on the screen.
@@ -60,7 +62,7 @@ public class GameManager implements Observer
      */
     private TextObject score,
                        timer,
-                        plus2seconds;
+                       plus2seconds;
 
     /**
      * gameOverScreen GameOverScreen instance representing the stats of the game displayed
@@ -81,14 +83,14 @@ public class GameManager implements Observer
      *                  of lives in the game.
      */
     private Bitmap fullLivesBitmap,
-                   emptyLivesBitmap;
+                   emptyLivesBitmap,minusHeartsBitmap;
 
 
     /**
      * gameClock GameClock instance representing the countdown timer of the game.
      */
     private GameClock gameClock;
-    private int cardsCorrect,plus2secondsSeen;
+    private int cardsCorrect,plus2secondsSeen,minusHeartsSeen;
 
 
     /**
@@ -101,8 +103,10 @@ public class GameManager implements Observer
         gameFinished = false;
         timedOut = false;
         endless = false;
+        minusHearts=false;
         cardsCorrect = 0;
         plus2secondsSeen=0;
+        minusHeartsSeen=0;
         this.stroopMode = stroopMode;
 
         if(stroopMode==true){
@@ -136,6 +140,9 @@ public class GameManager implements Observer
         emptyLivesBitmap = BitmapFactory.decodeResource(GameView.activity.getResources(), R.drawable.blankheart);
         emptyLivesBitmap = Bitmap.createScaledBitmap(emptyLivesBitmap, (int)((100f/1080) * GameView.WIDTH), (int)((100f/1080) * GameView.WIDTH), true);
 
+        minusHeartsBitmap= BitmapFactory.decodeResource(GameView.activity.getResources(), R.drawable.minusfullheart2);
+        minusHeartsBitmap = Bitmap.createScaledBitmap(minusHeartsBitmap, (int)((200f/1080) * GameView.WIDTH), (int)((200f/1080) * GameView.WIDTH), true);
+
 
         score = new TextObject("" + game.getScore(), (350f/1080)*GameView.WIDTH, (125f/1701)*GameView.HEIGHT,
                               GameView.typeface, ColorsLoader.loadColorByName("white"), (150f/1080) * GameView.WIDTH);
@@ -143,7 +150,7 @@ public class GameManager implements Observer
         multiplierBar = new MultiplierBar(game.getMultiplierNum(), game.getBarNum(),
                                           GameView.typeface, ColorsLoader.loadColorByName("white"));
 
-        plus2seconds = new ClockTextObject("+2", (525f / 1080) * GameView.WIDTH, (750f / 1701) * GameView.HEIGHT,
+        plus2seconds = new ClockTextObject("+1", (525f / 1080) * GameView.WIDTH, (775f / 1701) * GameView.HEIGHT,
                 GameView.typeface, ColorsLoader.loadColorByName("green"), (225f / 1080) * GameView.WIDTH);
     }
 
@@ -212,10 +219,10 @@ public class GameManager implements Observer
 
         if (!endless)
             if((cardsCorrect%3)==0 )
-                gameClock.addTime(2000L);
+                gameClock.addTime(1000L);
                 plus2secondsSeen = 0;
         if(stroopMode==true){
-            stroop.randomColorString();
+            stroop.correctStroop();
         }else{
             moveCards.add(new MoveCard(card.getColorId(), card.getXCoord(), card.getYCoord()));
             card.generateNewColor();
@@ -233,7 +240,8 @@ public class GameManager implements Observer
     private void incorrect()
     {
         game.incorrect();
-
+        minusHeartsSeen=0;
+        minusHearts=true;
         this.setMultiValueCardColor();
     }
 
@@ -276,7 +284,7 @@ public class GameManager implements Observer
 
             this.checkHighScore();
 
-            gameOverScreen.setScores(game.getScore(), 0, cardsCorrect);
+            gameOverScreen.setScores(game.getScore(), game.getHighScore(), cardsCorrect, gameClock.secondsPassed, stroopMode);
 
             gameClock.stopTime();
         }
@@ -294,13 +302,12 @@ public class GameManager implements Observer
      * @param canvas Canvas instance representing android.graphics.Canvas class.
      */
 
-    public void draw(Canvas canvas)
-    {
+    public void draw(Canvas canvas) {
         gameBoard.draw(canvas);
 
-        if(stroopMode==true){
+        if (stroopMode == true) {
             stroop.draw(canvas);
-        }else{
+        } else {
             card.draw(canvas);
         }
 
@@ -309,10 +316,10 @@ public class GameManager implements Observer
         timer.draw(canvas);
 
         for (int i = 0; i < 3; i++)
-            canvas.drawBitmap(emptyLivesBitmap, ((700f+(i*120))/1080)*GameView.WIDTH, (37f/1701)*GameView.HEIGHT, null);
+            canvas.drawBitmap(emptyLivesBitmap, ((700f + (i * 120)) / 1080) * GameView.WIDTH, (37f / 1701) * GameView.HEIGHT, null);
 
-        for(int i = 0; i < game.getLives(); i++)
-            canvas.drawBitmap(fullLivesBitmap, ((700f+(i*120))/1080)*GameView.WIDTH, (37f/1701)*GameView.HEIGHT, null);
+        for (int i = 0; i < game.getLives(); i++)
+            canvas.drawBitmap(fullLivesBitmap, ((700f + (i * 120)) / 1080) * GameView.WIDTH, (37f / 1701) * GameView.HEIGHT, null);
 
         for(MoveCard mc : moveCards){
             if(mc.inQuadrant()){
@@ -325,9 +332,30 @@ public class GameManager implements Observer
         if (!(this.timedOut || endless))
             timer.setText("" + gameClock.getRemainingTimeLeft());
 
-        if((cardsCorrect%3)==0 && cardsCorrect!=0 && plus2secondsSeen<20)
+
+        if (minusHeartsSeen <= 20 && minusHearts == true) {
+            canvas.drawBitmap(minusHeartsBitmap, (425f / 1080) * GameView.WIDTH, (560f / 1701) * GameView.HEIGHT + minusHeartsSeen*2, null);
+            minusHeartsSeen++;
+            if (minusHeartsSeen == 20) {
+                minusHearts = false;
+            }
+        }
+
+
+        if ((cardsCorrect % 3) == 0 && cardsCorrect != 0 && plus2secondsSeen < 20 && minusHearts == false){
+
+
             plus2seconds.draw(canvas);
+            plus2seconds.setYcoordinate(plus2seconds.getYcoordinate() - 2);
             plus2secondsSeen++;
+
+            if(plus2secondsSeen == 20){
+                plus2seconds.setYcoordinate((750f / 1701) * GameView.HEIGHT);
+            }
+
+        }
+
+
 
 
         gameOver(canvas);
@@ -348,4 +376,5 @@ public class GameManager implements Observer
         this.timedOut = (boolean) data;
         timer.setText("0");
     }
+
 }

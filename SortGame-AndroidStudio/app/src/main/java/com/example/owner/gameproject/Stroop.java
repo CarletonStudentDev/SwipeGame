@@ -9,11 +9,13 @@ import java.util.Random;
  */
 public class Stroop {
 
-    private TextObject word;
+    private TextObject word, lastWord;
 
     public String blueString="Blue",redString="Red",greenString="Green",purpleString="Purple",yellowString="Yellow",orangeString="Orange";
 
     private int color,lastColor=0,num,lastNum=0;
+
+    private float centerX = (600f/1080)*GameView.WIDTH;
 
     /**
      * Constructor for the Stroop class.
@@ -22,11 +24,13 @@ public class Stroop {
 
     public Stroop()
     {
-        this.word = new TextObject(redString, (540f/1080)*GameView.WIDTH, (1100f/1701)*GameView.HEIGHT, GameView.typeface, ColorsLoader.loadColorByName("green"), (250f/1080) * GameView.WIDTH);
+        this.word = new TextObject(redString, (1200/1080)*GameView.WIDTH, (1100f/1701)*GameView.HEIGHT, GameView.typeface, ColorsLoader.loadColorByName("green"), (250f/1080) * GameView.WIDTH);
         randomColorString();
     }
 
     public void randomColorString() {
+
+
         num = getRandValue(1,7);
         while(num==lastNum)
             num = getRandValue(1,7);
@@ -62,6 +66,13 @@ public class Stroop {
     }
 
 
+    public void correctStroop(){
+        lastWord = word;
+        this.word = new TextObject(redString, (1200/1080)*GameView.WIDTH, (1100f/1701)*GameView.HEIGHT, GameView.typeface, ColorsLoader.loadColorByName("green"), (250f/1080) * GameView.WIDTH);
+        randomColorString();
+        word.setXcoordinate(2000f);
+    }
+
     /**
      * Gets a random integer using random.nextInt method.
      *
@@ -77,7 +88,6 @@ public class Stroop {
      *         random.nextInt method.
      *
      */
-
     private int getRandValue(int low, int high)
     {
         Random random = new Random();
@@ -96,6 +106,15 @@ public class Stroop {
 
     public void draw(Canvas canvas)
     {
+        if(word.getXcoordinate() > centerX)
+            word.setXcoordinate(word.getXcoordinate()-(85f/1080)*GameView.WIDTH);
+
+        if(lastWord != null) {
+            if (lastWord.getXcoordinate() > -500)
+                lastWord.setXcoordinate(lastWord.getXcoordinate() - (85f / 1080) * GameView.WIDTH);
+            this.lastWord.draw(canvas);
+        }
+
         this.word.draw(canvas);
 
     }
