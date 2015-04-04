@@ -2,6 +2,7 @@ package com.example.owner.gameproject;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.util.Log;
 
 import java.util.Random;
 
@@ -153,5 +154,13 @@ public class Card
     public void draw(Canvas canvas)
     {
         canvas.drawRect(xCoordinate1, yCoordinate1, xCoordinate2, yCoordinate2, color);
+    }
+
+    public float getXCoord(){
+        return 0.5f*GameView.WIDTH;
+    }
+
+    public float getYCoord(){
+       return 0.625f*GameView.HEIGHT;
     }
 }
