@@ -136,7 +136,7 @@ public class GameManager implements Observer
         emptyLivesBitmap = BitmapFactory.decodeResource(GameView.activity.getResources(), R.drawable.blankheart);
         emptyLivesBitmap = Bitmap.createScaledBitmap(emptyLivesBitmap, (int)((100f/1080) * GameView.WIDTH), (int)((100f/1080) * GameView.WIDTH), true);
 
-        minusHeartsBitmap= BitmapFactory.decodeResource(GameView.activity.getResources(), R.drawable.minusfullheart);
+        minusHeartsBitmap= BitmapFactory.decodeResource(GameView.activity.getResources(), R.drawable.minusfullheart2);
         minusHeartsBitmap = Bitmap.createScaledBitmap(minusHeartsBitmap, (int)((200f/1080) * GameView.WIDTH), (int)((200f/1080) * GameView.WIDTH), true);
 
 
