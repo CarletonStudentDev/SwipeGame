@@ -100,6 +100,10 @@ public class TextObject
     }
 
 
+    public float getXcoordinate()
+    {
+        return xCoordinate;
+    }
     /**
      * Setter for the color of the text.
      *

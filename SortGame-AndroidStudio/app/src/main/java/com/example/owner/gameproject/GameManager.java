@@ -217,7 +217,7 @@ public class GameManager implements Observer
                 gameClock.addTime(1000L);
                 plus2secondsSeen = 0;
         if(stroopMode==true){
-            stroop.randomColorString();
+            stroop.correctStroop();
         }else{
             card.generateNewColor();
         }
