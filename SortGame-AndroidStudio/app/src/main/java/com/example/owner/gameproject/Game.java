@@ -27,7 +27,7 @@ public class Game
      *           score will increment by.
      */
     private static final long DEFAULTSCORE = 0L,
-                              BASESCORE = 100L;
+                              BASESCORE = 25L;
 
     /**
      * lives integer value representing the amount of lives in the game.
