@@ -37,7 +37,7 @@ public class Game
     /**
      * score long value representing the score of the game.
      */
-    private long score;
+    private long score,highscore;
 
     /**
      *  multiplier Multiplier instance representing the multiplier of the game.
@@ -54,6 +54,8 @@ public class Game
      */
     public Game()
     {
+        getHighScoreFromGoogle();
+        this.highscore = getHighScore();
         this.lives = DEFAULTLIVES;
         this.score = DEFAULTSCORE;
         this.multiplier = new Multiplier();
@@ -76,12 +78,29 @@ public class Game
      *
      * @return score long value representing the score of the game.
      */
+    public long getHighScore()
+    {
+        return this.highscore;
+    }
+
     public long getScore()
     {
         return this.score;
     }
 
+    public void getHighScoreFromGoogle()
+    {
+        //GET HIGHSCORE FROM GOOGLE PLAY  AND LOCAL
+        highscore = 9L;//Test
+    }
 
+    private void checkNewScore(){
+        if(score>highscore){
+            highscore=score;
+            //SET HIGHSCORE TO GOOGLE AND LOCAL
+        }
+    }
+    
     /**
      * Getter for the current meter count.
      *
@@ -135,6 +154,7 @@ public class Game
 
         if(lives < 1)
             this.liveFinished = true;
+            checkNewScore();
 
         this.multiplier.incorrectMatch();
 
