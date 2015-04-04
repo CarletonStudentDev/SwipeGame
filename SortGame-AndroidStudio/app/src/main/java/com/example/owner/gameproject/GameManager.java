@@ -278,7 +278,7 @@ public class GameManager implements Observer
 
             this.checkHighScore();
 
-            gameOverScreen.setScores(game.getScore(), 0, cardsCorrect, gameClock.secondsPassed);
+            gameOverScreen.setScores(game.getScore(), 0, cardsCorrect, gameClock.secondsPassed, stroopMode);
 
             gameClock.stopTime();
         }
@@ -360,4 +360,5 @@ public class GameManager implements Observer
         this.timedOut = (boolean) data;
         timer.setText("0");
     }
+
 }

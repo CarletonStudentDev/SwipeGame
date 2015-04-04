@@ -26,7 +26,8 @@ public class GameOverScreen
 
     private static final String SCORESTRING = "Score: ",
                                 HIGHSCORESTRING = "High Score: ",
-                                CARDSPERSEC = "Cards/Sec: ";
+                                CARDSPERSEC = "Cards/Sec: ",
+                            STROOPSPERSEC = "Stroops/Sec: ";
 
 
     /**
@@ -44,7 +45,8 @@ public class GameOverScreen
                        backToMenu,
                        retryGame,
                         cardsPerSec,
-                        cardsPerSecNum;
+                        cardsPerSecNum,
+                        stroopsPerSec;
 
 
     /**
@@ -70,6 +72,7 @@ public class GameOverScreen
 
     private Paint paint, paintSquares;
 
+    private boolean stroopMode;
 
     /**
      * Constructor for the GameOverScreen class.
@@ -91,6 +94,7 @@ public class GameOverScreen
         this.highScoreNum = new TextObject("", (540f/1080)*GameView.WIDTH, (950f/1701)*GameView.HEIGHT, typeface, textColor , (150f/1080) * GameView.WIDTH);
 
         this.cardsPerSec = new TextObject(CARDSPERSEC, (540f/1080)*GameView.WIDTH, (1100f/1701)*GameView.HEIGHT, typeface, textColor , (150f/1080) * GameView.WIDTH);
+        this.stroopsPerSec = new TextObject(STROOPSPERSEC, (560f/1080)*GameView.WIDTH, (1100f/1701)*GameView.HEIGHT, typeface, textColor , (150f/1080) * GameView.WIDTH);
         this.cardsPerSecNum = new TextObject("", (540f/1080)*GameView.WIDTH, (1250f/1701)*GameView.HEIGHT, typeface, textColor , (150f/1080) * GameView.WIDTH);
 
         this.backToMenu = new TextObject("Back", (350f/1080)*GameView.WIDTH, (1450f/1701)*GameView.HEIGHT, typeface, textColor, (100f/1080) * GameView.WIDTH);
@@ -121,8 +125,9 @@ public class GameOverScreen
      *
      */
 
-    public void setScores(long score, long highScore, int cardsDone, int secondsPassed)
+    public void setScores(long score, long highScore, int cardsDone, int secondsPassed, boolean stroopMode)
     {
+        this.stroopMode = stroopMode;
         this.scoreNum.setText("" + score);
         this.highScoreNum.setText("" + highScore);
         calculatedCardsPerSec = (float) cardsDone / (float) secondsPassed;
@@ -185,8 +190,13 @@ public class GameOverScreen
         this.highScore.draw(canvas);
         this.highScoreNum.draw(canvas);
 
-        this.cardsPerSec.draw(canvas);
+        if(stroopMode == true){
+            this.stroopsPerSec.draw(canvas);
+        }else {
+            this.cardsPerSec.draw(canvas);
+        }
         this.cardsPerSecNum.draw(canvas);
+
 
         canvas.drawRect((200f/1080)*GameView.WIDTH, (1325f/1701)*GameView.HEIGHT,(500f/1080)*GameView.WIDTH, (1520f/1701)*GameView.HEIGHT, paintSquares);
         this.backToMenu.draw(canvas);
