@@ -119,13 +119,13 @@ public class GameOverScreen
     /**
      * Setter for the score and highScore of the game to be displayed on screen.
      *
-     * @param score long value representing the current score of the game.
+     * @param score int value representing the current score of the game.
      * @param highScore long value representing the highest score achieved
      *                  since playing the game.
      *
      */
 
-    public void setScores(long score, long highScore, int cardsDone, int secondsPassed, boolean stroopMode)
+    public void setScores(int score, int highScore, int cardsDone, int secondsPassed, boolean stroopMode)
     {
         this.stroopMode = stroopMode;
         this.scoreNum.setText("" + score);

@@ -26,8 +26,8 @@ public class Game
      * BASESCORE long constant value representing the base amount the
      *           score will increment by.
      */
-    private static final long DEFAULTSCORE = 0L,
-                              BASESCORE = 25L;
+    private static final int DEFAULTSCORE = 0,
+                              BASESCORE = 25;
 
     /**
      * lives integer value representing the amount of lives in the game.
@@ -37,7 +37,7 @@ public class Game
     /**
      * score long value representing the score of the game.
      */
-    private long score,highscore;
+    private int score,highscore;
 
     /**
      *  multiplier Multiplier instance representing the multiplier of the game.
@@ -54,8 +54,8 @@ public class Game
      */
     public Game()
     {
-        getHighScoreFromGoogle();
-        this.highscore = getHighScore();
+        //getHighScoreFromGoogle();
+        //this.highscore = getHighScore();
         this.lives = DEFAULTLIVES;
         this.score = DEFAULTSCORE;
         this.multiplier = new Multiplier();
@@ -78,16 +78,18 @@ public class Game
      *
      * @return score long value representing the score of the game.
      */
+    /*
     public long getHighScore()
     {
         return this.highscore;
-    }
+    }*/
 
-    public long getScore()
+    public int getScore()
     {
         return this.score;
     }
 
+    /*
     public void getHighScoreFromGoogle() {
         //GET HIGHSCORE FROM GOOGLE PLAY
         //Googlescore = ;
@@ -100,9 +102,10 @@ public class Game
             //highscore=Googlescore
         //}
 
-        highscore = 9L;//Test
-    }
+        highscore = 9;//Test
+    }*/
 
+    /*
     private void checkNewScore(){
         if(score>highscore){
             highscore=score;
@@ -110,7 +113,9 @@ public class Game
 
             
         }
-    }
+
+
+    }*/
 
     /**
      * Getter for the current meter count.
@@ -165,7 +170,7 @@ public class Game
 
         if(lives < 1)
             this.liveFinished = true;
-            checkNewScore();
+            //checkNewScore();
 
         this.multiplier.incorrectMatch();
 

@@ -93,6 +93,9 @@ public class GameManager implements Observer
     private int cardsCorrect,plus2secondsSeen,minusHeartsSeen;
 
 
+    public static int HIGHSCORE_NORMAL, HIGHSCORE_STROOP, HIGHSCORE_ENDLESS;
+
+
     /**
      * Constructor for the GameManager class.
      * @param gameTime Long value representing the amount of time at start of game.
@@ -152,6 +155,9 @@ public class GameManager implements Observer
 
         plus2seconds = new ClockTextObject("+1", (525f / 1080) * GameView.WIDTH, (775f / 1701) * GameView.HEIGHT,
                 GameView.typeface, ColorsLoader.loadColorByName("green"), (225f / 1080) * GameView.WIDTH);
+
+
+
     }
 
     /**
@@ -262,6 +268,24 @@ public class GameManager implements Observer
             //GooglePlayServices.setHighScore(game.getScore());
     }
 
+    public int getHighScore (){
+
+        if (stroopMode){
+            ScoreDataSource.createStroopScore(game.getScore());
+            HIGHSCORE_STROOP = ScoreDataSource.getStroopHighScore();
+            return HIGHSCORE_STROOP;
+        }else if(endless){
+            ScoreDataSource.createEndlessScore(game.getScore());
+            HIGHSCORE_ENDLESS = ScoreDataSource.getEndlessHighScore();
+            return HIGHSCORE_ENDLESS;
+        }else{
+            ScoreDataSource.createNormalScore(game.getScore());
+            HIGHSCORE_NORMAL = ScoreDataSource.getNormalHighScore();
+            return HIGHSCORE_NORMAL;
+        }
+
+    }
+
 
     /**
      * Checks if gameOver has occurred and displays the appropriate message onto the screen.
@@ -276,17 +300,19 @@ public class GameManager implements Observer
         {
             gameFinished = true;
 
-            if (timedOut)
+            if (timedOut) {
                 gameOverScreen.setLossReason(TIMERANOUT);
 
-            else if (game.getLivesFinished())
+            }else if (game.getLivesFinished()) {
                 gameOverScreen.setLossReason(LIVESFINISHED);
 
-            this.checkHighScore();
+                this.checkHighScore();
 
-            gameOverScreen.setScores(game.getScore(), game.getHighScore(), cardsCorrect, gameClock.secondsPassed, stroopMode);
+                gameOverScreen.setScores(game.getScore(), getHighScore(), cardsCorrect, gameClock.secondsPassed, stroopMode);
 
-            gameClock.stopTime();
+                gameClock.stopTime();
+
+            }
         }
 
         if (gameFinished)

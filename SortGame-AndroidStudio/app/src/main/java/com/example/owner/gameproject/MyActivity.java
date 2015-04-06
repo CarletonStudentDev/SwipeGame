@@ -16,6 +16,7 @@ import static com.example.owner.gameproject.R.id.adView;
 public class MyActivity extends Activity {
 
     private ToggleButton toggleBtn;
+    private ScoreDataSource dataSource;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,9 @@ public class MyActivity extends Activity {
         AdView mAdView = (AdView) findViewById(adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+
+        dataSource = new ScoreDataSource(this);
+        dataSource.open();
     }
 
 
@@ -92,4 +96,5 @@ public class MyActivity extends Activity {
         });
 
     }
+
 }
