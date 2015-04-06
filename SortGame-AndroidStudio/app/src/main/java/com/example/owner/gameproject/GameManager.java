@@ -272,16 +272,13 @@ public class GameManager implements Observer
 
         if (stroopMode){
             ScoreDataSource.createStroopScore(game.getScore());
-            HIGHSCORE_STROOP = ScoreDataSource.getStroopHighScore();
-            return HIGHSCORE_STROOP;
+            return ScoreDataSource.getStroopHighScore();
         }else if(endless){
             ScoreDataSource.createEndlessScore(game.getScore());
-            HIGHSCORE_ENDLESS = ScoreDataSource.getEndlessHighScore();
-            return HIGHSCORE_ENDLESS;
+            return ScoreDataSource.getEndlessHighScore();
         }else{
             ScoreDataSource.createNormalScore(game.getScore());
-            HIGHSCORE_NORMAL = ScoreDataSource.getNormalHighScore();
-            return HIGHSCORE_NORMAL;
+            return ScoreDataSource.getNormalHighScore();
         }
 
     }
@@ -305,14 +302,14 @@ public class GameManager implements Observer
 
             }else if (game.getLivesFinished()) {
                 gameOverScreen.setLossReason(LIVESFINISHED);
-
-                this.checkHighScore();
-
-                gameOverScreen.setScores(game.getScore(), getHighScore(), cardsCorrect, gameClock.secondsPassed, stroopMode);
-
-                gameClock.stopTime();
-
             }
+
+            this.checkHighScore();
+
+            gameClock.stopTime();
+
+            gameOverScreen.setScores(game.getScore(), getHighScore(), cardsCorrect, gameClock.secondsPassed, stroopMode);
+
         }
 
         if (gameFinished)
