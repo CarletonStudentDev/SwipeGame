@@ -6,7 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 
-public class StartEndlessActivity extends Activity {
+public class StartImpossibleActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,7 +16,7 @@ public class StartEndlessActivity extends Activity {
         //getSupportActionBar().hide();
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        setContentView(new GameView(this, -1,false));
+        setContentView(new GameView(this, 11000L,true,true));
     }
 
 

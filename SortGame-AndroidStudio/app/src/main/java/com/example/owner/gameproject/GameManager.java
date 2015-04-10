@@ -3,11 +3,8 @@ package com.example.owner.gameproject;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.view.MotionEvent;
 
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ArrayList;
@@ -48,11 +45,11 @@ public class GameManager implements Observer
     /**
      * gameFinished boolean value representing whether the game finished or not.
      * timedOut boolean value representing whether the clock has finished or not.
-     * endless boolean value representing whether the game is endless or not.
+     * impossible boolean value representing whether the game is impossible or not.
      */
     private boolean gameFinished,
                     timedOut,
-                    endless,
+                    impossible,
                     stroopMode,
                     minusHearts;
 
@@ -101,11 +98,11 @@ public class GameManager implements Observer
      * @param gameTime Long value representing the amount of time at start of game.
      */
 
-    public GameManager(long gameTime, boolean stroopMode)
+    public GameManager(long gameTime, boolean stroopMode, boolean impossibleMode)
     {
         gameFinished = false;
         timedOut = false;
-        endless = false;
+        impossible = impossibleMode;
         minusHearts=false;
         cardsCorrect = 0;
         plus2secondsSeen=0;
@@ -113,16 +110,13 @@ public class GameManager implements Observer
         this.stroopMode = stroopMode;
 
         if(stroopMode==true){
-            stroop = new Stroop();
+            stroop = new Stroop(impossible);
         }else{
             card = new Card();
         }
 
         gameBoard = new GameBoard();
         game = new Game();
-
-        if (gameTime == -1)
-            endless = true;
 
         gameClock = new GameClock(gameTime);
         gameClock.addObserver(this);
@@ -131,9 +125,10 @@ public class GameManager implements Observer
         timer = new ClockTextObject("" + gameClock.getRemainingTimeLeft(), (525f / 1080) * GameView.WIDTH, (550f / 1701) * GameView.HEIGHT,
                     GameView.typeface, ColorsLoader.loadColorByName("black"), (225f / 1080) * GameView.WIDTH);
 
-
-        if (endless)
+        /*
+        if (impossible)
             timer.setText(" ∞");
+        */
 
         gameOverScreen = new GameOverScreen(GameView.typeface, ColorsLoader.loadColorByName("white"));
 
@@ -180,17 +175,15 @@ public class GameManager implements Observer
         {
             if(event.getAction() == MotionEvent.ACTION_UP)
             {
-                if (gameFinished)
-                {
+                if (gameFinished){
                     if (this.gameOverScreen.getGameOverButton(event.getX(), event.getY()) == 1)
                         GameView.activity.finish();
 
                     else if (this.gameOverScreen.getGameOverButton(event.getX(), event.getY()) == 2)
                         GameView.activity.recreate();
 
-                }else {
-
-                    if (stroopMode == true) {
+                }else{
+                    if (stroopMode == true || impossible==true) {
                         if (this.gameBoard.getQuadrantColor(event.getX(), event.getY()) == this.stroop.getColorId())
                             this.correct();
                         else if (this.gameBoard.getQuadrantColor(event.getX(), event.getY()) != 0)
@@ -223,10 +216,11 @@ public class GameManager implements Observer
         score.setText("" + game.getScore());
         this.setMultiValueCardColor();
 
-        if (!endless)
+        if (!impossible)
             if((cardsCorrect%3)==0 )
                 gameClock.addTime(1000L);
                 plus2secondsSeen = 0;
+
         if(stroopMode==true){
             stroop.correctStroop();
         }else{
@@ -261,7 +255,6 @@ public class GameManager implements Observer
         multiplierBar.setMultiplierValues(game.getMultiplierNum(), game.getBarNum());
     }
 
-
     private void checkHighScore()
     {
         //if (game.getScore() > GooglePlayServices.getHighScore())
@@ -273,7 +266,7 @@ public class GameManager implements Observer
         if (stroopMode){
             ScoreDataSource.createStroopScore(game.getScore());
             return ScoreDataSource.getStroopHighScore();
-        }else if(endless){
+        }else if(impossible){
             ScoreDataSource.createEndlessScore(game.getScore());
             return ScoreDataSource.getEndlessHighScore();
         }else{
@@ -352,7 +345,7 @@ public class GameManager implements Observer
 
         }
         moveCards.removeAll(toRemove);
-        if (!(this.timedOut || endless))
+        if (!(this.timedOut))
             timer.setText("" + gameClock.getRemainingTimeLeft());
 
 
@@ -365,7 +358,7 @@ public class GameManager implements Observer
         }
 
 
-        if ((cardsCorrect % 3) == 0 && cardsCorrect != 0 && plus2secondsSeen < 20 && minusHearts == false){
+        if ((cardsCorrect % 3) == 0 && cardsCorrect != 0 && plus2secondsSeen < 20 && minusHearts == false && !impossible){
 
 
             plus2seconds.draw(canvas);

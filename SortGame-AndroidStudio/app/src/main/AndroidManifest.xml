@@ -42,7 +42,7 @@
                 android:value="com.example.owner.gameproject.MyActivity" />
         </activity>
         <activity
-            android:name=".StartEndlessActivity"
+            android:name=".StartImpossibleActivity"
             android:label="@string/endless_mode"
             android:screenOrientation="portrait"
             android:parentActivityName=".MyActivity" >

@@ -33,7 +33,7 @@
         android:onClick="openNormal"  />
 
     <Button
-        android:id="@+id/marathon_mode_button"
+        android:id="@+id/stroop_mode_button"
         android:layout_width="@dimen/button_size"
         android:layout_height="wrap_content"
         android:layout_below="@+id/normal_mode_button"
@@ -44,15 +44,15 @@
         android:onClick="openStroop" />
 
     <Button
-        android:id="@+id/endless_mode_button"
+        android:id="@+id/impossible_mode_button"
         android:layout_width="@dimen/button_size"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/marathon_mode_button"
+        android:layout_below="@+id/stroop_mode_button"
         android:text="@string/endless_mode"
         android:background="@color/menuButton"
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="100dp"
-        android:onClick="openEndless"  />
+        android:onClick="openImpossible"  />
 
     <ToggleButton
         android:layout_width="wrap_content"

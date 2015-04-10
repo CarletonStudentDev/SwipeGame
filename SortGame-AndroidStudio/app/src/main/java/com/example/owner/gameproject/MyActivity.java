@@ -73,9 +73,9 @@ public class MyActivity extends Activity {
     }
 
     /** Called when the user clicks the Endless button */
-    public void openEndless(View view)
+    public void openImpossible(View view)
     {
-        Intent intent = new Intent(this, StartEndlessActivity.class);
+        Intent intent = new Intent(this, StartImpossibleActivity.class);
         startActivity(intent);
     }
 

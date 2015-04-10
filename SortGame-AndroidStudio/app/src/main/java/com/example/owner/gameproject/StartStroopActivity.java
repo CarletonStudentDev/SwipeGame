@@ -14,7 +14,7 @@ public class StartStroopActivity extends Activity {
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        setContentView(new GameView(this, 11000L,true));
+        setContentView(new GameView(this, 11000L,true,false));
     }
 
 
