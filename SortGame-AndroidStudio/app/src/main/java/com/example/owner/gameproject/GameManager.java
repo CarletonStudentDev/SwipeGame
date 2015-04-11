@@ -115,7 +115,7 @@ public class GameManager implements Observer
             card = new Card();
         }
 
-        gameBoard = new GameBoard();
+        gameBoard = new GameBoard(impossible);
         game = new Game();
 
         gameClock = new GameClock(gameTime);
@@ -216,19 +216,20 @@ public class GameManager implements Observer
         score.setText("" + game.getScore());
         this.setMultiValueCardColor();
 
-        if (!impossible)
-            if((cardsCorrect%3)==0 )
-                gameClock.addTime(1000L);
-                plus2secondsSeen = 0;
+
+        if((cardsCorrect%3)==0 )
+            gameClock.addTime(1000L);
+            plus2secondsSeen = 0;
 
         if(stroopMode==true){
             stroop.correctStroop();
         }else{
             moveCards.add(new MoveCard(card.getColorId(), card.getXCoord(), card.getYCoord()));
             card.generateNewColor();
-
         }
 
+        if(impossible)
+            gameBoard.randomizePiles(cardsCorrect);
     }
 
 
@@ -319,6 +320,7 @@ public class GameManager implements Observer
      */
 
     public void draw(Canvas canvas) {
+
         gameBoard.draw(canvas);
 
         if (stroopMode == true) {
@@ -358,7 +360,7 @@ public class GameManager implements Observer
         }
 
 
-        if ((cardsCorrect % 3) == 0 && cardsCorrect != 0 && plus2secondsSeen < 20 && minusHearts == false && !impossible){
+        if ((cardsCorrect % 3) == 0 && cardsCorrect != 0 && plus2secondsSeen < 20 && minusHearts == false ){
 
 
             plus2seconds.draw(canvas);

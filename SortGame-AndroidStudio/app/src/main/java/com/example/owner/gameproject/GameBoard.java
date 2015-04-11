@@ -19,6 +19,7 @@ public class GameBoard
 {
     /** RADIUS constant float value representing the radius of the circle.*/
     private static final float RADIUS = GameView.WIDTH * (95.0f/720.0f);
+    private final boolean impossible;
 
 
     /**
@@ -29,10 +30,12 @@ public class GameBoard
      * darkBlueTopBarColor android.graphics.Paint instance representing color dark blue.
      */
     private Paint redCircleColor, blueCircleColor,  greenCircleColor, purpleCircleColor, darkBlueTopBarColor;
+    private int cardsCorrect;
 
     /** Constructor for the GameBoard class.*/
-    public GameBoard()
+    public GameBoard(boolean impossible)
     {
+        this.impossible = impossible;
         this.redCircleColor = new Paint();
         this.redCircleColor.setColor(ColorsLoader.loadColorByName("red"));
 
@@ -82,7 +85,19 @@ public class GameBoard
      */
     public boolean redTouched(float x, float y)
     {
-        return (x <= (330f/1080) * GameView.WIDTH) && (y <= (820f/1920) * GameView.HEIGHT && y >= (550f/1920) * GameView.HEIGHT);
+        if(impossible) {
+            if ((cardsCorrect % 4) == 0) {
+                return (x <= (330f / 1080) * GameView.WIDTH) && (y <= (820f / 1920) * GameView.HEIGHT && y >= (550f / 1920) * GameView.HEIGHT);
+            } else if ((cardsCorrect % 4) == 1) {
+                return (x >= (745f / 1080) * GameView.WIDTH) && (y <= (820f / 1920) * GameView.HEIGHT && y >= (550f / 1920) * GameView.HEIGHT);
+            } else if ((cardsCorrect % 4) == 2) {
+                return (x <= (330f / 1080) * GameView.WIDTH) && (y >= (1580f / 1920) * GameView.HEIGHT);
+            } else {
+                return (x >= (745f / 1080) * GameView.WIDTH) && (y >= (1580f / 1920) * GameView.HEIGHT);
+            }
+        }else {
+            return (x <= (330f / 1080) * GameView.WIDTH) && (y <= (820f / 1920) * GameView.HEIGHT && y >= (550f / 1920) * GameView.HEIGHT);
+        }
     }
     /**
      * Checks if the color green is touched.
@@ -93,7 +108,19 @@ public class GameBoard
      */
     public boolean greenTouched(float x, float y)
     {
-        return (x >= (745f/1080)*GameView.WIDTH) && (y <= (820f/1920)*GameView.HEIGHT && y >= (550f/1920) * GameView.HEIGHT);
+        if(impossible) {
+            if ((cardsCorrect % 4) == 0) {
+                return (x >= (745f / 1080) * GameView.WIDTH) && (y <= (820f / 1920) * GameView.HEIGHT && y >= (550f / 1920) * GameView.HEIGHT);
+            } else if ((cardsCorrect % 4) == 1) {
+                return (x <= (330f / 1080) * GameView.WIDTH) && (y >= (1580f / 1920) * GameView.HEIGHT);
+            } else if ((cardsCorrect % 4) == 2) {
+                return (x >= (745f / 1080) * GameView.WIDTH) && (y >= (1580f / 1920) * GameView.HEIGHT);
+            } else {
+                return (x <= (330f / 1080) * GameView.WIDTH) && (y <= (820f / 1920) * GameView.HEIGHT && y >= (550f / 1920) * GameView.HEIGHT);
+            }
+        }else {
+            return (x >= (745f / 1080) * GameView.WIDTH) && (y <= (820f / 1920) * GameView.HEIGHT && y >= (550f / 1920) * GameView.HEIGHT);
+        }
     }
 
     /**
@@ -105,7 +132,19 @@ public class GameBoard
      */
     public boolean blueTouched(float x, float y)
     {
-        return (x <= (330f/1080)*GameView.WIDTH) && (y >= (1580f/1920)*GameView.HEIGHT);
+        if(impossible) {
+            if ((cardsCorrect % 4) == 0) {
+                return (x <= (330f / 1080) * GameView.WIDTH) && (y >= (1580f / 1920) * GameView.HEIGHT);
+            } else if ((cardsCorrect % 4) == 1) {
+                return (x >= (745f / 1080) * GameView.WIDTH) && (y >= (1580f / 1920) * GameView.HEIGHT);
+            } else if ((cardsCorrect % 4) == 2) {
+                return (x <= (330f / 1080) * GameView.WIDTH) && (y <= (820f / 1920) * GameView.HEIGHT && y >= (550f / 1920) * GameView.HEIGHT);
+            } else {
+                return (x >= (745f / 1080) * GameView.WIDTH) && (y <= (820f / 1920) * GameView.HEIGHT && y >= (550f / 1920) * GameView.HEIGHT);
+            }
+        }else {
+            return (x <= (330f / 1080) * GameView.WIDTH) && (y >= (1580f / 1920) * GameView.HEIGHT);
+        }
     }
 
     /**
@@ -117,7 +156,19 @@ public class GameBoard
      */
     public boolean purpleTouched(float x, float y)
     {
-        return (x >= (745f/1080)*GameView.WIDTH) && (y >= (1580f/1920)*GameView.HEIGHT);
+        if(impossible) {
+            if ((cardsCorrect % 4) == 0) {
+                return (x >= (745f / 1080) * GameView.WIDTH) && (y >= (1580f / 1920) * GameView.HEIGHT);
+            } else if ((cardsCorrect % 4) == 1) {
+                return (x <= (330f / 1080) * GameView.WIDTH) && (y <= (820f / 1920) * GameView.HEIGHT && y >= (550f / 1920) * GameView.HEIGHT);
+            } else if ((cardsCorrect % 4) == 2) {
+                return (x >= (745f / 1080) * GameView.WIDTH) && (y <= (820f / 1920) * GameView.HEIGHT && y >= (550f / 1920) * GameView.HEIGHT);
+            } else {
+                return (x <= (330f / 1080) * GameView.WIDTH) && (y >= (1580f / 1920) * GameView.HEIGHT);
+            }
+        }else {
+            return (x >= (745f / 1080) * GameView.WIDTH) && (y >= (1580f / 1920) * GameView.HEIGHT);
+        }
     }
 
     /**
@@ -128,13 +179,34 @@ public class GameBoard
      */
     public void draw(Canvas canvas)
     {
-
         canvas.drawRect(0f, 0f, GameView.WIDTH, (100f/1080f)*GameView.HEIGHT, this.darkBlueTopBarColor);
-        canvas.drawCircle((175f/1080)*GameView.WIDTH,0.9f*GameView.HEIGHT, RADIUS, this.blueCircleColor);
-        canvas.drawCircle((905f/1080)*GameView.WIDTH,0.9f*GameView.HEIGHT, RADIUS, this.purpleCircleColor);
+        if(impossible) {
+            if ((cardsCorrect % 4) == 0) {
+                canvas.drawCircle((175f / 1080) * GameView.WIDTH, 0.9f * GameView.HEIGHT, RADIUS, this.blueCircleColor);
+                canvas.drawCircle((905f / 1080) * GameView.WIDTH, 0.9f * GameView.HEIGHT, RADIUS, this.purpleCircleColor);
+                canvas.drawCircle((175f / 1080) * GameView.WIDTH, 0.35f * GameView.HEIGHT, RADIUS, this.redCircleColor);
+                canvas.drawCircle((905f / 1080) * GameView.WIDTH, 0.35f * GameView.HEIGHT, RADIUS, this.greenCircleColor);
+            } else if ((cardsCorrect % 4) == 1) {
+                canvas.drawCircle((175f / 1080) * GameView.WIDTH, 0.9f * GameView.HEIGHT, RADIUS, this.greenCircleColor);
+                canvas.drawCircle((905f / 1080) * GameView.WIDTH, 0.9f * GameView.HEIGHT, RADIUS, this.blueCircleColor);
+                canvas.drawCircle((175f / 1080) * GameView.WIDTH, 0.35f * GameView.HEIGHT, RADIUS, this.purpleCircleColor);
+                canvas.drawCircle((905f / 1080) * GameView.WIDTH, 0.35f * GameView.HEIGHT, RADIUS, this.redCircleColor);
+            } else if ((cardsCorrect % 4) == 2) {
+                canvas.drawCircle((175f / 1080) * GameView.WIDTH, 0.9f * GameView.HEIGHT, RADIUS, this.redCircleColor);
+                canvas.drawCircle((905f / 1080) * GameView.WIDTH, 0.9f * GameView.HEIGHT, RADIUS, this.greenCircleColor);
+                canvas.drawCircle((175f / 1080) * GameView.WIDTH, 0.35f * GameView.HEIGHT, RADIUS, this.blueCircleColor);
+                canvas.drawCircle((905f / 1080) * GameView.WIDTH, 0.35f * GameView.HEIGHT, RADIUS, this.purpleCircleColor);
+            } else {
+                canvas.drawCircle((175f / 1080) * GameView.WIDTH, 0.9f * GameView.HEIGHT, RADIUS, this.purpleCircleColor);
+                canvas.drawCircle((905f / 1080) * GameView.WIDTH, 0.9f * GameView.HEIGHT, RADIUS, this.redCircleColor);
+                canvas.drawCircle((175f / 1080) * GameView.WIDTH, 0.35f * GameView.HEIGHT, RADIUS, this.greenCircleColor);
+                canvas.drawCircle((905f / 1080) * GameView.WIDTH, 0.35f * GameView.HEIGHT, RADIUS, this.blueCircleColor);
+            }
+        }
+     }
 
-        canvas.drawCircle((175f/1080)*GameView.WIDTH, 0.35f*GameView.HEIGHT, RADIUS, this.redCircleColor);
-        canvas.drawCircle((905f/1080)*GameView.WIDTH, 0.35f*GameView.HEIGHT, RADIUS, this.greenCircleColor);
+    public void randomizePiles(int cardsCorrect) {
+        this.cardsCorrect = cardsCorrect;
     }
 
     //0.162
