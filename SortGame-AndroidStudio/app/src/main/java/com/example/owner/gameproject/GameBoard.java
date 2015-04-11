@@ -202,6 +202,11 @@ public class GameBoard
                 canvas.drawCircle((175f / 1080) * GameView.WIDTH, 0.35f * GameView.HEIGHT, RADIUS, this.greenCircleColor);
                 canvas.drawCircle((905f / 1080) * GameView.WIDTH, 0.35f * GameView.HEIGHT, RADIUS, this.blueCircleColor);
             }
+        }else{
+            canvas.drawCircle((175f / 1080) * GameView.WIDTH, 0.9f * GameView.HEIGHT, RADIUS, this.blueCircleColor);
+            canvas.drawCircle((905f / 1080) * GameView.WIDTH, 0.9f * GameView.HEIGHT, RADIUS, this.purpleCircleColor);
+            canvas.drawCircle((175f / 1080) * GameView.WIDTH, 0.35f * GameView.HEIGHT, RADIUS, this.redCircleColor);
+            canvas.drawCircle((905f / 1080) * GameView.WIDTH, 0.35f * GameView.HEIGHT, RADIUS, this.greenCircleColor);
         }
      }
 
