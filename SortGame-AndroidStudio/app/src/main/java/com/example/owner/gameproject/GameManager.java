@@ -277,7 +277,7 @@ public class GameManager implements Observer
 
 
     /**
-     * Checks if gameOver has occurred and displays the appropriate message onto the screen.
+     * Checks if gameover has occurred and displays the appropriate message onto the screen.
      *
      * @see android.graphics.Canvas
      * @param canvas Canvas instance representing android.graphics.Canvas class.
@@ -306,7 +306,7 @@ public class GameManager implements Observer
 
         if (gameFinished)
             gameOverScreen.draw(canvas);
-            //MediaSounds.loadPlaySound(R.raw.gameOver, 1, 1f);
+            //MediaSounds.loadPlaySound(R.raw.gameover, 1, 1f);
 
     }
 
