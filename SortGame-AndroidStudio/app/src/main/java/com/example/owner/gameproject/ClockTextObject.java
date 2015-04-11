@@ -51,6 +51,8 @@ public class ClockTextObject extends TextObject
     }
 
 
+    int count = 0;
+
     /**
      * Setter for the text.
      *
@@ -68,18 +70,24 @@ public class ClockTextObject extends TextObject
         if (text.equals("01") || text.equals("02") || text.equals("03"))
         {
             paint.setColor(ColorsLoader.loadColorByName("emergency red"));
-            paint.setTextSize(this.textSize + (40f/1080) *GameView.WIDTH);
-
+            paint.setTextSize(this.textSize + (count*2/1080f) *GameView.WIDTH);
+            if(count == 20){
+                count = 0;
+            }
             this.setPaint(paint);
+            count++;
         }
 
 
         else if (text.equals("04") || text.equals("05"))
         {
             paint.setColor(ColorsLoader.loadColorByName("dark yellow"));
-            paint.setTextSize(this.textSize + (20f/1080) *GameView.WIDTH);
-
+            paint.setTextSize(this.textSize + (count/1080f) *GameView.WIDTH);
+            if(count == 20){
+                count = 0;
+            }
             this.setPaint(paint);
+            count++;
         }
 
         else

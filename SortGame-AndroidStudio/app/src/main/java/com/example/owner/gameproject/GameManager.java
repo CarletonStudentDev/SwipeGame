@@ -3,6 +3,11 @@ package com.example.owner.gameproject;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+<<<<<<< HEAD
+import android.graphics.Paint;
+import android.util.Log;
+=======
+>>>>>>> origin/Eric
 import android.view.MotionEvent;
 
 import java.util.Observable;
@@ -48,7 +53,7 @@ public class GameManager implements Observer
      * timedOut boolean value representing whether the clock has finished or not.
      * impossible boolean value representing whether the game is impossible or not.
      */
-    private boolean gameFinished,
+    private boolean gameFinished = false,
                     timedOut,
                     impossible,
                     stroopMode,
@@ -173,12 +178,15 @@ public class GameManager implements Observer
         {
             if(event.getAction() == MotionEvent.ACTION_UP)
             {
-                if (gameFinished){
-                    if (this.gameOverScreen.getGameOverButton(event.getX(), event.getY()) == 1)
-                        GameView.activity.finish();
+                if (gameFinished)
+                {
+                    if(gameOverScreen.getWaitTime() == 0) {
+                        if (this.gameOverScreen.getGameOverButton(event.getX(), event.getY()) == 1)
+                            GameView.activity.finish();
 
-                    else if (this.gameOverScreen.getGameOverButton(event.getX(), event.getY()) == 2)
-                        GameView.activity.recreate();
+                        else if (this.gameOverScreen.getGameOverButton(event.getX(), event.getY()) == 2)
+                            GameView.activity.recreate();
+                    }
 
                 }else{
                     if (stroopMode || impossible) {
@@ -304,10 +312,19 @@ public class GameManager implements Observer
 
         }
 
-        if (gameFinished)
+        if (gameFinished) {
+            GameView.activity.displayInterstitial();
             gameOverScreen.draw(canvas);
+<<<<<<< HEAD
             //MediaSounds.loadPlaySound(R.raw.gameover, 1, 1f);
+=======
+<<<<<<< HEAD
+        }
+=======
+            //MediaSounds.loadPlaySound(R.raw.gameOver, 1, 1f);
+>>>>>>> origin/Eric
 
+>>>>>>> origin/Eric
     }
 
 
@@ -372,11 +389,7 @@ public class GameManager implements Observer
 
         }
 
-
-
-
         gameOver(canvas);
-
     }
 
     /**
@@ -394,4 +407,8 @@ public class GameManager implements Observer
         timer.setText("0");
     }
 
+
+    public boolean getGameOver(){
+        return gameFinished;
+    }
 }

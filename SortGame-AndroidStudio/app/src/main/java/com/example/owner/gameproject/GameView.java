@@ -34,10 +34,14 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 
     public static Typeface typeface;
 
-    public static Activity activity;
+    public static AdActivity activity;
 
+<<<<<<< HEAD
+    public GameView(AdActivity appActivity, long gameTime, boolean stroopMode)
+=======
 
     public GameView(Activity appActivity, long gameTime, boolean stroopMode, boolean impossibleMode)
+>>>>>>> origin/Eric
     {
         super(appActivity);
         this.stroopMode = stroopMode;
@@ -105,7 +109,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
     @Override
     public void surfaceCreated(SurfaceHolder holder)
     {
-
         WIDTH = getWidth();
         HEIGHT = getHeight();
 
@@ -144,4 +147,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
         gameLoopThread.setRunning(false);
     }
 
+    public boolean getGameOver(){
+        return gameManager.getGameOver();
+    }
 }
