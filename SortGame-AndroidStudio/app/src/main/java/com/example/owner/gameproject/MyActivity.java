@@ -10,6 +10,8 @@ import android.view.Window;
 import android.widget.ToggleButton;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.games.*; //For google play game services
+import com.google.android.gms.common.api.GoogleApiClient; //For login stuff
 
 import static com.example.owner.gameproject.R.id.adView;
 
@@ -34,6 +36,7 @@ public class MyActivity extends Activity {
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
+        //Initializes Data Access Object for the score databases
         dataSource = new ScoreDataSource(this);
         dataSource.open();
     }

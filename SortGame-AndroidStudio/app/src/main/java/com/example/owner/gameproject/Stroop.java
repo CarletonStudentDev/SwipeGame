@@ -109,13 +109,18 @@ public class Stroop {
     public void draw(Canvas canvas)
     {
 
-        if (word.getXcoordinate() > centerX)
-            word.setXcoordinate(word.getXcoordinate() - (85f / 1080) * GameView.WIDTH);
+        if(!impossible) {
+            if (word.getXcoordinate() > centerX)
+                word.setXcoordinate(word.getXcoordinate() - (85f / 1080) * GameView.WIDTH);
 
-        if (lastWord != null) {
-            if (lastWord.getXcoordinate() > -500)
-                lastWord.setXcoordinate(lastWord.getXcoordinate() - (85f / 1080) * GameView.WIDTH);
-            this.lastWord.draw(canvas);
+            if (lastWord != null) {
+                if (lastWord.getXcoordinate() > -500)
+                    lastWord.setXcoordinate(lastWord.getXcoordinate() - (85f / 1080) * GameView.WIDTH);
+                this.lastWord.draw(canvas);
+            }
+        }else{
+            word.setXcoordinate((550f / 1080) * GameView.WIDTH);
+
         }
 
         this.word.draw(canvas);

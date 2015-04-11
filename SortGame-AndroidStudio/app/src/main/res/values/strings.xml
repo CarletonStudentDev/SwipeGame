@@ -8,5 +8,13 @@
     <string name="sound_off_toggleButton">UNMUTE</string>
     <string name="sound_on_toggleButton">MUTE</string>
 
+    <!--
+    Google Play game services IDs.
+    Save this file as res/values/games-ids.xml in your project.
+    -->
+    <string name="app_id">929075294226</string>
+    <string name="leaderboard_cards_mode">CgkIkuDPiYUbEAIQAA</string>
+    <string name="leaderboard_stroop_mode">CgkIkuDPiYUbEAIQAQ</string>
+    <string name="leaderboard_impossible_mode">CgkIkuDPiYUbEAIQAg</string>
 
 </resources>
