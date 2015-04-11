@@ -4,10 +4,18 @@
     <string name="app_name">GameProject</string>
     <string name="normal_mode">Cards</string>
     <string name="stroop_mode">Stroop</string>
-    <string name="endless_mode"> Endless Cards</string>
+    <string name="endless_mode">Impossible</string>
     <string name="sound_off_toggleButton">UNMUTE</string>
     <string name="sound_on_toggleButton">MUTE</string>
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
 
+    <!--
+    Google Play game services IDs.
+    Save this file as res/values/games-ids.xml in your project.
+    -->
+    <string name="app_id">929075294226</string>
+    <string name="leaderboard_cards_mode">CgkIkuDPiYUbEAIQAA</string>
+    <string name="leaderboard_stroop_mode">CgkIkuDPiYUbEAIQAQ</string>
+    <string name="leaderboard_impossible_mode">CgkIkuDPiYUbEAIQAg</string>
 
 </resources>

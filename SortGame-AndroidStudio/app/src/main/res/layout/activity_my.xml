@@ -14,11 +14,11 @@
 
     <ImageView
         android:id="@+id/name_logo"
-        android:layout_width="320dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="75dp"
+        android:layout_width="360dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="55dp"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/nl" />
+        android:src="@drawable/title_icon" />
 
     <Button
         android:id="@+id/normal_mode_button"
@@ -30,10 +30,10 @@
         android:layout_marginBottom="5dp"
         android:layout_marginTop="100dp"
         android:layout_marginLeft="100dp"
-        android:onClick="openNormal"  />
+        android:onClick="openNormal"/>
 
     <Button
-        android:id="@+id/marathon_mode_button"
+        android:id="@+id/stroop_mode_button"
         android:layout_width="@dimen/button_size"
         android:layout_height="wrap_content"
         android:layout_below="@+id/normal_mode_button"
@@ -44,15 +44,15 @@
         android:onClick="openStroop" />
 
     <Button
-        android:id="@+id/endless_mode_button"
+        android:id="@+id/impossible_mode_button"
         android:layout_width="@dimen/button_size"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/marathon_mode_button"
+        android:layout_below="@+id/stroop_mode_button"
         android:text="@string/endless_mode"
         android:background="@color/menuButton"
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="100dp"
-        android:onClick="openEndless"  />
+        android:onClick="openImpossible"  />
 
     <ToggleButton
         android:layout_width="wrap_content"

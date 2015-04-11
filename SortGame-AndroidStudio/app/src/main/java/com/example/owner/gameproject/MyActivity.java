@@ -10,6 +10,8 @@ import android.view.Window;
 import android.widget.ToggleButton;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.games.*; //For google play game services
+import com.google.android.gms.common.api.GoogleApiClient; //For login stuff
 
 public class MyActivity extends Activity {
 
@@ -32,6 +34,7 @@ public class MyActivity extends Activity {
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
+        //Initializes Data Access Object for the score databases
         dataSource = new ScoreDataSource(this);
         dataSource.open();
 
@@ -73,9 +76,9 @@ public class MyActivity extends Activity {
     }
 
     /** Called when the user clicks the Endless button */
-    public void openEndless(View view)
+    public void openImpossible(View view)
     {
-        Intent intent = new Intent(this, StartEndlessActivity.class);
+        Intent intent = new Intent(this, StartImpossibleActivity.class);
         startActivity(intent);
     }
 

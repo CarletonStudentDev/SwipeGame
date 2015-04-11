@@ -20,12 +20,16 @@ public class StartStroopActivity extends AdActivity {
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
+<<<<<<< HEAD
         final GameView gameView = new GameView(this, 11000L,true);
 
         setContentView(gameView);
 
         //GooglePlay LoginHere
         MyActivity.count++;
+=======
+        setContentView(new GameView(this, 11000L,true,false));
+>>>>>>> origin/Eric
     }
 
 

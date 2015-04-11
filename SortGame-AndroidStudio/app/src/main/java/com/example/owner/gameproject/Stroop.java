@@ -9,6 +9,7 @@ import java.util.Random;
  */
 public class Stroop {
 
+    private final boolean impossible;
     private TextObject word, lastWord;
 
     public String blueString="Blue",redString="Red",greenString="Green",purpleString="Purple",yellowString="Yellow",orangeString="Orange";
@@ -22,8 +23,9 @@ public class Stroop {
      *
      */
 
-    public Stroop()
+    public Stroop(boolean impossible)
     {
+        this.impossible = impossible;
         this.word = new TextObject(redString, (1200/1080)*GameView.WIDTH, (1100f/1701)*GameView.HEIGHT, GameView.typeface, ColorsLoader.loadColorByName("green"), (250f/1080) * GameView.WIDTH);
         randomColorString();
     }
@@ -106,17 +108,22 @@ public class Stroop {
 
     public void draw(Canvas canvas)
     {
-        if(word.getXcoordinate() > centerX)
-            word.setXcoordinate(word.getXcoordinate()-(85f/1080)*GameView.WIDTH);
 
-        if(lastWord != null) {
-            if (lastWord.getXcoordinate() > -500)
-                lastWord.setXcoordinate(lastWord.getXcoordinate() - (85f / 1080) * GameView.WIDTH);
-            this.lastWord.draw(canvas);
+        if(!impossible) {
+            if (word.getXcoordinate() > centerX)
+                word.setXcoordinate(word.getXcoordinate() - (85f / 1080) * GameView.WIDTH);
+
+            if (lastWord != null) {
+                if (lastWord.getXcoordinate() > -500)
+                    lastWord.setXcoordinate(lastWord.getXcoordinate() - (85f / 1080) * GameView.WIDTH);
+                this.lastWord.draw(canvas);
+            }
+        }else{
+            word.setXcoordinate((550f / 1080) * GameView.WIDTH);
+
         }
 
         this.word.draw(canvas);
-
     }
 
     public int getColorId()
