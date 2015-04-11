@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ArrayList;
+
 /**
  * GameManager class manages the logic of the game.
  *
@@ -88,9 +89,6 @@ public class GameManager implements Observer
      */
     private GameClock gameClock;
     private int cardsCorrect,plus2secondsSeen,minusHeartsSeen;
-
-
-    public static int HIGHSCORE_NORMAL, HIGHSCORE_STROOP, HIGHSCORE_ENDLESS;
 
 
     /**
@@ -307,6 +305,7 @@ public class GameManager implements Observer
 
         if (gameFinished)
             gameOverScreen.draw(canvas);
+            //MediaSounds.loadPlaySound(R.raw.gameOver, 1, 1f);
 
     }
 
