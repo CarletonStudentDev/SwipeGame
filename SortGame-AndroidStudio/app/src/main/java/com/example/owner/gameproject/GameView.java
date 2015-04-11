@@ -36,12 +36,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 
     public static AdActivity activity;
 
-<<<<<<< HEAD
-    public GameView(AdActivity appActivity, long gameTime, boolean stroopMode)
-=======
 
-    public GameView(Activity appActivity, long gameTime, boolean stroopMode, boolean impossibleMode)
->>>>>>> origin/Eric
+    public GameView(AdActivity appActivity, long gameTime, boolean stroopMode, boolean impossibleMode)
     {
         super(appActivity);
         this.stroopMode = stroopMode;

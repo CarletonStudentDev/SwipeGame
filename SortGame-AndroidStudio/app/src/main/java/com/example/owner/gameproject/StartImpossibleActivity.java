@@ -6,17 +6,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 
-<<<<<<< HEAD:SortGame-AndroidStudio/app/src/main/java/com/example/owner/gameproject/StartEndlessActivity.java
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 
-public class StartEndlessActivity extends AdActivity {
+public class StartImpossibleActivity extends AdActivity {
 
     private static InterstitialAd interstitial;
-=======
-public class StartImpossibleActivity extends Activity {
->>>>>>> origin/Eric:SortGame-AndroidStudio/app/src/main/java/com/example/owner/gameproject/StartImpossibleActivity.java
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,15 +22,11 @@ public class StartImpossibleActivity extends Activity {
         //getSupportActionBar().hide();
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-<<<<<<< HEAD:SortGame-AndroidStudio/app/src/main/java/com/example/owner/gameproject/StartEndlessActivity.java
-        final GameView gameView = new GameView(this, -1,false);
+        final GameView gameView = new GameView(this, 11000L,true,true);
         setContentView(gameView);
 
         //GooglePlay LoginHere
         MyActivity.count++;
-=======
-        setContentView(new GameView(this, 11000L,true,true));
->>>>>>> origin/Eric:SortGame-AndroidStudio/app/src/main/java/com/example/owner/gameproject/StartImpossibleActivity.java
     }
 
 

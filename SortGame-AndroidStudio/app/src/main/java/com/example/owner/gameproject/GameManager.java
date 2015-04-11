@@ -310,7 +310,7 @@ public class GameManager implements Observer
         if (gameFinished) {
             GameView.activity.displayInterstitial();
             gameOverScreen.draw(canvas);
-            MediaSounds.loadPlaySound(R.raw.gameover, 1, 1f);
+            //MediaSounds.loadPlaySound(R.raw.gameover, 1, 1f);
         }
     }
 
