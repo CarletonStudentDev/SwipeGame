@@ -3,11 +3,6 @@ package com.example.owner.gameproject;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-<<<<<<< HEAD
-import android.graphics.Paint;
-import android.util.Log;
-=======
->>>>>>> origin/Eric
 import android.view.MotionEvent;
 
 import java.util.Observable;
@@ -315,16 +310,8 @@ public class GameManager implements Observer
         if (gameFinished) {
             GameView.activity.displayInterstitial();
             gameOverScreen.draw(canvas);
-<<<<<<< HEAD
-            //MediaSounds.loadPlaySound(R.raw.gameover, 1, 1f);
-=======
-<<<<<<< HEAD
+            MediaSounds.loadPlaySound(R.raw.gameover, 1, 1f);
         }
-=======
-            //MediaSounds.loadPlaySound(R.raw.gameOver, 1, 1f);
->>>>>>> origin/Eric
-
->>>>>>> origin/Eric
     }
 
 
