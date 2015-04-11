@@ -108,7 +108,7 @@ public class Stroop {
 
     public void draw(Canvas canvas)
     {
-        if(impossible == false) {
+        if(!impossible) {
             if (word.getXcoordinate() > centerX)
                 word.setXcoordinate(word.getXcoordinate() - (85f / 1080) * GameView.WIDTH);
 

@@ -107,7 +107,7 @@ public class GameManager implements Observer
         minusHeartsSeen=0;
         this.stroopMode = stroopMode;
 
-        if(stroopMode==true){
+        if(stroopMode){
             stroop = new Stroop(impossible);
         }else{
             card = new Card();
@@ -181,7 +181,7 @@ public class GameManager implements Observer
                         GameView.activity.recreate();
 
                 }else{
-                    if (stroopMode == true || impossible==true) {
+                    if (stroopMode || impossible) {
                         if (this.gameBoard.getQuadrantColor(event.getX(), event.getY()) == this.stroop.getColorId())
                             this.correct();
                         else if (this.gameBoard.getQuadrantColor(event.getX(), event.getY()) != 0)
