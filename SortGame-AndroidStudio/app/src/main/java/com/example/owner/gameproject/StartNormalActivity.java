@@ -2,11 +2,17 @@ package com.example.owner.gameproject;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 
-public class StartNormalActivity extends Activity {
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+
+public class StartNormalActivity extends AdActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,12 +20,13 @@ public class StartNormalActivity extends Activity {
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        setContentView(new GameView(this, 11000L,false));
+        final GameView gameView = new GameView(this, 11000L, false);
+
+        setContentView(gameView);
 
         //GooglePlay LoginHere
-
+        MyActivity.count++;
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -6,7 +6,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 
-public class StartStroopActivity extends Activity {
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+
+public class StartStroopActivity extends AdActivity {
+
+    private static InterstitialAd interstitial;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,7 +20,12 @@ public class StartStroopActivity extends Activity {
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        setContentView(new GameView(this, 11000L,true));
+        final GameView gameView = new GameView(this, 11000L,true);
+
+        setContentView(gameView);
+
+        //GooglePlay LoginHere
+        MyActivity.count++;
     }
 
 

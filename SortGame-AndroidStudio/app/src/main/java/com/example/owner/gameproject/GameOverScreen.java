@@ -3,6 +3,7 @@ package com.example.owner.gameproject;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.util.Log;
 
 /**
  * GameOverScreen class displays the reason for the loss
@@ -74,6 +75,8 @@ public class GameOverScreen
 
     private boolean stroopMode;
 
+    private int waitTime = 40;
+
     /**
      * Constructor for the GameOverScreen class.
      *
@@ -110,9 +113,6 @@ public class GameOverScreen
 
         this.paintSquares=new Paint();
         this.paintSquares.setColor(ColorsLoader.loadColorByName("blue"));
-
-
-
     }
 
 
@@ -179,8 +179,7 @@ public class GameOverScreen
      *
      */
 
-    public void draw(Canvas canvas)
-    {
+    public void draw(Canvas canvas) {
         canvas.drawRect(leftCoordinate, topCoordinate, rightCoordinate, bottomCoordinate, paint);
         this.lossReason.draw(canvas);
 
@@ -190,19 +189,31 @@ public class GameOverScreen
         this.highScore.draw(canvas);
         this.highScoreNum.draw(canvas);
 
-        if(stroopMode == true){
+        if (stroopMode == true) {
             this.stroopsPerSec.draw(canvas);
-        }else {
+        } else {
             this.cardsPerSec.draw(canvas);
         }
         this.cardsPerSecNum.draw(canvas);
 
 
-        canvas.drawRect((200f/1080)*GameView.WIDTH, (1325f/1701)*GameView.HEIGHT,(500f/1080)*GameView.WIDTH, (1520f/1701)*GameView.HEIGHT, paintSquares);
+        canvas.drawRect((200f / 1080) * GameView.WIDTH, (1325f / 1701) * GameView.HEIGHT, (500f / 1080) * GameView.WIDTH, (1520f / 1701) * GameView.HEIGHT, paintSquares);
         this.backToMenu.draw(canvas);
 
-        canvas.drawRect((600f/1080)*GameView.WIDTH, (1325f/1701)*GameView.HEIGHT,(900f/1080)*GameView.WIDTH, (1520f/1701)*GameView.HEIGHT, paintSquares);
+        canvas.drawRect((600f / 1080) * GameView.WIDTH, (1325f / 1701) * GameView.HEIGHT, (900f / 1080) * GameView.WIDTH, (1520f / 1701) * GameView.HEIGHT, paintSquares);
         this.retryGame.draw(canvas);
 
+        if (waitTime > 0){
+            waitTime--;
+        }
+        //Log.i("waitTime",Integer.toString(waitTime));
+    }
+
+    public int getWaitTime(){
+        return waitTime;
+    }
+
+    public void setWaitTime(int time){
+        waitTime = time;
     }
 }

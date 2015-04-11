@@ -7,6 +7,7 @@
     <string name="endless_mode"> Endless Cards</string>
     <string name="sound_off_toggleButton">UNMUTE</string>
     <string name="sound_on_toggleButton">MUTE</string>
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
 
 
 </resources>

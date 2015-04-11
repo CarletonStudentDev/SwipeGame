@@ -6,7 +6,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 
-public class StartEndlessActivity extends Activity {
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+
+public class StartEndlessActivity extends AdActivity {
+
+    private static InterstitialAd interstitial;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,7 +22,11 @@ public class StartEndlessActivity extends Activity {
         //getSupportActionBar().hide();
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        setContentView(new GameView(this, -1,false));
+        final GameView gameView = new GameView(this, -1,false);
+        setContentView(gameView);
+
+        //GooglePlay LoginHere
+        MyActivity.count++;
     }
 
 

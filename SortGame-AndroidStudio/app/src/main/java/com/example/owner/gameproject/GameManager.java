@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.util.Log;
 import android.view.MotionEvent;
 
 import java.util.Iterator;
@@ -50,7 +51,7 @@ public class GameManager implements Observer
      * timedOut boolean value representing whether the clock has finished or not.
      * endless boolean value representing whether the game is endless or not.
      */
-    private boolean gameFinished,
+    private boolean gameFinished = false,
                     timedOut,
                     endless,
                     stroopMode,
@@ -182,11 +183,13 @@ public class GameManager implements Observer
             {
                 if (gameFinished)
                 {
-                    if (this.gameOverScreen.getGameOverButton(event.getX(), event.getY()) == 1)
-                        GameView.activity.finish();
+                    if(gameOverScreen.getWaitTime() == 0) {
+                        if (this.gameOverScreen.getGameOverButton(event.getX(), event.getY()) == 1)
+                            GameView.activity.finish();
 
-                    else if (this.gameOverScreen.getGameOverButton(event.getX(), event.getY()) == 2)
-                        GameView.activity.recreate();
+                        else if (this.gameOverScreen.getGameOverButton(event.getX(), event.getY()) == 2)
+                            GameView.activity.recreate();
+                    }
 
                 }else {
 
@@ -312,9 +315,10 @@ public class GameManager implements Observer
 
         }
 
-        if (gameFinished)
+        if (gameFinished) {
+            GameView.activity.displayInterstitial();
             gameOverScreen.draw(canvas);
-
+        }
     }
 
 
@@ -378,11 +382,7 @@ public class GameManager implements Observer
 
         }
 
-
-
-
         gameOver(canvas);
-
     }
 
     /**
@@ -400,4 +400,8 @@ public class GameManager implements Observer
         timer.setText("0");
     }
 
+
+    public boolean getGameOver(){
+        return gameFinished;
+    }
 }
