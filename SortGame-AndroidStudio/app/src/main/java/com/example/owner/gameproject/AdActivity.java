@@ -2,6 +2,7 @@ package com.example.owner.gameproject;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SurfaceView;
@@ -21,25 +22,28 @@ public class AdActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         // Prepare the Interstitial Ad
         interstitial = new InterstitialAd(this);
         // Insert the Ad Unit ID
         interstitial.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
 
-        if(MyActivity.count == 3){
+        Log.i("count", Integer.toString(MyActivity.count));
+        if(MyActivity.count == 4) {
             requestNewInterstitial();
-            // Get the view from activity_main.xml
-            setContentView(R.layout.activity_main);
-            MyActivity.count = 0;
         }
 
         // Prepare an Interstitial Ad Listener
         interstitial.setAdListener(new AdListener() {
             public void onAdLoaded() {
-                // Call displayInterstitial() function
+                if(MyActivity.display){
+                    displayInterstitial();
+                    MyActivity.display = false;
+                }
             }
             public void onAdClosed(){
-                setContentView(view);
+                //setContentView(view);
             }
         });
 
@@ -57,11 +61,12 @@ public class AdActivity extends Activity {
         this.view = view;
     }
 
-    private void requestNewInterstitial() {
+    public void requestNewInterstitial() {
         AdRequest adRequest = new AdRequest.Builder()
                 .addTestDevice("YOUR_DEVICE_HASH")
                 .build();
 
         interstitial.loadAd(adRequest);
+        displayInterstitial();
     }
 }

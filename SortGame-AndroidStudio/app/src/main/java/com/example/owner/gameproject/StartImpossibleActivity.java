@@ -18,11 +18,7 @@ public class StartImpossibleActivity extends AdActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //Update uses this to hide bar instead of Line below
-        //getSupportActionBar().hide();
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-        final GameView gameView = new GameView(this, 11000L,true,true);
+        final GameView gameView = new GameView(this, 10900L,true,true);
         setContentView(gameView);
 
         //GooglePlay LoginHere

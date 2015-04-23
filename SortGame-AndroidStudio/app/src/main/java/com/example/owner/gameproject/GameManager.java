@@ -5,6 +5,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 
+import com.google.android.gms.ads.InterstitialAd;
+
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ArrayList;
@@ -223,7 +225,7 @@ public class GameManager implements Observer
 
 
         if((cardsCorrect%3)==0 )
-            gameClock.addTime(1000L);
+            gameClock.addTime(950L);
             plus2secondsSeen = 0;
 
         if(stroopMode){
@@ -312,11 +314,21 @@ public class GameManager implements Observer
         }
 
         if (gameFinished) {
-            GameView.activity.displayInterstitial();
             gameOverScreen.draw(canvas);
             if(!soundPlayed)
             {
                 MediaSounds.loadPlaySound(R.raw.gameover4, 1, 1f);
+                GameView.activity.runOnUiThread(new Runnable() {
+                        public void run() {
+                            if(MyActivity.count == 6) {
+                                MyActivity.display = true;
+                                MyActivity.count = 0;
+                            }
+                        }
+                    }
+
+                );
+                //MediaSounds.loadPlaySound(R.raw.gameover, 1, 1f);
                 soundPlayed = true;
             }
         }
@@ -360,7 +372,6 @@ public class GameManager implements Observer
         moveCards.removeAll(toRemove);
         if (!(this.timedOut))
             timer.setText("" + gameClock.getRemainingTimeLeft());
-
 
         if (minusHeartsSeen <= 20 && minusHearts) {
             canvas.drawBitmap(minusHeartsBitmap, (425f / 1080) * GameView.WIDTH, (560f / 1701) * GameView.HEIGHT + minusHeartsSeen*2, null);
