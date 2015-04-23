@@ -21,33 +21,33 @@
         android:src="@drawable/title_icon" />
 
     <Button
-        android:id="@+id/normal_mode_button"
-        android:layout_width="@dimen/button_size"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/name_logo"
-        android:text="@string/normal_mode"
-        android:background="@color/menuButton"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginLeft="100dp"
-        android:onClick="openNormal"/>
-
-    <Button
         android:id="@+id/stroop_mode_button"
         android:layout_width="@dimen/button_size"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/normal_mode_button"
+        android:layout_below="@+id/name_logo"
         android:text="@string/stroop_mode"
         android:background="@color/menuButton"
+        android:layout_marginTop="75dp"
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="100dp"
         android:onClick="openStroop" />
 
     <Button
-        android:id="@+id/impossible_mode_button"
+        android:id="@+id/normal_mode_button"
         android:layout_width="@dimen/button_size"
         android:layout_height="wrap_content"
         android:layout_below="@+id/stroop_mode_button"
+        android:text="@string/normal_mode"
+        android:background="@color/menuButton"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="100dp"
+        android:onClick="openNormal"/>
+
+    <Button
+        android:id="@+id/impossible_mode_button"
+        android:layout_width="@dimen/button_size"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/normal_mode_button"
         android:text="@string/endless_mode"
         android:background="@color/menuButton"
         android:layout_marginBottom="5dp"
