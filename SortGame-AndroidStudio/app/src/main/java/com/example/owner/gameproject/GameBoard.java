@@ -87,16 +87,16 @@ public class GameBoard
     {
         if(impossible) {
             if ((cardsCorrect % 4) == 0) {
-                return (x <= (330f / 1080) * GameView.WIDTH) && (y <= (820f / 1920) * GameView.HEIGHT && y >= (550f / 1920) * GameView.HEIGHT);
+                return (x <= (250f / 720) * GameView.WIDTH) && (y <= (615f / 1280) * GameView.HEIGHT && y >= (550f / 1920) * GameView.HEIGHT);
             } else if ((cardsCorrect % 4) == 1) {
-                return (x >= (745f / 1080) * GameView.WIDTH) && (y <= (820f / 1920) * GameView.HEIGHT && y >= (550f / 1920) * GameView.HEIGHT);
+                return (x >= (450f / 720) * GameView.WIDTH) && (y <= (615f / 1280) * GameView.HEIGHT && y >= (550f / 1920) * GameView.HEIGHT);
             } else if ((cardsCorrect % 4) == 2) {
-                return (x <= (330f / 1080) * GameView.WIDTH) && (y >= (1580f / 1920) * GameView.HEIGHT);
+                return (x <= (250f / 720) * GameView.WIDTH) && (y >= (1030f / 1280) * GameView.HEIGHT);
             } else {
-                return (x >= (745f / 1080) * GameView.WIDTH) && (y >= (1580f / 1920) * GameView.HEIGHT);
+                return (x >= (450f / 720) * GameView.WIDTH) && (y >= (1030f / 1280) * GameView.HEIGHT);
             }
         }else {
-            return (x <= (330f / 1080) * GameView.WIDTH) && (y <= (820f / 1920) * GameView.HEIGHT && y >= (550f / 1920) * GameView.HEIGHT);
+            return (x <= (250f / 720) * GameView.WIDTH) && (y <= (615f / 1280) * GameView.HEIGHT && y >= (550f / 1920) * GameView.HEIGHT);
         }
     }
     /**
@@ -110,16 +110,16 @@ public class GameBoard
     {
         if(impossible) {
             if ((cardsCorrect % 4) == 0) {
-                return (x >= (745f / 1080) * GameView.WIDTH) && (y <= (820f / 1920) * GameView.HEIGHT && y >= (550f / 1920) * GameView.HEIGHT);
+                return (x >= (450f / 720) * GameView.WIDTH) && (y <= (615f / 1280) * GameView.HEIGHT && y >= (550f / 1920) * GameView.HEIGHT);
             } else if ((cardsCorrect % 4) == 1) {
-                return (x <= (330f / 1080) * GameView.WIDTH) && (y >= (1580f / 1920) * GameView.HEIGHT);
+                return (x <= (250f / 720) * GameView.WIDTH) && (y >= (1030f / 1280) * GameView.HEIGHT);
             } else if ((cardsCorrect % 4) == 2) {
-                return (x >= (745f / 1080) * GameView.WIDTH) && (y >= (1580f / 1920) * GameView.HEIGHT);
+                return (x >= (450f / 720) * GameView.WIDTH) && (y >= (1030f / 1280) * GameView.HEIGHT);
             } else {
-                return (x <= (330f / 1080) * GameView.WIDTH) && (y <= (820f / 1920) * GameView.HEIGHT && y >= (550f / 1920) * GameView.HEIGHT);
+                return (x <= (250f / 720) * GameView.WIDTH) && (y <= (615f / 1280) * GameView.HEIGHT && y >= (550f / 1920) * GameView.HEIGHT);
             }
         }else {
-            return (x >= (745f / 1080) * GameView.WIDTH) && (y <= (820f / 1920) * GameView.HEIGHT && y >= (550f / 1920) * GameView.HEIGHT);
+            return (x >= (450f / 720) * GameView.WIDTH) && (y <= (615f / 1280) * GameView.HEIGHT && y >= (550f / 1920) * GameView.HEIGHT);
         }
     }
 
@@ -134,16 +134,16 @@ public class GameBoard
     {
         if(impossible) {
             if ((cardsCorrect % 4) == 0) {
-                return (x <= (330f / 1080) * GameView.WIDTH) && (y >= (1580f / 1920) * GameView.HEIGHT);
+                return (x <= (250f / 720) * GameView.WIDTH) && (y >= (1030f / 1280) * GameView.HEIGHT);
             } else if ((cardsCorrect % 4) == 1) {
-                return (x >= (745f / 1080) * GameView.WIDTH) && (y >= (1580f / 1920) * GameView.HEIGHT);
+                return (x >= (450f / 720) * GameView.WIDTH) && (y >= (1030f / 1280) * GameView.HEIGHT);
             } else if ((cardsCorrect % 4) == 2) {
-                return (x <= (330f / 1080) * GameView.WIDTH) && (y <= (820f / 1920) * GameView.HEIGHT && y >= (550f / 1920) * GameView.HEIGHT);
+                return (x <= (250f / 720) * GameView.WIDTH) && (y <= (615f / 1280) * GameView.HEIGHT && y >= (550f / 1920) * GameView.HEIGHT);
             } else {
-                return (x >= (745f / 1080) * GameView.WIDTH) && (y <= (820f / 1920) * GameView.HEIGHT && y >= (550f / 1920) * GameView.HEIGHT);
+                return (x >= (450f / 720) * GameView.WIDTH) && (y <= (615f / 1280) * GameView.HEIGHT && y >= (550f / 1920) * GameView.HEIGHT);
             }
         }else {
-            return (x <= (330f / 1080) * GameView.WIDTH) && (y >= (1580f / 1920) * GameView.HEIGHT);
+            return (x <= (250f / 720) * GameView.WIDTH) && (y >= (1030f / 1280) * GameView.HEIGHT);
         }
     }
 
@@ -158,16 +158,16 @@ public class GameBoard
     {
         if(impossible) {
             if ((cardsCorrect % 4) == 0) {
-                return (x >= (745f / 1080) * GameView.WIDTH) && (y >= (1580f / 1920) * GameView.HEIGHT);
+                return (x >= (450f / 720) * GameView.WIDTH) && (y >= (1030f / 1280) * GameView.HEIGHT);
             } else if ((cardsCorrect % 4) == 1) {
-                return (x <= (330f / 1080) * GameView.WIDTH) && (y <= (820f / 1920) * GameView.HEIGHT && y >= (550f / 1920) * GameView.HEIGHT);
+                return (x <= (250f / 720) * GameView.WIDTH) && (y <= (615f / 1280) * GameView.HEIGHT && y >= (550f / 1920) * GameView.HEIGHT);
             } else if ((cardsCorrect % 4) == 2) {
-                return (x >= (745f / 1080) * GameView.WIDTH) && (y <= (820f / 1920) * GameView.HEIGHT && y >= (550f / 1920) * GameView.HEIGHT);
+                return (x >= (450f / 720) * GameView.WIDTH) && (y <= (615f / 1280) * GameView.HEIGHT && y >= (550f / 1920) * GameView.HEIGHT);
             } else {
-                return (x <= (330f / 1080) * GameView.WIDTH) && (y >= (1580f / 1920) * GameView.HEIGHT);
+                return (x <= (250f / 720) * GameView.WIDTH) && (y >= (1030f / 1280) * GameView.HEIGHT);
             }
         }else {
-            return (x >= (745f / 1080) * GameView.WIDTH) && (y >= (1580f / 1920) * GameView.HEIGHT);
+            return (x >= (450f / 720) * GameView.WIDTH) && (y >= (1030f / 1280) * GameView.HEIGHT);
         }
     }
 
