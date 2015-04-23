@@ -17,6 +17,7 @@ public class Stroop {
     private int color,lastColor=0,num,lastNum=0;
 
     private float centerX = (600f/1080)*GameView.WIDTH;
+    final private float ANIMATION_TIME = 120f;
 
     /**
      * Constructor for the Stroop class.
@@ -109,11 +110,11 @@ public class Stroop {
     public void draw(Canvas canvas)
     {
         if (word.getXcoordinate() > centerX)
-            word.setXcoordinate(word.getXcoordinate() - (85f / 1080) * GameView.WIDTH);
+            word.setXcoordinate(word.getXcoordinate() - (ANIMATION_TIME / 1080) * GameView.WIDTH);
 
         if (lastWord != null) {
             if (lastWord.getXcoordinate() > -500)
-                lastWord.setXcoordinate(lastWord.getXcoordinate() - (85f / 1080) * GameView.WIDTH);
+                lastWord.setXcoordinate(lastWord.getXcoordinate() - (ANIMATION_TIME / 1080) * GameView.WIDTH);
             this.lastWord.draw(canvas);
         }
 
