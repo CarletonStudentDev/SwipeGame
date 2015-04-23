@@ -316,7 +316,7 @@ public class GameManager implements Observer
             gameOverScreen.draw(canvas);
             if(!soundPlayed)
             {
-                MediaSounds.loadPlaySound(R.raw.gameover2, 1, 1f);
+                MediaSounds.loadPlaySound(R.raw.gameover4, 1, 1f);
                 soundPlayed = true;
             }
         }
