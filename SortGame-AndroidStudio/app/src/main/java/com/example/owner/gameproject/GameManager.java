@@ -358,9 +358,11 @@ public class GameManager implements Observer
 
         }
         moveCards.removeAll(toRemove);
-        if (!(this.timedOut))
+        if (!(this.timedOut)) {
             timer.setText("" + gameClock.getRemainingTimeLeft());
-
+        }else{
+            timer.setText("99");
+        }
 
         if (minusHeartsSeen <= 20 && minusHearts) {
             canvas.drawBitmap(minusHeartsBitmap, (425f / 1080) * GameView.WIDTH, (560f / 1701) * GameView.HEIGHT + minusHeartsSeen*2, null);
