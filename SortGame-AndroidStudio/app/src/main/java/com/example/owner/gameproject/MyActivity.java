@@ -18,6 +18,7 @@ public class MyActivity extends Activity {
     private ToggleButton toggleBtn;
     private ScoreDataSource dataSource;
     public static int count;
+    public static boolean display;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +40,7 @@ public class MyActivity extends Activity {
         dataSource.open();
 
         count = 0;
+        display = false;
     }
 
 

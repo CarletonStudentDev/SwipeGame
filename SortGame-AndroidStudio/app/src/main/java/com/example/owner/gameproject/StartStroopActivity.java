@@ -18,8 +18,6 @@ public class StartStroopActivity extends AdActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-
         final GameView gameView = new GameView(this, 11000L,true,false);
 
         setContentView(gameView);
