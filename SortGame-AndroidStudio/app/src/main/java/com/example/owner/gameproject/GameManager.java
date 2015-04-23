@@ -225,7 +225,7 @@ public class GameManager implements Observer
 
 
         if((cardsCorrect%3)==0 )
-            gameClock.addTime(1000L);
+            gameClock.addTime(950L);
             plus2secondsSeen = 0;
 
         if(stroopMode){
@@ -371,7 +371,6 @@ public class GameManager implements Observer
         moveCards.removeAll(toRemove);
         if (!(this.timedOut))
             timer.setText("" + gameClock.getRemainingTimeLeft());
-
 
         if (minusHeartsSeen <= 20 && minusHearts) {
             canvas.drawBitmap(minusHeartsBitmap, (425f / 1080) * GameView.WIDTH, (560f / 1701) * GameView.HEIGHT + minusHeartsSeen*2, null);

@@ -18,7 +18,7 @@ public class StartStroopActivity extends AdActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        final GameView gameView = new GameView(this, 11000L,true,false);
+        final GameView gameView = new GameView(this, 10900L,true,false);
 
         setContentView(gameView);
 
