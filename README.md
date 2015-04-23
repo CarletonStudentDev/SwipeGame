@@ -1,9 +1,11 @@
-Color Match
-Stuff to Do:
+ColorMatch
+By: ______
 
-    Get Sprite sheet working (sort of done) #
-    Card, Multiplier, GameOverScreen and + 1 sec animation #
-    + 1sec causes timer 'beep' override for 1sec #
-    New sound mp3's #
-    GooglePlay Services (tutorial requires you to pay $25 before starting) #
-    HighScore needs to be saved before starting new activity (save to GooglePlay)
+Description:
+Tap the matching circle according to the Stroop or a Card in the center. 
+Match as many as you can before the time runs out. You will get a 1 second bonus per 3 correct answers to help.
+Matching correct answers in series will fill your multiplier bar. Once full, you'll be able to get maximum points.
+Keep track of your Stroops/Cards per second to compare your skill with friends.
+
+Tags:
+Color, Match, Matching, Tap, Speed, Sort, Simple, Game, Fun, Quick, 
