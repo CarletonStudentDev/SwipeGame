@@ -20,7 +20,7 @@ public class StartStroopActivity extends AdActivity {
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        final GameView gameView = new GameView(this, 11000L,true,false);
+        final GameView gameView = new GameView(this, 10900L,true,false);
 
         setContentView(gameView);
 

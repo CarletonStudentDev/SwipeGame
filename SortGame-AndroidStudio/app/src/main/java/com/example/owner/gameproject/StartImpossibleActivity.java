@@ -22,7 +22,7 @@ public class StartImpossibleActivity extends AdActivity {
         //getSupportActionBar().hide();
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        final GameView gameView = new GameView(this, 11000L,true,true);
+        final GameView gameView = new GameView(this, 10900L,true,true);
         setContentView(gameView);
 
         //GooglePlay LoginHere

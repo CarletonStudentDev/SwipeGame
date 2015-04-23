@@ -20,7 +20,7 @@ public class StartNormalActivity extends AdActivity {
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        final GameView gameView = new GameView(this, 11000L,false,false);
+        final GameView gameView = new GameView(this, 10900L,false,false);
 
         setContentView(gameView);
 
