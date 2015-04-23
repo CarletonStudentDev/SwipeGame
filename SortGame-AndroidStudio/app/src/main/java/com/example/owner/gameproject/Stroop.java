@@ -17,7 +17,7 @@ public class Stroop {
     private int color,lastColor=0,num,lastNum=0;
 
     private float centerX = (600f/1080)*GameView.WIDTH;
-    final private float ANIMATION_TIME = 120f;
+    final protected float ANIMATION_TIME = 120f;
 
     /**
      * Constructor for the Stroop class.

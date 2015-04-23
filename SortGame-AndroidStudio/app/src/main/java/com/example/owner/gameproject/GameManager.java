@@ -89,6 +89,7 @@ public class GameManager implements Observer
      */
     private GameClock gameClock;
     private int cardsCorrect,plus2secondsSeen,minusHeartsSeen;
+    protected boolean soundPlayed;
 
 
     /**
@@ -98,6 +99,7 @@ public class GameManager implements Observer
 
     public GameManager(long gameTime, boolean stroopMode, boolean impossibleMode)
     {
+        soundPlayed = false;
         gameFinished = false;
         timedOut = false;
         impossible = impossibleMode;
@@ -175,6 +177,7 @@ public class GameManager implements Observer
             {
                 if (gameFinished)
                 {
+
                     if(gameOverScreen.getWaitTime() == 0) {
                         if (this.gameOverScreen.getGameOverButton(event.getX(), event.getY()) == 1)
                             GameView.activity.finish();
@@ -195,6 +198,7 @@ public class GameManager implements Observer
                         else if (this.gameBoard.getQuadrantColor(event.getX(), event.getY()) != 0)
                             this.incorrect();
                     }
+                    soundPlayed = false;
                 }
             }
 
@@ -222,7 +226,7 @@ public class GameManager implements Observer
             gameClock.addTime(1000L);
             plus2secondsSeen = 0;
 
-        if(stroopMode==true){
+        if(stroopMode){
             stroop.correctStroop();
         }else{
             moveCards.add(new MoveCard(card.getColorId(), card.getXCoord(), card.getYCoord()));
@@ -310,7 +314,11 @@ public class GameManager implements Observer
         if (gameFinished) {
             GameView.activity.displayInterstitial();
             gameOverScreen.draw(canvas);
-            //MediaSounds.loadPlaySound(R.raw.gameover, 1, 1f);
+            if(!soundPlayed)
+            {
+                MediaSounds.loadPlaySound(R.raw.gameover, 1, 1f);
+                soundPlayed = true;
+            }
         }
     }
 
@@ -326,7 +334,7 @@ public class GameManager implements Observer
 
         gameBoard.draw(canvas);
 
-        if (stroopMode == true) {
+        if (stroopMode) {
             stroop.draw(canvas);
         } else {
             card.draw(canvas);
@@ -354,7 +362,7 @@ public class GameManager implements Observer
             timer.setText("" + gameClock.getRemainingTimeLeft());
 
 
-        if (minusHeartsSeen <= 20 && minusHearts == true) {
+        if (minusHeartsSeen <= 20 && minusHearts) {
             canvas.drawBitmap(minusHeartsBitmap, (425f / 1080) * GameView.WIDTH, (560f / 1701) * GameView.HEIGHT + minusHeartsSeen*2, null);
             minusHeartsSeen++;
             if (minusHeartsSeen == 20) {
@@ -363,7 +371,7 @@ public class GameManager implements Observer
         }
 
 
-        if ((cardsCorrect % 3) == 0 && cardsCorrect != 0 && plus2secondsSeen < 20 && minusHearts == false ){
+        if ((cardsCorrect % 3) == 0 && cardsCorrect != 0 && plus2secondsSeen < 20 && !minusHearts){
 
 
             plus2seconds.draw(canvas);
