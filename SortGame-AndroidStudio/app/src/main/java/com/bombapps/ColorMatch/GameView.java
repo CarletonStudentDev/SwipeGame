@@ -1,6 +1,7 @@
 package com.bombapps.ColorMatch;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -35,6 +36,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 
     public static AdActivity activity;
 
+    private boolean displayInterstitial;
 
     public GameView(AdActivity appActivity, long gameTime, boolean stroopMode, boolean impossibleMode)
     {
@@ -71,8 +73,11 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
         if (canvas != null)
         {
             canvas.drawColor(ColorsLoader.loadColorByName("menubackground"));
-
-            gameManager.draw(canvas);
+            if(displayInterstitial){
+                canvas.drawColor(Color.BLACK);
+            } else {
+                gameManager.draw(canvas);
+            }
         }
     }
 
@@ -92,7 +97,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
     @Override
     public boolean onTouchEvent(MotionEvent event)
     {
-        return gameManager.onTouchEvent(event);
+
+        return displayInterstitial || gameManager.onTouchEvent(event);
+
     }
 
 
@@ -144,5 +151,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 
     public boolean getGameOver(){
         return gameManager.getGameOver();
+    }
+
+    public void setDisplayInterstitial(boolean bool){
+        displayInterstitial = bool;
     }
 }

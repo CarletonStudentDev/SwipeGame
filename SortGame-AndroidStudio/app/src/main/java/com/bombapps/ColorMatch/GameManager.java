@@ -319,14 +319,13 @@ public class GameManager implements Observer
                 GameView.activity.runOnUiThread(new Runnable() {
                         public void run() {
                             if(MyActivity.count == 6) {
-                                MyActivity.display = true;
+                                GameView.activity.requestNewInterstitial();
                                 MyActivity.count = 0;
                             }
                         }
                     }
 
                 );
-                //MediaSounds.loadPlaySound(R.raw.gameover, 1, 1f);
                 soundPlayed = true;
             }
         }

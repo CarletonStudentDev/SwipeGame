@@ -15,7 +15,7 @@ public class StartImpossibleActivity extends AdActivity {
         super.onCreate(savedInstanceState);
 
         final GameView gameView = new GameView(this, 10900L,true,true);
-        setContentView(gameView);
+        setView(gameView);
 
         //GooglePlay LoginHere
         MyActivity.count++;

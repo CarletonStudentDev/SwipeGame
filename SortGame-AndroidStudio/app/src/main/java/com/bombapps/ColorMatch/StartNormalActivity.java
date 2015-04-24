@@ -13,7 +13,7 @@ public class StartNormalActivity extends AdActivity {
 
         final GameView gameView = new GameView(this, 10900L,false,false);
 
-        setContentView(gameView);
+        setView(gameView);
 
         //GooglePlay LoginHere
         MyActivity.count++;

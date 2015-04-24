@@ -1,6 +1,7 @@
 package com.bombapps.ColorMatch;
 
 import android.app.Activity;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.SurfaceView;
@@ -14,7 +15,7 @@ public class AdActivity extends Activity {
 
     private InterstitialAd interstitial;
 
-    private SurfaceView view;
+    private GameView view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,23 +26,24 @@ public class AdActivity extends Activity {
         // Prepare the Interstitial Ad
         interstitial = new InterstitialAd(this);
         // Insert the Ad Unit ID
+        //interstitial.setAdUnitId(getApplicationContext().getResources().getString(R.string.interstitial_ad_unit_id));
+        //testing
         interstitial.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
 
         Log.i("count", Integer.toString(MyActivity.count));
-        if(MyActivity.count == 4) {
-            requestNewInterstitial();
-        }
+        Log.i("display", Boolean.toString(MyActivity.display));
+
+        //requestNewInterstitial();
+
 
         // Prepare an Interstitial Ad Listener
         interstitial.setAdListener(new AdListener() {
             public void onAdLoaded() {
-                if(MyActivity.display){
-                    displayInterstitial();
-                    MyActivity.display = false;
-                }
+                displayInterstitial();
+                MyActivity.count = 0;
             }
             public void onAdClosed(){
-                //setContentView(view);
+                view.setDisplayInterstitial(false);
             }
         });
 
@@ -55,15 +57,16 @@ public class AdActivity extends Activity {
         }
     }
 
-    public void setView(SurfaceView view){
+    public void setView(GameView view){
         this.view = view;
+        setContentView(view);
     }
 
     public void requestNewInterstitial() {
         AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice("YOUR_DEVICE_HASH")
+                .addTestDevice("asdf")
                 .build();
-
+        view.setDisplayInterstitial(true);
         interstitial.loadAd(adRequest);
         displayInterstitial();
     }

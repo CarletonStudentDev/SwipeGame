@@ -16,7 +16,7 @@ public class StartStroopActivity extends AdActivity {
 
         final GameView gameView = new GameView(this, 10900L,true,false);
 
-        setContentView(gameView);
+        setView(gameView);
 
         //GooglePlay LoginHere
         MyActivity.count++;
