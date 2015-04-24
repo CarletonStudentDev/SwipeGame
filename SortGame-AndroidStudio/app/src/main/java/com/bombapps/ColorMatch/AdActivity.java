@@ -26,9 +26,9 @@ public class AdActivity extends Activity {
         // Prepare the Interstitial Ad
         interstitial = new InterstitialAd(this);
         // Insert the Ad Unit ID
-        //interstitial.setAdUnitId(getApplicationContext().getResources().getString(R.string.interstitial_ad_unit_id));
+        interstitial.setAdUnitId(getApplicationContext().getResources().getString(R.string.interstitial_ad_unit_id));
         //testing
-        interstitial.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        //interstitial.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
 
         Log.i("count", Integer.toString(MyActivity.count));
         Log.i("display", Boolean.toString(MyActivity.display));
