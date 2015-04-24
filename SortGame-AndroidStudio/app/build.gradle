@@ -5,7 +5,7 @@ android {
     buildToolsVersion "21.0.1"
 
     defaultConfig {
-        applicationId "com.example.owner.gameproject"
+        applicationId "com.bombapps.ColorMatch"
         minSdkVersion 11
         targetSdkVersion 21
         versionCode 1
