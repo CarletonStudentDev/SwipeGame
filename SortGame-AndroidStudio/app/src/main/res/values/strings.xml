@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">GameProject</string>
+    <string name="app_name">Color Match</string>
     <string name="normal_mode">Cards</string>
     <string name="stroop_mode">Stroop</string>
     <string name="endless_mode">Impossible</string>
