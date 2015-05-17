@@ -82,14 +82,10 @@ public class MoveCard {
         float x2 = 0.838f * GameView.WIDTH;
         float y2 = 0.35f * GameView.HEIGHT;
 
-        if((xCenter < x1 && yCenter < y2) ||
-           (xCenter > x2 && yCenter < y2) ||
-           (xCenter < x1 && yCenter > y1) ||
-           (xCenter > x2 && yCenter > y1)){
-            return true;
-        }
-
-        return false;
+        return ((xCenter < x1 && yCenter < y2) ||
+                (xCenter > x2 && yCenter < y2) ||
+                (xCenter < x1 && yCenter > y1) ||
+                (xCenter > x2 && yCenter > y1));
     }
 
     public float getXCenter(){
