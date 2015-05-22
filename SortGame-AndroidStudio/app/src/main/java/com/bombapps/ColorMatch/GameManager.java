@@ -141,10 +141,10 @@ public class GameManager implements Observer
         minusHeartsBitmap = Bitmap.createScaledBitmap(minusHeartsBitmap, (int) ((200f / 1080) * GameView.WIDTH), (int) ((200f / 1080) * GameView.WIDTH), true);
 
         readyBitmap = BitmapFactory.decodeResource(GameView.activity.getResources(), R.drawable.ready);
-        readyBitmap = Bitmap.createScaledBitmap(readyBitmap, (int) ((600f / 1080) * GameView.WIDTH), (int) ((600f / 1080) * GameView.WIDTH), true);
+        readyBitmap = Bitmap.createScaledBitmap(readyBitmap, (int) ((750f / 1080) * GameView.WIDTH), (int) ((300f / 1080) * GameView.WIDTH), true);
 
         goBitmap = BitmapFactory.decodeResource(GameView.activity.getResources(), R.drawable.go);
-        goBitmap = Bitmap.createScaledBitmap(goBitmap, (int) ((600f / 1080) * GameView.WIDTH), (int) ((600f / 1080) * GameView.WIDTH), true);
+        goBitmap = Bitmap.createScaledBitmap(goBitmap, (int) ((750f / 1080) * GameView.WIDTH), (int) ((300f / 1080) * GameView.WIDTH), true);
 
         score = new TextObject("" + game.getScore(), (350f/1080)*GameView.WIDTH, (125f/1701)*GameView.HEIGHT,
                               GameView.typeface, ColorsLoader.loadColorByName("white"), (150f/1080) * GameView.WIDTH);
@@ -391,7 +391,7 @@ public class GameManager implements Observer
         }
 
         if (beginGame && readySeen <= 30 ){
-            canvas.drawBitmap(readyBitmap, (425f / 1080) * GameView.WIDTH, (560f / 1701) * GameView.HEIGHT + readySeen * 2, null);
+            canvas.drawBitmap(readyBitmap, (180f / 1080) * GameView.WIDTH, (560f / 1701) * GameView.HEIGHT - readySeen * 2, null);
             readySeen++;
 
             if(readySeen == 30){
@@ -400,7 +400,7 @@ public class GameManager implements Observer
         }
 
         if (beginGame && goSeen <= 20 && !readyShowing){
-            canvas.drawBitmap(goBitmap, (425f / 1080) * GameView.WIDTH, (560f / 1701) * GameView.HEIGHT + goSeen * 2, null);
+            canvas.drawBitmap(goBitmap, (180f / 1080) * GameView.WIDTH, (560f / 1701) * GameView.HEIGHT - goSeen * 2, null);
             goSeen++;
 
             if(goSeen == 20){
