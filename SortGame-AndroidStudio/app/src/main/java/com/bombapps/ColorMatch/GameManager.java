@@ -131,6 +131,9 @@ public class GameManager implements Observer
 
         gameOverScreen = new GameOverScreen(GameView.typeface, ColorsLoader.loadColorByName("white"));
 
+        //demoBitmap = BitmapFactory.decodeResource(GameView.activity.getResources(), R.drawable.demo);
+        //demoBitmap = Bitmap.createScaledBitmap(demoBitmap, (int) (GameView.WIDTH), (int) (GameView.WIDTH), true);
+
         fullLivesBitmap = BitmapFactory.decodeResource(GameView.activity.getResources(), R.drawable.fullheart);
         fullLivesBitmap = Bitmap.createScaledBitmap(fullLivesBitmap, (int)((100f/1080) * GameView.WIDTH), (int)((100f/1080) * GameView.WIDTH), true);
 
@@ -222,7 +225,6 @@ public class GameManager implements Observer
         game.correct();
         score.setText("" + game.getScore());
         this.setMultiValueCardColor();
-
 
         if((cardsCorrect%3)==0 )
             gameClock.addTime(950L);
@@ -343,72 +345,77 @@ public class GameManager implements Observer
 
     public void draw(Canvas canvas) {
 
-        gameBoard.draw(canvas);
+        //yif(true) {
+            gameBoard.draw(canvas);
 
-        if (stroopMode) {
-            stroop.draw(canvas);
-        } else {
-            card.draw(canvas);
-        }
-
-        score.draw(canvas);
-        multiplierBar.draw(canvas);
-        timer.draw(canvas);
-
-        for (int i = 0; i < 3; i++)
-            canvas.drawBitmap(emptyLivesBitmap, ((700f + (i * 120)) / 1080) * GameView.WIDTH, (37f / 1701) * GameView.HEIGHT, null);
-
-        for (int i = 0; i < game.getLives(); i++)
-            canvas.drawBitmap(fullLivesBitmap, ((700f + (i * 120)) / 1080) * GameView.WIDTH, (37f / 1701) * GameView.HEIGHT, null);
-
-        for(MoveCard mc : moveCards){
-            if(mc.inQuadrant()){
-                toRemove.add(mc);
+            if (stroopMode) {
+                stroop.draw(canvas);
+            } else {
+                card.draw(canvas);
             }
-            mc.draw(canvas);
 
-        }
-        moveCards.removeAll(toRemove);
-        if (!(this.timedOut) && !beginGame)
-            timer.setText("" + gameClock.getRemainingTimeLeft());
+            score.draw(canvas);
+            multiplierBar.draw(canvas);
+            timer.draw(canvas);
 
-        if (minusHeartsSeen <= 20 && minusHearts) {
-            canvas.drawBitmap(minusHeartsBitmap, (425f / 1080) * GameView.WIDTH, (560f / 1701) * GameView.HEIGHT + minusHeartsSeen*2, null);
-            minusHeartsSeen++;
-            if (minusHeartsSeen == 20) {
-                minusHearts = false;
+            for (int i = 0; i < 3; i++)
+                canvas.drawBitmap(emptyLivesBitmap, ((700f + (i * 120)) / 1080) * GameView.WIDTH, (37f / 1701) * GameView.HEIGHT, null);
+
+            for (int i = 0; i < game.getLives(); i++)
+                canvas.drawBitmap(fullLivesBitmap, ((700f + (i * 120)) / 1080) * GameView.WIDTH, (37f / 1701) * GameView.HEIGHT, null);
+
+            for (MoveCard mc : moveCards) {
+                if (mc.inQuadrant()) {
+                    toRemove.add(mc);
+                }
+                mc.draw(canvas);
+
             }
-        }
+            moveCards.removeAll(toRemove);
+            if (!(this.timedOut) && !beginGame)
+                timer.setText("" + gameClock.getRemainingTimeLeft());
 
-        if ((cardsCorrect % 3) == 0 && cardsCorrect != 0 && plus2secondsSeen < 20 && !minusHearts){
-            plus2seconds.draw(canvas);
-            plus2seconds.setYcoordinate(plus2seconds.getYcoordinate() - 2);
-            plus2secondsSeen++;
-
-            if(plus2secondsSeen == 20){
-                plus2seconds.setYcoordinate((750f / 1701) * GameView.HEIGHT);
+            if (minusHeartsSeen <= 20 && minusHearts) {
+                canvas.drawBitmap(minusHeartsBitmap, (425f / 1080) * GameView.WIDTH, (560f / 1701) * GameView.HEIGHT + minusHeartsSeen * 2, null);
+                minusHeartsSeen++;
+                if (minusHeartsSeen == 20) {
+                    minusHearts = false;
+                }
             }
-        }
 
-        if (beginGame && readySeen <= 30 ){
-            canvas.drawBitmap(readyBitmap, (180f / 1080) * GameView.WIDTH, (560f / 1701) * GameView.HEIGHT - readySeen * 2, null);
-            readySeen++;
+            if ((cardsCorrect % 3) == 0 && cardsCorrect != 0 && plus2secondsSeen < 20 && !minusHearts) {
+                plus2seconds.draw(canvas);
+                plus2seconds.setYcoordinate(plus2seconds.getYcoordinate() - 2);
+                plus2secondsSeen++;
 
-            if(readySeen == 30){
-                readyShowing=false;
+                if (plus2secondsSeen == 20) {
+                    plus2seconds.setYcoordinate((750f / 1701) * GameView.HEIGHT);
+                }
             }
-        }
 
-        if (beginGame && goSeen <= 20 && !readyShowing){
-            canvas.drawBitmap(goBitmap, (180f / 1080) * GameView.WIDTH, (560f / 1701) * GameView.HEIGHT - goSeen * 2, null);
-            goSeen++;
+            if (beginGame && readySeen <= 30) {
+                canvas.drawBitmap(readyBitmap, (180f / 1080) * GameView.WIDTH, (560f / 1701) * GameView.HEIGHT - readySeen * 2, null);
+                readySeen++;
 
-            if(goSeen == 20){
-                beginGame=false;
+                if (readySeen == 30) {
+                    readyShowing = false;
+                }
             }
-        }
 
-        gameOver(canvas);
+            if (beginGame && goSeen <= 20 && !readyShowing) {
+                canvas.drawBitmap(goBitmap, (180f / 1080) * GameView.WIDTH, (560f / 1701) * GameView.HEIGHT - goSeen * 2, null);
+                goSeen++;
+
+                if (goSeen == 20) {
+                    beginGame = false;
+                }
+            }
+
+            gameOver(canvas);
+        /*}else{
+            canvas.drawBitmap(demoBitmap, (540f / 1080) * GameView.WIDTH, (860f / 1701) * GameView.HEIGHT, null);
+
+        }*/
     }
 
     /**
