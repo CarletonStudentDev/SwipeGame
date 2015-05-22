@@ -12,14 +12,16 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class ScoreDataSource {
     // Database fields
-    public static SQLiteDatabase normalDatabase, stroopDatabase, endlessDatabase; //changed to global
+    public static SQLiteDatabase normalDatabase, stroopDatabase, endlessDatabase, tutorialDatabase; //changed to global
     private NormalHighScoreDatabase normalDbHelper;
     private StroopHighScoreDatabase stroopDbHelper;
     private EndlessHighScoreDatabase endlessDbHelper;
+    private TutorialDB tutorialDbHelper;
 
     public static String[] allColumnsNormal = { NormalHighScoreDatabase.COLUMN_ID, NormalHighScoreDatabase.COLUMN_SCORE_NORMAL};
     public static String[] allColumnsStroop = { StroopHighScoreDatabase.COLUMN_ID, StroopHighScoreDatabase.COLUMN_SCORE_STROOP};
     public static String[] allColumnsEndless = { EndlessHighScoreDatabase.COLUMN_ID, EndlessHighScoreDatabase.COLUMN_SCORE_ENDLESS};
+    public static String[] allColumnsTutorial = { TutorialDB.COLUMN_ID, TutorialDB.COLUMN_HAS_PLAYED};
 
     public static int normalHighScore = 0, stroopHighScore=0, endlessHighScore = 0;//changed to global
 
@@ -27,18 +29,22 @@ public class ScoreDataSource {
         normalDbHelper = new NormalHighScoreDatabase(context);
         stroopDbHelper = new StroopHighScoreDatabase(context);
         endlessDbHelper = new EndlessHighScoreDatabase(context);
+        tutorialDbHelper = new TutorialDB(context);
     }
 
     public void open() throws SQLException {
         normalDatabase= normalDbHelper.getWritableDatabase();
         stroopDatabase = stroopDbHelper.getWritableDatabase();
         endlessDatabase = endlessDbHelper.getWritableDatabase();
+        tutorialDatabase = tutorialDbHelper.getWritableDatabase();
+
     }
 
     public void close() {
         normalDbHelper.close();
         stroopDbHelper.close();
         endlessDatabase.close();
+        tutorialDatabase.close();
     }
 
     public static ScoreModel createNormalScore(int score) {
@@ -81,6 +87,30 @@ public class ScoreDataSource {
         ScoreModel newScoreModel = cursorToScoreModel(cursor);
         cursor.close();
         return newScoreModel;
+    }
+
+    public static void createTutorialEntry() {
+        int value;
+        Cursor cur;
+        cur = tutorialDatabase.rawQuery("select count("+TutorialDB.COLUMN_ID+") from "+TutorialDB.TABLE, null );
+        cur.moveToFirst();
+        value=cur.getInt(0);
+        cur.close();
+
+        if(value==0) {
+            ContentValues values = new ContentValues();
+            values.put(TutorialDB.COLUMN_HAS_PLAYED, 1);
+            long insertId = tutorialDatabase.insert(TutorialDB.TABLE, null,
+                    values);
+            Cursor cursor = tutorialDatabase.query(TutorialDB.TABLE,
+                    allColumnsTutorial, TutorialDB.COLUMN_ID + " = " + insertId, null,
+                    null, null, null);
+            cursor.moveToFirst();
+            //ScoreModel newScoreModel = cursorToScoreModel(cursor);
+            cursor.close();
+            //return newScoreModel;
+        }
+
     }
 
     /*

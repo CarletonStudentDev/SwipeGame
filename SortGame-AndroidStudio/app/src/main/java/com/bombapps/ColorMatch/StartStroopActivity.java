@@ -20,6 +20,7 @@ public class StartStroopActivity extends AdActivity {
 
         //GooglePlay LoginHere
         MyActivity.count++;
+        ScoreDataSource.createTutorialEntry();
     }
 
 
