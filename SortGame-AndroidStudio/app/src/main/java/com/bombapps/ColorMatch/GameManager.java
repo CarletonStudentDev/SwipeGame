@@ -141,10 +141,10 @@ public class GameManager implements Observer
         minusHeartsBitmap = Bitmap.createScaledBitmap(minusHeartsBitmap, (int) ((200f / 1080) * GameView.WIDTH), (int) ((200f / 1080) * GameView.WIDTH), true);
 
         readyBitmap = BitmapFactory.decodeResource(GameView.activity.getResources(), R.drawable.ready);
-        readyBitmap = Bitmap.createScaledBitmap(readyBitmap, (int) ((300f / 1080) * GameView.WIDTH), (int) ((300f / 1080) * GameView.WIDTH), true);
+        readyBitmap = Bitmap.createScaledBitmap(readyBitmap, (int) ((600f / 1080) * GameView.WIDTH), (int) ((600f / 1080) * GameView.WIDTH), true);
 
         goBitmap = BitmapFactory.decodeResource(GameView.activity.getResources(), R.drawable.go);
-        goBitmap = Bitmap.createScaledBitmap(goBitmap, (int) ((300f / 1080) * GameView.WIDTH), (int) ((300f / 1080) * GameView.WIDTH), true);
+        goBitmap = Bitmap.createScaledBitmap(goBitmap, (int) ((600f / 1080) * GameView.WIDTH), (int) ((600f / 1080) * GameView.WIDTH), true);
 
         score = new TextObject("" + game.getScore(), (350f/1080)*GameView.WIDTH, (125f/1701)*GameView.HEIGHT,
                               GameView.typeface, ColorsLoader.loadColorByName("white"), (150f/1080) * GameView.WIDTH);
