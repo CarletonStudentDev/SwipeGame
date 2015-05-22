@@ -81,15 +81,17 @@ public class GameManager implements Observer
      *                  of lives in the game.
      */
     private Bitmap fullLivesBitmap,
-                   emptyLivesBitmap,minusHeartsBitmap;
+                   emptyLivesBitmap,minusHeartsBitmap,
+                    readyBitmap,goBitmap;
 
 
     /**
      * gameClock GameClock instance representing the countdown timer of the game.
      */
     private GameClock gameClock;
-    private int cardsCorrect,plus2secondsSeen,minusHeartsSeen;
+    private int cardsCorrect=0,plus2secondsSeen=0,minusHeartsSeen=0,readySeen=0,goSeen=0;
     protected boolean soundPlayed;
+    private boolean beginGame=true, readyShowing=true;
 
 
     /**
@@ -104,9 +106,6 @@ public class GameManager implements Observer
         timedOut = false;
         impossible = impossibleMode;
         minusHearts=false;
-        cardsCorrect = 0;
-        plus2secondsSeen=0;
-        minusHeartsSeen=0;
         this.stroopMode = stroopMode;
 
         if(stroopMode){
@@ -136,11 +135,16 @@ public class GameManager implements Observer
         fullLivesBitmap = Bitmap.createScaledBitmap(fullLivesBitmap, (int)((100f/1080) * GameView.WIDTH), (int)((100f/1080) * GameView.WIDTH), true);
 
         emptyLivesBitmap = BitmapFactory.decodeResource(GameView.activity.getResources(), R.drawable.blankheart);
-        emptyLivesBitmap = Bitmap.createScaledBitmap(emptyLivesBitmap, (int)((100f/1080) * GameView.WIDTH), (int)((100f/1080) * GameView.WIDTH), true);
+        emptyLivesBitmap = Bitmap.createScaledBitmap(emptyLivesBitmap, (int) ((100f / 1080) * GameView.WIDTH), (int) ((100f / 1080) * GameView.WIDTH), true);
 
         minusHeartsBitmap= BitmapFactory.decodeResource(GameView.activity.getResources(), R.drawable.minusfullheart2);
-        minusHeartsBitmap = Bitmap.createScaledBitmap(minusHeartsBitmap, (int)((200f/1080) * GameView.WIDTH), (int)((200f/1080) * GameView.WIDTH), true);
+        minusHeartsBitmap = Bitmap.createScaledBitmap(minusHeartsBitmap, (int) ((200f / 1080) * GameView.WIDTH), (int) ((200f / 1080) * GameView.WIDTH), true);
 
+        readyBitmap = BitmapFactory.decodeResource(GameView.activity.getResources(), R.drawable.ready);
+        readyBitmap = Bitmap.createScaledBitmap(readyBitmap, (int) ((300f / 1080) * GameView.WIDTH), (int) ((300f / 1080) * GameView.WIDTH), true);
+
+        goBitmap = BitmapFactory.decodeResource(GameView.activity.getResources(), R.drawable.go);
+        goBitmap = Bitmap.createScaledBitmap(goBitmap, (int) ((300f / 1080) * GameView.WIDTH), (int) ((300f / 1080) * GameView.WIDTH), true);
 
         score = new TextObject("" + game.getScore(), (350f/1080)*GameView.WIDTH, (125f/1701)*GameView.HEIGHT,
                               GameView.typeface, ColorsLoader.loadColorByName("white"), (150f/1080) * GameView.WIDTH);
@@ -150,8 +154,6 @@ public class GameManager implements Observer
 
         plus2seconds = new ClockTextObject("+1", (525f / 1080) * GameView.WIDTH, (775f / 1701) * GameView.HEIGHT,
                 GameView.typeface, ColorsLoader.loadColorByName("green"), (225f / 1080) * GameView.WIDTH);
-
-
 
     }
 
@@ -367,7 +369,7 @@ public class GameManager implements Observer
 
         }
         moveCards.removeAll(toRemove);
-        if (!(this.timedOut))
+        if (!(this.timedOut) && !beginGame)
             timer.setText("" + gameClock.getRemainingTimeLeft());
 
         if (minusHeartsSeen <= 20 && minusHearts) {
@@ -378,10 +380,7 @@ public class GameManager implements Observer
             }
         }
 
-
         if ((cardsCorrect % 3) == 0 && cardsCorrect != 0 && plus2secondsSeen < 20 && !minusHearts){
-
-
             plus2seconds.draw(canvas);
             plus2seconds.setYcoordinate(plus2seconds.getYcoordinate() - 2);
             plus2secondsSeen++;
@@ -389,7 +388,24 @@ public class GameManager implements Observer
             if(plus2secondsSeen == 20){
                 plus2seconds.setYcoordinate((750f / 1701) * GameView.HEIGHT);
             }
+        }
 
+        if (beginGame && readySeen <= 30 ){
+            canvas.drawBitmap(readyBitmap, (425f / 1080) * GameView.WIDTH, (560f / 1701) * GameView.HEIGHT + readySeen * 2, null);
+            readySeen++;
+
+            if(readySeen == 30){
+                readyShowing=false;
+            }
+        }
+
+        if (beginGame && goSeen <= 20 && !readyShowing){
+            canvas.drawBitmap(goBitmap, (425f / 1080) * GameView.WIDTH, (560f / 1701) * GameView.HEIGHT + goSeen * 2, null);
+            goSeen++;
+
+            if(goSeen == 20){
+                beginGame=false;
+            }
         }
 
         gameOver(canvas);
