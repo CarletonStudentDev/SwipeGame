@@ -14,7 +14,7 @@ public class StartImpossibleActivity extends AdActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        final GameView gameView = new GameView(this, 10900L,true,true);
+        final GameView gameView = new GameView(this, 11400L,true,true);
         setView(gameView);
 
         //GooglePlay LoginHere

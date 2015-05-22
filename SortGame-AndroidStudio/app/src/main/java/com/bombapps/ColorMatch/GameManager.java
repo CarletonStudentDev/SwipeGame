@@ -143,11 +143,11 @@ public class GameManager implements Observer
         minusHeartsBitmap= BitmapFactory.decodeResource(GameView.activity.getResources(), R.drawable.minusfullheart2);
         minusHeartsBitmap = Bitmap.createScaledBitmap(minusHeartsBitmap, (int) ((200f / 1080) * GameView.WIDTH), (int) ((200f / 1080) * GameView.WIDTH), true);
 
-        readyBitmap = BitmapFactory.decodeResource(GameView.activity.getResources(), R.drawable.ready);
+        readyBitmap = BitmapFactory.decodeResource(GameView.activity.getResources(), R.drawable.ready2);
         readyBitmap = Bitmap.createScaledBitmap(readyBitmap, (int) ((750f / 1080) * GameView.WIDTH), (int) ((300f / 1080) * GameView.WIDTH), true);
 
-        goBitmap = BitmapFactory.decodeResource(GameView.activity.getResources(), R.drawable.go);
-        goBitmap = Bitmap.createScaledBitmap(goBitmap, (int) ((750f / 1080) * GameView.WIDTH), (int) ((300f / 1080) * GameView.WIDTH), true);
+        goBitmap = BitmapFactory.decodeResource(GameView.activity.getResources(), R.drawable.go2);
+        goBitmap = Bitmap.createScaledBitmap(goBitmap, (int) ((600f / 1080) * GameView.WIDTH), (int) ((300f / 1080) * GameView.WIDTH), true);
 
         score = new TextObject("" + game.getScore(), (350f/1080)*GameView.WIDTH, (125f/1701)*GameView.HEIGHT,
                               GameView.typeface, ColorsLoader.loadColorByName("white"), (150f/1080) * GameView.WIDTH);
@@ -393,18 +393,19 @@ public class GameManager implements Observer
                 }
             }
 
-            if (beginGame && readySeen <= 30) {
-                canvas.drawBitmap(readyBitmap, (180f / 1080) * GameView.WIDTH, (560f / 1701) * GameView.HEIGHT - readySeen * 2, null);
-                readySeen++;
+        if (beginGame && readySeen <= 20 ){
+            canvas.drawBitmap(readyBitmap, (150f / 1080) * GameView.WIDTH, (560f / 1701) * GameView.HEIGHT - readySeen * 2, null);
+            readySeen++;
 
-                if (readySeen == 30) {
+                if (readySeen == 20) {
                     readyShowing = false;
                 }
             }
 
-            if (beginGame && goSeen <= 20 && !readyShowing) {
-                canvas.drawBitmap(goBitmap, (180f / 1080) * GameView.WIDTH, (560f / 1701) * GameView.HEIGHT - goSeen * 2, null);
-                goSeen++;
+        if (beginGame && goSeen <= 20 && !readyShowing){
+            //canvas.drawBitmap(goBitmap, (230f / 1080) * GameView.WIDTH, (560f / 1701) * GameView.HEIGHT - goSeen * 2, null);
+            canvas.drawBitmap(goBitmap, (250f / 1080) * GameView.WIDTH, (520f / 1701) * GameView.HEIGHT , null);
+            goSeen++;
 
                 if (goSeen == 20) {
                     beginGame = false;

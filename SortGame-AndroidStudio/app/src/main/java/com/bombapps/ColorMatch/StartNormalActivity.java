@@ -11,7 +11,7 @@ public class StartNormalActivity extends AdActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        final GameView gameView = new GameView(this, 10900L,false,false);
+        final GameView gameView = new GameView(this, 11400L,false,false);
 
         setView(gameView);
 
