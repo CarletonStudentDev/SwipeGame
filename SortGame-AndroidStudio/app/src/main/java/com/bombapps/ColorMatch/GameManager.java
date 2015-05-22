@@ -121,7 +121,7 @@ public class GameManager implements Observer
         gameClock.addObserver(this);
 
 
-        timer = new ClockTextObject("" + gameClock.getRemainingTimeLeft(), (525f / 1080) * GameView.WIDTH, (550f / 1701) * GameView.HEIGHT,
+        timer = new ClockTextObject("10", (525f / 1080) * GameView.WIDTH, (550f / 1701) * GameView.HEIGHT,
                     GameView.typeface, ColorsLoader.loadColorByName("black"), (225f / 1080) * GameView.WIDTH);
 
         /*
