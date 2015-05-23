@@ -73,7 +73,6 @@ public class GameManager implements Observer
      */
     private MultiplierBar multiplierBar;
 
-
     /**
      * fullLivesBitmap Bitmap instance representing the image used to display the number of
      *                 lives left in the game.
@@ -84,7 +83,6 @@ public class GameManager implements Observer
                    emptyLivesBitmap,minusHeartsBitmap,
                     readyBitmap,goBitmap;
 
-
     /**
      * gameClock GameClock instance representing the countdown timer of the game.
      */
@@ -92,7 +90,6 @@ public class GameManager implements Observer
     private int cardsCorrect=0,plus2secondsSeen=0,minusHeartsSeen=0,readySeen=0,goSeen=0;
     protected boolean soundPlayed;
     private boolean beginGame=true, readyShowing=true;
-
 
     /**
      * Constructor for the GameManager class.
@@ -130,9 +127,6 @@ public class GameManager implements Observer
         */
 
         gameOverScreen = new GameOverScreen(GameView.typeface, ColorsLoader.loadColorByName("white"));
-
-        //demoBitmap = BitmapFactory.decodeResource(GameView.activity.getResources(), R.drawable.demo);
-        //demoBitmap = Bitmap.createScaledBitmap(demoBitmap, (int) (GameView.WIDTH), (int) (GameView.WIDTH), true);
 
         fullLivesBitmap = BitmapFactory.decodeResource(GameView.activity.getResources(), R.drawable.fullheart);
         fullLivesBitmap = Bitmap.createScaledBitmap(fullLivesBitmap, (int)((100f/1080) * GameView.WIDTH), (int)((100f/1080) * GameView.WIDTH), true);
@@ -213,7 +207,6 @@ public class GameManager implements Observer
         return false;
     }
 
-
     /**
      * Notifies the game of correct, updates the score, generates a new card and
      * updates the multiplier bar accordingly.
@@ -265,12 +258,6 @@ public class GameManager implements Observer
         multiplierBar.setMultiplierValues(game.getMultiplierNum(), game.getBarNum());
     }
 
-    private void checkHighScore()
-    {
-        //if (game.getScore() > GooglePlayServices.getHighScore())
-            //GooglePlayServices.setHighScore(game.getScore());
-    }
-
     public int getHighScore (){
 
         if (stroopMode){
@@ -306,8 +293,6 @@ public class GameManager implements Observer
             }else if (game.getLivesFinished()) {
                 gameOverScreen.setLossReason(LIVESFINISHED);
             }
-
-            this.checkHighScore();
 
             gameClock.stopTime();
 
@@ -345,7 +330,6 @@ public class GameManager implements Observer
 
     public void draw(Canvas canvas) {
 
-        //yif(true) {
             gameBoard.draw(canvas);
 
             if (stroopMode) {
@@ -403,7 +387,6 @@ public class GameManager implements Observer
             }
 
         if (beginGame && goSeen <= 20 && !readyShowing){
-            //canvas.drawBitmap(goBitmap, (230f / 1080) * GameView.WIDTH, (560f / 1701) * GameView.HEIGHT - goSeen * 2, null);
             canvas.drawBitmap(goBitmap, (250f / 1080) * GameView.WIDTH, (520f / 1701) * GameView.HEIGHT , null);
             goSeen++;
 
@@ -413,10 +396,7 @@ public class GameManager implements Observer
             }
 
             gameOver(canvas);
-        /*}else{
-            canvas.drawBitmap(demoBitmap, (540f / 1080) * GameView.WIDTH, (860f / 1701) * GameView.HEIGHT, null);
 
-        }*/
     }
 
     /**
@@ -433,7 +413,6 @@ public class GameManager implements Observer
         this.timedOut = (boolean) data;
         timer.setText("0");
     }
-
 
     public boolean getGameOver(){
         return gameFinished;
