@@ -308,7 +308,7 @@ public class GameManager implements Observer
                 GameView.activity.runOnUiThread(new Runnable() {
                         public void run() {
                             if(MyActivity.count == 6) {
-                                GameView.activity.displayInterstitial();
+                                GameView.activity.requestNewInterstitial();
                                 MyActivity.count = 0;
                             }
                         }
