@@ -87,7 +87,7 @@ public class GameManager implements Observer
      * gameClock GameClock instance representing the countdown timer of the game.
      */
     private GameClock gameClock;
-    private int cardsCorrect=0,plus2secondsSeen=0,minusHeartsSeen=0,readySeen=0,goSeen=0;
+    private int cardsCorrect=0,plus2secondsSeen=0,minusHeartsSeen=0,readySeen=0,goSeen=0,goDelay=0;
     protected boolean soundPlayed;
     private boolean beginGame=true, readyShowing=true;
 
@@ -384,9 +384,11 @@ public class GameManager implements Observer
                 if (readySeen == 20) {
                     readyShowing = false;
                 }
-            }
+        }else {
+            goDelay++;
+        }
 
-        if (beginGame && goSeen <= 20 && !readyShowing){
+        if (beginGame && goSeen <= 20 && !readyShowing && goDelay>5){
             canvas.drawBitmap(goBitmap, (250f / 1080) * GameView.WIDTH, (520f / 1701) * GameView.HEIGHT , null);
             goSeen++;
 
