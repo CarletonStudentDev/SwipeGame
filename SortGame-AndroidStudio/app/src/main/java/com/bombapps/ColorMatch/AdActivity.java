@@ -1,7 +1,10 @@
 package com.bombapps.ColorMatch;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Canvas;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.SurfaceView;
@@ -49,15 +52,28 @@ public class AdActivity extends Activity {
     }
 
     public void displayInterstitial(){
-        view.setDisplayInterstitial(true);
-        if(interstitial.isLoaded()){
-            interstitial.show();
+        if(isNetworkConnected()) {
+            view.setDisplayInterstitial(true);
+            if (interstitial.isLoaded()) {
+                interstitial.show();
+            }
         }
+
     }
 
     public void setView(GameView view){
         this.view = view;
         setContentView(view);
+    }
+
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo ni = cm.getActiveNetworkInfo();
+        if (ni == null) {
+            // There are no active networks.
+            return false;
+        } else
+            return true;
     }
 
     public void requestNewInterstitial() {
