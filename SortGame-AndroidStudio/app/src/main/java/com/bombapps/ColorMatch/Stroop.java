@@ -29,6 +29,7 @@ public class Stroop {
         this.impossible = impossible;
         this.word = new TextObject(redString, (1200/1080)*GameView.WIDTH, (1100f/1701)*GameView.HEIGHT, GameView.typeface, ColorsLoader.loadColorByName("green"), (250f/1080) * GameView.WIDTH);
         randomColorString();
+        word.setXcoordinate(2000f);
     }
 
     public void randomColorString() {

@@ -377,22 +377,22 @@ public class GameManager implements Observer
                 }
             }
 
-        if (beginGame && readySeen <= 20 ){
+        if (beginGame && readySeen <= 30 ){
             canvas.drawBitmap(readyBitmap, (150f / 1080) * GameView.WIDTH, (560f / 1701) * GameView.HEIGHT - readySeen * 2, null);
             readySeen++;
 
-                if (readySeen == 20) {
+                if (readySeen == 30) {
                     readyShowing = false;
                 }
         }else {
             goDelay++;
         }
 
-        if (beginGame && goSeen <= 20 && !readyShowing && goDelay>5){
-            canvas.drawBitmap(goBitmap, (250f / 1080) * GameView.WIDTH, (520f / 1701) * GameView.HEIGHT , null);
+        if (beginGame && goSeen <= 40 && !readyShowing && goDelay>5){
+            canvas.drawBitmap(goBitmap, (240f / 1080) * GameView.WIDTH, (420f / 1701) * GameView.HEIGHT , null);
             goSeen++;
 
-                if (goSeen == 20) {
+                if (goSeen == 40) {
                     beginGame = false;
                 }
             }
