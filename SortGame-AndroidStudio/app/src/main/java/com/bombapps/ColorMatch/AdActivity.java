@@ -30,11 +30,10 @@ public class AdActivity extends Activity {
         //testing
         //interstitial.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
 
+        requestNewInterstitial();
+
         Log.i("count", Integer.toString(MyActivity.count));
         Log.i("display", Boolean.toString(MyActivity.display));
-
-        //requestNewInterstitial();
-
 
         // Prepare an Interstitial Ad Listener
         interstitial.setAdListener(new AdListener() {
@@ -46,12 +45,11 @@ public class AdActivity extends Activity {
                 view.setDisplayInterstitial(false);
             }
         });
-
-        //GooglePlay LoginHere
         MyActivity.count++;
     }
 
     public void displayInterstitial(){
+        view.setDisplayInterstitial(true);
         if(interstitial.isLoaded()){
             interstitial.show();
         }
@@ -66,8 +64,6 @@ public class AdActivity extends Activity {
         AdRequest adRequest = new AdRequest.Builder()
                 .addTestDevice("asdf")
                 .build();
-        view.setDisplayInterstitial(true);
         interstitial.loadAd(adRequest);
-        displayInterstitial();
     }
 }
