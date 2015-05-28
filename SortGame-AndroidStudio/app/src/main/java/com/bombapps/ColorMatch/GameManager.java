@@ -259,7 +259,7 @@ public class GameManager implements Observer
     }
 
     public int getHighScore (){
-
+        /*
         if (stroopMode){
             ScoreDataSource.createStroopScore(game.getScore());
             return ScoreDataSource.getStroopHighScore();
@@ -269,7 +269,20 @@ public class GameManager implements Observer
         }else{
             ScoreDataSource.createNormalScore(game.getScore());
             return ScoreDataSource.getNormalHighScore();
+        }*/
+
+
+        if (impossible){
+            ScoreDataSource.createEndlessScore(game.getScore());
+            return ScoreDataSource.getEndlessHighScore();
+        }else if(stroopMode){
+            ScoreDataSource.createStroopScore(game.getScore());
+            return ScoreDataSource.getStroopHighScore();
+        }else{
+            ScoreDataSource.createNormalScore(game.getScore());
+            return ScoreDataSource.getNormalHighScore();
         }
+
 
     }
 
