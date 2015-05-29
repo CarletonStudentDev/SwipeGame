@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Model.Player class constants -->
+    <integer name="DEFAULTLIVES">3</integer>
+    <integer name="DEFAULTSCORE">0</integer>
+    <integer name="MINUSONE">-1</integer>
+    <integer name="BASEPOINTS">100</integer>
+
+
+    <!-- Model.Multiplier class constants -->
+    <integer name="MAXIMUM">5</integer>
+    <integer name="MAX_MULTIPLIER">16</integer>
+    <integer name="MULTIPLIER_SCALIER">2</integer>
+    <integer name="DEFAULTMULTIPLIER">1</integer>
+    <integer name="DEFAULTMETERCOUNT">0</integer>
+
+
+    <!-- Model.Deck class constants -->
+    <integer name="DECKSIZE">15</integer>
+    <integer name="POSITIVEINTEGER">0</integer>
+
+
+    <!-- Model.CardGenerator class constants -->
+    <integer name="DEFAULTNUMPATTERNATTR">4</integer>
+    <integer name="randomLowNum">1</integer>
+
+
+    <!-- Model.Clock class constant -->
+    <integer name="INTERVAL">1000</integer>
+
+
+    <!-- Model.Game class constants -->
+    <integer name="ENDOFLIVES">0</integer>
+    <integer name="ENDOFDECK">0</integer>
+    <integer name="TIMEPERCARD">15000</integer>
+
+    
+    
+    <!-- SaveReloadState.State class save and load values -->
+    <integer name="PlayerLives">0</integer>
+    <integer name="PlayerScore">0</integer>
+    <integer name="MultiplierMeter">0</integer>
+    <integer name="CurrentDeckSize">0</integer>
+
+
+</resources>
