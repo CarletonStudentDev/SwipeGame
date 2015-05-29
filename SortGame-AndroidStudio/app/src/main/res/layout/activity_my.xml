@@ -1,0 +1,93 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context=".MyActivity">
+
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bg"
+        android:scaleType="centerCrop"/>
+
+    <ImageView
+        android:id="@+id/name_logo"
+        android:layout_width="360dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="55dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/title_icon" />
+
+    <Button
+        android:id="@+id/stroop_mode_button"
+        android:layout_width="@dimen/button_size"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/name_logo"
+        android:text="@string/stroop_mode"
+        android:background="@color/menuButton"
+        android:layout_marginTop="75dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="100dp"
+        android:onClick="openStroop" />
+
+    <Button
+        android:id="@+id/normal_mode_button"
+        android:layout_width="@dimen/button_size"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/stroop_mode_button"
+        android:text="@string/normal_mode"
+        android:background="@color/menuButton"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="100dp"
+        android:onClick="openNormal"/>
+
+    <Button
+        android:id="@+id/impossible_mode_button"
+        android:layout_width="@dimen/button_size"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/normal_mode_button"
+        android:text="@string/endless_mode"
+        android:background="@color/menuButton"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="100dp"
+        android:onClick="openImpossible"  />
+
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/toggleButton"
+        android:background="@color/menuButton"
+        android:layout_marginBottom="55dp"
+        android:layout_marginRight="5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textOff="@string/sound_off_toggleButton"
+        android:textOn="@string/sound_on_toggleButton"
+        android:checked="true"
+        android:onClick="onToggleClicked"/>
+
+    <ImageView
+        android:id="@+id/bombapps"
+        android:layout_width="100dp"
+        android:layout_height="75dp"
+        android:layout_marginLeft="5dp"
+        android:layout_above="@+id/adView"
+        android:src="@drawable/bombapps" />
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id">
+
+    </com.google.android.gms.ads.AdView>
+
+
+
+</RelativeLayout>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="lightGray">#BFDCF5</color>
+    <color name="lightRed">#C4273C</color>
+    <color name="mediumRed">#AB2234</color>
+    <color name="darkRed">#851B29</color>
+    <color name="darkestRed">#ff771112</color>
+
+
+    <color name="lightBlue">#007BFF</color>
+    <color name="blue">#007AD9</color>
+
+
+    <color name="mediumBlue">#005CBF</color>
+    <color name="darkBlue">#00448D</color>
+    <color name="darkestBlue">#001F40</color>
+
+
+    <color name="orange">#FF4B23</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="red">#C4273C</color>
+    <color name="green">#2B9C1A</color>
+    <color name="gray">#FF888888</color>
+    <color name="purple">#9723C4</color>
+
+    <color name="menuButton">#007AD9</color>
+    <color name="menuBackground">#ECF0F1</color>
+    <color name="gameBackground">#ECF0F1</color>
+    <color name="black">#000000</color>
+    <color name="darkYellow">#FFD625</color>
+    <color name="emergRed">#C41E1C</color>
+
+
+</resources>
